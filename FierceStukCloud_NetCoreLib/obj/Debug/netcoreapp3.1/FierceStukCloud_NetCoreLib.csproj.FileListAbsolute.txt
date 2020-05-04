@@ -1,0 +1,9 @@
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.deps.json
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.AssemblyInfoInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.AssemblyInfo.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
