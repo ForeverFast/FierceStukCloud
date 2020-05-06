@@ -6,41 +6,56 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Models;assembly=FierceStukCloud_NetCoreLib"
         mc:Ignorable="d"
-        Title="MainWindowV" Height="450" Width="800">
+        Title="MainWindowV" Height="900" Width="1202" MinWidth="1202" MinHeight="900" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     
     <Grid Background="{StaticResource GrayLVL1}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
 
-      
+        <Border x:Name="Header" Grid.Row="0"
+                
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource DimColor}">
+            <Grid>
+                
+            </Grid>
+        </Border>
 
-        <Button Grid.Column="1" Command="{Binding LoadImages}"/>
+        <TabControl x:Name="MainTC" Grid.Row="1" 
+                    
+                    Style="{StaticResource TabContolStyleMain}">
+            <TabItem >
+                <TabItem.Content>
+                    <Grid  Background="Gray">
 
-        <ListBox  ItemsSource="{Binding Songs}" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" Padding="5"
-                            BorderThickness="2" BorderBrush="Blue"
-                            Background="LightBlue">
-                        <StackPanel>
-                            <Image Source="{Binding Image.Image, Mode=OneWay}" Width="150" Height="150"/>
-                            <TextBlock Text="{Binding Title}" TextAlignment="Center" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                    </Grid>
+                </TabItem.Content>
+               
+            </TabItem>
+            <TabItem/>
+        </TabControl>
 
+        <Border x:Name="Footer" Grid.Row="2"
+                
+                BorderThickness="0,1,0,0"
+                BorderBrush="{StaticResource DimColor}"
+                
+                Background="{StaticResource GrayLVL4}">
+            
+        </Border>
+        
     </Grid>
 </Window>

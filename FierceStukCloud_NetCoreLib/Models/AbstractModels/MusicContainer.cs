@@ -15,5 +15,7 @@ namespace FierceStukCloud_NetCoreLib.Models.AbstractModels
         public bool OnServer { get; set; }
 
         public bool OnPC { get; set; }
+
+        public string UserLogin { get; set; }
     }
 }

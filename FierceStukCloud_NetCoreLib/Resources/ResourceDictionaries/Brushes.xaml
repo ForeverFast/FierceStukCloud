@@ -4,9 +4,10 @@
 
     <SolidColorBrush x:Key="GrayLVL0" Color="#FF4D4D51"/>
     <SolidColorBrush x:Key="GrayLVL1" Color="#FF2D2D30"/>
-    <SolidColorBrush x:Key="GrayLVL2" Color="#FF2D2D30"/>
-    <SolidColorBrush x:Key="GrayLVL3" Color="#FF2D2D30"/>
-
+    <SolidColorBrush x:Key="GrayLVL2" Color="#FF252527"/>
+    <SolidColorBrush x:Key="GrayLVL3" Color="#FF1A1A1B"/>
+    <SolidColorBrush x:Key="GrayLVL4" Color="#FF121213"/>
+    
     <SolidColorBrush x:Key="StandartTextColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="StandartLightColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>

@@ -25,7 +25,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             {
                 Title = "WaitingForLove",
                 Author = "Avichi",
-                LocalURL = @"C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\Avicii - Waiting for Love (Original Mix).mp3",
+               
                 Image = new ImageAsync()
                 {
                     ImageDefault = ImageDefault,
