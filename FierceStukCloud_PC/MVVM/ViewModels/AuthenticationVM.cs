@@ -6,6 +6,7 @@ using RestSharp;
 using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.Services;
+using System.Net;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -84,7 +85,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         DefaultPasswordTextShow = Visibility.Hidden;
                         _secureString = value;
                     }
-                    FSC_Settings.Default.Password = value;
+                    FSC_Settings.Default.Password = value.ToString();
                     FSC_Settings.Default.Save();
                 }
             }
@@ -138,11 +139,19 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         {
             IsAuthentication = true;
 
+#if DEBUG
+            OpenMainWindow();
+            return;
+#endif
+
             var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("username", Login);
             request.AddHeader("password", SecurePassword.ToString());
+
+            var q = SecurePassword.ToString();
+            SecurePassword.Dispose();
             IRestResponse response = client.Execute(request);
 
             int Code = 0;
@@ -196,15 +205,15 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
             #region Настройки окна авторизации
             Login = FSC_Settings.Default.Login;
-            SecurePassword = FSC_Settings.Default.Password;
+            SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
-            if (Login != null && SecurePassword != null)
-            {
-                if (Login != "" && SecurePassword.Length != 0)
-                {
-                    this.AutorizationMethod(this);
-                }
-            }
+            //if (Login != null && SecurePassword != null)
+            //{
+            //    if (Login != "" && SecurePassword.Length != 0)
+            //    {
+            //        this.AutorizationMethod(this);
+            //    }
+            //}
             #endregion
         }
 

@@ -43,11 +43,11 @@ namespace FierceStukCloud_PC {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public SecureString Password
+        public string Password
         {
             get
             {
-                return ((SecureString)(this["Login"]));
+                return ((string)(this["Login"]));
             }
             set
             {

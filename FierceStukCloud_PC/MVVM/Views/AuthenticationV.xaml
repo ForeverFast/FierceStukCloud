@@ -12,22 +12,21 @@
         
         WindowStyle="None" ResizeMode="NoResize">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:AutorizationVM/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
-       
-        
+
+
     </Window.Resources>
 
     <Grid Background="{StaticResource GrayLVL1}">
@@ -47,7 +46,7 @@
         <Grid x:Name="HeaderGrid" Grid.Row="0"
               Background="Transparent">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"/>
+                <ColumnDefinition Width="110"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="40"/>
@@ -60,7 +59,8 @@
                    Margin="5,0,0,0"
                    
                    Content="FierceStukCloud"
-                   Foreground="{StaticResource StandartTextColor}"/>
+                   Foreground="{StaticResource StandartTextColor}"
+                   FontSize="15" Height="18"/>
 
             <Button x:Name="MinimizeButton" Grid.Column="2"
                     
@@ -76,7 +76,7 @@
 
         <Image Grid.Row="1"
                
-               Margin="30,30,30,30"
+               Margin="50,40,50,40"
                
                Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png" />
 
@@ -117,11 +117,24 @@
 
             <Button Grid.Row="2"
                     
-                    Height="30"
+                    Height="25"
                     Width="100"
                     
-                    Content="Вход"/>
-
+                    VerticalAlignment="Top"
+                    
+                    Style="{StaticResource StandartButtonBase}"
+                    Command="{Binding AutorizationCommand}">
+                <Button.Content>
+                    <Border Height="25"
+                            Width="100"
+                            CornerRadius="10"
+                            Background="{StaticResource GrayLVL0}">
+                        <TextBlock Text="Вход"                                  
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                </Button.Content>
+            </Button>
         </Grid>
 
     </Grid>
