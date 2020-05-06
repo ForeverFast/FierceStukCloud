@@ -6,6 +6,7 @@
     <SolidColorBrush x:Key="GrayLVL3" Color="#FF2D2D30"/>
 
     <SolidColorBrush x:Key="StandartTextColor" Color="#FFCCC5C5"/>
+    <SolidColorBrush x:Key="StandartLightColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>
    
 </ResourceDictionary>

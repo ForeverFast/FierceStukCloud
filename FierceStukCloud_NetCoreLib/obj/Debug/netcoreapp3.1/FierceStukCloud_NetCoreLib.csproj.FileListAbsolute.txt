@@ -7,3 +7,11 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\bin\Debug
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib_MarkupCompile.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib_MarkupCompile.lref
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\Brushes.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\ButtonStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\ListBoxStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.g.resources
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\TextBlockStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\TextBoxStyles.baml

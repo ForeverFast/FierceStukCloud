@@ -11,5 +11,11 @@
     <Page Update="Resources\ResourceDictionaries\ListBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\ResourceDictionaries\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ResourceDictionaries\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

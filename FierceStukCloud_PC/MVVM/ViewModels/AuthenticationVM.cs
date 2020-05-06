@@ -1,13 +1,11 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
+﻿using System;
+using System.Security;
+using System.Text.Json;
+using System.Windows;
+using RestSharp;
+using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.Services;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -26,17 +24,16 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #endregion
 
 
-
         #region Авторизация
 
         #region Свойства и поля
 
         #region Поля хранения значеий
         private string _login;
-        private string _password;
-       
-        private string _defaultLoginTextShow;
-        private string _defaultPasswordTextShow;
+        private SecureString _secureString;
+
+        private Visibility _defaultLoginTextShow;
+        private Visibility _defaultPasswordTextShow;
         private Visibility _loadGifVisiableAuthentication = Visibility.Hidden;   
         private Visibility _loadGifVisiableServerStatus = Visibility.Hidden;
       
@@ -51,45 +48,52 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             get => _login;
             set
             {
-                if (value == "")
+                if (value != null)
                 {
-                    DefaultLoginTextShow = "Visible";
-                    SetProperty(ref _login, value);
+                    if (value == "")
+                    {
+                        DefaultLoginTextShow = Visibility.Visible;
+                        SetProperty(ref _login, value);
+                    }
+                    else
+                    {
+                        DefaultLoginTextShow = Visibility.Hidden;
+                        SetProperty(ref _login, value);
+                    }
+                    FSC_Settings.Default.Login = _login;
+                    FSC_Settings.Default.Save();
                 }
-                else
-                {
-                    DefaultLoginTextShow = "Hidden";
-                    SetProperty(ref _login, value);
-                }
-                FSC_Settings.Default.Login = _login;
-                FSC_Settings.Default.Save();
             }
         }
 
-        public string Password
+        public SecureString SecurePassword
         {
-            get => _password;
+            private get => _secureString;
             set
             {
-                if (value == "")
+
+                if (value != null)
                 {
-                    DefaultPasswordTextShow = "Visible";
-                    SetProperty(ref _password, value);
+                    if (value.Length == 0)
+                    {
+                        DefaultPasswordTextShow = Visibility.Visible;
+                        _secureString = value;
+                    }
+                    else
+                    {
+                        DefaultPasswordTextShow = Visibility.Hidden;
+                        _secureString = value;
+                    }
+                    FSC_Settings.Default.Password = value;
+                    FSC_Settings.Default.Save();
                 }
-                else
-                {
-                    DefaultPasswordTextShow = "Hidden";
-                    SetProperty(ref _password, value);
-                }
-                FSC_Settings.Default.Password = _password;
-                FSC_Settings.Default.Save();
             }
         }
 
 
-        public string DefaultLoginTextShow { get => _defaultLoginTextShow; set => SetProperty(ref _defaultLoginTextShow, value); }
+        public Visibility DefaultLoginTextShow { get => _defaultLoginTextShow; set => SetProperty(ref _defaultLoginTextShow, value); }
 
-        public string DefaultPasswordTextShow { get => _defaultPasswordTextShow; set => SetProperty(ref _defaultPasswordTextShow, value); }
+        public Visibility DefaultPasswordTextShow { get => _defaultPasswordTextShow; set => SetProperty(ref _defaultPasswordTextShow, value); }
 
         public Visibility LoadGifVisiableAuthentication { get => _loadGifVisiableAuthentication; set => SetProperty(ref _loadGifVisiableAuthentication, value); }
 
@@ -101,6 +105,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             get => _isAuthentication;
             set
             {
+                SetProperty(ref _isAuthentication, value);
                 if (value == true)              
                     LoadGifVisiableAuthentication = Visibility.Visible;          
                 else
@@ -122,9 +127,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #endregion
 
-
+        #region Команды  
         public RelayCommand AutorizationCommand { get; private set; }
 
+        /// <summary>
+        /// Команда авторизации
+        /// </summary>
+        /// <param name="parameter"></param>
         private void AutorizationMethod(object parameter)
         {
             IsAuthentication = true;
@@ -133,7 +142,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("username", Login);
-            request.AddHeader("password", Password);
+            request.AddHeader("password", SecurePassword.ToString());
             IRestResponse response = client.Execute(request);
 
             int Code = 0;
@@ -176,9 +185,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #endregion
 
+        #endregion
 
 
-        #region Конструкторы
+        #region Конструкторы и доп. методы
 
         public AutorizationVM()
         {
@@ -186,11 +196,11 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
             #region Настройки окна авторизации
             Login = FSC_Settings.Default.Login;
-            Password = FSC_Settings.Default.Password;
-            
-            if(Login != null && Password != null)
+            SecurePassword = FSC_Settings.Default.Password;
+
+            if (Login != null && SecurePassword != null)
             {
-                if(Login != "" && Password != "")
+                if (Login != "" && SecurePassword.Length != 0)
                 {
                     this.AutorizationMethod(this);
                 }
@@ -198,6 +208,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             #endregion
         }
 
+        /// <summary>
+        /// Инициализация команд
+        /// </summary>
         private void InitiailizeCommands()
         {
             MinimizedWindowCommand = new RelayCommand(MinimizedWindowMethod, null);

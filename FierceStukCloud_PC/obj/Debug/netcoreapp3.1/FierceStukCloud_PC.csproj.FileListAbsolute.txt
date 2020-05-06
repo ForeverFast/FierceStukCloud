@@ -27,10 +27,12 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\AuthenticationV.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\MainWindowV.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.g.resources
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.AssemblyInfoInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.AssemblyInfo.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.csproj.CopyComplete
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.genruntimeconfig.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.csproj.CoreCompileInputs.cache

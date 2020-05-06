@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r83ePXKoOf6IuuGMs3FCNQHbueqMGh0S68phQUHraQW9LtmL5ZsaKroP8BFAUvzXnb3Mi40l+5e1rWk1UDf2bw==",
+  "dgSpecHash": "1G50hDp83soHHMqosV+dA13RpvPUeFIyTno08yrY0ZP8g10tC+7R5nj/nstjErrxq/CBVxhU1YDIb44RORBbtg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_PC\\FierceStukCloud_PC.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,19 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.data.sqlite.core\\1.0.112.2\\system.data.sqlite.core.1.0.112.2.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.resources.extensions\\4.7.0\\system.resources.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\ivans\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"System.Windows.Interactivity.WPF 2.0.20525\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "System.Windows.Interactivity.WPF",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

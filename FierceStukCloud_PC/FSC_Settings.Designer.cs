@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Security;
+
 namespace FierceStukCloud_PC {
     
     
@@ -23,7 +25,34 @@ namespace FierceStukCloud_PC {
             }
         }
 
-        public string Login { get; internal set; }
-        public string Password { get; internal set; }
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Login
+        {
+            get
+            {
+                return ((string)(this["Login"]));
+            }
+            set
+            {
+                this["Login"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public SecureString Password
+        {
+            get
+            {
+                return ((SecureString)(this["Login"]));
+            }
+            set
+            {
+                this["Login"] = value;
+            }
+        }
     }
 }

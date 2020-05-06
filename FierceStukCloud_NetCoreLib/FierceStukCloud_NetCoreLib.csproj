@@ -6,11 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\fsc_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NAudio" Version="1.10.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
+    <Resource Include="Resources\Images\fsc_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
