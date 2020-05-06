@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 
-5-686875683
+6-1857301020
 
-1192421293
-193-485985685
-Resources\ResourceDictionaries\Brushes.xaml;Resources\ResourceDictionaries\ButtonStyles.xaml;Resources\ResourceDictionaries\ListBoxStyles.xaml;Resources\ResourceDictionaries\TextBlockStyles.xaml;Resources\ResourceDictionaries\TextBoxStyles.xaml;
+14846842186
+195-101547126
+Resources\ResourceDictionaries\Brushes.xaml;Resources\ResourceDictionaries\ButtonStyles.xaml;Resources\ResourceDictionaries\ListBoxStyles.xaml;Resources\ResourceDictionaries\SliderStyles.xaml;Resources\ResourceDictionaries\TextBlockStyles.xaml;Resources\ResourceDictionaries\TextBoxStyles.xaml;
 
 False
 

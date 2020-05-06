@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Windows;
 using System.Security;
 using System.Text.Json;
-using System.Windows;
+using System.Net;
 using RestSharp;
 using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
-using FierceStukCloud_PC.Services;
-using System.Net;
+
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {

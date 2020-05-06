@@ -46,6 +46,14 @@
             "NAudio": {
               "target": "Package",
               "version": "[1.10.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "TagLibSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

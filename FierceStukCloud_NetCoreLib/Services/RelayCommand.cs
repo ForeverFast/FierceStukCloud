@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace FierceStukCloud_PC.Services
+namespace FierceStukCloud_NetCoreLib.Services
 {
     #region Делегаты для методов WPF команд
     public delegate void ExecuteHandler(object parameter);
