@@ -1,0 +1,141 @@
+﻿<Window x:Class="FierceStukCloud_PC.MVVM.Views.AuthorizationV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="FierceStukCloud" 
+        
+        Height="600" Width="330"
+        
+        WindowStyle="None" ResizeMode="NoResize">
+
+    <!--<Window.DataContext>
+        <local:AutorizationVM/>
+    </Window.DataContext>-->
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
+
+    </Window.Resources>
+
+    <Grid Background="{StaticResource GrayLVL1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding DragWindowCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+
+        <Grid x:Name="HeaderGrid" Grid.Row="0"
+              Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="FSC" Grid.Column="0"
+                   VerticalAlignment="Center"
+                   
+                   Padding="0"
+                   Margin="5,0,0,0"
+                   
+                   Content="FierceStukCloud"
+                   Foreground="{StaticResource StandartTextColor}"
+                   FontSize="15" Height="18"/>
+
+            <Button x:Name="MinimizeButton" Grid.Column="2"
+                    
+                    Command="{Binding MinimizedWindowCommand}"
+                    Style="{StaticResource MinimazeButton}"/>
+
+            <Button x:Name="CloseWindowButton" Grid.Column="3"
+                    
+                    Command="{Binding CloseWindowCommand}"
+                    Style="{StaticResource CloseWindowButton}"/>
+
+        </Grid>
+
+        <Image Grid.Row="1"
+               
+               Margin="50,40,50,40"
+               
+               Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png" />
+
+
+        <Grid x:Name="AuthenticationGrid" Grid.Row="2"
+              Background="Transparent" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"
+                    Margin="65,10,65,10">
+                <Grid>
+
+                    <TextBlock Text="Логин" 
+                               Style="{StaticResource TBlock_LandP}"                             
+                               Visibility="{Binding DefaultLoginTextShow}"/>
+
+                    <TextBox Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource TBox_Login}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1"
+                    Margin="65,10,65,10">
+                <Grid>
+                    <TextBlock Text="Пароль" 
+                               Style="{StaticResource TBlock_LandP}"
+                               Visibility="{Binding DefaultPasswordTextShow}"/>
+
+                    <PasswordBox PasswordChanged="PasswordBox_PasswordChanged"
+                                 Style="{StaticResource TBox_Password}"/>
+                </Grid>
+            </Border>
+
+            <Button Grid.Row="2"
+                    
+                    Height="25"
+                    Width="100"
+                    
+                    VerticalAlignment="Top"
+                    
+                    Style="{StaticResource StandartButtonBase}"
+                    Command="{Binding AutorizationCommand}">
+                <Button.Content>
+                    <Border Height="25"
+                            Width="100"
+                            CornerRadius="10"
+                            Background="{StaticResource GrayLVL0}">
+                        <TextBlock Text="Вход"                                  
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Window>
