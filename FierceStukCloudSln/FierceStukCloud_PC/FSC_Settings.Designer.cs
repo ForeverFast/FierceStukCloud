@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 
 namespace FierceStukCloud_PC {
@@ -32,6 +34,9 @@ namespace FierceStukCloud_PC {
         {
             get
             {
+                //this["Login"] = "";
+                //Save();
+                //var values = this["Login"];
                 return ((string)(this["Login"]));
             }
             set

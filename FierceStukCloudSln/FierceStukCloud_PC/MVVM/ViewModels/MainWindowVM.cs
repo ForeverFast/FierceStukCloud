@@ -16,7 +16,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
 
         public ImageSource ImageDefault { get; set; }
-        public RelayCommand LoadImages { get; }
+        public RelayCommand LoadImagesCommand { get; }
 
         // загрузка изображений
         private void LoadImagesExecute(object parameter)
@@ -29,7 +29,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 Image = new ImageAsync()
                 {
                     ImageDefault = ImageDefault,
-                    ImageUri = @"C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\Avicii - Waiting for Love (Original Mix).mp3"
+                    //pack://application:,,,/fsc_icon.png
+                    ImageUri = @"pack://application:,,,/Avicii - Waiting for Love (Original Mix).mp3"
                 }
             });
 
@@ -41,7 +42,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
 
 
-            LoadImages = new RelayCommand(LoadImagesExecute, null);
+            LoadImagesCommand = new RelayCommand(LoadImagesExecute, null);
 
             ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
         }
