@@ -39,7 +39,7 @@
                     Style="{StaticResource ResourceKey=TabContolStyleMain}">
             
             <TabItem Margin="-2,-2,0,0"
-                     Header="Привет">
+                     Header="Главная">
              
                 <TabItem.Content>
 
@@ -52,16 +52,85 @@
             </TabItem>
             
             <TabItem Header="Профиль">
+                
                 <TabItem.Resources>
                     <ImageSource x:Key="ImageLight">/FierceStukCloud_NetCoreLib;component/Resources/Images/icons/peoplelight.png</ImageSource>
+                    <ImageSource x:Key="ImageDim">/FierceStukCloud_NetCoreLib;component/Resources/Images/icons/people.png</ImageSource>
                 </TabItem.Resources>
+                
                 <TabItem.Content>
-
                     <Grid>
 
                     </Grid>
-
                 </TabItem.Content>
+
+            </TabItem>
+
+            <TabItem Header="Устройства">
+                
+            </TabItem>
+
+            <TabItem Header="Настройки">
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Style>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Margin" Value="-2,0,0,0"/>
+                        <Setter Property="IsEnabled" Value="False"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Border x:Name="Border"
+                                        
+                                            Width="170"
+                                            Height="34"
+                                            BorderThickness="0"
+                                            Padding="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="10"/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Line x:Name="DecorLine" Grid.Row="0"
+                                                  X1="3" Y1="5"
+                                                  X2="167" Y2="5"
+                                                  
+                                                  StrokeThickness="2"
+                                                  Stroke="Azure"/>
+
+
+                                            <TextBlock x:Name="HeaderText" Grid.Row="1"
+                                                       Margin="5,0,0,0"    
+                                                       Text="Твоя музыка"
+                                                       Style="{StaticResource ResourceKey=TBlock_TabItemHeader}" />
+                                        </Grid>
+
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabItem.Style>
+                
+            </TabItem>
+
+            <TabItem Header="Песни">
+
+            </TabItem>
+
+            <TabItem Header="Плейлисты">
+
+            </TabItem>
+
+            <TabItem Header="Альбомы">
+
+            </TabItem>
+
+            <TabItem Header="Устройства">
 
             </TabItem>
 

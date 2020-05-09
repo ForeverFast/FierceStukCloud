@@ -36,19 +36,22 @@
                                         Padding="0">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="5"/>
-                                            <ColumnDefinition Width="32"/>
+                                            <ColumnDefinition Width="7"/>
+                                            <ColumnDefinition Width="36"/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         <Line x:Name="DecorLine" Grid.Column="0" 
                                                   X1="2.5" Y1="2"
                                                   X2="2.5" Y2="32"
                                                   
+                                                  Margin="1,0,0,0"
+                                                    
                                                   StrokeThickness="5"
                                                   Stroke="Azure"/>
-                                        <Image x:Name="HeaderImage" Grid.Column="1" />
-                                        
-                                        <TextBlock Grid.Column="2"
+                                        <Image x:Name="HeaderImage" Grid.Column="1" 
+                                               Margin="3"/>
+
+                                        <TextBlock x:Name="HeaderText" Grid.Column="2"
                                                    Text="{TemplateBinding Header}"
                                                    Style="{StaticResource ResourceKey=TBlock_TabItemHeader}" />
                                     </Grid>
@@ -58,10 +61,12 @@
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="HeaderImage" Property="Source" Value="{DynamicResource ImageLight}"/>
+                                        <Setter TargetName="HeaderText" Property="Foreground" Value="{StaticResource StandartTextLightColor}"/>
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="HeaderImage" Property="Source" Value="{DynamicResource Dim}"/>
+                                        <Setter TargetName="HeaderImage" Property="Source" Value="{DynamicResource ImageDim}"/>
+                                        <Setter TargetName="HeaderText" Property="Foreground" Value="{StaticResource StandartTextColor}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

@@ -13,12 +13,18 @@
     <Compile Update="MVVM\Views\MainWindowV.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\Views\TestView\Test1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MVVM\Views\AuthenticationV.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\Views\MainWindowV.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\TestView\Test1.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

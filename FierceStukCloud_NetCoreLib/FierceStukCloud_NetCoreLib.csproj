@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\fsc_icon.png" />
+    <None Remove="Resources\Images\icons\people.png" />
+    <None Remove="Resources\Images\icons\peoplelight.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +19,12 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\fsc_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\icons\people.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\icons\peoplelight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

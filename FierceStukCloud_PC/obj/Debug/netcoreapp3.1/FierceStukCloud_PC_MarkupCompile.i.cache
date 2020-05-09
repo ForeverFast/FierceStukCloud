@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\App.xaml
-2-636296206
+3-890408910
 
-9-947205589
+10-1379931270
 200-352446355
-MVVM\Views\AuthenticationV.xaml;MVVM\Views\MainWindowV.xaml;
+MVVM\Views\AuthenticationV.xaml;MVVM\Views\MainWindowV.xaml;MVVM\Views\TestView\Test1.xaml;
 
-True
+False
 

@@ -2,6 +2,7 @@
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.MVVM.ViewModels;
 using FierceStukCloud_PC.MVVM.Views;
+using FierceStukCloud_PC.MVVM.Views.TestView;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,6 +34,9 @@ namespace FierceStukCloud_PC
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            var q = new Test1();
+            q.ShowDialog();
 
             var AVM = new AutorizationVM();
             await DisplayRootRegistry.ShowModalPresentation(AVM);
