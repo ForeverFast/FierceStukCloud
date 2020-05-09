@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib"
         mc:Ignorable="d"
         Title="FierceStukCloud" 
         
@@ -23,10 +24,10 @@
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <con:StrLenghtToVisibilityConverter x:Key="StrLenghtToVisibility"/>
+            
         </ResourceDictionary>
-
-
-
     </Window.Resources>
 
     <Grid Background="{StaticResource GrayLVL1}">
@@ -89,29 +90,69 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <Border Grid.Row="0"
                     Margin="65,10,65,10">
                 <Grid>
-
-                    <TextBlock Text="Логин" 
-                               Style="{StaticResource TBlock_LandP}"                             
-                               Visibility="{Binding DefaultLoginTextShow}"/>
-
-                    <TextBox Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    <TextBlock x:Name="loginPlace"
+                               Text="Логин" 
+                               Style="{StaticResource TBlock_LandP}" />
+                              
+                    <TextBox x:Name="loginTextBox"
+                             GotFocus="loginTextBox_GotFocus"
+                             LostFocus="loginBox_TextChanged"
+                             TextChanged="loginBox_TextChanged"
+                             Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource TBox_Login}"/>
+                    <x:Code>
+                        <![CDATA[
+                            private void loginBox_TextChanged(object sender, RoutedEventArgs e)
+                            {
+                                loginPlace.Visibility = Visibility.Visible;
+                                loginPlace.Visibility = string.IsNullOrEmpty(loginTextBox.Text)
+                                ? Visibility.Visible
+                                : Visibility.Hidden;
+                            }
+                            
+                            private void loginTextBox_GotFocus(object sender, RoutedEventArgs e)
+                            {
+                                loginPlace.Visibility = Visibility.Hidden;
+                            }
+                        ]]>
+                    </x:Code>
                 </Grid>
             </Border>
 
             <Border Grid.Row="1"
                     Margin="65,10,65,10">
                 <Grid>
-                    <TextBlock Text="Пароль" 
-                               Style="{StaticResource TBlock_LandP}"
-                               Visibility="{Binding DefaultPasswordTextShow}"/>
+                    <TextBlock x:Name="passwordPlace"
+                               Text="Пароль"
+ 
+                               Style="{StaticResource TBlock_LandP}">
+                    </TextBlock>
 
-                    <PasswordBox PasswordChanged="PasswordBox_PasswordChanged"
+                    <PasswordBox x:Name="passwordBox"
+                                 GotFocus="passwordBox_GotFocus"
+                                 LostFocus="passwordBox_PasswordChanged"
+                                 PasswordChanged="passwordBox_PasswordChanged"
                                  Style="{StaticResource TBox_Password}"/>
+                    <x:Code>
+                        <![CDATA[
+                            private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+                            { 
+                                passwordPlace.Visibility = Visibility.Visible;
+                                passwordPlace.Visibility = string.IsNullOrEmpty(passwordBox.Password)
+                                ? Visibility.Visible
+                                : Visibility.Hidden;
+                            }
+                        
+                            private void passwordBox_GotFocus(object sender, RoutedEventArgs e)
+                            {
+                                passwordPlace.Visibility = Visibility.Hidden;
+                            }
+                        ]]>
+                    </x:Code>
                 </Grid>
             </Border>
 

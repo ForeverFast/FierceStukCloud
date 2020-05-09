@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Resources.ResourceDictionaries">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="TabContolStyleMain" TargetType="{x:Type TabControl}">
@@ -22,39 +23,82 @@
             <Setter.Value>
                 <Style TargetType="{x:Type TabItem}">
 
+                    <Setter Property="Margin" Value="-2,0,0,0"/>
+
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <Grid Name="Panel">
-                                    <Border Width="170"
-                                            Height="34"
-                                            BorderThickness="0">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="5"/>
-                                                <ColumnDefinition Width="32"/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <Line x:Name="DecorLine" Grid.Column="0" 
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Border x:Name="Border"
+                                        
+                                        Width="170"
+                                        Height="34"
+                                        BorderThickness="0"
+                                        Padding="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5"/>
+                                            <ColumnDefinition Width="32"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Line x:Name="DecorLine" Grid.Column="0" 
                                                   X1="2.5" Y1="2"
                                                   X2="2.5" Y2="32"
                                                   
                                                   StrokeThickness="5"
                                                   Stroke="Azure"/>
-                                            <Image x:Name="HeaderImage" Grid.Column="1" />
-                                            <TextBlock Grid.Column="2"/>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
+                                        <Image x:Name="HeaderImage" Grid.Column="1" />
+                                        
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{TemplateBinding Header}"
+                                                   Style="{StaticResource ResourceKey=TBlock_TabItemHeader}" />
+                                    </Grid>
+
+                                </Border>
+
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="{StaticResource ResourceKey=GrayLVL2}" />
+                                        <Setter TargetName="HeaderImage" Property="Source" Value="{DynamicResource ImageLight}"/>
                                     </Trigger>
+
                                     <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Panel" Property="Background" Value="#FF2D2D30" />
+                                        <Setter TargetName="HeaderImage" Property="Source" Value="{DynamicResource Dim}"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <!--<Style TargetType="{x:Type TabItem}">
+
+                   
+
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Border x:Name="Border"
+                                        
+                                        Width="170"
+                                        Height="34"
+                                        BorderThickness="0"
+                                        Padding="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5"/>
+                                            <ColumnDefinition Width="32"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Line x:Name="DecorLine" Grid.Column="0" 
+                                                  X1="2.5" Y1="2"
+                                                  X2="2.5" Y2="32"
+                                                  
+                                                  StrokeThickness="5"
+                                                  Stroke="Azure"/>
+                                        <Image x:Name="HeaderImage" Grid.Column="1" />
+                                        <TextBlock Grid.Column="2"/>
+                                    </Grid>
+
+                                </Border>
+                            </DataTemplate>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Padding" Value="0"/>
@@ -62,7 +106,7 @@
                     <Setter Property="BorderThickness" Value="0"/>
 
                   
-                </Style>
+                </Style>-->
             </Setter.Value>
         </Setter>
         

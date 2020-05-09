@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- TextBlock для окна аутефикации -->
     <Style x:Key="TBlock_LandP" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource StandartTextColor}"/>
         <Setter Property="FontSize" Value="17"/>
@@ -13,6 +14,17 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="0,0,0,10"/>
+
     </Style>
-    
+
+    <Style x:Key="TBlock_TabItemHeader" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource StandartTextColor}"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="2,0,0,0"/>
+    </Style>
+
 </ResourceDictionary>

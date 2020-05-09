@@ -36,16 +36,35 @@
 
         <TabControl x:Name="MainTC" Grid.Row="1" 
                     
-                    Style="{StaticResource TabContolStyleMain}">
-            <TabItem >
+                    Style="{StaticResource ResourceKey=TabContolStyleMain}">
+            
+            <TabItem Margin="-2,-2,0,0"
+                     Header="Привет">
+             
                 <TabItem.Content>
-                    <Grid  Background="Gray">
+
+                    <Grid>
 
                     </Grid>
+
                 </TabItem.Content>
                
             </TabItem>
-            <TabItem/>
+            
+            <TabItem Header="Профиль">
+                <TabItem.Resources>
+                    <ImageSource x:Key="ImageLight">/FierceStukCloud_NetCoreLib;component/Resources/Images/icons/peoplelight.png</ImageSource>
+                </TabItem.Resources>
+                <TabItem.Content>
+
+                    <Grid>
+
+                    </Grid>
+
+                </TabItem.Content>
+
+            </TabItem>
+
         </TabControl>
 
         <Border x:Name="Footer" Grid.Row="2"

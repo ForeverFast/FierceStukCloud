@@ -33,98 +33,21 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private string _login;
         private SecureString _secureString;
 
-        private Visibility _defaultLoginTextShow;
-        private Visibility _defaultPasswordTextShow;
-        private Visibility _loadGifVisiableAuthentication = Visibility.Hidden;   
-        private Visibility _loadGifVisiableServerStatus = Visibility.Hidden;
-      
         private bool _isAuthentication;
         private string _serverAnswer;
         private string _serverStatus = "Соединение";
         #endregion
 
 
-        public string Login
-        {
-            get => _login;
-            set
-            {
-                if (value != null)
-                {
-                    if (value == "")
-                    {
-                        DefaultLoginTextShow = Visibility.Visible;
-                        SetProperty(ref _login, value);
-                    }
-                    else
-                    {
-                        DefaultLoginTextShow = Visibility.Hidden;
-                        SetProperty(ref _login, value);
-                    }
-                    FSC_Settings.Default.Login = _login;
-                    FSC_Settings.Default.Save();
-                }
-            }
-        }
+        public string Login { get => _login; set => SetProperty(ref _login, value); }
 
-        public SecureString SecurePassword
-        {
-            private get => _secureString;
-            set
-            {
+        public SecureString SecurePassword { private get => _secureString; set => SetProperty(ref _secureString, value); }
 
-                if (value != null)
-                {
-                    if (value.Length == 0)
-                    {
-                        DefaultPasswordTextShow = Visibility.Visible;
-                        _secureString = value;
-                    }
-                    else
-                    {
-                        DefaultPasswordTextShow = Visibility.Hidden;
-                        _secureString = value;
-                    }
-                    FSC_Settings.Default.Password = value.ToString();
-                    FSC_Settings.Default.Save();
-                }
-            }
-        }
+        public bool IsAuthentication { get => _isAuthentication; set => SetProperty(ref _isAuthentication, value); }
 
+        public string ServerAnswer { get => _serverAnswer; set => SetProperty(ref _serverAnswer, value); }
 
-        public Visibility DefaultLoginTextShow { get => _defaultLoginTextShow; set => SetProperty(ref _defaultLoginTextShow, value); }
-
-        public Visibility DefaultPasswordTextShow { get => _defaultPasswordTextShow; set => SetProperty(ref _defaultPasswordTextShow, value); }
-
-        public Visibility LoadGifVisiableAuthentication { get => _loadGifVisiableAuthentication; set => SetProperty(ref _loadGifVisiableAuthentication, value); }
-
-        public Visibility LoadGifVisiableServerStatus { get => _loadGifVisiableServerStatus; set => SetProperty(ref _loadGifVisiableServerStatus, value); }
-
-       
-        public bool IsAuthentication
-        {
-            get => _isAuthentication;
-            set
-            {
-                SetProperty(ref _isAuthentication, value);
-                if (value == true)              
-                    LoadGifVisiableAuthentication = Visibility.Visible;          
-                else
-                    LoadGifVisiableAuthentication = Visibility.Hidden;
-            }
-        }
-
-        public string ServerAnswer
-        {
-            get => _serverAnswer;
-            set => SetProperty(ref _serverAnswer, value);
-        }
-
-        public string ServerStatus
-        {
-            get => _serverStatus;
-            set => SetProperty(ref _serverStatus, value);
-        }
+        public string ServerStatus { get => _serverStatus; set => SetProperty(ref _serverStatus, value); }
 
         #endregion
 
@@ -139,10 +62,17 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         {
             IsAuthentication = true;
 
+
 #if DEBUG
             OpenMainWindow();
             return;
 #endif
+
+            //FSC_Settings.Default.Login = _login;
+            //FSC_Settings.Default.Save();
+            //FSC_Settings.Default.Password = value.ToString();
+            //FSC_Settings.Default.Save();
+
 
             var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
             client.Timeout = -1;
@@ -151,7 +81,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             request.AddHeader("password", SecurePassword.ToString());
 
             var q = SecurePassword.ToString();
-            SecurePassword.Dispose();
+            
             IRestResponse response = client.Execute(request);
 
             int Code = 0;
@@ -203,9 +133,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         {
             InitiailizeCommands();
 
-            #region Настройки окна авторизации
-            Login = FSC_Settings.Default.Login;
-            SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
+            
+            //Login = FSC_Settings.Default.Login;
+            //SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
             //if (Login != null && SecurePassword != null)
             //{
@@ -214,7 +144,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //        this.AutorizationMethod(this);
             //    }
             //}
-            #endregion
+          
         }
 
         /// <summary>
