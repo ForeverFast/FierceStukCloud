@@ -6,12 +6,22 @@ using System.Net;
 using RestSharp;
 using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
-
+using System.Windows.Threading;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     class AutorizationVM : OnPropertyChangedClass
     {
+
+        public Dispatcher Dispatcher { get; }
+
+        public AutorizationVM(Dispatcher dispatcher)
+            : this()
+        {
+            Dispatcher = dispatcher;
+        }
+
+
         #region Управление окном
 
         public RelayCommand MinimizedWindowCommand { get; private set; }
@@ -185,7 +195,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         private async void OpenMainWindow()
         {
-            var mainwindodVM = new MainWindowVM();
+            var mainwindodVM = new MainWindowVM(Dispatcher);
 
             App.DisplayRootRegistry.HidePresentation(this);
             await App.DisplayRootRegistry.ShowModalPresentation(mainwindodVM);

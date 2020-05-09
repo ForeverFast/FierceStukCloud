@@ -34,7 +34,7 @@ namespace FierceStukCloud_PC
         {
             base.OnStartup(e);
 
-            var AVM = new AutorizationVM();
+            var AVM = new AutorizationVM(Dispatcher);
             await DisplayRootRegistry.ShowModalPresentation(AVM);
 
         }
