@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -14,7 +16,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 		private object _imageUri;
 		#endregion
 
-		public Dispatcher Dispatcher { get; }
+		public Dispatcher Dispatcher { get; internal set; }
 
 		protected ImageAsyncBase(Dispatcher dispatcher)
 		{
@@ -22,12 +24,11 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 		}
 
 
-
 		/// <summary>Изображение по умолчанию.
 		/// Выводится пока не загружено основное изображение</summary>
 		public ImageSource ImageDefault { get => _imageDefault; set => SetProperty(ref _imageDefault, value); }
 
-		/// <summary>Флаг загружености основного изображения</summary>
+		/// <summary>Флаг загруженности основного изображения</summary>
 		public bool IsImageLoaded { get => _isImageLoaded; private set => SetProperty(ref _isImageLoaded, value); }
 
 		/// <summary>Uri основного изображения.
@@ -45,7 +46,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 					return UploadedImage;
 
 				if (ImageUri != DownloadUri)
-					ImageLoad();
+					ImageLoadAsync();
 				return ImageDefault;
 			}
 		}
@@ -57,16 +58,13 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 		protected object DownloadUri { get; private set; }
 
 		/// <summary>Асинхронная загрузка изображения</summary>
-		private void ImageLoad()
+		private async void ImageLoadAsync()
 		{
 			if (ImageUri == default)
 				return;
 			object ImageUriLoad = DownloadUri = ImageUri;
-			ImageSource image = null;
-			if (Dispatcher == null)
-				image = ImageLoad(ImageUriLoad);
-			else
-				Dispatcher.Invoke(() => image = ImageLoad(ImageUriLoad));
+			ImageSource image = await Task.Factory.StartNew(ImageLoad, new object[] { ImageUriLoad, Dispatcher });
+
 			if (ImageUriLoad.Equals(ImageUri))
 			{
 				UploadedImage = image;
@@ -74,10 +72,19 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			}
 		}
 
+		/// <summary>Перегрузка для парсинга параметров из object</summary>
+		/// <param name="arg">Параметры в единном Object</param>
+		/// <returns>ImageSource от перегрузки ImageLoad(object uri, Dispatcher dispatcher)</returns>
+		private ImageSource ImageLoad(object arg)
+		{
+			object[] args = (object[])arg;
+			return ImageLoad(args[0], (Dispatcher)args[1]);
+		}
+
 		/// <summary>Синхронная загрузка изображения заданого Uri</summary>
 		/// <param name="uri">Uri изображения</param>
 		/// <returns>ImageSource с загруженным изображением</returns>
-		public abstract ImageSource ImageLoad(object uri);
+		public abstract ImageSource ImageLoad(object uri, Dispatcher dispatcher);
 
 		protected override void PropertyNewValue<T>(ref T fieldProperty, T newValue, string propertyName)
 		{
@@ -98,4 +105,5 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			}
 		}
 	}
+
 }

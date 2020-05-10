@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Models;assembly=FierceStukCloud_NetCoreLib"
         xmlns:vm="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
         mc:Ignorable="d" d:DataContext="{x:Type vm:MainWindowVM}"
-        Title="MainWindowV" Height="900" Width="1202" MinWidth="1202" MinHeight="900" WindowStyle="None" ResizeMode="NoResize">
+        Title="MainWindowV" Height="900" Width="1202" MinWidth="1202" MinHeight="900" WindowStyle="None" ResizeMode="NoResize"
+        >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <None Remove="Avicii - Waiting for Love %28Original Mix%29.mp3" />
-    <None Remove="Avicii - Waiting for Love (Original Mix) - Упакованный  ресурс.mp3" />
+    <None Remove="AviciiPackaged.mp3" />
+    <None Remove="Cd-disk-mp3.png" />
     <None Remove="fsc_icon.png" />
   </ItemGroup>
 
@@ -42,12 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Avicii - Waiting for Love %28Original Mix%29 - Упакованный  ресурс.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="AviciiPackaged.mp3" />
     <Content Include="Avicii - Waiting for Love (Original Mix).mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Cd-disk-mp3.png" />
     <Resource Include="fsc_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

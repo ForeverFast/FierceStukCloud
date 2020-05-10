@@ -1,107 +1,112 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
+using System.Threading;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using System.Windows.Threading;
 
 namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 {
-    /// <summary>Реализация базового класса асинхронной загрузки
-    /// изображения</summary>
-    public class ImageAsync : ImageAsyncBase
-    {
-        public ImageAsync(Dispatcher dispatcher)
-            :base(dispatcher)
-        {}
+	/// <summary>Реализация базового класса асинхронной загрузки
+	/// изображения</summary>
+	public class ImageAsync : ImageAsyncBase
+	{
+		public ImageAsync(Dispatcher dispatcher)
+			: base(dispatcher)
+		{ }
+		public ImageAsync(Dispatcher dispatcher, object uri)
+			: this(dispatcher)
+		{
+			ImageUri = uri;
+		}
 
-        /// <summary>Экземпляр конвертера</summary>
-        public static ImageSourceConverter ImageSourceConverter { get; }
-            = new ImageSourceConverter();
-      
-        public override ImageSource ImageLoad(object uri)
-        {
-            TagLib.File file_TAG = TagLib.File.Create((string)uri);
-            try
-            {
-                if (file_TAG.Tag.Pictures.Length >= 1)
-                {
-                    var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
+		/// <summary>Конструктор BitmapImage.
+		/// Должен выполняться в Диспетчере основногопотока!</summary>
+		/// <param name="stream">Поток с источником изображения.</param>
+		/// <returns>Новый экземпляр BitmapImage с загруженным изображением</returns>
+		private BitmapImage ImageLoadDispatcher(Stream stream)
+		{
+			var bitmapImage = new BitmapImage();
+			bitmapImage.BeginInit();
+			bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+			bitmapImage.StreamSource = stream;
+			bitmapImage.EndInit();
+			return bitmapImage;
+		}
+		/// <summary>Делегат метода создания BitmapImage.
+		/// Без делегата не возможно вызвать перегрузку Dispatcher.Invoke,
+		/// возвращающую результат по переданому параметру</summary>
+		/// <param name="stream">Поток с изображением</param>
+		/// <returns>Новый экземпляр BitmapImage с загруженным изображением</returns>
+		private delegate BitmapImage ImageLoadDispatcherHandler(Stream stream);
 
-                    var bitmapImage = new BitmapImage();
+		public override ImageSource ImageLoad(object uri, Dispatcher dispatcher)
+		{
+			if (uri == null)
+				return ImageDefault;
 
-                    bitmapImage.BeginInit();
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.StreamSource = new MemoryStream(bin);
-                    bitmapImage.EndInit();
+			/// Эмуляция задержки
+			Thread.Sleep(5000);
 
-                    //var kek = file_TAG.Tag.Pictures[0].Type;
-                    //var image = System.Drawing.Image.FromStream(new MemoryStream(bin)); // Конвертация в Image WinForm
+			try
+			{
+				Uri _uri;
+				if (uri is string str)
+					_uri = new Uri(str);
+				else
+					_uri = (Uri)uri;
 
-                    //var bitmapImage = new BitmapImage();
-                    //bitmapImage.StreamSource =new MemoryStream(bin);
-                    //using (var ms = new MemoryStream()) // Создание потока конвертации изображения в BitmapImage
-                    //{
-                    //    image.Save(ms, ImageFormat.Jpeg);
-                    //    ms.Seek(0, SeekOrigin.Begin);
-                    //    bitmapImage.BeginInit();
-                    //    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    //    bitmapImage.StreamSource = ms;
-                    //    bitmapImage.EndInit();
-                    //}
+				StreamResourceInfo res = Application.GetResourceStream(_uri);
+				TagLibFile resStream = new TagLibFile(_uri.LocalPath, res.Stream, null);
+				TagLib.File file_TAG = TagLib.File.Create(resStream);
+				if (file_TAG.Tag.Pictures.Length < 1)
+					return ImageDefault;
 
-                    return bitmapImage;
-                }
-                else
-                    return ImageDefault;
-            }
-            catch (Exception)
-            {
-                try
-                {
-                    if (file_TAG.Tag.Pictures.Length >= 1)
-                    {
-                        var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
+				using var stream = new MemoryStream(file_TAG.Tag.Pictures[0].Data.Data);
+				return (ImageSource)dispatcher.Invoke((ImageLoadDispatcherHandler)ImageLoadDispatcher, stream);
 
-                        var bitmapImage = new BitmapImage();
+			}
+			catch (Exception)
+			{
+				try
+				{
+					TagLib.File file_TAG = TagLib.File.Create((string)uri);
+					if (file_TAG.Tag.Pictures.Length < 1)
+						return ImageDefault;
 
-                        bitmapImage.BeginInit();
-                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                        bitmapImage.StreamSource = new MemoryStream(bin);
-                        bitmapImage.EndInit();
-
-                        //var image = System.Drawing.Image.FromStream(new MemoryStream(bin)); // Конвертация в Image WinForm
-                        //var bitmapImage = new BitmapImage();
-                        //using (var ms = new MemoryStream()) // Создание потока конвертации изображения в BitmapImage
-                        //{
-                        //    image.Save(ms, ImageFormat.Png);
-                        //    ms.Seek(0, SeekOrigin.Begin);
-                        //    bitmapImage.BeginInit();
-                        //    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                        //    bitmapImage.StreamSource = ms;
-                        //    bitmapImage.EndInit();
-                        //}
-                        return bitmapImage;
-                    }
-                    else
-                        return ImageDefault;
-                }
-                catch (Exception)
-                {
-                    return ImageDefault;
-                }
-            }
-
-            //return (BitmapImage)uri;
-        }
+					using var stream = new MemoryStream(file_TAG.Tag.Pictures[0].Data.Data);
+					return (ImageSource)dispatcher.Invoke((ImageLoadDispatcherHandler)ImageLoadDispatcher, stream);
 
 
-       
-        //if (ImageSourceConverter.CanConvertFrom(uri.GetType()))
-        //    return (ImageSource)ImageSourceConverter.ConvertFrom(uri);
+				}
+				catch (Exception) { }
+				return ImageDefault;
+			}
+		}
 
-        //throw new InvalidCastException($"В параметре {nameof(uri)} получен тип недопустиый для конвертации в ImageSource");
-    }
+		public class TagLibFile : TagLib.File.IFileAbstraction
+		{
+			public string Name { get; }
+			public Stream ReadStream { get; }
+			public Stream WriteStream { get; }
+
+			public void CloseStream(Stream stream)
+			{
+				ReadStream?.Close();
+				ReadStream?.Dispose();
+				WriteStream?.Close();
+				WriteStream?.Dispose();
+			}
+
+			public TagLibFile(string name, Stream readStream, Stream writeStream)
+			{
+				Name = name;
+				ReadStream = readStream;
+				WriteStream = writeStream;
+			}
+		}
+
+	}
 }

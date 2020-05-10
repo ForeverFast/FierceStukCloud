@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using System.Windows.Xps.Serialization;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -19,116 +20,68 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
 		public Dispatcher Dispatcher { get; }
 
+		/// <summary>Конструктор с передачей Диспетчера</summary>
+		/// <param name="dispatcher">Диспетчер UI потока</param>
 		public MainWindowVM(Dispatcher dispatcher)
-			: this()
+			: this(false)
 		{
 			Dispatcher = dispatcher;
+			Images = new ImageAsyncCollection(Dispatcher, new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_PC;component/Cd-disk-mp3.png")));
+
 		}
 
+		public ObservableCollection<Song> Songs { get; } = new ObservableCollection<Song>();
 
-		public ObservableCollection<Song> Songs { get; set; }
+		public ImageAsyncCollection Images { get; }
 
-
-		public ImageSource ImageDefault { get; set; }
+		//public ImageSource ImageDefault { get; set; }
 		public RelayCommand LoadImagesCommand { get; }
 
 		// загрузка изображений
 		private void LoadImagesExecute(object parameter)
 		{
-			Songs.Add(new Song()
-			{
-				Title = "WaitingForLove",
-				Author = "Avichi",
 
-				Image = new ImageAsync(Dispatcher)
-				{
-					//ImageDefault = GetImage(@"Avicii - Waiting for Love (Original Mix).mp3"),
-					// Если нижнюю строчку расскоменить - будете ловить исключение
-					ImageUri = @"Avicii - Waiting for Love (Original Mix).mp3"
-				}
-			});
-			// тут синхронно будет грузить пикчу из файла на ПК
-			//Songs.Last().Image.ImageUri = GetImage(@"Avicii - Waiting for Love (Original Mix).mp3");
+			/// Загрузка из внешнего (Содержание) ресурса
+			var image = new ImageAsync(Dispatcher, @"Avicii - Waiting for Love (Original Mix).mp3");
+			Images.Add(image);
+			Songs.Add(new Song() { Title = "WaitingForLove", Author = "Avichi", Image = image });
+
+
+			/// Загрузка из упакованного (Ресурс) ресурса
+			image = new ImageAsync(Dispatcher, new Uri("pack://application:,,,/FierceStukCloud_PC;component/AviciiPackaged.mp3"));
+			Images.Add(image);
+			Songs.Add(new Song() { Title = "WaitingForLove(Packaged)", Author = "Avichi", Image = image });
+
 		}
+		
 
-		private BitmapImage GetImage(string url)
+
+		/// <summary>Конструктор Времени Разработки Дизайна</summary>
+		public MainWindowVM() : this(true) { }
+
+		public bool IsDesignMode { get; }
+
+		/// <summary>Общий Конструктор</summary>
+		/// <param name="isDesignMode"><see langword="true"/> если вызван во Время Разработки Дизайна</param>
+		public MainWindowVM(bool isDesignMode)
 		{
-			TagLib.File file_TAG = TagLib.File.Create(url);
-			try
-			{
-				if (file_TAG.Tag.Pictures.Length >= 1)
-				{
-					var bin = (byte[])(file_TAG.Tag.Pictures[0].Data.Data); // Конвертация в массив байтов
-					var kek = file_TAG.Tag.Pictures[0].Type;
-					var image = System.Drawing.Image.FromStream(new MemoryStream(bin)); // Конвертация в Image WinForm
+			IsDesignMode = isDesignMode;
 
-					var bitmapImage = new BitmapImage();
-
-					bitmapImage.BeginInit();
-					bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-					bitmapImage.StreamSource = new MemoryStream(bin);
-					bitmapImage.EndInit();
-
-					//using (var ms = new MemoryStream()) // Создание потока конвертации изображения в BitmapImage
-					//{
-					//	image.Save(ms, ImageFormat.Jpeg);
-					//	ms.Seek(0, SeekOrigin.Begin);
-					//	bitmapImage.BeginInit();
-					//	bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-					//	bitmapImage.StreamSource = ms;
-					//	bitmapImage.EndInit();
-					//}
-					return bitmapImage;
-				}
-				else
-					return GetDefaultPic();
-			}
-			catch (Exception)
-			{
-				try
-				{
-					if (file_TAG.Tag.Pictures.Length >= 1)
-					{
-						var bin = (byte[])(file_TAG.Tag.Pictures[0].Data.Data); // Конвертация в массив байтов
-
-						var image = System.Drawing.Image.FromStream(new MemoryStream(bin)); // Конвертация в Image WinForm
-						var bitmapImage = new BitmapImage();
-						using (var ms = new MemoryStream()) // Создание потока конвертации изображения в BitmapImage
-						{
-							image.Save(ms, ImageFormat.Png);
-							ms.Seek(0, SeekOrigin.Begin);
-							bitmapImage.BeginInit();
-							bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-							bitmapImage.StreamSource = ms;
-							bitmapImage.EndInit();
-						}
-						return bitmapImage;
-					}
-					else
-						return GetDefaultPic();
-				}
-				catch (Exception)
-				{
-					return GetDefaultPic();
-				}
-			}
-		}
-
-		private BitmapImage GetDefaultPic() => new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_Lib;component/Resources/Em1.png"));
-
-
-		public MainWindowVM()
-		{
-			Songs = new ObservableCollection<Song>();
-
-
-
+			/// Общий Контекст Данных
 			LoadImagesCommand = new RelayCommand(LoadImagesExecute, null);
 
+			if (isDesignMode)
+			{
+				// Контекст данных Времени Разработки Дизайна
+				Images = new ImageAsyncCollection(Dispatcher);
+			}
+			else
+			{
+				// Контекст данных Времени Исполнения
+			}
 
+			/// Общий Контекст Данных
 
-
-			ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
 		}
 	}
 }
