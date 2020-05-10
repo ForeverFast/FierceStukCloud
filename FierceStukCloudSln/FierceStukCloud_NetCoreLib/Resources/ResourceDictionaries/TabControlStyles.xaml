@@ -1,23 +1,24 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Resources.ResourceDictionaries">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Resources.ResourceDictionaries">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="TabContolStyleMain" TargetType="{x:Type TabControl}">
 
-        <Setter Property="TabStripPlacement" Value="Left"/>
+        <Setter Property="TabStripPlacement" Value="Left" />
 
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="{StaticResource DimColor}"/>
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource DimColor}" />
 
-        <Setter Property="Background" Value="{StaticResource GrayLVL0}"/>
+        <Setter Property="Background" Value="{StaticResource GrayLVL0}" />
 
-        
-        
-        
+
+
+
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type TabItem}">
@@ -26,23 +27,27 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="TabItem">
                                 <Grid Name="Panel">
-                                    <Border Width="170"
-                                            Height="34"
-                                            BorderThickness="0">
+                                    <Border
+                                        Width="170"
+                                        Height="34"
+                                        BorderThickness="0">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="5"/>
-                                                <ColumnDefinition Width="32"/>
-                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <Line x:Name="DecorLine" Grid.Column="0" 
-                                                  X1="2.5" Y1="2"
-                                                  X2="2.5" Y2="32"
-                                                  
-                                                  StrokeThickness="5"
-                                                  Stroke="Azure"/>
+                                            <Line
+                                                x:Name="DecorLine"
+                                                Grid.Column="0"
+                                                Stroke="Azure"
+                                                StrokeThickness="5"
+                                                X1="2.5"
+                                                X2="2.5"
+                                                Y1="2"
+                                                Y2="32" />
                                             <Image x:Name="HeaderImage" Grid.Column="1" />
-                                            <TextBlock Grid.Column="2"/>
+                                            <TextBlock Grid.Column="2" />
                                         </Grid>
                                     </Border>
                                 </Grid>
@@ -57,14 +62,14 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="Padding" Value="0"/>
-                    <Setter Property="Margin" Value="0"/>
-                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
 
-                  
+
                 </Style>
             </Setter.Value>
         </Setter>
-        
+
     </Style>
 </ResourceDictionary>

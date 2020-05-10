@@ -5,7 +5,8 @@ using System.Windows.Threading;
 
 namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 {
-	public class ImageAsyncCollection : ObservableCollection<ImageAsyncBase>
+	public class ImageAsyncCollection<T> : ObservableCollection<T>
+		where T : ImageAsyncBase
 	{
 		private ImageSource _imageDefault;
 		private Dispatcher _dispatcher;
@@ -50,7 +51,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			ImageDefault = imageDefault;
 		}
 
-		protected override void InsertItem(int index, ImageAsyncBase item)
+		protected override void InsertItem(int index, T item)
 		{
 			item.Dispatcher = Dispatcher;
 			item.ImageDefault = ImageDefault;

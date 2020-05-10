@@ -39,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="AviciiPackaged.mp3" />
     <Content Include="Avicii - Waiting for Love (Original Mix).mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

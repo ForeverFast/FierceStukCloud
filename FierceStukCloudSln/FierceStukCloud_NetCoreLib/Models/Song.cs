@@ -36,7 +36,7 @@ namespace FierceStukCloud_NetCoreLib.Models
         public string PlayListName { get; set; }
 
 
-        public ImageAsync Image { get; set; }
+        //public ImageAsync Image { get; set; }
 
         [JsonIgnore]
         public PlayList PlayList { get; set; }

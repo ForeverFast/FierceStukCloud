@@ -10,8 +10,8 @@ using System.Windows.Threading;
 namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 {
 	/// <summary>Реализация базового класса асинхронной загрузки
-	/// изображения</summary>
-	public class ImageAsync : ImageAsyncBase
+	/// изображения с Контекстом данных</summary>
+	public partial class ImageAsync<T> : ImageAsyncBase<T>
 	{
 		public ImageAsync(Dispatcher dispatcher)
 			: base(dispatcher)
@@ -20,6 +20,24 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			: this(dispatcher)
 		{
 			ImageUri = uri;
+		}
+		public ImageAsync(Dispatcher dispatcher, object uri, T content)
+			: this(dispatcher, uri)
+		{
+			Content = content;
+		}
+		public ImageAsync()
+			: base(null)
+		{ }
+		public ImageAsync(object uri)
+			: this()
+		{
+			ImageUri = uri;
+		}
+		public ImageAsync(object uri, T content)
+			: this(uri)
+		{
+			Content = content;
 		}
 
 		/// <summary>Конструктор BitmapImage.
@@ -83,28 +101,6 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 				}
 				catch (Exception) { }
 				return ImageDefault;
-			}
-		}
-
-		public class TagLibFile : TagLib.File.IFileAbstraction
-		{
-			public string Name { get; }
-			public Stream ReadStream { get; }
-			public Stream WriteStream { get; }
-
-			public void CloseStream(Stream stream)
-			{
-				ReadStream?.Close();
-				ReadStream?.Dispose();
-				WriteStream?.Close();
-				WriteStream?.Dispose();
-			}
-
-			public TagLibFile(string name, Stream readStream, Stream writeStream)
-			{
-				Name = name;
-				ReadStream = readStream;
-				WriteStream = writeStream;
 			}
 		}
 

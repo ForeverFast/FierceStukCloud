@@ -36,8 +36,9 @@
                             BorderThickness="2" BorderBrush="Blue"
                             Background="LightBlue">
                         <StackPanel>
-                            <Image Source="{Binding Image.Image, Mode=OneWay}" Width="150" Height="150"/>
-                            <TextBlock Text="{Binding Title}" TextAlignment="Center" />
+                            <Image x:Name="imgSong" Source="{Binding Image, Mode=OneWay}" Width="150" Height="150"/>
+                            <TextBlock Text="{Binding Content.Title}" TextAlignment="Center" 
+                                       TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=imgSong}"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

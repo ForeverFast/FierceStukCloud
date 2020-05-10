@@ -2,16 +2,8 @@
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using System.Windows.Xps.Serialization;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -26,13 +18,17 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 			: this(false)
 		{
 			Dispatcher = dispatcher;
-			Images = new ImageAsyncCollection(Dispatcher, new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_PC;component/Cd-disk-mp3.png")));
+			Songs = new ImageAsyncCollection<ImageAsync<Song>>
+			(
+				Dispatcher, 
+				new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_PC;component/Cd-disk-mp3.png"))
+			);
 
 		}
 
-		public ObservableCollection<Song> Songs { get; } = new ObservableCollection<Song>();
+		//public ObservableCollection<Song> Songs { get; } = new ObservableCollection<Song>();
 
-		public ImageAsyncCollection Images { get; }
+		public ImageAsyncCollection<ImageAsync<Song>> Songs { get; }
 
 		//public ImageSource ImageDefault { get; set; }
 		public RelayCommand LoadImagesCommand { get; }
@@ -42,15 +38,21 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 		{
 
 			/// Загрузка из внешнего (Содержание) ресурса
-			var image = new ImageAsync(Dispatcher, @"Avicii - Waiting for Love (Original Mix).mp3");
-			Images.Add(image);
-			Songs.Add(new Song() { Title = "WaitingForLove", Author = "Avichi", Image = image });
+			Songs.Add(new ImageAsync<Song>
+			(
+				Dispatcher,
+				@"Avicii - Waiting for Love (Original Mix).mp3", 
+				new Song() { Title = "WaitingForLove", Author = "Avichi" })
+			);
 
 
 			/// Загрузка из упакованного (Ресурс) ресурса
-			image = new ImageAsync(Dispatcher, new Uri("pack://application:,,,/FierceStukCloud_PC;component/AviciiPackaged.mp3"));
-			Images.Add(image);
-			Songs.Add(new Song() { Title = "WaitingForLove(Packaged)", Author = "Avichi", Image = image });
+			Songs.Add
+			(
+				new ImageAsync<Song>(Dispatcher,
+				new Uri("pack://application:,,,/FierceStukCloud_PC;component/AviciiPackaged.mp3"),
+				new Song() { Title = "WaitingForLove (Packaged)", Author = "Avichi" })
+			);
 
 		}
 		
@@ -73,7 +75,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 			if (isDesignMode)
 			{
 				// Контекст данных Времени Разработки Дизайна
-				Images = new ImageAsyncCollection(Dispatcher);
+				Songs = new ImageAsyncCollection<ImageAsync<Song>>(Dispatcher);
 			}
 			else
 			{
