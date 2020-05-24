@@ -4,146 +4,160 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Models;assembly=FierceStukCloud_NetCoreLib"
+        
+        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib"
         mc:Ignorable="d"
-        Title="MainWindowV" Height="900" Width="1202" MinWidth="1202" MinHeight="900" WindowStyle="None" ResizeMode="NoResize">
+        Title="MainWindowV" Height="650" Width="1180" MinWidth="1024" MinHeight="650" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ListBoxStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
-    <Grid Background="{StaticResource GrayLVL1}">
+
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
-            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
 
-        <Border x:Name="Header" Grid.Row="0"
+
+
+        <Grid Grid.Row="0"
+              Background="{StaticResource GrayLVL4}">
+
+            <Border BorderBrush="{StaticResource Gor}"
+                    BorderThickness="0,0,0,2">
+
+
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Background="{StaticResource GrayLVL1}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="302"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="MusicContainers" Grid.Column="0"
+                    BorderThickness="0,0,2,0" BorderBrush="{StaticResource Gor}">
+                <Grid Background="{StaticResource GrayLVL1}">
+
+                    <TabControl Style="{StaticResource TabContolStyleMain}">
+
+
+                        <TabItem>
+                            <TabItem.Resources>
+                                <TextBlock x:Key="HeaderText">Локальные файлы</TextBlock>
+                            </TabItem.Resources>
+                            <TabItem.Content>
+                                <Grid>
+
+                                    <ListBox Style="{StaticResource MainListBoxStyle}">
+
+                                        <ListBoxItem/>
+
+                                    </ListBox>
+
+
+                                </Grid>
+                            </TabItem.Content>
+                        </TabItem>
+
+
+                        <TabItem>
+
+
+                        </TabItem>
+                    </TabControl>
+
+
+                </Grid>
+            </Border>
+
+
+            <Grid x:Name="Songs" Grid.Column="1"
+                  Background="{StaticResource GrayLVL0}">
+
+                <ListBox Style="{StaticResource SongsListBoxStyle}">
+
+                    <ListBoxItem/>
+
+                </ListBox>
+
+
+            </Grid>
+
+            <Grid x:Name="MusicPlayer" Grid.Column="2"
+                  Background="{StaticResource GrayLVL2}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="310"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="97*"/>
+                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="78*"/>
+                </Grid.RowDefinitions>
+
+                <Image Margin="40,40,40,20"
+                       
+                       Stretch="Fill"
+                       Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/Screenshot_544.png" />
+
+                <Grid x:Name="TitleAndAuthor" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="Title" Grid.Row="0"
+                               
+                               Text="Title Title Title Title"
+                               
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource TBlock_TabItemHeader}"/>
+
+                    <TextBlock x:Name="Author" Grid.Row="1"
+                               
+                               Text="Author"
+                               FontSize="14"
+                               Opacity="0.6"
+                               
+                               
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource TBlock_TabItemHeader}"/>
+
+                </Grid>
+
+                <Grid x:Name="SliderAndInfo" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    
+                </Grid>
                 
-                BorderThickness="0,0,0,1"
-                BorderBrush="{StaticResource DimColor}">
-            <Grid>
+                
                 
             </Grid>
-        </Border>
 
-        <TabControl x:Name="MainTC" Grid.Row="1" 
-                    
-                    Style="{StaticResource ResourceKey=TabContolStyleMain}">
-            
-            <TabItem Margin="-2,-2,0,0"
-                     Header="Главная">
-             
-                <TabItem.Content>
-
-                    <Grid>
-
-                    </Grid>
-
-                </TabItem.Content>
-               
-            </TabItem>
-            
-            <TabItem Header="Профиль">
-                
-                <TabItem.Resources>
-                    <ImageSource x:Key="ImageLight">/FierceStukCloud_NetCoreLib;component/Resources/Images/icons/peoplelight.png</ImageSource>
-                    <ImageSource x:Key="ImageDim">/FierceStukCloud_NetCoreLib;component/Resources/Images/icons/people.png</ImageSource>
-                </TabItem.Resources>
-                
-                <TabItem.Content>
-                    <Grid>
-
-                    </Grid>
-                </TabItem.Content>
-
-            </TabItem>
-
-            <TabItem Header="Устройства">
-                
-            </TabItem>
-
-            <TabItem Header="Настройки">
-
-            </TabItem>
-
-            <TabItem>
-                <TabItem.Style>
-                    <Style TargetType="{x:Type TabItem}">
-                        <Setter Property="Margin" Value="-2,0,0,0"/>
-                        <Setter Property="IsEnabled" Value="False"/>
-
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type TabItem}">
-                                    <Border x:Name="Border"
-                                        
-                                            Width="170"
-                                            Height="34"
-                                            BorderThickness="0"
-                                            Padding="0">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="10"/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-
-                                            <Line x:Name="DecorLine" Grid.Row="0"
-                                                  X1="3" Y1="5"
-                                                  X2="167" Y2="5"
-                                                  
-                                                  StrokeThickness="2"
-                                                  Stroke="Azure"/>
-
-
-                                            <TextBlock x:Name="HeaderText" Grid.Row="1"
-                                                       Margin="5,0,0,0"    
-                                                       Text="Твоя музыка"
-                                                       Style="{StaticResource ResourceKey=TBlock_TabItemHeader}" />
-                                        </Grid>
-
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TabItem.Style>
-                
-            </TabItem>
-
-            <TabItem Header="Песни">
-
-            </TabItem>
-
-            <TabItem Header="Плейлисты">
-
-            </TabItem>
-
-            <TabItem Header="Альбомы">
-
-            </TabItem>
-
-            <TabItem Header="Устройства">
-
-            </TabItem>
-
-        </TabControl>
-
-        <Border x:Name="Footer" Grid.Row="2"
-                
-                BorderThickness="0,1,0,0"
-                BorderBrush="{StaticResource DimColor}"
-                
-                Background="{StaticResource GrayLVL4}">
-            
-        </Border>
-        
+        </Grid>
     </Grid>
+
+
 </Window>

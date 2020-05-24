@@ -1,5 +1,153 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Resources.ResourceDictionaries">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     
+    
+
+
+    <Style x:Key="BaseListBoxStyle" TargetType="{x:Type ListBox}">
+
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource GrayLVL1}"/>
+
+    </Style>
+
+    <Style x:Key="MainListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
+
+
+
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListBoxItem}">
+
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Height" Value="40"/>
+
+
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border Height="{TemplateBinding Height}"
+                                        Width="{TemplateBinding Width}"
+                                        Background="{StaticResource Gor}">
+                                    <Grid>
+                                        <Label Margin="5,0,0,0"
+                                               Padding="0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               
+                                               Content="kek"
+                                               FontSize="25"
+                                               Foreground="{StaticResource GrayLVL4}"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="SongsListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
+
+
+
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListBoxItem}">
+
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Background" Value="{StaticResource GrayLVL0}"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border Height="{TemplateBinding Height}"
+                                        Width="{TemplateBinding Width}"
+                                        Background="{TemplateBinding Background}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="15"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image  Grid.Column="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Width="40"
+                                                Height="40"
+                                                Stretch="Fill"
+                                                Margin="0,0,0,0"
+                                                
+                                                Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/Screenshot_544.png" />
+
+
+                                        <Label Grid.Column="1"
+                                               Margin="5,0,0,0"
+                                               Padding="0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               
+                                               Content="kek"
+                                               FontSize="25"
+                                               Foreground="{StaticResource StandartTextColor}"/>
+
+
+                                        <Grid Grid.Column="2"
+                                              Margin="0,5,5,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Ellipse Grid.Row="0"
+                                                         
+                                                     Opacity="0.6"
+                                                     Margin="3"
+                                                         
+                                                     Fill="{StaticResource GrayLVL4}"/>
+                                            
+                                            <Ellipse Grid.Row="1"
+                                                         
+                                                     Opacity="0.6"
+                                                     Margin="3"
+                                                         
+                                                     Fill="{StaticResource GrayLVL4}"/>
+                                            <Ellipse Grid.Row="2"
+                                                         
+                                                     Margin="3"
+                                                     Opacity="0.6"    
+                                                     
+                                                     Fill="{StaticResource GrayLVL4}"/>
+
+                                        </Grid>
+
+
+
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
 </ResourceDictionary>

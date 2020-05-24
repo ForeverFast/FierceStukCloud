@@ -1,5 +1,5 @@
 ﻿FierceStukCloud_NetCoreLib
-
+1.0.0.0
 
 library
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 
-7206200180
+8-58432133
 
-16-714107515
+19-409663482
 195-101547126
-Resources\ResourceDictionaries\Brushes.xaml;Resources\ResourceDictionaries\ButtonStyles.xaml;Resources\ResourceDictionaries\ListBoxStyles.xaml;Resources\ResourceDictionaries\SliderStyles.xaml;Resources\ResourceDictionaries\TabControlStyles.xaml;Resources\ResourceDictionaries\TextBlockStyles.xaml;Resources\ResourceDictionaries\TextBoxStyles.xaml;
+Resources\ResourceDictionaries\Brushes.xaml;Resources\ResourceDictionaries\ButtonStyles.xaml;Resources\ResourceDictionaries\LabelStyles.xaml;Resources\ResourceDictionaries\ListBoxStyles.xaml;Resources\ResourceDictionaries\SliderStyles.xaml;Resources\ResourceDictionaries\TabControlStyles.xaml;Resources\ResourceDictionaries\TextBlockStyles.xaml;Resources\ResourceDictionaries\TextBoxStyles.xaml;
 
-False
+True
 

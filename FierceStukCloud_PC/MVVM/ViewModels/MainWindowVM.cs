@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
-    public class MainWindowVM
+    public class MainWindowVM 
     {
         public ObservableCollection<Song> Songs { get; set; }
 
@@ -44,6 +44,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             LoadImages = new RelayCommand(LoadImagesExecute, null);
 
             ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
+        }
+
+
+
+        private void InitiailizeCommands()
+        {
+           
         }
     }
 }

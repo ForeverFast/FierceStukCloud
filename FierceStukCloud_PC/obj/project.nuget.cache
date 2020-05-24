@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lm2q4K9rB6bPsoMYNGxkzJSD19DiBhUr5UFce2I/pCt4J1ZbIbU4P3FnrmYUhm1AVKtlF4YpLDbzwJJINldHQQ==",
+  "dgSpecHash": "Qf+gIHuNhm3/1sPg965P7AQt9jjyDa/4Zrw0r5qJEsWzoF4smKZGEM9EaZFgATCUY8VeEgPuz9cyyD1lyRvMZg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_PC\\FierceStukCloud_PC.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,8 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\taglibsharp\\2.2.0\\taglibsharp.2.2.0.nupkg.sha512"
+    "C:\\Users\\ivans\\.nuget\\packages\\taglibsharp\\2.2.0\\taglibsharp.2.2.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": [
     {

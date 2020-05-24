@@ -6,23 +6,13 @@ using System.Net;
 using RestSharp;
 using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
-
+using FierceStukCloud_NetCoreLib.ViewModels;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
-    class AutorizationVM : OnPropertyChangedClass
+    class AutorizationVM : BaseViewModel
     {
-        #region Управление окном
-
-        public RelayCommand MinimizedWindowCommand { get; private set; }
-        public RelayCommand CloseWindowCommand { get; private set; }
-        public RelayCommand DragWindowCommand { get; private set; }
-
-        public void MinimizedWindowMethod(object parameter) => Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        public void CloseWindowMethod(object parameter) => Application.Current.MainWindow.Close();
-        public void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
-
-        #endregion
+       
 
 
         #region Авторизация
@@ -61,7 +51,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private void AutorizationMethod(object parameter)
         {
             IsAuthentication = true;
-
+            
 
 #if DEBUG
             OpenMainWindow();
@@ -150,12 +140,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         /// <summary>
         /// Инициализация команд
         /// </summary>
-        private void InitiailizeCommands()
+        public override void InitiailizeCommands()
         {
-            MinimizedWindowCommand = new RelayCommand(MinimizedWindowMethod, null);
-            CloseWindowCommand = new RelayCommand(CloseWindowMethod, null);
-            DragWindowCommand = new RelayCommand(DragWindowMethod, null);
-
+            base.InitiailizeCommands();
             AutorizationCommand = new RelayCommand(AutorizationMethod, null);
         }
 

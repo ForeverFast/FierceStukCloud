@@ -35,8 +35,8 @@ namespace FierceStukCloud_PC
         {
             base.OnStartup(e);
 
-            var q = new Test1();
-            q.ShowDialog();
+            //var q = new Test1();
+            //q.ShowDialog();
 
             var AVM = new AutorizationVM();
             await DisplayRootRegistry.ShowModalPresentation(AVM);
