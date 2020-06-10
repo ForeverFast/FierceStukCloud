@@ -95,15 +95,13 @@
                             <ControlTemplate TargetType="{x:Type TabItem}">
                                 <Border x:Name="Border"
                                         
-                                        BorderBrush="{StaticResource Gor}"
-                                        >
+                                        BorderBrush="{StaticResource Gor}">
                                     <Label Content="{DynamicResource HeaderText}"
-                                           FontSize="17"
+                                           FontSize="15"
                                            Foreground="{StaticResource StandartTextColor}"
                                            
                                            Margin="5,0,0,0"
-                                           Style="{StaticResource LabelStyle}"
-                                           />
+                                           Style="{StaticResource LabelStyle}"/>
                                 </Border>
 
                                 <ControlTemplate.Triggers>

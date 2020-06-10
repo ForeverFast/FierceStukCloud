@@ -21,7 +21,14 @@
                     Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ListBoxStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/SliderStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/MenuStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            
+
         </ResourceDictionary>
     </Window.Resources>
 
@@ -33,16 +40,124 @@
 
 
 
-        <Grid Grid.Row="0"
-              Background="{StaticResource GrayLVL4}">
-
-            <Border BorderBrush="{StaticResource Gor}"
-                    BorderThickness="0,0,0,2">
 
 
-            </Border>
+        <Border Grid.Row="0"
+                BorderBrush="{StaticResource Gor}"
+                BorderThickness="0,0,0,1">
 
-        </Grid>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding DragWindowCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Grid Background="{StaticResource GrayLVL1}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Menu x:Name="Settings" Grid.Column="0"
+                          
+                          Background="{StaticResource GrayLVL1}">
+                        <MenuItem HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  
+                                  Padding="0"
+                                  Margin="2,1,2,0"
+                                  
+                                  
+                                  Template="{DynamicResource MenuItemControlTemplate1}">
+                            <MenuItem.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="MainM" Height="26" Margin="0" Width="33" Background="{StaticResource GrayLVL1}">
+
+                                        <Line x:Name="L1"
+                                              X1="4" Y1="5.5"
+                                              X2="27" Y2="5.5"
+                                              StrokeThickness="3"
+                                              Stroke="{StaticResource StandartLightColor}"/>
+
+                                        <Line x:Name="L2"
+                                              X1="4" Y1="13.5"
+                                              X2="27" Y2="13.5"
+                                              StrokeThickness="3"
+                                              Stroke="{StaticResource StandartLightColor}"/>
+
+                                        <Line x:Name="L3"
+                                              X1="4" Y1="21.5"
+                                              X2="27" Y2="21.5"
+                                              StrokeThickness="3"
+                                              Stroke="{StaticResource StandartLightColor}"/>
+
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter TargetName="MainM" Property="Background" Value="{StaticResource Gor}"/>
+                                            <Setter TargetName="L1" Property="Stroke" Value="{StaticResource GrayLVL2}"/>
+                                            <Setter TargetName="L2" Property="Stroke" Value="{StaticResource GrayLVL2}"/>
+                                            <Setter TargetName="L3" Property="Stroke" Value="{StaticResource GrayLVL2}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="false">
+                                            <Setter TargetName="MainM" Property="Background"
+                                                    Value="{StaticResource GrayLVL1}"/>
+                                            <Setter TargetName="L1" Property="Stroke"
+                                                    Value="{StaticResource StandartLightColor}"/>
+                                            <Setter TargetName="L2" Property="Stroke"
+                                                    Value="{StaticResource StandartLightColor}"/>
+                                            <Setter TargetName="L3" Property="Stroke"
+                                                    Value="{StaticResource StandartLightColor}"/>
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </MenuItem.HeaderTemplate>
+                            <MenuItem Header="Открыть"
+                                      Foreground="{StaticResource StandartTextColor}"
+                                      
+                                      Background="{StaticResource GrayLVL2}"/>
+                            
+                            <MenuItem Header="Выход"
+                                      Foreground="{StaticResource StandartTextColor}"
+                                      
+                                      Background="{StaticResource GrayLVL2}"/>
+                        </MenuItem>
+                    </Menu>
+
+                </Grid>
+
+                <Grid x:Name="SystemButtons" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="TrayButton" Grid.Column="0"
+                            Margin="2"
+                            Command="{Binding MinimizedWindowCommand}"
+                            Style="{StaticResource MinimazeButton}"/>
+
+                    <Button x:Name="CloseButton" Grid.Column="1"
+                            Margin="2"
+                            Command="{Binding CloseWindowCommand}"
+                            Style="{StaticResource CloseWindowButton}"/>
+
+                </Grid>
+
+            </Grid>
+        </Border>
+
+
+
+
 
         <Grid Grid.Row="1"
               Background="{StaticResource GrayLVL1}">
@@ -66,11 +181,13 @@
                             <TabItem.Content>
                                 <Grid>
 
-                                    <ListBox Style="{StaticResource MainListBoxStyle}">
+                                    <ListBox ItemsSource="{Binding LocalFiles,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedItem="{Binding SelectedBMO,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource MainListBoxStyle}"/>
 
-                                        <ListBoxItem/>
 
-                                    </ListBox>
+
+
 
 
                                 </Grid>
@@ -79,7 +196,9 @@
 
 
                         <TabItem>
-
+                            <TabItem.Resources>
+                                <TextBlock x:Key="HeaderText">Фильтры</TextBlock>
+                            </TabItem.Resources>
 
                         </TabItem>
                     </TabControl>
@@ -107,8 +226,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="310"/>
                     <RowDefinition Height="60"/>
-                    <RowDefinition Height="97*"/>
-                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="78*"/>
                 </Grid.RowDefinitions>
 
@@ -144,16 +263,69 @@
 
                 <Grid x:Name="SliderAndInfo" Grid.Row="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           
+                           HorizontalAlignment="Center"
+                           
+                           Content="00:00"
+                           FontSize="10"                          
+                           
+                           Style="{StaticResource LabelStyle}"/>
+
+                    <Slider Grid.Column="1"
+                            
+                            Margin="5,0,5,0"
+                            
+                            Style="{StaticResource Horizontal_Slider}"/>
+
+                    <Label Grid.Column="2"
+                           
+                           HorizontalAlignment="Center"
+                           
+                           Content="99:99"
+                           FontSize="10"
+                           
+                           Style="{StaticResource LabelStyle}"/>
+
+                </Grid>
+
+                <Grid x:Name="Buttons" Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
-                    
+
+                    <Button Grid.Column="1"
+                            Margin="12,8,12,8"
+                            Style="{StaticResource NextOrPrevSong}" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Grid.Column="2"
+                            Margin="6,2,6,2"
+                            Style="{StaticResource PlayButton}"/>
+                    <Button Grid.Column="3"
+                            Margin="12,8,12,8"
+                            Style="{StaticResource NextOrPrevSong}"/>
+
                 </Grid>
-                
-                
-                
+
+
+
             </Grid>
 
         </Grid>

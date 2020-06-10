@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using FierceStukCloud_NetCoreLib.Services;
 
 namespace FierceStukCloud_NetCoreLib.ViewModels
@@ -19,10 +16,6 @@ namespace FierceStukCloud_NetCoreLib.ViewModels
         public void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
 
         #endregion
-
-
-
-
 
         #region Конструкторы и методы инициализации
 

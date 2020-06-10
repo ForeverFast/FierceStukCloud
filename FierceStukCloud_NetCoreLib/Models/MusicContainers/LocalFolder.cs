@@ -8,10 +8,5 @@ namespace FierceStukCloud_NetCoreLib.Models.MusicContainers
     public class LocalFolder : MusicContainer
     {
         public string LocalURL { get; set; }
-
-        void q()
-        {
-            
-        }
     }
 }

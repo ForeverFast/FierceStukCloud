@@ -1,4 +1,5 @@
-﻿using FierceStukCloud_NetCoreLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetCoreLib.Models.AbstractModels;
+using FierceStukCloud_NetCoreLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using System;
 using System.Collections.Generic;
@@ -10,43 +11,42 @@ using System.Text.Json.Serialization;
 namespace FierceStukCloud_NetCoreLib.Models
 {
     [Table("Songs")]
-    public class Song
+    public class Song : BaseMusicObject
     {
-        [Key]
-        [JsonPropertyName("id")]
-        public int ID { get; set; }
-
         [JsonPropertyName("localId")]
-        public int LocalID { get; set; }
-
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public int LocalID { get; set; } = 0;
 
         [JsonPropertyName("author")]
         public string Author { get; set; }
 
+        public string Album { get; set; }
+        public int Year { get; set; }
+
         [JsonPropertyName("duration")]
         public string Duration { get; set; }
-      
-
-        [JsonPropertyName("userLogin")]
-        public string UserLogin { get; set; }
-
-        [JsonPropertyName("playListName")]
-        public string PlayListName { get; set; }
+     
 
 
+
+        [JsonPropertyName("playListNames")]
+        public string PlayListNames { get; set; }
+
+
+        #region Локальные свойства для работы приложения
+        [JsonIgnore]
+        public MusicContainer CurrentMusicContainer { get; set; }
+
+        [JsonIgnore]
         public ImageAsync Image { get; set; }
 
         [JsonIgnore]
-        public PlayList PlayList { get; set; }
+        public List<PlayList> PlayLists { get; set; }
+
+        [JsonIgnore]
+        public Album OAlbum { get; set; }
 
         [JsonIgnore]
         public string LocalURL { get; set; }
-
-
-
-
-        private TimeSpan _Duration;
+        #endregion
     }
 }
