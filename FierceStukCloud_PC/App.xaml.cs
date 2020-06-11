@@ -50,7 +50,7 @@ namespace FierceStukCloud_PC
                     "OnServer       BOOLEAN," +
                     "OnPC           BOOLEAN)";
                 cmd.ExecuteNonQuery();
-
+                Connection.Close();
                 #endregion
             }
             catch (Exception)
@@ -68,9 +68,6 @@ namespace FierceStukCloud_PC
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            //var q = new Test1();
-            //q.ShowDialog();
 
             var AVM = new AutorizationVM();
             await DisplayRootRegistry.ShowModalPresentation(AVM);

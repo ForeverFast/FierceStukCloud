@@ -25,10 +25,14 @@
 
         <Setter Property="ContextMenu">
             <Setter.Value>
-                <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                    <MenuItem Header="Добавить"
-                              Background="{StaticResource GrayLVL1}"
-                              Command="{Binding Path= Tag.Add}"/>
+                <ContextMenu Style="{StaticResource MenuItemStyle1}"
+                             Background="{StaticResource GrayLVL2}">
+                   
+                    <MenuItem Header="Добавить аудиофайл"
+                              Command="{Binding Path=Add}"/>
+                    <MenuItem Header="Добавить папку"
+                              Command="{Binding AddLocalFolderFromPCCommand}"/>
+                    <!--Template="{DynamicResource MenuItemControlTemplate1}"-->
                 </ContextMenu>
             </Setter.Value>
         </Setter>
@@ -65,8 +69,8 @@
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
                                                
-                                               Content="kek"
-                                               FontSize="25"
+                                               Content="{Binding Title}"
+                                               FontSize="18"
                                                Foreground="{StaticResource StandartTextColor}"/>
                                     </Grid>
                                 </Border>
@@ -89,7 +93,7 @@
                 <Style TargetType="{x:Type ListBoxItem}">
 
                     <Setter Property="Margin" Value="5"/>
-                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Height" Value="30"/>
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="Background" Value="{StaticResource GrayLVL0}"/>
                     <Setter Property="Cursor" Value="Hand"/>
@@ -112,7 +116,7 @@
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Width="40"
-                                                Height="40"
+                                                Height="30"
                                                 Stretch="Fill"
                                                 Margin="0,0,0,0"
                                                 
@@ -125,13 +129,13 @@
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
                                                
-                                               Content="kek"
-                                               FontSize="20"
+                                               Content="{Binding Title}"
+                                               FontSize="13"
                                                Foreground="{StaticResource StandartTextColor}"/>
 
 
                                         <Grid Grid.Column="2"
-                                              Margin="0,5,5,5">
+                                              Margin="0,1,5,1">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
@@ -142,12 +146,13 @@
                                                 <Style x:Key="EllipseG" TargetType="{x:Type Ellipse}">
 
                                                     <Setter Property="Opacity" Value="0.6"/>
-                                                    <Setter Property="Margin" Value="3"/>
+                                                    <Setter Property="Margin" Value="2.6"/>
                                                     <Setter Property="Fill" Value="{StaticResource StandartLightColor}"/>
 
                                                 </Style>
                                                 
                                             </Grid.Resources>
+                                            
                                             <Ellipse Grid.Row="0" Style="{StaticResource EllipseG}"/>
                                             <Ellipse Grid.Row="1" Style="{StaticResource EllipseG}"/>
                                             <Ellipse Grid.Row="2" Style="{StaticResource EllipseG}"/>

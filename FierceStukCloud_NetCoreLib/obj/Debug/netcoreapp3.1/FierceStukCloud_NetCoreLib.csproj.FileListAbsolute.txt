@@ -19,3 +19,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.csprojAssemblyReference.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\MenuStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetCoreLib\obj\Debug\netcoreapp3.1\Resources\ResourceDictionaries\ScrollBarStyles.baml

@@ -25,6 +25,8 @@
                     Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/SliderStyles.xaml"/>
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/MenuStyles.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ScrollBarStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             
@@ -37,11 +39,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-
-
-
-
+        
         <Border Grid.Row="0"
                 BorderBrush="{StaticResource Gor}"
                 BorderThickness="0,0,0,1">
@@ -180,15 +178,17 @@
                             </TabItem.Resources>
                             <TabItem.Content>
                                 <Grid>
-
-                                    <ListBox ItemsSource="{Binding LocalFiles,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                             SelectedItem="{Binding SelectedBMO,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                             Style="{StaticResource MainListBoxStyle}"/>
+                                    <ScrollViewer Style="{DynamicResource styleScrollViewer}"/>
 
 
+                                    <ListBox ItemsSource="{Binding LocalFiles}"
+                                             SelectedValue="{Binding SelectedBMO}"
+                                             Style="{StaticResource MainListBoxStyle}"
+                                             >
 
-
-
+                                        
+                                        
+                                    </ListBox>
 
                                 </Grid>
                             </TabItem.Content>
@@ -211,9 +211,14 @@
             <Grid x:Name="Songs" Grid.Column="1"
                   Background="{StaticResource GrayLVL0}">
 
-                <ListBox Style="{StaticResource SongsListBoxStyle}">
+                <ScrollViewer Style="{DynamicResource styleScrollViewer}"/>
 
-                    <ListBoxItem/>
+                <ListBox ItemsSource="{Binding Songs}"
+                         SelectedValue="{Binding SelectedSong,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource SongsListBoxStyle}"
+                         >
+
+                   
 
                 </ListBox>
 

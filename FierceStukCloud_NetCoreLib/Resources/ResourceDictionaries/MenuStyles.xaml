@@ -75,6 +75,38 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <Style x:Key="MenuItemStyle1" TargetType="{x:Type ContextMenu}">
+
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        <Setter Property="Foreground" Value="{StaticResource StandartTextColor}"/>
+        <!--<Setter Property="Background" Value="{StaticResource GrayLVL2}"/>-->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border x:Name="Border" 
+                            BorderThickness="0"
+                            CornerRadius="0"
+                            BorderBrush="Black">
+                        <StackPanel  ClipToBounds="True" Orientation="Vertical" IsItemsHost="True" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource GrayLVL2}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource GrayLVL2}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    
+   
     
     
 </ResourceDictionary>

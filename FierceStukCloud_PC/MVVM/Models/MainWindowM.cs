@@ -149,10 +149,17 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Добавление/Удаление контейнеров
 
-        public async void AddMusicContainerFromPC(string path)
+        public List<BaseMusicObject> GetLocalFiles()
         {
+            var temp = new List<BaseMusicObject>();
+            temp.AddRange(MWM_LocalDB.GetLocalFoldersFromLocalDB().Result);
 
+            return temp;
         }
+
+        public async void AddLocalFolderFromPC(string path, Caller caller) =>
+            LocalFolderAdded?.Invoke(await MWM_LocalDB.AddLocalFoldersFromPC(path) , caller);
+        
 
         public async void DeleteMusicContainerFromPC<T>(T MusicContainer) where T : MusicContainer
         {
@@ -169,10 +176,10 @@ namespace FierceStukCloud_PC.MVVM.Models
         public event SongInfo SongDeleted;
         public event SongInfo SongChanged;
 
-        public delegate void MCInfo(MusicContainer MusicContainer, Caller caller);
-        public event MCInfo MusicContainerAdded;
-        public event MCInfo MusicContainerDeleted;
-        public event MCInfo MusicContainerChanged;
+        public delegate void LocalFolderInfo(LocalFolder LocalFolder, Caller caller);
+        public event LocalFolderInfo LocalFolderAdded;
+        public event LocalFolderInfo LocalFolderDeleted;
+        public event LocalFolderInfo LocalFolderChanged;
 
         #endregion
 
@@ -181,6 +188,9 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             MP = new MediaPlayer();
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
+
+           
+            
         }
     }
 }

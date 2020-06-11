@@ -19,67 +19,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
-        public ObservableCollection<Song> Songs { get; set; }
+      
 
         private MainWindowM model;
         //private DialogService dialogService;
 
 
         #region Управление плеером
-
-
-        #region Обработка событий
-
-        private void Model_SongChangedEvent(Song song, Caller caller) => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-        {
-            switch (caller)
-            {
-                case Caller.User:
-
-                    break;
-                case Caller.Program:
-
-                    break;
-
-                case Caller.Phone:
-                    //SelectedSong = song;
-                    //UpdataSongInfo();
-
-                    break;
-
-                case Caller.Web:
-                    //SelectedSong = song;
-                    //UpdataSongInfo();
-
-                    break;
-
-            }
-
-        }));
-
-        public void UpdataSongInfo()
-        {
-            while (!model.MP.NaturalDuration.HasTimeSpan) { }
-
-            SongTime = model.MP.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
-
-            SongTimeForSlider = model.MP.NaturalDuration.TimeSpan.TotalSeconds;
-
-            SongName = model.CurrentSong.Title;
-            SongAuthor = model.CurrentSong.Author;
-
-            SongTimeLineForSlider = 0;
-
-            SongBitmapImage = model.CurrentImage;
-        }
-
-        private void Model_SongPositionChangerd()
-        {
-            SongPos = model.MP.Position.ToString(@"mm\:ss");
-            SongTimeLineForSlider = model.MP.Position.TotalSeconds;
-        }
-
-        #endregion
 
 
        
@@ -95,7 +41,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //App.Dialog.ShowFolder(SelectedPlayList.URL);
         }
 
-       
+
 
 
 
@@ -233,10 +179,23 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Свойства
 
+        public ObservableCollection<Song> Songs { get; set; }
+             = new ObservableCollection<Song>();
+
+
         private MusicContainer _selectedMusicContainer;
         private Song _selectedSong;
 
-        public MusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
+        public MusicContainer SelectedMusicContainer
+        { 
+            get => _selectedMusicContainer;
+            set
+            {
+                SetProperty(ref _selectedMusicContainer, value);
+                foreach (var item in value.Songs) Songs.Add(item);
+              
+            }
+        }
 
         public Song SelectedSong
         {
@@ -257,9 +216,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Команды
 
-        public RelayCommand AddMusicContainerFromPCCommand { get; private set; }
+        public RelayCommand AddLocalFolderFromPCCommand { get; private set; }
 
-        private void AddMusicContainerFromPCExecute(object parameter) => model.AddMusicContainerFromPC(FolderBrowserDialog());
+        private void AddLocalFolderFromPCExecute(object parameter) => model.AddLocalFolderFromPC(FolderBrowserDialog(), Caller.User);
 
 
         #endregion
@@ -296,12 +255,69 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #endregion
 
+        #endregion
 
 
 
 
+        #region Обработка событий
+
+        private void Model_SongChangedEvent(Song song, Caller caller) => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+        {
+            switch (caller)
+            {
+                case Caller.User:
+
+                    break;
+                case Caller.Program:
+
+                    break;
+
+                case Caller.Phone:
+                    //SelectedSong = song;
+                    //UpdataSongInfo();
+
+                    break;
+
+                case Caller.Web:
+                    //SelectedSong = song;
+                    //UpdataSongInfo();
+
+                    break;
+
+            }
+
+        }));
+
+        public void UpdataSongInfo()
+        {
+            while (!model.MP.NaturalDuration.HasTimeSpan) { }
+
+            SongTime = model.MP.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
+
+            SongTimeForSlider = model.MP.NaturalDuration.TimeSpan.TotalSeconds;
+
+            SongName = model.CurrentSong.Title;
+            SongAuthor = model.CurrentSong.Author;
+
+            SongTimeLineForSlider = 0;
+
+            SongBitmapImage = model.CurrentImage;
+        }
+
+        private void Model_SongPositionChangerd()
+        {
+            SongPos = model.MP.Position.ToString(@"mm\:ss");
+            SongTimeLineForSlider = model.MP.Position.TotalSeconds;
+        }
+
+        private void Model_LocalFolderAdded(LocalFolder LocalFolder, Caller caller)
+        {
+            LocalFiles.Add(LocalFolder);    
+        }
 
         #endregion
+
 
 
 
@@ -321,6 +337,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
                 //dialogService = new DialogService();
                 model = new MainWindowM();
+
+                model.LocalFolderAdded += Model_LocalFolderAdded;
+
+                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetLocalFiles());
 
                 InitiailizeCommands();
                 
@@ -354,11 +374,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
+       
+
         public override void InitiailizeCommands()
         {
             base.InitiailizeCommands();
 
-            AddMusicContainerFromPCCommand = new RelayCommand(AddMusicContainerFromPCExecute, null);
+            AddLocalFolderFromPCCommand = new RelayCommand(AddLocalFolderFromPCExecute, null);
 
             //NewFolderCommand = new RelayCommand(NewFolderMethod, null);
             //AddToMainServerCommand = new RelayCommand(AddToMainServerMethod, null);

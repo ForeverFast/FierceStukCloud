@@ -20,7 +20,7 @@ namespace FierceStukCloud_NetCoreLib.Models
         public string Author { get; set; }
 
         public string Album { get; set; }
-        public int Year { get; set; }
+        public uint Year { get; set; }
 
         [JsonPropertyName("duration")]
         public string Duration { get; set; }
