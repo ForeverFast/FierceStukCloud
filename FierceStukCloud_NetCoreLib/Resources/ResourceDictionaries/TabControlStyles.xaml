@@ -42,6 +42,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        
                         <TabPanel x:Name="HeaderPanel"
                                     Grid.Row="0"
                                     Panel.ZIndex="1"
@@ -49,6 +50,7 @@
                                     IsItemsHost="True"
                                     KeyboardNavigation.TabIndex="1"
                                     Background="Transparent" /> 
+                        
                         <Border x:Name="Border"
                                   Grid.Row="1"
                                   BorderThickness="0,0,0,0"
@@ -57,6 +59,7 @@
                                   KeyboardNavigation.TabNavigation="Local"
                                   KeyboardNavigation.DirectionalNavigation="Contained"
                                   KeyboardNavigation.TabIndex="2">
+                            
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.5,1"
                                    StartPoint="0.5,0">
@@ -66,6 +69,7 @@
                                                  Offset="1" />
                                 </LinearGradientBrush>
                             </Border.Background>
+                            
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="{DynamicResource BorderMediumColor}"/>
                             </Border.BorderBrush>

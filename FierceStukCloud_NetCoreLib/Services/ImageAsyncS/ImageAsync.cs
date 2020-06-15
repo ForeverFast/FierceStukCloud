@@ -38,7 +38,8 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
             }
         }
 
-        private BitmapImage GetDefaultPic() => new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_Lib;component/Resources/Em1.png"));
+        private BitmapImage GetDefaultPic() => 
+            new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
 
         //if (ImageSourceConverter.CanConvertFrom(uri.GetType()))
         //    return (ImageSource)ImageSourceConverter.ConvertFrom(uri);

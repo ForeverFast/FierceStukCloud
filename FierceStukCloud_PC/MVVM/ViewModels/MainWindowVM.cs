@@ -15,36 +15,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using static FierceStukCloud_NetCoreLib.Types.CallerType;
 using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
+using System.Threading.Tasks;
+using System.Threading;
+
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
-      
 
         private MainWindowM model;
-        //private DialogService dialogService;
-
 
         #region Управление плеером
-
-
-       
-
-       
-
-
-
-
-        /// <summary>Метод открытия папки на диске</summary>
-        public void OpenFolderOnDiskMethod(object parameter)
-        {
-            //App.Dialog.ShowFolder(SelectedPlayList.URL);
-        }
-
-
-
-
-
 
 
         #region Отображение информации о текущем треке
@@ -74,93 +55,27 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        public string SongName
-        {
-            get => _SongName;
-            set
-            {
-                _SongName = value;
-                OnPropertyChanged(nameof(SongName));
-            }
-        }
+        public string SongName { get => _SongName; set => SetProperty(ref _SongName, value); }
 
-        public string SongAuthor
-        {
-            get => _SongAuthor;
-            set
-            {
-                _SongAuthor = value;
-                OnPropertyChanged(nameof(SongAuthor));
-            }
-        }
+        public string SongAuthor { get => _SongAuthor; set => SetProperty(ref _SongAuthor, value); }
 
         /// <summary>Текущее время трека</summary>
-        public string SongPos
-        {
-            get => _SongPos;
-            set
-            {
-                _SongPos = value;
-                OnPropertyChanged(nameof(SongPos));
-            }
-        }
+        public string SongPos { get => _SongPos; set => SetProperty(ref _SongPos, value); }
+
         /// <summary>Общее время песни </summary>
-        public string SongTime
-        {
-            get => _SongTime;
-            set
-            {
-                _SongTime = value;
-                OnPropertyChanged(nameof(SongTime));
-            }
-        }
+        public string SongTime { get => _SongTime; set => SetProperty(ref _SongTime, value); }
+
         /// <summary>Общее время песни на слайдере </summary>
-        public double SongTimeForSlider
-        {
-            get => _SongTimeForSlider;
-            set
-            {
-                _SongTimeForSlider = value;
-                OnPropertyChanged(nameof(SongTimeForSlider));
-            }
-        }
+        public double SongTimeForSlider { get => _SongTimeForSlider; set => SetProperty(ref _SongTimeForSlider, value); }
+        
         /// <summary>Позиция указателя на слайдере </summary>
-        public double SongTimeLineForSlider
-        {
-            get => _SongTimeLineForSlider;
-            set
-            {
-                TimeSpan ts = TimeSpan.FromSeconds(value);
-                model.MP.Position = ts;
-                _SongTimeLineForSlider = value;
+        public double SongTimeLineForSlider { get => _SongTimeLineForSlider;
+                                              set { if(PosChanges == false) model.MP.Position = TimeSpan.FromSeconds(value); SetProperty(ref _SongTimeLineForSlider, value); } }
 
-                OnPropertyChanged(nameof(SongTimeLineForSlider));
-            }
-        }
-
-        public double SongVolumeForSlider
-        {
-            get => _SongVolumeForSlider;
-            set
-            {
-                _SongVolumeForSlider = value;
-
-                model.MP.Volume = value;
-                OnPropertyChanged(nameof(SongVolumeForSlider));
-            }
-        }
+        public double SongVolumeForSlider {  get => _SongVolumeForSlider; set {  model.MP.Volume = value; SetProperty(ref _SongVolumeForSlider, value); } }
 
 
-        public int SelectedSongOnLB
-        {
-            get => _SelectedSongOnLB;
-            set
-            {
-
-                _SelectedSongOnLB = value;
-                OnPropertyChanged(nameof(SelectedSongOnLB));
-            }
-        }
+        public int SelectedSongOnLB { get => _SelectedSongOnLB; set => SetProperty(ref _SelectedSongOnLB, value); }
 
         #endregion
 
@@ -192,8 +107,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             set
             {
                 SetProperty(ref _selectedMusicContainer, value);
-                foreach (var item in value.Songs) Songs.Add(item);
-              
+                Songs.Clear();
+                if (value != null)
+                    foreach (var item in value.Songs) Songs.Add(item);
             }
         }
 
@@ -214,11 +130,72 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #endregion
 
 
-        #region Команды
+        #region Команды - Локальные папки/песни
+
+        public RelayCommand OpenOnDiskCommand { get; private set; }
 
         public RelayCommand AddLocalFolderFromPCCommand { get; private set; }
+        public RelayCommand AddLocalSongFromPCCommand { get; private set; }
 
-        private void AddLocalFolderFromPCExecute(object parameter) => model.AddLocalFolderFromPC(FolderBrowserDialog(), Caller.User);
+        public RelayCommand DeleteFromAppCommand { get; private set; }
+
+        /// <summary>Метод открытия папки на диске</summary>
+        public void OpenFolderOnDiskExecute(object parameter)
+        {
+            if (SelectedBMO is LocalFolder)
+            {
+                ShowFolder((SelectedBMO as LocalFolder).LocalURL);
+            }
+            else
+            {
+                ShowFolder((SelectedBMO as Song).LocalURL);
+            }
+        }
+
+        private async void AddLocalFolderFromPCExecute(object parameter) =>
+            await model.AddLocalFolderFromPC(FolderBrowserDialog(), Caller.User);
+
+        private async void AddLocalSongFromPCExecute(object parameter) =>
+            await model.AddLocalSongFromPC(FileBrowserDialog(), Caller.User);
+
+        private async void DeleteFromAppExecute(object parameter)
+        {
+            if (SelectedBMO is LocalFolder)
+            {
+                await model.DeleteLocalFolderFromPC(SelectedMusicContainer as LocalFolder, Caller.User);
+            }
+            else
+            {
+                await model.DeleteLocalSongFromPC(SelectedSong, Caller.User);
+            }
+        }
+
+
+
+        #region Выключение звука при перетаскивании ползунка слайдера таймлайна.
+
+        public RelayCommand SongPosChangedStartCommand { get; private set; }
+
+        public RelayCommand SongPosChangedEndedCommand { get; private set; }
+
+        private void SongPosChangedStartExecute(object parameter)
+        {
+            PosChanges = true;
+            tempVolume = model.MP.Volume;
+            model.MP.Volume = 0;
+        }
+
+        private void SongPosChangedEndedExecute(object parameter)
+        {
+            model.MP.Position = TimeSpan.FromSeconds(SongTimeLineForSlider);
+            PosChanges = false;
+            model.MP.Volume = tempVolume;
+        }
+
+        private bool PosChanges;
+        private double tempVolume;
+
+        #endregion
 
 
         #endregion
@@ -262,11 +239,51 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Обработка событий
 
-        private void Model_SongChangedEvent(Song song, Caller caller) => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+
+        private void Model_SongPositionChanged(TimeSpan ts)
+        {
+            if (PosChanges == false)
+            {
+                SongPos = ts.ToString(@"mm\:ss");
+                SongTimeLineForSlider = ts.TotalSeconds;
+            }
+        }
+
+        //private void Slider_DragCompleted(object sender, DragCompletedEventArgs e)
+        //{
+        //    DoWork(((Slider)sender).Value);
+           
+        //}
+
+        private void Model_LocalFolderAdded(LocalFolder LocalFolder, Caller caller)
+        {
+
+            LocalFiles.Add(LocalFolder as BaseMusicObject);
+           
+        }
+
+        private void Model_LocalFolderDeleted(LocalFolder LocalFolder, Caller caller)
+        {
+            LocalFiles.Remove(LocalFolder);
+        }
+
+        private void Model_SongAdded(Song song, Caller caller)
+        {
+            LocalFiles.Add(song);
+        }
+
+        private void Model_SongDeleted(Song song, Caller caller)
+        {
+            LocalFiles.Remove(song);
+        }
+
+        private void Model_SongChanged(Song song, Caller caller)// => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
         {
             switch (caller)
             {
                 case Caller.User:
+                    UpdataSongInfo();
+                    model.MP.Play();
 
                     break;
                 case Caller.Program:
@@ -287,7 +304,12 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
             }
 
-        }));
+        }//));
+
+        private void Model_SongImageChanged(Song song, Caller caller)
+        {
+            SongBitmapImage = (BitmapImage)song.Image.Image;
+        }
 
         public void UpdataSongInfo()
         {
@@ -305,62 +327,32 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             SongBitmapImage = model.CurrentImage;
         }
 
-        private void Model_SongPositionChangerd()
-        {
-            SongPos = model.MP.Position.ToString(@"mm\:ss");
-            SongTimeLineForSlider = model.MP.Position.TotalSeconds;
-        }
-
-        private void Model_LocalFolderAdded(LocalFolder LocalFolder, Caller caller)
-        {
-            LocalFiles.Add(LocalFolder);    
-        }
-
         #endregion
 
 
 
 
-        #region Конструкторы и ViewModels
-
-        //private ObservableCollection<object> _children;
-        //public ObservableCollection<object> Children { get { return _children; } }
+        #region Конструкторы
 
         public MainWindowVM()
         {
             try
             {
-                // Начальные настройки
-                //_children = new ObservableCollection<object>();
-                //_children.Add(new DefaultPageVM());
-                //_children.Add(new SettingsVM());
+                InitiailizeCommands();
 
-                //dialogService = new DialogService();
                 model = new MainWindowM();
 
                 model.LocalFolderAdded += Model_LocalFolderAdded;
+                model.LocalFolderDeleted += Model_LocalFolderDeleted;
 
-                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetLocalFiles());
+                model.SongAdded += Model_SongAdded;
+                model.SongDeleted += Model_SongDeleted;
+                model.SongChanged += Model_SongChanged;
+                model.SongImageChanged += Model_SongImageChanged;
 
-                InitiailizeCommands();
-                
-               
+                model.SongPositionChanged += Model_SongPositionChanged;
 
-                
-
-
-
-
-                // Настройки плеера
-
-                //model.NewPlayListEvent += Model_NewPlayListEvent;
-                //model.DeletePlayListEvent += Model_DeletePlayListEvent;
-                //model.UpdatePlayListsInfoEvent += Model_UpdatePlayListsInfoEvent;
-
-                //model.SongChangedEvent += Model_SongChangedEvent;
-                //model.SongPositionChangerd += Model_SongPositionChangerd;
-
-               //PlayLists = new ObservableCollection<PlayList>(model.PL);
+                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetListLocalFiles());
 
                 //SongBitmapImage = model.CurrentImage;
 
@@ -374,19 +366,26 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-       
+        
 
+
+
+        /// <summary>
+        /// Инициализация команд
+        /// </summary>
         public override void InitiailizeCommands()
         {
             base.InitiailizeCommands();
 
+            OpenOnDiskCommand = new RelayCommand(OpenFolderOnDiskExecute, null);
+
             AddLocalFolderFromPCCommand = new RelayCommand(AddLocalFolderFromPCExecute, null);
+            AddLocalSongFromPCCommand = new RelayCommand(AddLocalSongFromPCExecute, null);
 
-            //NewFolderCommand = new RelayCommand(NewFolderMethod, null);
-            //AddToMainServerCommand = new RelayCommand(AddToMainServerMethod, null);
-            //DeleteFolderCommand = new RelayCommand(DeleteFolderMethod, null);
-            //OpenFolderOnDiskCommand = new RelayCommand(OpenFolderOnDiskMethod, null);
+            DeleteFromAppCommand = new RelayCommand(DeleteFromAppExecute, null);
 
+            SongPosChangedStartCommand = new RelayCommand(SongPosChangedStartExecute, null);
+            SongPosChangedEndedCommand = new RelayCommand(SongPosChangedEndedExecute, null);
 
             PrevSongCommand = new RelayCommand(PrevSongExecute, null);
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute, null);

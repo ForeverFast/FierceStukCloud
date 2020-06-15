@@ -18,6 +18,7 @@
 
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="{StaticResource GrayLVL1}"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
 
     </Style>
 
@@ -29,10 +30,9 @@
                              Background="{StaticResource GrayLVL2}">
                    
                     <MenuItem Header="Добавить аудиофайл"
-                              Command="{Binding Path=Add}"/>
+                              Command="{Binding AddLocalSongFromPCCommand}"/>
                     <MenuItem Header="Добавить папку"
                               Command="{Binding AddLocalFolderFromPCCommand}"/>
-                    <!--Template="{DynamicResource MenuItemControlTemplate1}"-->
                 </ContextMenu>
             </Setter.Value>
         </Setter>
@@ -49,10 +49,11 @@
                             Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext}"/>
                     <Setter Property="ContextMenu">
                         <Setter.Value>
-                            <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                                <MenuItem Header="Открыть в проводнике" Command="{Binding Path= Tag.OpenFolderOnDiskCommand}"/>
-                                <MenuItem Header="Добавить на сервер" Command="{Binding Path=Tag.AddToMainServerCommand}"/>
-                                <MenuItem Header="Удалить" Command="{Binding Path=Tag.DeleteFolderCommand}"/>
+                            <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}"
+                                         Style="{StaticResource MenuItemStyle1}">
+                                <MenuItem Header="Открыть в проводнике" Command="{Binding Path= Tag.OpenLocalFolderOnDiskCommand}"/>
+                                <MenuItem Header="Добавить на сервер" Command="{Binding Path=Tag.AddToMainServerCommand}" IsEnabled="False"/>
+                                <MenuItem Header="Удалить" Command="{Binding Path=Tag.DeleteFromAppCommand}"/>
                             </ContextMenu>
                         </Setter.Value>
                     </Setter>
@@ -86,7 +87,7 @@
 
     <Style x:Key="SongsListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
 
-
+        
 
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
@@ -122,17 +123,64 @@
                                                 
                                                 Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/Screenshot_544.png" />
 
+                                        <!--<Canvas Grid.Column="1"
+                                                ClipToBounds="True">
+                                            <TextBlock Padding="0"
+                                                       Canvas.Left="5"
+                                                       Canvas.Top="6"
+                                                       
+                                                      
+                                                       FontSize="13"
+                                                       Foreground="{StaticResource StandartTextColor}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Path="Author"/>
+                                                        <Binding Path="Title" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </Canvas>-->
 
-                                        <Label Grid.Column="1"
-                                               Margin="5,0,0,0"
-                                               Padding="0"
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Center"
-                                               
-                                               Content="{Binding Title}"
-                                               FontSize="13"
-                                               Foreground="{StaticResource StandartTextColor}"/>
+                                        <Canvas x:Name="Canvas" Grid.Column="1"
+                                                ClipToBounds="True">
+                                            <TextBlock Padding="0"
+                                                       Canvas.Left="5"
+                                                       Canvas.Top="6"
+                                                       
+                                                       
+                                                       FontSize="13"
+                                                       Foreground="{StaticResource StandartTextColor}">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                                        <Binding Path="Author"/>
+                                                        <Binding Path="Title" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
 
+                                                <TextBlock.Triggers>
+                                                    <EventTrigger RoutedEvent="TextBlock.MouseEnter">
+                                                        <EventTrigger.Actions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="5" To="-100" 
+                                                                                     Duration="0:0:10" RepeatBehavior="Forever"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger.Actions>
+                                                    </EventTrigger>
+                                                    <EventTrigger RoutedEvent="TextBlock.MouseLeave">
+                                                        <EventTrigger.Actions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="5" 
+                                                                                     Duration="0:0:0"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </EventTrigger.Actions>
+                                                    </EventTrigger>
+                                                </TextBlock.Triggers>
+                                            </TextBlock>
+                                        </Canvas>
 
                                         <Grid Grid.Column="2"
                                               Margin="0,1,5,1">
@@ -163,6 +211,9 @@
 
                                     </Grid>
                                 </Border>
+                                <ControlTemplate.Triggers>
+                             
+                                </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>

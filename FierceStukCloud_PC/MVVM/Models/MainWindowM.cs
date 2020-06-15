@@ -6,10 +6,14 @@ using FierceStukCloud_PC.MVVM.Models.Modules;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static FierceStukCloud_NetCoreLib.Types.CallerType;
+using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
+using System.Diagnostics.Tracing;
+using System.Windows.Threading;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -128,43 +132,92 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             try
             {
-                song.Image = new ImageAsync()
+                CurrentSong = song;
+                CurrentSong.Image = new ImageAsync()
                 {
                     ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png")),
-                    ImageUri = song.LocalURL
                 };
-                CurrentImage = (BitmapImage)song.Image.Image;
-                MP.Open(new Uri(song.LocalURL));
-                CurrentMusicContainer = song.CurrentMusicContainer;
+                CurrentSong.Image.PropertyChanged += SongImage_PropertyChanged;
+                CurrentSong.Image.ImageUri = CurrentSong.LocalURL;
+
+                MP.Open(new Uri(CurrentSong.LocalURL));
+
+               
+              
+                CurrentMusicContainer = CurrentSong.CurrentMusicContainer;
+                CurrentImage = (BitmapImage)CurrentSong.Image.Image;      
+                
+                SongChanged?.Invoke(CurrentSong, caller);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
 
             }
-            return song;
+            return CurrentSong;
         }
+
+       
+
+        #endregion
+
+
+
+        #region Добавление/Удаление музыки
+
+        /// <summary>
+        /// Добавление песни в приложение
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="caller"></param>
+        /// <returns></returns>
+        public async Task AddLocalSongFromPC(string path, Caller caller) =>
+            SongAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddSongFromPC(path)), caller);
+
+        /// <summary>
+        /// Удаление песни из приложения
+        /// </summary>
+        /// <param name="song"></param>
+        /// <param name="caller"></param>
+        /// <returns></returns>
+        public async Task DeleteLocalSongFromPC(Song song, Caller caller) =>
+            SongDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteSongFromApp(song)), caller);
 
         #endregion
 
 
         #region Добавление/Удаление контейнеров
 
-        public List<BaseMusicObject> GetLocalFiles()
+        /// <summary>
+        /// Получение списка локальных файлов
+        /// </summary>
+        /// <returns></returns>
+        public List<BaseMusicObject> GetListLocalFiles()
         {
             var temp = new List<BaseMusicObject>();
-            temp.AddRange(MWM_LocalDB.GetLocalFoldersFromLocalDB().Result);
-
+            temp.AddRange(MWM_LocalDB.GetListLocalFolders());
+            temp.AddRange(MWM_LocalDB.LocalSongs);
             return temp;
         }
 
-        public async void AddLocalFolderFromPC(string path, Caller caller) =>
-            LocalFolderAdded?.Invoke(await MWM_LocalDB.AddLocalFoldersFromPC(path) , caller);
+        /// <summary>
+        /// Добавление папки в приложение
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="caller"></param>
+        /// <returns></returns>
+        public async Task AddLocalFolderFromPC(string path, Caller caller) =>
+            LocalFolderAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddLocalFoldersFromPC(path)), caller);
+            
+        /// <summary>
+        /// Удаление папки из приложения
+        /// </summary>
+        /// <param name="localFolder"></param>
+        /// <param name="caller"></param>
+        /// <returns></returns>
+        public async Task DeleteLocalFolderFromPC(LocalFolder localFolder, Caller caller) =>
+            LocalFolderDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder)), caller);    
         
-
-        public async void DeleteMusicContainerFromPC<T>(T MusicContainer) where T : MusicContainer
-        {
-
-        }
+           
 
         #endregion
 
@@ -175,22 +228,50 @@ namespace FierceStukCloud_PC.MVVM.Models
         public event SongInfo SongAdded;
         public event SongInfo SongDeleted;
         public event SongInfo SongChanged;
+        public event SongInfo SongImageChanged;
+
+        public delegate void SongPositionInfo(TimeSpan ts);
+        public event SongPositionInfo SongPositionChanged;
 
         public delegate void LocalFolderInfo(LocalFolder LocalFolder, Caller caller);
         public event LocalFolderInfo LocalFolderAdded;
         public event LocalFolderInfo LocalFolderDeleted;
         public event LocalFolderInfo LocalFolderChanged;
 
+        #region Таймер
+
+        private DispatcherTimer timer;
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (MP.Source != null)
+                SongPositionChanged?.Invoke(MP.Position);
+        }
+
+        #endregion
+
+        private void SongImage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            SongImageChanged?.Invoke(CurrentSong, Caller.Program);
+            CurrentImage = (BitmapImage)CurrentSong.Image.Image;
+        }
+
         #endregion
 
 
+
+        #region Конструкторы 
         public MainWindowM()
         {
             MP = new MediaPlayer();
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
 
-           
-            
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
+        
+        #endregion
     }
 }

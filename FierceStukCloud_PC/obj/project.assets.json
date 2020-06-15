@@ -234,6 +234,7 @@
         "dependencies": {
           "NAudio": "1.10.0",
           "System.Drawing.Common": "4.7.0",
+          "System.Windows.Interactivity.WPF": "2.0.20525",
           "TagLibSharp": "2.2.0",
           "WindowsAPICodePack-Core": "1.1.2",
           "WindowsAPICodePack-Shell": "1.1.1"

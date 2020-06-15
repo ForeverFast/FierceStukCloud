@@ -48,7 +48,8 @@ namespace FierceStukCloud_PC
                     "LocalURL       nvarchar(2000), " +
                     "UserLogin      nvarchar(200)," +
                     "OnServer       BOOLEAN," +
-                    "OnPC           BOOLEAN)";
+                    "OnPC           BOOLEAN," +
+                    "OptionalInfo   nvarchar(200))";
                 cmd.ExecuteNonQuery();
                 Connection.Close();
                 #endregion

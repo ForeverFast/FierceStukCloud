@@ -160,8 +160,8 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Ellipse Fill="{x:Null}" Stroke="AliceBlue" StrokeThickness="3"/>
-                        <Polygon Fill="White"
+                        <Ellipse Fill="{x:Null}" Stroke="{StaticResource DimColor}" StrokeThickness="3"/>
+                        <Polygon Fill="{StaticResource DimColor}"
                                  Points="0,0 20,15 0,30"
                                  
                                  Margin="5,0,0,0"
@@ -170,6 +170,9 @@
                                  VerticalAlignment="Center"/>
 
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -180,8 +183,8 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Ellipse Fill="{x:Null}" Stroke="AliceBlue" StrokeThickness="3"/>
-                        <Polygon Fill="White"  Points="
+                        <Ellipse Fill="{x:Null}" Stroke="{StaticResource DimColor}" StrokeThickness="3"/>
+                        <Polygon Fill="{StaticResource DimColor}"  Points="
                                 0,2,
                                 10,8,
                                 10,0,

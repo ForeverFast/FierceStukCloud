@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        
-        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib"
+        xmlns:vm="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
+        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib" 
         mc:Ignorable="d"
         Title="MainWindowV" Height="650" Width="1180" MinWidth="1024" MinHeight="650" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
@@ -33,7 +33,12 @@
 
         </ResourceDictionary>
     </Window.Resources>
-
+    
+    <!--<Window.DataContext>
+        <vm:MainWindowVM/>
+    </Window.DataContext>-->
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -182,12 +187,8 @@
 
 
                                     <ListBox ItemsSource="{Binding LocalFiles}"
-                                             SelectedValue="{Binding SelectedBMO}"
-                                             Style="{StaticResource MainListBoxStyle}"
-                                             >
-
-                                        
-                                        
+                                             SelectedValue="{Binding SelectedBMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource MainListBoxStyle}">
                                     </ListBox>
 
                                 </Grid>
@@ -211,18 +212,14 @@
             <Grid x:Name="Songs" Grid.Column="1"
                   Background="{StaticResource GrayLVL0}">
 
-                <ScrollViewer Style="{DynamicResource styleScrollViewer}"/>
+                <ScrollBar Style="{DynamicResource styleScrollViewer}"/>
 
                 <ListBox ItemsSource="{Binding Songs}"
-                         SelectedValue="{Binding SelectedSong,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource SongsListBoxStyle}"
-                         >
-
-                   
-
+                         SelectedValue="{Binding SelectedSong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource SongsListBoxStyle}">
                 </ListBox>
 
-
+               
             </Grid>
 
             <Grid x:Name="MusicPlayer" Grid.Column="2"
@@ -239,7 +236,7 @@
                 <Image Margin="40,40,40,20"
                        
                        Stretch="Fill"
-                       Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/Screenshot_544.png" />
+                       Source="{Binding SongBitmapImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Grid x:Name="TitleAndAuthor" Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -249,18 +246,17 @@
 
                     <TextBlock x:Name="Title" Grid.Row="0"
                                
-                               Text="Title Title Title Title"
+                               Text="{Binding SongName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                
                                HorizontalAlignment="Center"
                                Style="{StaticResource TBlock_TabItemHeader}"/>
 
                     <TextBlock x:Name="Author" Grid.Row="1"
                                
-                               Text="Author"
+                               Text="{Binding SongAuthor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                FontSize="14"
                                Opacity="0.6"
-                               
-                               
+                                                           
                                HorizontalAlignment="Center"
                                Style="{StaticResource TBlock_TabItemHeader}"/>
 
@@ -277,7 +273,7 @@
                            
                            HorizontalAlignment="Center"
                            
-                           Content="00:00"
+                           Content="{Binding SongPos, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                            FontSize="10"                          
                            
                            Style="{StaticResource LabelStyle}"/>
@@ -285,14 +281,37 @@
                     <Slider Grid.Column="1"
                             
                             Margin="5,0,5,0"
+                            Value="{Binding SongTimeLineForSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Maximum="{Binding SongTimeForSlider, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            Minimum="0"
                             
-                            Style="{StaticResource Horizontal_Slider}"/>
+                            
+                            
+                            Style="{StaticResource Horizontal_Slider}">
 
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedStartCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="PreviewMouseUp">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedEndedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <!--<i:Interaction.Behaviors>
+                            <b:SliderValueChangedBehavior Command="{Binding SongPosChangedCommand}"
+                                                          Value="{Binding SongTimeLineForSlider}" />
+                        </i:Interaction.Behaviors>-->
+
+                    </Slider>
+                    <!--Thumb.DragCompleted="{Binding SongPosChangedCommand}"-->
+                    <!--Thumb.DragCompleted="{Binding }"-->
+                        
                     <Label Grid.Column="2"
                            
                            HorizontalAlignment="Center"
                            
-                           Content="99:99"
+                           Content="{Binding SongTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                            FontSize="10"
                            
                            Style="{StaticResource LabelStyle}"/>

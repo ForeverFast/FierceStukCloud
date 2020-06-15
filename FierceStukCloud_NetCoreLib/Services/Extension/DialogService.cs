@@ -13,6 +13,7 @@ namespace FierceStukCloud_NetCoreLib.Services.Extension
         public static string FileBrowserDialog()
         {
             var dlg = new CommonOpenFileDialog();
+            dlg.DefaultExtension = ".mp3";
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
                 return dlg.FileName;
             else

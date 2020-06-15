@@ -17,6 +17,8 @@
         <local:AutorizationVM/>
     </Window.DataContext>-->
 
+    <!-- Отошёл -->
+    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

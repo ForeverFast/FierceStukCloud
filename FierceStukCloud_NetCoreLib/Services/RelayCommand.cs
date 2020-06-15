@@ -37,7 +37,7 @@ namespace FierceStukCloud_NetCoreLib.Services
             (
                 new Action(() => CanExecuteChanged?.Invoke(this, EventArgs.Empty)),
                 null
-            );
+            );  
 
         /// <summary>Вызов разрешающего метода команды</summary>
         /// <param name="parameter">Параметр команды</param>

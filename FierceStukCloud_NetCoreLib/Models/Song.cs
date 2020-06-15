@@ -19,7 +19,10 @@ namespace FierceStukCloud_NetCoreLib.Models
         [JsonPropertyName("author")]
         public string Author { get; set; }
 
+        [JsonPropertyName("album")]
         public string Album { get; set; }
+
+        [JsonPropertyName("year")]
         public uint Year { get; set; }
 
         [JsonPropertyName("duration")]
@@ -31,6 +34,10 @@ namespace FierceStukCloud_NetCoreLib.Models
         [JsonPropertyName("playListNames")]
         public string PlayListNames { get; set; }
 
+
+
+        [JsonPropertyName("optionalInfo")]
+        public string OptionalInfo { get; set; }
 
         #region Локальные свойства для работы приложения
         [JsonIgnore]
