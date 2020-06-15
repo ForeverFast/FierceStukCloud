@@ -14,6 +14,7 @@ using static FierceStukCloud_NetCoreLib.Types.CallerType;
 using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
 using System.Diagnostics.Tracing;
 using System.Windows.Threading;
+using System.IO;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -86,77 +87,71 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Методы выбора/установки текущей песни/плейлиста
 
-        public async Task<Song> PrevSong(Caller caller, int counter = 1)
+        public async Task PrevSong(Caller caller = Caller.User)
         {
-            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.ID == CurrentSong.ID - counter);
-
-            if (temp != null)
-            {
-                if (temp.GetType().Name == "Song")
-                {
-                    if (temp.ID == 0)
-                        return SetCurrentSong(CurrentSong, caller);
-
-                    return SetCurrentSong(temp, caller);
-
-                }
-                else
-                    return PrevSong(caller, ++counter).Result;
+            if (CurrentSong.LocalID - 1 < 0)
+            { 
+                await SetCurrentSong(CurrentSong, caller);
+                return;
             }
-            else
-                return SetCurrentSong(CurrentSong, caller);
+
+            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
+                await SetCurrentSong(temp, caller);
         }
 
-        public async Task<Song> NextSong(Caller caller, int counter = 1)
+        public async Task NextSong(Caller caller = Caller.User)
         {
-            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.ID == CurrentSong.ID + counter);
-
-            if (temp != null)
+            if (CurrentSong.LocalID + 1 > (CurrentMusicContainer as MusicContainer).Songs.Count)
             {
-                if (temp.GetType().Name == "Song")
-                {
-                    if (temp.ID == (CurrentMusicContainer as MusicContainer).Songs.Count)
-                        return SetCurrentSong(CurrentSong, caller);
-
-                    return SetCurrentSong(temp, caller);
-
-                }
-                else
-                    return NextSong(caller, ++counter).Result;
+                await SetCurrentSong(CurrentSong, caller);
+                return;
             }
-            else
-                return SetCurrentSong(CurrentSong, caller);
+
+            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
+            await SetCurrentSong(temp, caller);
         }
 
-        public Song SetCurrentSong(Song song, Caller caller)
+        public async Task SetCurrentSong(Song song, Caller caller = Caller.User)
         {
             try
             {
                 CurrentSong = song;
 
-                //CurrentSong.Image = new ImageAsync()
-                //{
-                //    ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png")),
-                //};
-                //CurrentSong.Image.PropertyChanged += SongImage_PropertyChanged;
-                //CurrentSong.Image.ImageUri = CurrentSong.LocalURL;
-                //CurrentImage = (BitmapImage)CurrentSong.Image.Image;
+                // Загрузка изображения
+                try
+                {
+                    TagLib.File file_TAG = TagLib.File.Create(song.LocalURL);
+                    var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
 
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = new MemoryStream(bin);
+                    bitmapImage.EndInit();
+                    CurrentImage = bitmapImage;
+                }
+                catch (Exception)
+                {
+                    CurrentImage 
+                        = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
+                }
+                
                 MP.Open(new Uri(CurrentSong.LocalURL));
-                CurrentMusicContainer = CurrentSong.CurrentMusicContainer;
+
+                if (CurrentSong.CurrentMusicContainer == null)
+                    CurrentSong.CurrentMusicContainer = CurrentMusicContainer as MusicContainer;
+                else
+                    CurrentMusicContainer = CurrentSong.CurrentMusicContainer;
+
                 SongChanged?.Invoke(CurrentSong, caller);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
 
             }
-            return CurrentSong;
         }
 
-       
-
         #endregion
-
 
 
         #region Добавление/Удаление музыки
@@ -167,7 +162,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="path"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task AddLocalSongFromPC(string path, Caller caller) =>
+        public async Task AddLocalSongFromPC(string path, Caller caller = Caller.User) =>
             SongAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddSongFromPC(path)), caller);
 
         /// <summary>
@@ -176,7 +171,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="song"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task DeleteLocalSongFromPC(Song song, Caller caller) =>
+        public async Task DeleteLocalSongFromPC(Song song, Caller caller = Caller.User) =>
             SongDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteSongFromApp(song)), caller);
 
         #endregion
@@ -202,7 +197,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="path"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task AddLocalFolderFromPC(string path, Caller caller) =>
+        public async Task AddLocalFolderFromPC(string path, Caller caller = Caller.User) =>
             LocalFolderAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddLocalFoldersFromPC(path)), caller);
             
         /// <summary>
@@ -211,7 +206,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="localFolder"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task DeleteLocalFolderFromPC(LocalFolder localFolder, Caller caller) =>
+        public async Task DeleteLocalFolderFromPC(LocalFolder localFolder, Caller caller = Caller.User) =>
             LocalFolderDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder)), caller);    
         
            
@@ -232,7 +227,22 @@ namespace FierceStukCloud_PC.MVVM.Models
         public delegate void LocalFolderInfo(LocalFolder LocalFolder, Caller caller);
         public event LocalFolderInfo LocalFolderAdded;
         public event LocalFolderInfo LocalFolderDeleted;
-        public event LocalFolderInfo LocalFolderChanged;
+        //public event LocalFolderInfo LocalFolderChanged;
+
+        private async void MP_MediaEnded(object sender, EventArgs e)
+        {
+            if (IsRandomSong == true)
+            {
+
+            }
+
+            if (IsRepeatSong == true)
+            {
+                await SetCurrentSong(CurrentSong, Caller.Program);
+            }
+
+            await NextSong(Caller.Program);
+        }
 
         #region Таймер
 
@@ -252,9 +262,12 @@ namespace FierceStukCloud_PC.MVVM.Models
 
 
         #region Конструкторы 
+
         public MainWindowM()
         {
             MP = new MediaPlayer();
+            MP.MediaEnded += MP_MediaEnded;
+
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
 
             timer = new DispatcherTimer();
@@ -262,7 +275,9 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer.Tick += Timer_Tick;
             timer.Start();
         }
-        
+
+       
+
         #endregion
     }
 }

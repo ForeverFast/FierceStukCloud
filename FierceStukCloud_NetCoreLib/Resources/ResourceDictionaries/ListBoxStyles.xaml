@@ -106,12 +106,12 @@
             <Setter.Value>
                
                 <DataTemplate>
-                    <Border Width="560" BorderThickness="0" >
+                    <Border Width="550" BorderThickness="0" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="5"/>
                             </Grid.ColumnDefinitions>
 
                             <Image  Grid.Column="0" x:Name="imgSong"
@@ -184,7 +184,7 @@
                             </Canvas>
 
                             <Grid Grid.Column="2"
-                                              Margin="0,1,5,1">
+                                  Margin="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
@@ -195,9 +195,11 @@
                                     <Style x:Key="EllipseG" TargetType="{x:Type Ellipse}">
 
                                         <Setter Property="Opacity" Value="0.6"/>
-                                        <Setter Property="Margin" Value="2.6"/>
+                                        <Setter Property="Margin" Value="0,1.5,1.5,1.5"/>
                                         <Setter Property="Fill" Value="{StaticResource StandartLightColor}"/>
 
+                                        
+                                        
                                     </Style>
 
                                 </Grid.Resources>

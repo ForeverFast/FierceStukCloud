@@ -29,22 +29,22 @@
                     Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ScrollBarStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            
+
 
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <!--<Window.DataContext>
         <vm:MainWindowVM/>
     </Window.DataContext>-->
-    
-    
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Border Grid.Row="0"
                 BorderBrush="{StaticResource Gor}"
                 BorderThickness="0,0,0,1">
@@ -66,7 +66,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="35"/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
+
                     </Grid.ColumnDefinitions>
 
                     <Menu x:Name="Settings" Grid.Column="0"
@@ -127,13 +127,60 @@
                                       Foreground="{StaticResource StandartTextColor}"
                                       
                                       Background="{StaticResource GrayLVL2}"/>
-                            
+
                             <MenuItem Header="Выход"
                                       Foreground="{StaticResource StandartTextColor}"
                                       
                                       Background="{StaticResource GrayLVL2}"/>
                         </MenuItem>
                     </Menu>
+
+                    <Grid Grid.Column="1">
+
+                        <TextBox>
+
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontSize" Value="16"/>
+
+                                    <Setter Property="Padding" Value="10,-0.5,0,0"/>
+                                    <Setter Property="Margin" Value="5,3,45,3"/>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                                                <Border x:Name="Border" 
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="10" Opacity="1">
+                                                    <Grid>
+                                                        <Border x:Name="ReadOnlyVisualElement"
+                                                                Background="DarkGreen"
+                                                                CornerRadius="20" Opacity="0"/>
+                                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                                      Foreground="{TemplateBinding Foreground}"
+                                                                      BorderThickness="0"
+                                                                      IsTabStop="False"
+                                                                      Margin="1"
+                                                                      Padding="{TemplateBinding Padding}" />
+                                                    </Grid>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+
+                                </Style>
+                            </TextBox.Style>
+
+                        </TextBox>
+
+
+                    </Grid>
+
 
                 </Grid>
 
@@ -219,7 +266,7 @@
                          Style="{StaticResource SongsListBoxStyle}">
                 </ListBox>
 
-               
+
             </Grid>
 
             <Grid x:Name="MusicPlayer" Grid.Column="2"
@@ -233,6 +280,15 @@
                     <RowDefinition Height="78*"/>
                 </Grid.RowDefinitions>
 
+                <Slider Grid.Row="0" Grid.RowSpan="5"
+                        
+                        Minimum="0"
+                        
+                        Maximum="1"
+                        Value="{Binding SongVolumeForSlider, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource Horizontal_Slider_Volume}"
+                        Orientation="Vertical" Margin="0,0,0,0"/>
+
                 <Image Margin="40,40,40,20"
                        
                        Stretch="Fill"
@@ -244,14 +300,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="Title" Grid.Row="0"
+                    <TextBlock x:Name="SongTitle" Grid.Row="0"
                                
                                Text="{Binding SongName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                
                                HorizontalAlignment="Center"
                                Style="{StaticResource TBlock_TabItemHeader}"/>
 
-                    <TextBlock x:Name="Author" Grid.Row="1"
+                    <TextBlock x:Name="SongAuthor" Grid.Row="1"
                                
                                Text="{Binding SongAuthor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                FontSize="14"
@@ -306,7 +362,7 @@
                     </Slider>
                     <!--Thumb.DragCompleted="{Binding SongPosChangedCommand}"-->
                     <!--Thumb.DragCompleted="{Binding }"-->
-                        
+
                     <Label Grid.Column="2"
                            
                            HorizontalAlignment="Center"
@@ -329,7 +385,10 @@
 
                     <Button Grid.Column="1"
                             Margin="12,8,12,8"
-                            Style="{StaticResource NextOrPrevSong}" RenderTransformOrigin="0.5,0.5">
+                            Style="{StaticResource NextOrPrevSong}"
+                            Command="{Binding PrevSongCommand}"
+                            
+                            RenderTransformOrigin="0.5,0.5">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -341,10 +400,12 @@
                     </Button>
                     <Button Grid.Column="2"
                             Margin="6,2,6,2"
-                            Style="{StaticResource PlayButton}"/>
+                            Style="{StaticResource PlayButton}"
+                            Command="{Binding PlayStateSongCommand}"/>
                     <Button Grid.Column="3"
                             Margin="12,8,12,8"
-                            Style="{StaticResource NextOrPrevSong}"/>
+                            Style="{StaticResource NextOrPrevSong}"
+                            Command="{Binding NextSongCommand}"/>
 
                 </Grid>
 

@@ -54,10 +54,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             IsAuthentication = true;
             
 
-#if DEBUG
+
             OpenMainWindow();
             return;
-#endif
+
 
             //FSC_Settings.Default.Login = _login;
             //FSC_Settings.Default.Save();
@@ -65,43 +65,43 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //FSC_Settings.Default.Save();
 
 
-            var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("username", Login);
-            request.AddHeader("password", SecurePassword.ToString());
+            //var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
+            //client.Timeout = -1;
+            //var request = new RestRequest(Method.POST);
+            //request.AddHeader("username", Login);
+            //request.AddHeader("password", SecurePassword.ToString());
 
-            var q = SecurePassword.ToString();
+            //var q = SecurePassword.ToString();
             
-            IRestResponse response = client.Execute(request);
+            //IRestResponse response = client.Execute(request);
 
-            int Code = 0;
-            if (Int32.TryParse(response.Content, out Code) == true)
-            {
-                switch (Code)
-                {
-                    case 151:
-                        ServerAnswer = "Неверный пароль";
-                        break;
-                    case 152:
-                        ServerAnswer = "Такого логина не существует";
-                        break;
-                }
-            }
+            //int Code = 0;
+            //if (Int32.TryParse(response.Content, out Code) == true)
+            //{
+            //    switch (Code)
+            //    {
+            //        case 151:
+            //            ServerAnswer = "Неверный пароль";
+            //            break;
+            //        case 152:
+            //            ServerAnswer = "Такого логина не существует";
+            //            break;
+            //    }
+            //}
 
-            App.CurrentUser = JsonSerializer.Deserialize<User>(response.Content);
+            //App.CurrentUser = JsonSerializer.Deserialize<User>(response.Content);
 
-            if (App.CurrentUser != null)
-            {
-                IsAuthentication = false;
-                ServerAnswer = "Авторизован";
-                OpenMainWindow();
-            }
-            else
-            {
-                IsAuthentication = false;
-                ServerAnswer = "Ошибка входа";
-            }
+            //if (App.CurrentUser != null)
+            //{
+            //    IsAuthentication = false;
+            //    ServerAnswer = "Авторизован";
+            //    OpenMainWindow();
+            //}
+            //else
+            //{
+            //    IsAuthentication = false;
+            //    ServerAnswer = "Ошибка входа";
+            //}
         }
 
         private async void OpenMainWindow()

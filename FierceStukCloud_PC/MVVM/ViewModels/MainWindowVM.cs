@@ -86,11 +86,11 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #region Кнопки управления плеера
 
         public RelayCommand PrevSongCommand { get; set; }
-        private async void PrevSongExecute(object parameter) => await model.PrevSong(Caller.User);
+        private async void PrevSongExecute(object parameter) => await model.PrevSong();
         public RelayCommand PlayStateSongCommand { get; set; }
         private void PlayStateSongExecute(object parameter) => model.PlayState();
         public RelayCommand NextSongCommand { get; set; }
-        private async void NextSongExecute(object parameter) => await model.NextSong(Caller.User);
+        private async void NextSongExecute(object parameter) => await model.NextSong();
 
         #endregion
 
@@ -98,8 +98,6 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #region Свойства
 
         public ImageAsyncCollection<ImageAsync<Song>> Songs { get; set; }
-
-
 
         private MusicContainer _selectedMusicContainer;
         private ImageAsync<Song> _selectedSong;
@@ -130,9 +128,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 if (value != null)
                 {
                     value.Content.CurrentMusicContainer = SelectedMusicContainer != null ?
-                                                  SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
+                                                          SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
 
-                    model.SetCurrentSong(value.Content, Caller.User);
+                    model.SetCurrentSong(value.Content);
                     SetProperty(ref _selectedSong, value);
                 }
             }
@@ -165,20 +163,20 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         }
 
         private async void AddLocalFolderFromPCExecute(object parameter) =>
-            await model.AddLocalFolderFromPC(FolderBrowserDialog(), Caller.User);
+            await model.AddLocalFolderFromPC(FolderBrowserDialog());
 
         private async void AddLocalSongFromPCExecute(object parameter) =>
-            await model.AddLocalSongFromPC(FileBrowserDialog(), Caller.User);
+            await model.AddLocalSongFromPC(FileBrowserDialog());
 
         private async void DeleteFromAppExecute(object parameter)
         {
             if (SelectedBMO is LocalFolder)
             {
-                await model.DeleteLocalFolderFromPC(SelectedMusicContainer as LocalFolder, Caller.User);
+                await model.DeleteLocalFolderFromPC(SelectedMusicContainer as LocalFolder);
             }
             else
             {
-                await model.DeleteLocalSongFromPC(SelectedSong.Content, Caller.User);
+                await model.DeleteLocalSongFromPC(SelectedSong.Content);
             }
         }
 
@@ -302,7 +300,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
                     break;
                 case Caller.Program:
-
+                    _selectedSong.Content = song;
+                    UpdataSongInfo();
+                    model.MP.Play();
                     break;
 
                 case Caller.Phone:

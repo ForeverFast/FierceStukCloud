@@ -10,11 +10,12 @@ namespace FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags
 
         public string Title { get; set; }
 
+        
         private void GetTitleAndAuthor_FirstCheck(string value, TagLib.File File_TAG)
         {
             try
             {
-                Author = File_TAG.Tag.Artists[0];
+                Author = File_TAG.Tag.FirstPerformer;
                 Title = File_TAG.Tag.Title;
 
                 if (Author == "" || Title == "" || Author == null || Title == null)
@@ -36,7 +37,7 @@ namespace FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags
                 if (Author == "" || Title == "" || Author == null || Title == null)
                     GetTitleAndAuthor_ThirdCheck(value);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 GetTitleAndAuthor_ThirdCheck(value);
             }
@@ -54,7 +55,7 @@ namespace FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags
                 //if (Author == "" || Title == "")
                 //    GetTitleAndAuthor_ThirdCheck(value);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //GetTitleAndAuthor_ThirdCheck(value);
             }
