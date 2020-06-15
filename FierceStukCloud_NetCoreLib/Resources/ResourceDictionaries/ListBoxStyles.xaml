@@ -19,7 +19,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="{StaticResource GrayLVL1}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-
+        
     </Style>
 
     <Style x:Key="MainListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
@@ -87,9 +87,7 @@
 
     <Style x:Key="SongsListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
 
-        
-
-        <Setter Property="ItemContainerStyle">
+        <!--<Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListBoxItem}">
 
@@ -99,21 +97,24 @@
                     <Setter Property="Background" Value="{StaticResource GrayLVL0}"/>
                     <Setter Property="Cursor" Value="Hand"/>
                     
+                    
+                </Style>
+            </Setter.Value>
+        </Setter>-->
 
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Border Height="{TemplateBinding Height}"
-                                        Width="{TemplateBinding Width}"
-                                        Background="{TemplateBinding Background}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="15"/>
-                                        </Grid.ColumnDefinitions>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+               
+                <DataTemplate>
+                    <Border Width="560" BorderThickness="0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="15"/>
+                            </Grid.ColumnDefinitions>
 
-                                        <Image  Grid.Column="0"
+                            <Image  Grid.Column="0" x:Name="imgSong"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Width="40"
@@ -121,9 +122,9 @@
                                                 Stretch="Fill"
                                                 Margin="0,0,0,0"
                                                 
-                                                Source="/FierceStukCloud_NetCoreLib;component/Resources/Images/Screenshot_544.png" />
+                                                Source="{Binding Image, Mode=OneWay}" />
 
-                                        <!--<Canvas Grid.Column="1"
+                            <!--<Canvas Grid.Column="1"
                                                 ClipToBounds="True">
                                             <TextBlock Padding="0"
                                                        Canvas.Left="5"
@@ -141,84 +142,80 @@
                                             </TextBlock>
                                         </Canvas>-->
 
-                                        <Canvas x:Name="Canvas" Grid.Column="1"
+                            <Canvas x:Name="Canvas" Grid.Column="1"
                                                 ClipToBounds="True">
-                                            <TextBlock Padding="0"
+                                <TextBlock Padding="0"
                                                        Canvas.Left="5"
                                                        Canvas.Top="6"
                                                        
                                                        
                                                        FontSize="13"
                                                        Foreground="{StaticResource StandartTextColor}">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                                        <Binding Path="Author"/>
-                                                        <Binding Path="Title" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                            <Binding Path="Content.Author"/>
+                                            <Binding Path="Content.Title" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
 
-                                                <TextBlock.Triggers>
-                                                    <EventTrigger RoutedEvent="TextBlock.MouseEnter">
-                                                        <EventTrigger.Actions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="5" To="-100" 
+                                    <TextBlock.Triggers>
+                                        <EventTrigger RoutedEvent="TextBlock.MouseEnter">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="5" To="-100" 
                                                                                      Duration="0:0:10" RepeatBehavior="Forever"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </EventTrigger.Actions>
-                                                    </EventTrigger>
-                                                    <EventTrigger RoutedEvent="TextBlock.MouseLeave">
-                                                        <EventTrigger.Actions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="5" 
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="TextBlock.MouseLeave">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="5" 
                                                                                      Duration="0:0:0"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </EventTrigger.Actions>
-                                                    </EventTrigger>
-                                                </TextBlock.Triggers>
-                                            </TextBlock>
-                                        </Canvas>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </TextBlock.Triggers>
+                                </TextBlock>
+                            </Canvas>
 
-                                        <Grid Grid.Column="2"
+                            <Grid Grid.Column="2"
                                               Margin="0,1,5,1">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.Resources>
 
-                                                <Style x:Key="EllipseG" TargetType="{x:Type Ellipse}">
+                                    <Style x:Key="EllipseG" TargetType="{x:Type Ellipse}">
 
-                                                    <Setter Property="Opacity" Value="0.6"/>
-                                                    <Setter Property="Margin" Value="2.6"/>
-                                                    <Setter Property="Fill" Value="{StaticResource StandartLightColor}"/>
+                                        <Setter Property="Opacity" Value="0.6"/>
+                                        <Setter Property="Margin" Value="2.6"/>
+                                        <Setter Property="Fill" Value="{StaticResource StandartLightColor}"/>
 
-                                                </Style>
-                                                
-                                            </Grid.Resources>
-                                            
-                                            <Ellipse Grid.Row="0" Style="{StaticResource EllipseG}"/>
-                                            <Ellipse Grid.Row="1" Style="{StaticResource EllipseG}"/>
-                                            <Ellipse Grid.Row="2" Style="{StaticResource EllipseG}"/>
+                                    </Style>
 
-                                        </Grid>
+                                </Grid.Resources>
+
+                                <Ellipse Grid.Row="0" Style="{StaticResource EllipseG}"/>
+                                <Ellipse Grid.Row="1" Style="{StaticResource EllipseG}"/>
+                                <Ellipse Grid.Row="2" Style="{StaticResource EllipseG}"/>
+
+                            </Grid>
 
 
 
-                                    </Grid>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                             
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                        </Grid>
+                    </Border>
+                    <DataTemplate.Triggers>
 
-                </Style>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
 

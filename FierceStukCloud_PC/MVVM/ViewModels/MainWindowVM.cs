@@ -18,12 +18,15 @@ using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
 using System.Threading.Tasks;
 using System.Threading;
 
+using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
+
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
 
-        private MainWindowM model;
+        private MainWindowM model { get; }
+        private Dispatcher Dispatcher { get; }
 
         #region Управление плеером
 
@@ -94,12 +97,12 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Свойства
 
-        public ObservableCollection<Song> Songs { get; set; }
-             = new ObservableCollection<Song>();
+        public ImageAsyncCollection<ImageAsync<Song>> Songs { get; set; }
+
 
 
         private MusicContainer _selectedMusicContainer;
-        private Song _selectedSong;
+        private ImageAsync<Song> _selectedSong;
 
         public MusicContainer SelectedMusicContainer
         { 
@@ -109,20 +112,29 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 SetProperty(ref _selectedMusicContainer, value);
                 Songs.Clear();
                 if (value != null)
-                    foreach (var item in value.Songs) Songs.Add(item);
+                    foreach (var item in value.Songs)
+                        Songs.Add(new ImageAsync<Song>
+                            (
+                                Dispatcher,
+                                item.LocalURL,
+                                item
+                            ));
             }
         }
 
-        public Song SelectedSong
+        public ImageAsync<Song> SelectedSong
         {
             get => _selectedSong;
             set
             {
-                value.CurrentMusicContainer = SelectedMusicContainer != null ?
-                                              SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
+                if (value != null)
+                {
+                    value.Content.CurrentMusicContainer = SelectedMusicContainer != null ?
+                                                  SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
 
-                model.SetCurrentSong(value, Caller.User);
-                SetProperty(ref _selectedSong, value);
+                    model.SetCurrentSong(value.Content, Caller.User);
+                    SetProperty(ref _selectedSong, value);
+                }
             }
         }
 
@@ -166,7 +178,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
             else
             {
-                await model.DeleteLocalSongFromPC(SelectedSong, Caller.User);
+                await model.DeleteLocalSongFromPC(SelectedSong.Content, Caller.User);
             }
         }
 
@@ -217,7 +229,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 if (value is Song)
                 {
                     _selectedBMO = value;
-                    SelectedSong = value as Song;
+                    SelectedSong = new ImageAsync<Song>(
+                        Dispatcher,
+                        new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"),
+                        value as Song);
                 }
                 else
                 {
@@ -306,10 +321,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         }//));
 
-        private void Model_SongImageChanged(Song song, Caller caller)
-        {
-            SongBitmapImage = (BitmapImage)song.Image.Image;
-        }
+
 
         public void UpdataSongInfo()
         {
@@ -348,7 +360,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 model.SongAdded += Model_SongAdded;
                 model.SongDeleted += Model_SongDeleted;
                 model.SongChanged += Model_SongChanged;
-                model.SongImageChanged += Model_SongImageChanged;
+                
 
                 model.SongPositionChanged += Model_SongPositionChanged;
 
@@ -366,8 +378,16 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        
+        public MainWindowVM(Dispatcher dispatcher) : this()
+        {
+            Dispatcher = dispatcher;
+            Songs = new ImageAsyncCollection<ImageAsync<Song>>
+            (
+                Dispatcher,
+                new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"))
+            );
 
+        }
 
 
         /// <summary>

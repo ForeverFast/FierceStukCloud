@@ -133,20 +133,17 @@ namespace FierceStukCloud_PC.MVVM.Models
             try
             {
                 CurrentSong = song;
-                CurrentSong.Image = new ImageAsync()
-                {
-                    ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png")),
-                };
-                CurrentSong.Image.PropertyChanged += SongImage_PropertyChanged;
-                CurrentSong.Image.ImageUri = CurrentSong.LocalURL;
+
+                //CurrentSong.Image = new ImageAsync()
+                //{
+                //    ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png")),
+                //};
+                //CurrentSong.Image.PropertyChanged += SongImage_PropertyChanged;
+                //CurrentSong.Image.ImageUri = CurrentSong.LocalURL;
+                //CurrentImage = (BitmapImage)CurrentSong.Image.Image;
 
                 MP.Open(new Uri(CurrentSong.LocalURL));
-
-               
-              
                 CurrentMusicContainer = CurrentSong.CurrentMusicContainer;
-                CurrentImage = (BitmapImage)CurrentSong.Image.Image;      
-                
                 SongChanged?.Invoke(CurrentSong, caller);
             }
             catch(Exception ex)
@@ -228,7 +225,6 @@ namespace FierceStukCloud_PC.MVVM.Models
         public event SongInfo SongAdded;
         public event SongInfo SongDeleted;
         public event SongInfo SongChanged;
-        public event SongInfo SongImageChanged;
 
         public delegate void SongPositionInfo(TimeSpan ts);
         public event SongPositionInfo SongPositionChanged;
@@ -250,11 +246,6 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #endregion
 
-        private void SongImage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            SongImageChanged?.Invoke(CurrentSong, Caller.Program);
-            CurrentImage = (BitmapImage)CurrentSong.Image.Image;
-        }
 
         #endregion
 

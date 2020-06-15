@@ -43,8 +43,7 @@ namespace FierceStukCloud_NetCoreLib.Models
         [JsonIgnore]
         public MusicContainer CurrentMusicContainer { get; set; }
 
-        [JsonIgnore]
-        public ImageAsync Image { get; set; }
+       
 
         [JsonIgnore]
         public List<PlayList> PlayLists { get; set; }
