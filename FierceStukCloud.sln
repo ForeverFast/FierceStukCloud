@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_PC", "Fierc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_NetCoreLib", "FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj", "{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud_Web", "FierceStukCloud_Web\FierceStukCloud_Web.csproj", "{1B26652A-5315-473E-BF6C-62CD6FF736E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B26652A-5315-473E-BF6C-62CD6FF736E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B26652A-5315-473E-BF6C-62CD6FF736E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B26652A-5315-473E-BF6C-62CD6FF736E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B26652A-5315-473E-BF6C-62CD6FF736E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2B10CACD-E03A-4274-B138-654F1BA6850B} = {32C3554F-EFB2-48FB-B0C0-079BD373B187}
 		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
+		{1B26652A-5315-473E-BF6C-62CD6FF736E6} = {9E3FB507-9D34-4B15-9574-17664B0C5EBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {652DD2FA-A3E5-4479-AA75-D49173EC88CE}

@@ -44,9 +44,6 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <summary> Изображение текущей песни </summary>   
         public BitmapImage CurrentImage { get; set; }
 
-
-        public ObservableCollection<Song> NewSongs { get; set; }
-
         public bool IsRepeatSong { get; set; } = false;
         public bool IsRandomSong { get; set; } = false;
         public bool IsPlaying { get; set; } = false;
@@ -65,6 +62,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 MP.Play();
                 timer.Start();
                 IsPlaying = true;
+                OnPropertyChanged();
             }
         }
 
@@ -76,10 +74,11 @@ namespace FierceStukCloud_PC.MVVM.Models
                 MP.Pause();
                 timer.Stop();
                 IsPlaying = false;
+                OnPropertyChanged();
             }
         }
 
-        /// <summary> остановка воспроизведения </summary>
+        /// <summary> Остановка воспроизведения </summary>
         public void Stop()
         {
             if (MP.Source != null)
@@ -87,6 +86,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 MP.Stop();
                 timer.Stop();
                 IsPlaying = false;
+                OnPropertyChanged();
             }
         }
 
@@ -95,6 +95,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Методы выбора/установки текущей песни/плейлиста
 
+        /// <summary> Включить предыдущую песню </summary>
         public void PrevSong()
         {
             MP.Stop();
@@ -109,6 +110,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 SetCurrentSong(temp);
         }
 
+        /// <summary> Включить следующую песню </summary>
         public void NextSong()
         {
             MP.Stop();
@@ -123,6 +125,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             SetCurrentSong(temp);
         }
 
+        /// <summary> Подготовка песни к воспроизведению </summary>
         public void SetCurrentSong(Song song)
         {
             try
@@ -157,7 +160,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 
                
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 
             }
@@ -227,6 +230,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         public void MP_MediaOpened(object sender, EventArgs e)
         {
             MP.Play();
+            IsPlaying = true;
             timer.Start();
             OnPropertyChanged();
         }
@@ -276,16 +280,11 @@ namespace FierceStukCloud_PC.MVVM.Models
             MP = new MediaPlayer();
             MP.MediaEnded += MP_MediaEnded;
             MP.MediaOpened += MP_MediaOpened;
-
-            NewSongs = new ObservableCollection<Song>();
-            
             
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
             timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
-            
-          
         }
 
 

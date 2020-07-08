@@ -19,13 +19,10 @@ namespace FierceStukCloud_NetCoreLib.Models
 
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         [JsonPropertyName("lastname")]
         public string LastName { get; set; }
 
-
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
         [JsonPropertyName("role")]
         public string Role { get; set; }
 
@@ -33,13 +30,13 @@ namespace FierceStukCloud_NetCoreLib.Models
 
         [JsonPropertyName("accessTokenPC")]
         public string AccessTokenPC { get; set; }
-        [JsonPropertyName("statePC")]
-        public string StatePC { get; set; }
+        [JsonPropertyName("statusPC")]
+        public string StatusPC { get; set; }
 
 
-        [JsonPropertyName("accessTokenWebSite")]
-        public string AccessTokenWebSite { get; set; }
-        [JsonPropertyName("stateWebSite")]
-        public string StateWebSite { get; set; }
+        [JsonPropertyName("accessTokenPhone")]
+        public string AccessTokenPhone { get; set; }
+        [JsonPropertyName("statusPhone")]
+        public string StatusPhone { get; set; }
     }
 }

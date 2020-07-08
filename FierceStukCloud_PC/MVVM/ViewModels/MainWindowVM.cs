@@ -49,6 +49,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private double _songVolumeForSlider;
 
         private int _selectedSongOnLB;
+
+        private string _selectedStyle;
         #endregion
 
         public BitmapImage SongBitmapImage { get => _songBitmapImage; set => SetProperty(ref _songBitmapImage, value); }
@@ -74,6 +76,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public int SelectedSongOnLB { get => _selectedSongOnLB; set => SetProperty(ref _selectedSongOnLB, value); }
 
+  
+        public string SelectedStyle{ get => _selectedStyle; set => SetProperty(ref _selectedStyle, value); }
+       
         #endregion
 
 
@@ -82,7 +87,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public RelayCommand PrevSongCommand { get; set; }
         private void PrevSongExecute(object parameter) => model.PrevSong();
         public RelayCommand PlayStateSongCommand { get; set; }
-        private void PlayStateSongExecute(object parameter) => model.Play();
+        private void PlayStateSongExecute(object parameter)
+        {
+            if (model.IsPlaying == true)
+                model.Pause();
+            else
+                model.Play();
+        }
         public RelayCommand NextSongCommand { get; set; }
         private void NextSongExecute(object parameter) => model.NextSong();
 
@@ -244,8 +255,6 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #endregion
 
 
-
-
         #region Обработка событий
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -255,6 +264,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 switch (e.PropertyName)
                 {
                     case nameof(model.MP_MediaOpened):
+                        SelectedStyle = "PauseButton";
+
                         SongTime = model.MP.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
                         SongTimeLineForSlider = 0;
                         SongTimeForSlider = model.MP.NaturalDuration.TimeSpan.TotalSeconds;
@@ -273,13 +284,24 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         }
 
                         break;
+
+                    case nameof(model.Play):
+
+                        SelectedStyle = "PauseButton";
+
+                        break;
+
+                    case nameof(model.Pause):
+                    case nameof(model.Stop):
+
+                        SelectedStyle = "PlayButton";
+
+                        break;
                 }
             }
         }
 
         #endregion
-
-
 
 
         #region Конструкторы
@@ -300,6 +322,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 model.MP.Volume = 0.15;
                 SongVolumeForSlider = 0.15;
 
+                SelectedStyle = "PlayButton";
             }
             catch (Exception ex)
             {
