@@ -159,7 +159,7 @@
                                                     <Grid>
                                                         <Border x:Name="ReadOnlyVisualElement"
                                                                 Background="DarkGreen"
-                                                                CornerRadius="20" Opacity="0"/>
+                                                                CornerRadius="10" Opacity="0"/>
                                                         <ScrollViewer x:Name="PART_ContentHost"
                                                                       Foreground="{TemplateBinding Foreground}"
                                                                       BorderThickness="0"
@@ -295,6 +295,7 @@
                        Source="{Binding SongBitmapImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Grid x:Name="TitleAndAuthor" Grid.Row="1">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>

@@ -123,8 +123,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public AutorizationVM()
         {
             InitiailizeCommands();
-
             
+
             //Login = FSC_Settings.Default.Login;
             //SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
@@ -135,7 +135,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //        this.AutorizationMethod(this);
             //    }
             //}
-          
+
         }
 
         public AutorizationVM(Dispatcher dispatcher)

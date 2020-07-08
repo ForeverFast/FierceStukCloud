@@ -20,6 +20,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         public List<Song> LocalSongs { get; private set; }
 
+
         #region Получение данных их БД
 
         /// <summary>
@@ -128,6 +129,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         }
 
         #endregion
+
 
         #region Добавление/Удаление папок
 
@@ -256,6 +258,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             }
             //ShowMessage(Thread.CurrentThread.ManagedThreadId.ToString());
         }
+
         #endregion
 
 
@@ -360,7 +363,6 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         #endregion
 
 
-
         #region Дополнительные методы
 
 
@@ -408,16 +410,15 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         #endregion
 
+
         public MWM_LocalDB(SQLiteConnection connection)
-        {
-            this.connection = connection;
-        }
+            => this.connection = connection;    
     }
 }
 
 
 
-/* OLD CODE - поиск автора и названия
+/* OLD CODE - поиск автора и названия. Теперь этим занимается класс Music_AuthorAndTitleCheck
   //string[] TS = new string[2];
   // = str.Split(new string[] { " - ", "_-_" }, StringSplitOptions.RemoveEmptyEntries);
  */

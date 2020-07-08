@@ -228,12 +228,12 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
-                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource GrayLVL0}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource GrayLVL0}"/>
             </Trigger>
             <Trigger Property="IsDragging" Value="true">
-                <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Background}"/>
-                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Border}"/>
+                <Setter Property="Fill" TargetName="grip" Value="{StaticResource GrayLVL0}"/>
+                <Setter Property="Stroke" TargetName="grip" Value="{StaticResource GrayLVL0}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Background}"/>
@@ -259,7 +259,7 @@
                 </Border>
                 <Track x:Name="PART_Track" Grid.Column="1">
                     <Track.DecreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}"
+                        <RepeatButton Command="{x:Static Slider.DecreaseSmall}"
                                       Style="{StaticResource RepeatButtonTransparent1}"/>
                     </Track.DecreaseRepeatButton>
                     <Track.Thumb>
@@ -271,7 +271,7 @@
                                VerticalAlignment="Top" Width="300"/>
                     </Track.Thumb>
                     <Track.IncreaseRepeatButton>
-                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}"
+                        <RepeatButton Command="{x:Static Slider.IncreaseSmall}"
                                       Style="{StaticResource RepeatButtonTransparent}"/>
                     </Track.IncreaseRepeatButton>
                 </Track>

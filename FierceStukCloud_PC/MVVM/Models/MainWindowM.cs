@@ -12,13 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static FierceStukCloud_NetCoreLib.Types.CallerType;
 using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
+using static FierceStukCloud_NetCoreLib.Services.Extension.TypeConventer;
 using System.Diagnostics.Tracing;
 using System.Windows.Threading;
 using System.IO;
+using FierceStukCloud_NetCoreLib.Services;
+using System.Collections.ObjectModel;
+
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
-    public class MainWindowM
+    public class MainWindowM : OnPropertyChangedClass
     {
         #region Переменные плеера
 
@@ -41,6 +45,8 @@ namespace FierceStukCloud_PC.MVVM.Models
         public BitmapImage CurrentImage { get; set; }
 
 
+        public ObservableCollection<Song> NewSongs { get; set; }
+
         public bool IsRepeatSong { get; set; } = false;
         public bool IsRandomSong { get; set; } = false;
         public bool IsPlaying { get; set; } = false;
@@ -52,34 +58,36 @@ namespace FierceStukCloud_PC.MVVM.Models
         #region Управление состоянием воспроизведения
 
         /// <summary> Изменение состояние воспроизведения </summary>
-        public void PlayState()
+        public void Play()
         {
             if (MP.Source != null)
             {
-                if (IsPlaying == true)
-                {
-                    MP.Pause();
-                    IsPlaying = false;
-                }
-                else
-                {
-                    MP.Play();
-                    IsPlaying = true;
-                }
+                MP.Play();
+                timer.Start();
+                IsPlaying = true;
             }
-
         }
+
         /// <summary> Пауза </summary>
         public void Pause()
         {
             if (MP.Source != null)
+            {
                 MP.Pause();
+                timer.Stop();
+                IsPlaying = false;
+            }
         }
+
         /// <summary> остановка воспроизведения </summary>
         public void Stop()
         {
             if (MP.Source != null)
+            {
                 MP.Stop();
+                timer.Stop();
+                IsPlaying = false;
+            }
         }
 
         #endregion
@@ -87,35 +95,46 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Методы выбора/установки текущей песни/плейлиста
 
-        public async Task PrevSong(Caller caller = Caller.User)
+        public void PrevSong()
         {
+            MP.Stop();
+
             if (CurrentSong.LocalID - 1 < 0)
             { 
-                await SetCurrentSong(CurrentSong, caller);
+                SetCurrentSong(CurrentSong);
                 return;
             }
 
-            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
-                await SetCurrentSong(temp, caller);
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
+                SetCurrentSong(temp);
         }
 
-        public async Task NextSong(Caller caller = Caller.User)
+        public void NextSong()
         {
-            if (CurrentSong.LocalID + 1 > (CurrentMusicContainer as MusicContainer).Songs.Count)
+            MP.Stop();
+
+            if (CurrentSong.LocalID + 1 > CurrentMusicContainer.ToMC().Songs.Count)
             {
-                await SetCurrentSong(CurrentSong, caller);
+                SetCurrentSong(CurrentSong);
                 return;
             }
 
-            var temp = (CurrentMusicContainer as MusicContainer).Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
-            await SetCurrentSong(temp, caller);
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
+            SetCurrentSong(temp);
         }
 
-        public async Task SetCurrentSong(Song song, Caller caller = Caller.User)
+        public void SetCurrentSong(Song song)
         {
             try
             {
+                if (song.CurrentMusicContainer == null)
+                    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
+                else
+                    CurrentMusicContainer = song.CurrentMusicContainer;
+
                 CurrentSong = song;
+                MP.Open(new Uri(CurrentSong.LocalURL));
+               
 
                 // Загрузка изображения
                 try
@@ -136,18 +155,11 @@ namespace FierceStukCloud_PC.MVVM.Models
                         = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
                 }
                 
-                MP.Open(new Uri(CurrentSong.LocalURL));
-
-                if (CurrentSong.CurrentMusicContainer == null)
-                    CurrentSong.CurrentMusicContainer = CurrentMusicContainer as MusicContainer;
-                else
-                    CurrentMusicContainer = CurrentSong.CurrentMusicContainer;
-
-                SongChanged?.Invoke(CurrentSong, caller);
+               
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-
+                
             }
         }
 
@@ -159,21 +171,19 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <summary>
         /// Добавление песни в приложение
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="caller"></param>
+        /// <param name="path"> путь к mp3 файлу</param>
         /// <returns></returns>
-        public async Task AddLocalSongFromPC(string path, Caller caller = Caller.User) =>
-            SongAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddSongFromPC(path)), caller);
+        public Song AddLocalSongFromPC(string path) 
+            => MWM_LocalDB.AddSongFromPC(path);
 
         /// <summary>
         /// Удаление песни из приложения
         /// </summary>
         /// <param name="song"></param>
-        /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task DeleteLocalSongFromPC(Song song, Caller caller = Caller.User) =>
-            SongDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteSongFromApp(song)), caller);
-
+        public Song DeleteLocalSongFromPC(Song song)
+            => MWM_LocalDB.DeleteSongFromApp(song);
+       
         #endregion
 
 
@@ -197,65 +207,63 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="path"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task AddLocalFolderFromPC(string path, Caller caller = Caller.User) =>
-            LocalFolderAdded?.Invoke(await Task.Run(() => MWM_LocalDB.AddLocalFoldersFromPC(path)), caller);
-            
+        public LocalFolder AddLocalFolderFromPC(string path)
+            => MWM_LocalDB.AddLocalFoldersFromPC(path);
+
         /// <summary>
         /// Удаление папки из приложения
         /// </summary>
         /// <param name="localFolder"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public async Task DeleteLocalFolderFromPC(LocalFolder localFolder, Caller caller = Caller.User) =>
-            LocalFolderDeleted?.Invoke(await Task.Run(() => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder)), caller);    
-        
-           
+        public LocalFolder DeleteLocalFolderFromPC(LocalFolder localFolder)
+            => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder);
 
         #endregion
 
 
         #region События
 
-        public delegate void SongInfo(Song song, Caller caller);
-        public event SongInfo SongAdded;
-        public event SongInfo SongDeleted;
-        public event SongInfo SongChanged;
-
-        public delegate void SongPositionInfo(TimeSpan ts);
-        public event SongPositionInfo SongPositionChanged;
-
-        public delegate void LocalFolderInfo(LocalFolder LocalFolder, Caller caller);
-        public event LocalFolderInfo LocalFolderAdded;
-        public event LocalFolderInfo LocalFolderDeleted;
-        //public event LocalFolderInfo LocalFolderChanged;
-
-        private async void MP_MediaEnded(object sender, EventArgs e)
+        public void MP_MediaOpened(object sender, EventArgs e)
         {
+            MP.Play();
+            timer.Start();
+            OnPropertyChanged();
+        }
+
+        private void MP_MediaEnded(object sender, EventArgs e)
+        {
+            if (CurrentSong.LocalID == CurrentMusicContainer.ToLF().Songs.Count)
+            {
+                MP.Stop();
+                return;
+            }
+
             if (IsRandomSong == true)
             {
-
+                return;
             }
 
             if (IsRepeatSong == true)
             {
-                await SetCurrentSong(CurrentSong, Caller.Program);
+                SetCurrentSong(CurrentSong);
+                return;
             }
 
-            await NextSong(Caller.Program);
+            NextSong();
         }
 
         #region Таймер
 
         private DispatcherTimer timer;
 
-        private void Timer_Tick(object sender, EventArgs e)
+        public void Timer_Tick(object sender, EventArgs e)
         {
             if (MP.Source != null)
-                SongPositionChanged?.Invoke(MP.Position);
+                OnPropertyChanged();
         }
 
         #endregion
-
 
         #endregion
 
@@ -267,16 +275,19 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             MP = new MediaPlayer();
             MP.MediaEnded += MP_MediaEnded;
+            MP.MediaOpened += MP_MediaOpened;
+
+            NewSongs = new ObservableCollection<Song>();
+            
+            
+            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
+            timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
-
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            
+          
         }
 
-       
 
         #endregion
     }

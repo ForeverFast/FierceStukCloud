@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aa3sjj9OUe7P2n0tysI5xdOg1H/EBV8DrKRiO5HZvmmGgZS/6hhDDO+JS+pSzzbmlmFVr0xpxu249m+bfeCBKg==",
+  "dgSpecHash": "kpImGPYW2jwrKG6sWWuerG1/CU79Y02L8gNZbLltkj6+xLwEDqGdVkdQ7KBJqwoX9Pn4dxUfu24Fd99DvxOTGw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj",
   "expectedPackageFiles": [
@@ -15,8 +15,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\taglibsharp\\2.2.0\\taglibsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\windowsapicodepack-core\\1.1.2\\windowsapicodepack-core.1.1.2.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\windowsapicodepack-shell\\1.1.1\\windowsapicodepack-shell.1.1.1.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "C:\\Users\\ivans\\.nuget\\packages\\windowsapicodepack-shell\\1.1.1\\windowsapicodepack-shell.1.1.1.nupkg.sha512"
   ],
   "logs": [
     {

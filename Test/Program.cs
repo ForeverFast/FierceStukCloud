@@ -8,19 +8,35 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var q = new List<BMO>();
+            var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
+            var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0);
 
-            q.Add(new Song());
+            Console.WriteLine(d1.Date);
+            Console.WriteLine(d2.Date);
+
+            if (d2 > d1)
+            {
+                Console.WriteLine("еее");
+            }
+            else
+            {
+                Console.WriteLine("slaigh bells");
+            }
+
+
+            //var q = new List<BMO>();
+
+            //q.Add(new Song());
           
-            MusicContainer music = new LF();
-            q.Add(new LF());
+            //MusicContainer music = new LF();
+            //q.Add(new LF());
 
-            q.Add(new Song());
+            //q.Add(new Song());
 
-            q.Add(new LF());
+            //q.Add(new LF());
 
-            var t = q.Select(x => x is Song == true).ToList();
-            var t1 = (from temp in q where temp is Song select temp).ToList();  
+            //var t = q.Select(x => x is Song == true).ToList();
+            //var t1 = (from temp in q where temp is Song select temp).ToList();  
 
 
         }
