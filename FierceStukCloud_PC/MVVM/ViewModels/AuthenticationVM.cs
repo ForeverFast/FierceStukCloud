@@ -22,17 +22,16 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Поля хранения значеий
         private string _login;
-        private SecureString _secureString;
+        private string _secureString;
 
         private bool _isAuthentication;
         private string _serverAnswer;
         private string _serverStatus = "Соединение";
         #endregion
 
+        public string SecurePassword { private get => _secureString; set => SetProperty(ref _secureString, value); }
 
         public string Login { get => _login; set => SetProperty(ref _login, value); }
-
-        public SecureString SecurePassword { private get => _secureString; set => SetProperty(ref _secureString, value); }
 
         public bool IsAuthentication { get => _isAuthentication; set => SetProperty(ref _isAuthentication, value); }
 
@@ -41,6 +40,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public string ServerStatus { get => _serverStatus; set => SetProperty(ref _serverStatus, value); }
 
         #endregion
+
 
         #region Команды  
         public RelayCommand AutorizationCommand { get; private set; }
@@ -52,56 +52,51 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private void AutorizationMethod(object parameter)
         {
             IsAuthentication = true;
-            
 
 
-            OpenMainWindow();
-            return;
 
+            //OpenMainWindow();
+            FSC_Settings.Default.Login = Login;
+            FSC_Settings.Default.Password = SecurePassword;
+            FSC_Settings.Default.Save();
 
-            //FSC_Settings.Default.Login = _login;
-            //FSC_Settings.Default.Save();
-            //FSC_Settings.Default.Password = value.ToString();
-            //FSC_Settings.Default.Save();
+            //http://localhost:52828/api/Authentication
+            //http://fiercestukcloud.life/api/Authentication
+            var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("username", Login);
+            request.AddHeader("password", "789xxx44XX");
+            request.AddHeader("device", "PC");
+            IRestResponse response = client.Execute(request);
 
+            int Code = 0;
+            if (Int32.TryParse(response.Content, out Code) == true)
+            {
+                switch (Code)
+                {
+                    case 151:
+                        ServerAnswer = "Неверный пароль";
+                        break;
+                    case 152:
+                        ServerAnswer = "Такого логина не существует";
+                        break;
+                }
+            }
 
-            //var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
-            //client.Timeout = -1;
-            //var request = new RestRequest(Method.POST);
-            //request.AddHeader("username", Login);
-            //request.AddHeader("password", SecurePassword.ToString());
+            App.CurrentUser = JsonSerializer.Deserialize<User>(response.Content);
 
-            //var q = SecurePassword.ToString();
-            
-            //IRestResponse response = client.Execute(request);
-
-            //int Code = 0;
-            //if (Int32.TryParse(response.Content, out Code) == true)
-            //{
-            //    switch (Code)
-            //    {
-            //        case 151:
-            //            ServerAnswer = "Неверный пароль";
-            //            break;
-            //        case 152:
-            //            ServerAnswer = "Такого логина не существует";
-            //            break;
-            //    }
-            //}
-
-            //App.CurrentUser = JsonSerializer.Deserialize<User>(response.Content);
-
-            //if (App.CurrentUser != null)
-            //{
-            //    IsAuthentication = false;
-            //    ServerAnswer = "Авторизован";
-            //    OpenMainWindow();
-            //}
-            //else
-            //{
-            //    IsAuthentication = false;
-            //    ServerAnswer = "Ошибка входа";
-            //}
+            if (App.CurrentUser != null)
+            {
+                IsAuthentication = false;
+                ServerAnswer = "Авторизован";
+                OpenMainWindow();
+            }
+            else
+            {
+                IsAuthentication = false;
+                ServerAnswer = "Ошибка входа";
+            }
         }
 
         private async void OpenMainWindow()

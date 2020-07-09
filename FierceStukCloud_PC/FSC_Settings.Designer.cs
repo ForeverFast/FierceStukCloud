@@ -8,13 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Security;
-
 namespace FierceStukCloud_PC {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class FSC_Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static FSC_Settings defaultInstance = ((FSC_Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new FSC_Settings())));
@@ -24,34 +22,28 @@ namespace FierceStukCloud_PC {
                 return defaultInstance;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Login
-        {
-            get
-            {
+        public string Login {
+            get {
                 return ((string)(this["Login"]));
             }
-            set
-            {
+            set {
                 this["Login"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Password
-        {
-            get
-            {
-                return ((string)(this["Login"]));
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
             }
-            set
-            {
-                this["Login"] = value;
+            set {
+                this["Password"] = value;
             }
         }
     }

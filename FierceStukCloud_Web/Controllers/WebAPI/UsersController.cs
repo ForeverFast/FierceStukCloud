@@ -18,10 +18,8 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
         private readonly FierceStukCloudDbContext _context;
 
         public UsersController(FierceStukCloudDbContext context)
-        {
-            _context = context;
-        }
-
+            => _context = context;
+        
         private int CodeA;
 
         [HttpPost("/api/Authentication")]
@@ -35,6 +33,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
             }
 
             var now = DateTime.UtcNow;
+
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
@@ -45,14 +44,13 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-
-
             //var Login = identity.FindFirst("Login").Value;
             //var ID = identity.FindFirst("ID").Value;
             //var Password = identity.FindFirst("Password").Value;
             //var LastName = identity.FindFirst("LastName").Value;
             //var Status = identity.FindFirst("Status").Value;
             //var Role = identity.FindFirst("Role").Value;
+
             switch (device)
             {
                 case "PC":
@@ -65,7 +63,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                         FirstName = identity.FindFirst("FirstName").Value,
                         LastName = identity.FindFirst("LastName").Value,
 
-                        StatusPC = true,
+                        StatusPC = "Online",
                         AccessTokenPC = encodedJwt
                     };
                     return new JsonResult(temp);
@@ -81,7 +79,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                         FirstName = identity.FindFirst("FirstName").Value,
                         LastName = identity.FindFirst("LastName").Value,
 
-                        StatusPhone = true,
+                        StatusPhone = "Online",
                         AccessTokenPhone = encodedJwt
                     });
             }
