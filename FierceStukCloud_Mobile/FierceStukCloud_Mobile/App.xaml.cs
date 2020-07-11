@@ -3,8 +3,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 //using FierceStukCloud_Mobile.Services;
 using FierceStukCloud_Mobile.Views;
-using FierceStukCloud_Mobile.Data;
 using FierceStukCloud_Mobile.MVVM.Views;
+using FierceStukCloud_NetStandardLib.Models;
 
 namespace FierceStukCloud_Mobile
 {

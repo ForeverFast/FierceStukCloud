@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace FierceStukCloud_NetStandartLib.Models.AbstractModels
+namespace FierceStukCloud_NetStandardLib.Models.AbstractModels
 {
     public abstract class BaseMusicObject
     {

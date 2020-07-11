@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetStandartLib.Models;
+﻿using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.MVVM.ViewModels;
 using FierceStukCloud_PC.MVVM.Views;

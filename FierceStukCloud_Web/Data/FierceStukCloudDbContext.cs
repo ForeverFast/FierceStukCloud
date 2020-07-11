@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
+﻿using FierceStukCloud_NetStandardLib.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FierceStukCloud_Web.Data

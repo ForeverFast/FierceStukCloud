@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj" />
-    <ProjectReference Include="..\FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandartLib.csproj" />
+    <ProjectReference Include="..\FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandardLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

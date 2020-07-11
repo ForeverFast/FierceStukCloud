@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace FierceStukCloud_NetCoreLib.Services
+namespace FierceStukCloud_NetStandardLib.MVVM
 {
     public abstract class OnPropertyChangedClass : INotifyPropertyChanged
     {

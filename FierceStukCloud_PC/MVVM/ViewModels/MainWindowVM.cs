@@ -1,6 +1,6 @@
-﻿using FierceStukCloud_NetStandartLib.Models;
-using FierceStukCloud_NetStandartLib.Models.AbstractModels;
-using FierceStukCloud_NetStandartLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using FierceStukCloud_PC.MVVM.Models;
@@ -14,15 +14,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
-using static FierceStukCloud_NetCoreLib.Extension.DialogService;
+using static FierceStukCloud_NetCoreLib.Services.DialogService;
 using System.Threading.Tasks;
 using System.Threading;
 
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using System.ComponentModel;
 using System.IO;
-using FierceStukCloud_NetStandartLib;
-using FierceStukCloud_NetStandartLib.Extension;
+using FierceStukCloud_NetStandardLib;
+using FierceStukCloud_NetStandardLib.Extension;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {

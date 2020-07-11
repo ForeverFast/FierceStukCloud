@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FierceStukCloud_NetStandartLib.Models.AbstractModels
+namespace FierceStukCloud_NetStandardLib.Models.AbstractModels
 {
     public abstract class MusicContainer : BaseMusicObject
     {

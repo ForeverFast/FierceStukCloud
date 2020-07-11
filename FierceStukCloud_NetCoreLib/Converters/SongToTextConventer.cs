@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
+﻿using FierceStukCloud_NetStandardLib.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FierceStukCloud_NetCoreLib.Models;
 using FierceStukCloud_Web.Data;
 using Microsoft.AspNetCore.Authorization;
 

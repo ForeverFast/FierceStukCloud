@@ -1,7 +1,7 @@
-﻿using FierceStukCloud_NetStandartLib.Models;
-using FierceStukCloud_NetStandartLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
-using static FierceStukCloud_NetCoreLib.Extension.DialogService;
+using static FierceStukCloud_NetCoreLib.Services.DialogService;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;

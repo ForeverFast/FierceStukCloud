@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetStandartLib.Models;
+﻿using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
+using FierceStukCloud_NetStandardLib.MVVM;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {

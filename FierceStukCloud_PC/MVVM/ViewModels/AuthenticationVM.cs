@@ -4,7 +4,7 @@ using System.Security;
 using System.Text.Json;
 using System.Net;
 using RestSharp;
-using FierceStukCloud_NetStandartLib.Models;
+using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using System.Windows.Threading;

@@ -1,7 +1,7 @@
-﻿using FierceStukCloud_NetStandartLib.Models.AbstractModels;
-using FierceStukCloud_NetStandartLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 
-namespace FierceStukCloud_NetStandartLib.Extension
+namespace FierceStukCloud_NetStandardLib.Extension
 {
     public static class TypeConventer
     {

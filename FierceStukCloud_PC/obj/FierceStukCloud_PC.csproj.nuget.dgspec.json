@@ -30,7 +30,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
+                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -89,12 +93,12 @@
         }
       }
     },
-    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandartLib.csproj": {
+    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandartLib.csproj",
-        "projectName": "FierceStukCloud_NetStandartLib",
-        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandartLib.csproj",
+        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj",
+        "projectName": "FierceStukCloud_NetStandardLib",
+        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj",
         "packagesPath": "C:\\Users\\ivans\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\obj\\",
         "projectStyle": "PackageReference",
@@ -186,8 +190,8 @@
               "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj": {
                 "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj"
               },
-              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandartLib.csproj": {
-                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandartLib.csproj"
+              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
+                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj"
               }
             }
           }

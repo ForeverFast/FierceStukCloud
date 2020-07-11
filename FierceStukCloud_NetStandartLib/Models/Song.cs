@@ -1,5 +1,5 @@
-﻿using FierceStukCloud_NetStandartLib.Models.AbstractModels;
-using FierceStukCloud_NetStandartLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace FierceStukCloud_NetStandartLib.Models
+namespace FierceStukCloud_NetStandardLib.Models
 {
     [Table("Songs")]
     public class Song : BaseMusicObject

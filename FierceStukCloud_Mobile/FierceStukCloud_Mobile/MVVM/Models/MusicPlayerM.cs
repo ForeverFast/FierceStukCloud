@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FierceStukCloud_Mobile.Models
 {
-    class MusicPlayerM
+    public class MusicPlayerM
     {
         
     }

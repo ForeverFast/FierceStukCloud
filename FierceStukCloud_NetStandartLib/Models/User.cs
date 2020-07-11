@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace FierceStukCloud_NetStandartLib.Models
+namespace FierceStukCloud_NetStandardLib.Models
 {
     [Table("Users")]
     public class User

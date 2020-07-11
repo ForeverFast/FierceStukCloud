@@ -1,6 +1,6 @@
-﻿using FierceStukCloud_NetStandartLib.Models.AbstractModels;
+﻿using FierceStukCloud_NetStandardLib.Models.AbstractModels;
 
-namespace FierceStukCloud_NetStandartLib.Models.MusicContainers
+namespace FierceStukCloud_NetStandardLib.Models.MusicContainers
 {
     public class PlayList : MusicContainer
     {

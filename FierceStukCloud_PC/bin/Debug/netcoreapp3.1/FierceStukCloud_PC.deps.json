@@ -9,7 +9,7 @@
       "FierceStukCloud_PC/1.0.0": {
         "dependencies": {
           "FierceStukCloud_NetCoreLib": "1.0.0",
-          "FierceStukCloud_NetStandartLib": "1.0.0",
+          "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "RestSharp": "106.10.1",
@@ -374,6 +374,7 @@
       },
       "FierceStukCloud_NetCoreLib/1.0.0": {
         "dependencies": {
+          "FierceStukCloud_NetStandardLib": "1.0.0",
           "NAudio": "1.10.0",
           "System.Drawing.Common": "4.7.0",
           "System.Windows.Interactivity.WPF": "2.0.20525",
@@ -385,13 +386,13 @@
           "FierceStukCloud_NetCoreLib.dll": {}
         }
       },
-      "FierceStukCloud_NetStandartLib/1.0.0": {
+      "FierceStukCloud_NetStandardLib/1.0.0": {
         "dependencies": {
           "System.ComponentModel.Annotations": "4.7.0",
           "System.Text.Json": "4.7.2"
         },
         "runtime": {
-          "FierceStukCloud_NetStandartLib.dll": {}
+          "FierceStukCloud_NetStandardLib.dll": {}
         }
       }
     }
@@ -652,7 +653,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FierceStukCloud_NetStandartLib/1.0.0": {
+    "FierceStukCloud_NetStandardLib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

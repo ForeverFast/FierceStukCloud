@@ -1,5 +1,5 @@
-﻿using FierceStukCloud_Mobile.Data;
-using FierceStukCloud_Mobile.Views;
+﻿using FierceStukCloud_Mobile.Views;
+using FierceStukCloud_NetStandardLib.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -45,8 +45,8 @@ namespace FierceStukCloud_Mobile.ViewModels
         {
             IsAuthentication = true;
 
-            FierceStukCloudSettings.Default.Login = Login;
-            FierceStukCloudSettings.Default.Password = SecurePassword;
+            //FierceStukCloudSettings.Default.Login = Login;
+            //FierceStukCloudSettings.Default.Password = SecurePassword;
             
             var client = new RestClient(App.CurSiteLing + "api/Authentication");
             client.Timeout = -1;
@@ -93,11 +93,11 @@ namespace FierceStukCloud_Mobile.ViewModels
         public AuthenticationVM()
         {
             InitiailizeCommands();
-            Login = FierceStukCloudSettings.Default.Login != null ?
-                    FierceStukCloudSettings.Default.Login : "";
+           //Login = FierceStukCloudSettings.Default.Login != null ?
+           //         FierceStukCloudSettings.Default.Login : "";
 
-            SecurePassword = FierceStukCloudSettings.Default.Password != null ?
-                             FierceStukCloudSettings.Default.Password : "";
+           // SecurePassword = FierceStukCloudSettings.Default.Password != null ?
+           //                  FierceStukCloudSettings.Default.Password : "";
         }
 
         public override void InitiailizeCommands()

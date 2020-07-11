@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
+﻿using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_Web.Data;
 using FierceStukCloud_Web.Models;
 using Microsoft.AspNetCore.Mvc;

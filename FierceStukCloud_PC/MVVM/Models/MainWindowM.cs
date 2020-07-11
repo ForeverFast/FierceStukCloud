@@ -1,6 +1,6 @@
-﻿using FierceStukCloud_NetStandartLib.Models;
-using FierceStukCloud_NetStandartLib.Models.AbstractModels;
-using FierceStukCloud_NetStandartLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using FierceStukCloud_PC.MVVM.Models.Modules;
 using System;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
-using static FierceStukCloud_NetCoreLib.Extension.DialogService;
-using static FierceStukCloud_NetStandartLib.Extension.TypeConventer;
+using static FierceStukCloud_NetCoreLib.Services.DialogService;
+using static FierceStukCloud_NetStandardLib.Extension.TypeConventer;
 using System.Diagnostics.Tracing;
 using System.Windows.Threading;
 using System.IO;
 using FierceStukCloud_NetCoreLib.Services;
 using System.Collections.ObjectModel;
-
+using FierceStukCloud_NetStandardLib.MVVM;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {

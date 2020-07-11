@@ -1,5 +1,5 @@
 ﻿using FierceStukCloud_Mobile.Models;
-using FierceStukCloud_NetStandartLib.Models;
+using FierceStukCloud_NetStandardLib.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -60,13 +60,13 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                 {
                     case Commands.GetSongs:
 
-                        await hubConnection.SendAsync("Send",Commands.SendSongs.ToString(), Model.LocalFiles);
+                        //await hubConnection.SendAsync("Send",Commands.SendSongs.ToString(), Model.LocalFiles);
 
                         break;
 
                     case Commands.SetCurrentSong:
 
-                        Model.SetCurrentSong(objects[0] as Song);
+                        //Model.SetCurrentSong(objects[0] as Song);
 
                         break;
                 }
