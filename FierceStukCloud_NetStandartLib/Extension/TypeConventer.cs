@@ -8,8 +8,6 @@ namespace FierceStukCloud_NetStandardLib.Extension
         public static LocalFolder ToLF(this BaseMusicObject bmo) => bmo as LocalFolder;
         public static LocalFolder ToLF(this MusicContainer musicContainer) => musicContainer as LocalFolder;
 
-        public static MusicContainer ToMC(this BaseMusicObject bmo) => bmo as MusicContainer;
-
-      
+        public static MusicContainer ToMC(this BaseMusicObject bmo) => bmo as MusicContainer; 
     }
 }

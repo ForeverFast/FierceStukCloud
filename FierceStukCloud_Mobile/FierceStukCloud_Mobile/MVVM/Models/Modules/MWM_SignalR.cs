@@ -1,5 +1,5 @@
 ﻿using FierceStukCloud_Mobile.Models;
-using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.MVVM;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -52,15 +52,15 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
         }
 
 
-        public async Task CommandFromPhone(string command, object[] objects)
+        public async Task CommandFromPС(string command, object[] objects)
         {
             Commands _command;
             if (command.TryConvert(out _command) == true)
                 switch (_command)
                 {
-                    case Commands.GetSongs:
+                    case Commands.SendSongs:
 
-                        //await hubConnection.SendAsync("Send",Commands.SendSongs.ToString(), Model.LocalFiles);
+                        
 
                         break;
 
@@ -71,6 +71,24 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                         break;
                 }
 
+        }
+
+        public async Task CommandToPC<T>(Commands command, T content)
+        {
+            switch (command)
+            {
+                case Commands.GetSongs:
+
+                    //
+
+                    break;
+
+                case Commands.SetCurrentSong:
+
+                    await hubConnection.SendAsync("Send", Commands.SendSongs.ToString(), Model.LocalFiles);
+                   
+                    break;
+            }
         }
 
         // подключение к чату
@@ -85,7 +103,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 
                 IsConnected = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
@@ -116,7 +134,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                 })
                 .Build();
 
-            hubConnection.On<string, object[]>("MessageFromPhone", CommandFromPhone);
+            hubConnection.On<string, object[]>("MessageFromPС", CommandFromPС);
 
             Connect();
         }

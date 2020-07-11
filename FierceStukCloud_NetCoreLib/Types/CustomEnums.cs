@@ -11,7 +11,12 @@ namespace FierceStukCloud_NetCoreLib.Types
         {
             GetSongs,
             SendSongs,
-            SetCurrentSong
+            SetCurrentSong,
+            PrevSong,
+            NextSong,
+            PlaySong,
+            PauseSong,
+            StopSong
         }
 
         public static bool TryConvert(this string value, out Commands command)

@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_Mobile.MVVM;
+﻿using FierceStukCloud_NetStandardLib.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Text;

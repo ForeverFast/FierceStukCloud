@@ -36,6 +36,13 @@ namespace FierceStukCloud_Web.Models
             }       
         }
 
+        public async Task SendSongs()
+        {
+
+        }
+
+
+
 
         public override Task OnConnectedAsync()
         {
