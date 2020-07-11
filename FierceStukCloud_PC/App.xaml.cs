@@ -1,4 +1,4 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
+﻿using FierceStukCloud_NetStandartLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.MVVM.ViewModels;
 using FierceStukCloud_PC.MVVM.Views;
@@ -21,6 +21,10 @@ namespace FierceStukCloud_PC
         public static DisplayRootRegistry DisplayRootRegistry { get; private set; }
 
         public static SQLiteConnection Connection { get; set; }
+
+        //http://localhost:52828/
+        //http://fiercestukcloud.life/
+        public static string CurSiteLing = "http://localhost:52828/";
 
         public App()
         {

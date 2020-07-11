@@ -4,14 +4,14 @@
     "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj": {
+    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
-        "projectName": "Test",
-        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
+        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj",
+        "projectName": "FierceStukCloud_NetCoreLib",
+        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj",
         "packagesPath": "C:\\Users\\ivans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\obj\\",
+        "outputPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -41,6 +41,32 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "NAudio": {
+              "target": "Package",
+              "version": "[1.10.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "System.Windows.Interactivity.WPF": {
+              "target": "Package",
+              "version": "[2.0.20525, )"
+            },
+            "TagLibSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "WindowsAPICodePack-Core": {
+              "target": "Package",
+              "version": "[1.1.2, )"
+            },
+            "WindowsAPICodePack-Shell": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -54,6 +80,82 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
+        "projectName": "Test",
+        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
+        "packagesPath": "C:\\Users\\ivans\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ivans\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj": {
+                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Client.Core": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.10.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"

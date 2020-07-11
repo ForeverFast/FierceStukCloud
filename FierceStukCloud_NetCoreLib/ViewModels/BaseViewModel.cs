@@ -11,9 +11,12 @@ namespace FierceStukCloud_NetCoreLib.ViewModels
         public RelayCommand CloseWindowCommand { get; private set; }
         public RelayCommand DragWindowCommand { get; private set; }
 
-        public void MinimizedWindowMethod(object parameter) => Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        public void CloseWindowMethod(object parameter) => Application.Current.MainWindow.Close();
-        public void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
+        public virtual void MinimizedWindowMethod(object parameter) => Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        public virtual void CloseWindowMethod(object parameter)
+        {
+            Application.Current.MainWindow.Close(); 
+        }
+        public virtual void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
 
         #endregion
 

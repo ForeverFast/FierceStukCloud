@@ -6,22 +6,30 @@ namespace Test
 {
     class Program
     {
+        enum kek { kekw, lol, qq, qe}
+
+
         static void Main(string[] args)
         {
-            var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
-            var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0);
+            Console.WriteLine(kek.kekw.ToString());
 
-            Console.WriteLine(d1.Date);
-            Console.WriteLine(d2.Date);
 
-            if (d2 > d1)
-            {
-                Console.WriteLine("еее");
-            }
-            else
-            {
-                Console.WriteLine("slaigh bells");
-            }
+
+
+            //var d1 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
+            //var d2 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0);
+
+            //Console.WriteLine(d1.Date);
+            //Console.WriteLine(d2.Date);
+
+            //if (d2 > d1)
+            //{
+            //    Console.WriteLine("еее");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("slaigh bells");
+            //}
 
 
             //var q = new List<BMO>();
@@ -47,21 +55,10 @@ namespace Test
         public string Name { get; set; }
     }
 
-
-
-
-
-
-
-
-
-
     public class Song : BMO
     {
 
     }
-
-
 
     public abstract class MusicContainer : BMO
     {

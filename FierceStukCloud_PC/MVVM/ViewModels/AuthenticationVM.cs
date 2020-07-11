@@ -4,7 +4,7 @@ using System.Security;
 using System.Text.Json;
 using System.Net;
 using RestSharp;
-using FierceStukCloud_NetCoreLib.Models;
+using FierceStukCloud_NetStandartLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using System.Windows.Threading;
@@ -60,9 +60,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             FSC_Settings.Default.Password = SecurePassword;
             FSC_Settings.Default.Save();
 
-            //http://localhost:52828/api/Authentication
-            //http://fiercestukcloud.life/api/Authentication
-            var client = new RestClient("http://fiercestukcloud.life/api/Authentication");
+           
+            var client = new RestClient(App.CurSiteLing + "api/Authentication");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("username", Login);
@@ -120,7 +119,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             InitiailizeCommands();
             
 
-            //Login = FSC_Settings.Default.Login;
+            Login = FSC_Settings.Default.Login;
             //SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
             //if (Login != null && SecurePassword != null)

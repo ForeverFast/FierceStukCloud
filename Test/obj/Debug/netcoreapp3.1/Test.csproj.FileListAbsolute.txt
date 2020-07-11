@@ -1,7 +1,6 @@
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.csprojAssemblyReference.cache
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.AssemblyInfoInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.AssemblyInfo.cs
-C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Test.exe
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Test.deps.json
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Test.runtimeconfig.json
@@ -11,3 +10,13 @@ C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Test.pd
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.genruntimeconfig.cache
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NAudio.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\RestSharp.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\TagLibSharp.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.csproj.CopyComplete

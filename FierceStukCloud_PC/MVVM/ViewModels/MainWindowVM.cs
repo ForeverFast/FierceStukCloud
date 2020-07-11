@@ -1,6 +1,6 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
-using FierceStukCloud_NetCoreLib.Models.AbstractModels;
-using FierceStukCloud_NetCoreLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandartLib.Models;
+using FierceStukCloud_NetStandartLib.Models.AbstractModels;
+using FierceStukCloud_NetStandartLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using FierceStukCloud_PC.MVVM.Models;
@@ -13,15 +13,16 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using static FierceStukCloud_NetCoreLib.Types.CallerType;
-using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
+using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
+using static FierceStukCloud_NetCoreLib.Extension.DialogService;
 using System.Threading.Tasks;
 using System.Threading;
 
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using System.ComponentModel;
-using FierceStukCloud_NetCoreLib.Services.Extension;
 using System.IO;
+using FierceStukCloud_NetStandartLib;
+using FierceStukCloud_NetStandartLib.Extension;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -338,7 +339,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 Dispatcher,
                 new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"))
             );
-
+           
         }
 
 
@@ -362,6 +363,12 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             PrevSongCommand = new RelayCommand(PrevSongExecute, null);
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute, null);
             NextSongCommand = new RelayCommand(NextSongExecute, null);
+        }
+
+        public override void CloseWindowMethod(object parameter)
+        {
+            model.ShutDownConnection();
+            base.CloseWindowMethod(parameter);
         }
 
         #endregion

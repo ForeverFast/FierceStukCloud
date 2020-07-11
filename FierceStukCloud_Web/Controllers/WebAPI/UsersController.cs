@@ -26,21 +26,19 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
         public IActionResult Token([FromHeader] string username, [FromHeader] string password, [FromHeader] string device)
         {
             //username = "ForeverFast"; password = "789xxx44XX"; 
-            var identity = GetIdentity(username, password);
+            var identity = GetIdentity(username, password, device);
             if (identity == null)
             {
                 return BadRequest(CodeA);
             }
 
-            var now = DateTime.UtcNow;
-
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
                     audience: AuthOptions.AUDIENCE,
-                    notBefore: now,
+                    notBefore: DateTime.UtcNow,
                     claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
@@ -87,7 +85,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
             return NoContent();
         }
 
-        private ClaimsIdentity GetIdentity(string username, string password)
+        private ClaimsIdentity GetIdentity(string username, string password, string device)
         {
             User user = _context.Users.FirstOrDefault(x => x.Login == username && x.Password == password);
             if (user != null)
@@ -99,8 +97,13 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                     new Claim("Password", user.Password),
                     new Claim("FirstName", user.FirstName),
                     new Claim("LastName", user.LastName),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)    
                 };
+
+                if (device == "PC")
+                    claims.Add(new Claim("Device", "PC"));
+                else
+                    claims.Add(new Claim("Device", "Phone"));
 
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
@@ -117,5 +120,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                 return null;
             }
         }
+
+        
     }
 }

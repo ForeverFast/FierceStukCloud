@@ -1,6 +1,6 @@
-﻿using FierceStukCloud_NetCoreLib.Models;
-using FierceStukCloud_NetCoreLib.Models.AbstractModels;
-using FierceStukCloud_NetCoreLib.Models.MusicContainers;
+﻿using FierceStukCloud_NetStandartLib.Models;
+using FierceStukCloud_NetStandartLib.Models.AbstractModels;
+using FierceStukCloud_NetStandartLib.Models.MusicContainers;
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using FierceStukCloud_PC.MVVM.Models.Modules;
 using System;
@@ -10,9 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static FierceStukCloud_NetCoreLib.Types.CallerType;
-using static FierceStukCloud_NetCoreLib.Services.Extension.DialogService;
-using static FierceStukCloud_NetCoreLib.Services.Extension.TypeConventer;
+using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
+using static FierceStukCloud_NetCoreLib.Extension.DialogService;
+using static FierceStukCloud_NetStandartLib.Extension.TypeConventer;
 using System.Diagnostics.Tracing;
 using System.Windows.Threading;
 using System.IO;
@@ -29,13 +29,14 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <summary> Переменная плеера </summary>      
         public MediaPlayer MP { get; }
         private MWM_LocalDB MWM_LocalDB { get; }
+        private MWM_SignalR MWM_SignalR { get; }
 
         /// <summary> Список плейлистов </summary>   
         public List<PlayList> PlayLists { get; set; }
         /// <summary> Список альбомов </summary>   
         public List<Album> Albums { get; set; }
         /// <summary> Список папок </summary>   
-        public List<LocalFolder> LocalFolders { get; set; }
+        public List<BaseMusicObject> LocalFiles { get; set; }
 
         /// <summary> Tекущий контейнер </summary>   
         public BaseMusicObject CurrentMusicContainer { get; set; }
@@ -93,82 +94,6 @@ namespace FierceStukCloud_PC.MVVM.Models
         #endregion
 
 
-        #region Методы выбора/установки текущей песни/плейлиста
-
-        /// <summary> Включить предыдущую песню </summary>
-        public void PrevSong()
-        {
-            MP.Stop();
-
-            if (CurrentSong.LocalID - 1 < 0)
-            { 
-                SetCurrentSong(CurrentSong);
-                return;
-            }
-
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
-                SetCurrentSong(temp);
-        }
-
-        /// <summary> Включить следующую песню </summary>
-        public void NextSong()
-        {
-            MP.Stop();
-
-            if (CurrentSong.LocalID + 1 > CurrentMusicContainer.ToMC().Songs.Count)
-            {
-                SetCurrentSong(CurrentSong);
-                return;
-            }
-
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
-            SetCurrentSong(temp);
-        }
-
-        /// <summary> Подготовка песни к воспроизведению </summary>
-        public void SetCurrentSong(Song song)
-        {
-            try
-            {
-                if (song.CurrentMusicContainer == null)
-                    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
-                else
-                    CurrentMusicContainer = song.CurrentMusicContainer;
-
-                CurrentSong = song;
-                MP.Open(new Uri(CurrentSong.LocalURL));
-               
-
-                // Загрузка изображения
-                try
-                {
-                    TagLib.File file_TAG = TagLib.File.Create(song.LocalURL);
-                    var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
-
-                    var bitmapImage = new BitmapImage();
-                    bitmapImage.BeginInit();
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.StreamSource = new MemoryStream(bin);
-                    bitmapImage.EndInit();
-                    CurrentImage = bitmapImage;
-                }
-                catch (Exception)
-                {
-                    CurrentImage 
-                        = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
-                }
-                
-               
-            }
-            catch(Exception)
-            {
-                
-            }
-        }
-
-        #endregion
-
-
         #region Добавление/Удаление музыки
 
         /// <summary>
@@ -201,7 +126,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             var temp = new List<BaseMusicObject>();
             temp.AddRange(MWM_LocalDB.GetListLocalFolders());
             temp.AddRange(MWM_LocalDB.LocalSongs);
-            return temp;
+            return LocalFiles = temp;
         }
 
         /// <summary>
@@ -221,6 +146,82 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <returns></returns>
         public LocalFolder DeleteLocalFolderFromPC(LocalFolder localFolder)
             => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder);
+
+        #endregion
+
+
+        #region Методы выбора/установки текущей песни/плейлиста
+
+        /// <summary> Включить предыдущую песню </summary>
+        public void PrevSong()
+        {
+            MP.Stop();
+
+            if (CurrentSong.LocalID - 1 < 0)
+            {
+                SetCurrentSong(CurrentSong);
+                return;
+            }
+
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
+            SetCurrentSong(temp);
+        }
+
+        /// <summary> Включить следующую песню </summary>
+        public void NextSong()
+        {
+            MP.Stop();
+
+            if (CurrentSong.LocalID + 1 > CurrentMusicContainer.ToMC().Songs.Count)
+            {
+                SetCurrentSong(CurrentSong);
+                return;
+            }
+
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
+            SetCurrentSong(temp);
+        }
+
+        /// <summary> Подготовка песни к воспроизведению </summary>
+        public void SetCurrentSong(Song song)
+        {
+            try
+            {
+                if (song.CurrentMusicContainer == null)
+                    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
+                else
+                    CurrentMusicContainer = song.CurrentMusicContainer;
+
+                CurrentSong = song;
+                MP.Open(new Uri(CurrentSong.LocalURL));
+
+
+                // Загрузка изображения
+                try
+                {
+                    TagLib.File file_TAG = TagLib.File.Create(song.LocalURL);
+                    var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
+
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = new MemoryStream(bin);
+                    bitmapImage.EndInit();
+                    CurrentImage = bitmapImage;
+                }
+                catch (Exception)
+                {
+                    CurrentImage
+                        = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
 
         #endregion
 
@@ -269,6 +270,8 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #endregion
 
+        public void ShutDownConnection() => MWM_SignalR.Disconnect();
+        
         #endregion
 
 
@@ -285,6 +288,9 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
+            MWM_SignalR = new MWM_SignalR(this);
+
+            
         }
 
 

@@ -81,7 +81,7 @@ namespace FierceStukCloud_Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapHub<FierceStukCloudHub>("/chat");
+                endpoints.MapHub<FierceStukCloudHub>("/hub");
             });
         }
     }
