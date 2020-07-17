@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
 using static FierceStukCloud_NetCoreLib.Services.DialogService;
 using static FierceStukCloud_NetStandardLib.Extension.TypeConventer;
 using System.Diagnostics.Tracing;
@@ -288,6 +287,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
+            GetListLocalFiles();
             MWM_SignalR = new MWM_SignalR(this);
 
             

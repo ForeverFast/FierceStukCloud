@@ -7,6 +7,7 @@ using FierceStukCloud_Web.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -61,8 +62,14 @@ namespace FierceStukCloud_Web
                                     User ID=Ivan; Password=789xxx44XX; Connect Timeout=30;
                                     Encrypt=False; TrustServerCertificate=False;
                                     ApplicationIntent=ReadWrite; MultiSubnetFailover=False"));
-            services.AddControllers(); //.AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSignalR();
+            //services.AddControllers(); //.AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSignalR(o =>
+            {
+                o.MaximumReceiveMessageSize = 1048576;
+            });
+            services.AddMvc();
+           
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,11 +84,21 @@ namespace FierceStukCloud_Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseHttpsRedirection();
 
+            //var loggerFactory = LoggerFactory.Create(builder =>
+            //{
+            //    builder.AddConsole();
+            //});
+            //ILogger logger = loggerFactory.CreateLogger<Startup>();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapHub<FierceStukCloudHub>("/hub");
+                endpoints.MapHub<FierceStukCloudHub>("/hub", options => {
+                    options.ApplicationMaxBufferSize = 1024;
+                    options.TransportMaxBufferSize = 1024;               
+                });
             });
         }
     }

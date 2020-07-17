@@ -1,11 +1,16 @@
 ﻿using FierceStukCloud_Mobile.Models;
+using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using FierceStukCloud_NetStandardLib.MVVM;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using static FierceStukCloud_Mobile.Types.CustomEnums;
+using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
 
 namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 {
@@ -51,45 +56,34 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
             }
         }
 
+        public async Task MusicPlayerCommand(Commands command, DeviceType device)
+            => await hubConnection.SendAsync("MusicPlayerCommand", DeviceType.Mobile, device, command);
 
-        public async Task CommandFromPС(string command, object[] objects)
+        public async Task SetCurrentSongCommand(DeviceType device, Song song)
+           => await hubConnection.SendAsync("SetCurrentSongCommand", DeviceType.Mobile, device, song);
+
+        public async Task CommandFromPС(DeviceType deviceFrom, string json1, string json2)
         {
-            Commands _command;
-            if (command.TryConvert(out _command) == true)
-                switch (_command)
-                {
-                    case Commands.SendSongs:
-
-                        
-
-                        break;
-
-                    case Commands.SetCurrentSong:
-
-                        //Model.SetCurrentSong(objects[0] as Song);
-
-                        break;
-                }
-
-        }
-
-        public async Task CommandToPC<T>(Commands command, T content)
-        {
-            switch (command)
+            var temp1 = JsonSerializer.Deserialize<List<LocalFolder>>(json1);
+            var temp2 = JsonSerializer.Deserialize<List<Song>>(json2);
+            foreach (var item in temp1)
             {
-                case Commands.GetSongs:
-
-                    //
-
-                    break;
-
-                case Commands.SetCurrentSong:
-
-                    await hubConnection.SendAsync("Send", Commands.SendSongs.ToString(), Model.LocalFiles);
-                   
-                    break;
+                Model.LocalFiles.Add(item);
             }
+
+            foreach (var item in temp2)
+            {
+                Model.LocalFiles.Add(item);
+            }
+
+            Update?.Invoke(this);
         }
+
+        public event Action<object> Update;
+
+
+
+
 
         // подключение к чату
         public async Task Connect()
@@ -99,13 +93,13 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
             try
             {
                 await hubConnection.StartAsync();
-                
+
 
                 IsConnected = true;
             }
             catch (Exception)
             {
-                
+
             }
         }
 
@@ -117,7 +111,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 
             await hubConnection.StopAsync();
             IsConnected = false;
-           
+
         }
 
 
@@ -130,13 +124,21 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
             hubConnection = new HubConnectionBuilder()
                 .WithUrl(App.CurSiteLing + "hub", options =>
                 {
-                    options.AccessTokenProvider = () => Task.FromResult(App.CurrentUser.AccessTokenPC);
+                    options.AccessTokenProvider = () => Task.FromResult(App.CurrentUser.AccessTokenPhone);
                 })
                 .Build();
+             
+            hubConnection.On<DeviceType, string, string>("SendSongs", CommandFromPС);
+            hubConnection.On("TestPC", () => 
+            {
+                int a = 1 + 1;
+            });
 
-            hubConnection.On<string, object[]>("MessageFromPС", CommandFromPС);
+            hubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
 
             Connect();
+
+            //hubConnection.SendAsync("TestPhone");
         }
 
         #endregion

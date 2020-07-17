@@ -1,12 +1,17 @@
-﻿using FierceStukCloud_Web.Data;
+﻿using FierceStukCloud_NetStandardLib.Models;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
+using FierceStukCloud_Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
 
 namespace FierceStukCloud_Web.Models
 {
@@ -14,35 +19,51 @@ namespace FierceStukCloud_Web.Models
     public class FierceStukCloudHub : Hub
     {
         private readonly FierceStukCloudDbContext _context;
-
-        public FierceStukCloudHub(FierceStukCloudDbContext context)
-            => _context = context;
-
-        public async Task Send(string Command, params object[] objects)
+        private readonly ILogger<FierceStukCloudHub> _logger;
+        public FierceStukCloudHub(FierceStukCloudDbContext context, ILogger<FierceStukCloudHub> logger)
+        { 
+            _context = context;
+            _logger = logger;
+        }
+        public string GetTargetConnectionId(DeviceType deviceTo)
         {
             var user = _context.Users.FirstOrDefault(x => x.Login == Context.User.Identity.Name);
 
-            if (Context.ConnectionId == user.ConnectionIdPC)
+            switch (deviceTo)
             {
-                await Clients.Client(user.ConnectionIdPhone).SendAsync("MessageFromPC", Command, objects);
+                case DeviceType.PC:
+                    return user.ConnectionIdPC;
+                case DeviceType.Mobile:
+                    return user.ConnectionIdPhone;
+                case DeviceType.TV:
+                    return "";
+                case DeviceType.Web:
+                    return "";
+                default:
+                    return "";
             }
-            else if (Context.ConnectionId == user.ConnectionIdPhone)
-            {
-                await Clients.Client(user.ConnectionIdPC).SendAsync("MessageFromPhone", Command, objects);
-            }
-            else
-            {
-                
-            }       
         }
 
-        public async Task SendSongs()
+        public async Task MusicPlayerCommand(DeviceType deviceFrom, DeviceType deviceTo, Commands command)
+            => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("Commands", deviceFrom, command);
+
+        public async Task SetCurrentSongCommand(DeviceType deviceFrom, DeviceType deviceTo, Song song)
+            => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("SetCurrentSong", deviceFrom, song);
+       
+        public async Task SendSongsCommand(DeviceType deviceFrom, DeviceType deviceTo, string json1, string json2)
+         => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("SendSongs", deviceFrom, json1, json2);
+
+        public async Task TestPhone()
         {
-
+            await Clients.Clients(GetTargetConnectionId(DeviceType.PC)).SendAsync("TestPhone");
+            _logger.LogInformation("Тест для телефона");
         }
 
-
-
+        public async Task TestPC()
+        {
+            await Clients.Clients(GetTargetConnectionId(DeviceType.Mobile)).SendAsync("TestPC");
+            _logger.LogInformation("Тест для ПК");
+        }
 
         public override Task OnConnectedAsync()
         {

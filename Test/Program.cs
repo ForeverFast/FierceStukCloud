@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +12,20 @@ namespace Test
 
         static void Main(string[] args)
         {
-            Console.WriteLine(kek.kekw.ToString());
+           
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Error(new Exception(), "Комментарий к ошибке");
+            
+
+
+
+
+
+
+
+
+
+            // Console.WriteLine(kek.kekw.ToString());
 
 
 
@@ -35,7 +49,7 @@ namespace Test
             //var q = new List<BMO>();
 
             //q.Add(new Song());
-          
+
             //MusicContainer music = new LF();
             //q.Add(new LF());
 

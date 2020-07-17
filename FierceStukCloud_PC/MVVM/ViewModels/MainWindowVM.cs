@@ -13,7 +13,6 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
 using static FierceStukCloud_NetCoreLib.Services.DialogService;
 using System.Threading.Tasks;
 using System.Threading;
@@ -176,7 +175,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         private async void AddLocalSongFromPCExecute(object parameter)
         {
-            var path = FolderBrowserDialog();
+            var path = FileBrowserDialog();
             LocalFiles.Add(await Task.Run(() => model.AddLocalSongFromPC(path)));
         }
         private async void DeleteFromAppExecute(object parameter)
@@ -334,6 +333,17 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public MainWindowVM(Dispatcher dispatcher) : this()
         {
             Dispatcher = dispatcher;
+
+            //try
+            //{
+
+            //    Songs.Add(new ImageAsync<Song>());
+            //}
+            //catch (Exception ex)
+            //{
+            //    App.Log.Error(ex, "Комментарий к ошибке");
+            //}
+
             Songs = new ImageAsyncCollection<ImageAsync<Song>>
             (
                 Dispatcher,
@@ -367,6 +377,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public override void CloseWindowMethod(object parameter)
         {
+           
             model.ShutDownConnection();
             base.CloseWindowMethod(parameter);
         }

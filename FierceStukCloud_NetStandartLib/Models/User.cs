@@ -32,7 +32,7 @@ namespace FierceStukCloud_NetStandardLib.Models
         [JsonPropertyName("accessTokenPC")]
         public string AccessTokenPC { get; set; }
         [JsonPropertyName("connectionIdPC")]
-        public string ConnectionIdPC { get; set; } = "";
+        public string ConnectionIdPC { get; set; }
 
         [JsonPropertyName("statusPhone")]
         public string StatusPhone { get; set; }

@@ -51,9 +51,9 @@ namespace FierceStukCloud_Mobile.ViewModels
             var client = new RestClient(App.CurSiteLing + "api/Authentication");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            request.AddHeader("username", Login);
+            request.AddHeader("username", "ForeverFast");
             request.AddHeader("password", "789xxx44XX");
-            request.AddHeader("device", "PC");
+            request.AddHeader("device", "Phone");
             IRestResponse response = client.Execute(request);
 
             int Code = 0;

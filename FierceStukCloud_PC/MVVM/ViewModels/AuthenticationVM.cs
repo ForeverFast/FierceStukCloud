@@ -8,6 +8,9 @@ using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using System.Windows.Threading;
+using System.Windows.Documents;
+using System.Collections.Generic;
+using static System.Diagnostics.Debug;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -52,7 +55,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private void AutorizationMethod(object parameter)
         {
             IsAuthentication = true;
-
+            App.Log.Info("Авторизация...");
 
 
             //OpenMainWindow();
@@ -89,12 +92,14 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             {
                 IsAuthentication = false;
                 ServerAnswer = "Авторизован";
+                App.Log.Info("Авторизирован.");
                 OpenMainWindow();
             }
             else
             {
                 IsAuthentication = false;
                 ServerAnswer = "Ошибка входа";
+                App.Log.Info("Ошибка входа.");
             }
         }
 
@@ -116,9 +121,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public AutorizationVM()
         {
+            WriteLine("Создание VM для окна авторизации.");
             InitiailizeCommands();
             
-
+            
             Login = FSC_Settings.Default.Login;
             //SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
@@ -129,7 +135,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //        this.AutorizationMethod(this);
             //    }
             //}
-
+            WriteLine("Создание VM для окна авторизации завершено.");
+            App.Log.Trace("Тест");
+            
         }
 
         public AutorizationVM(Dispatcher dispatcher)
@@ -143,8 +151,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         /// </summary>
         public override void InitiailizeCommands()
         {
+            WriteLine("Инициализация команд VM для окна авторизации.");
             base.InitiailizeCommands();
             AutorizationCommand = new RelayCommand(AutorizationMethod, null);
+            WriteLine("Инициализация команд VM для окна авторизации выполнена успешно.");
         }
 
         #endregion

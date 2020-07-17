@@ -1,0 +1,28 @@
+2020-07-12 21:53:54.1873|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-12 21:53:54.2090|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации.
+2020-07-12 21:53:54.2142|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации выполнена успешно.
+2020-07-12 21:53:54.2358|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-12 21:53:56.1252|INFO|FierceStukCloud_PC.App|Авторизация...
+2020-07-12 21:53:56.2528|INFO|FierceStukCloud_PC.App|Авторизирован.
+2020-07-12 21:57:04.4260|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-12 21:57:04.4470|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации.
+2020-07-12 21:57:04.4470|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации выполнена успешно.
+2020-07-12 21:57:04.4692|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-12 21:57:05.8199|INFO|FierceStukCloud_PC.App|Авторизация...
+2020-07-12 21:57:05.9538|INFO|FierceStukCloud_PC.App|Авторизирован.
+2020-07-13 11:59:28.8195|INFO|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-13 11:59:28.8440|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации.
+2020-07-13 11:59:28.8440|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации выполнена успешно.
+2020-07-13 11:59:28.8864|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-13 11:59:30.8703|INFO|FierceStukCloud_PC.App|Авторизация...
+2020-07-13 11:59:33.4431|INFO|FierceStukCloud_PC.App|Авторизирован.
+2020-07-13 12:00:38.8909|INFO|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-13 12:00:38.9131|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации.
+2020-07-13 12:00:38.9131|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации выполнена успешно.
+2020-07-13 12:00:38.9341|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-13 12:00:41.2523|INFO|FierceStukCloud_PC.App|Авторизация...
+2020-07-13 12:00:41.3627|INFO|FierceStukCloud_PC.App|Авторизирован.
+2020-07-13 12:20:02.5397|INFO|FierceStukCloud_PC.App|Создание VM для окна авторизации.
+2020-07-13 12:20:02.5630|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации.
+2020-07-13 12:20:02.5630|DEBUG|FierceStukCloud_PC.App|Инициализация команд VM для окна авторизации выполнена успешно.
+2020-07-13 12:20:02.5857|DEBUG|FierceStukCloud_PC.App|Создание VM для окна авторизации.

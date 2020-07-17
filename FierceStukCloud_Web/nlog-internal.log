@@ -1,0 +1,514 @@
+2020-07-13 16:51:44.2570 Info Message Template Auto Format enabled
+2020-07-13 16:51:44.2739 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-13 16:51:44.2843 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-13 16:51:44.2843 Trace ParseRulesElement
+2020-07-13 16:51:44.2920 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-13 16:51:44.2920 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-13 16:51:44.2920 Debug --- NLog configuration dump ---
+2020-07-13 16:51:44.2920 Debug Targets:
+2020-07-13 16:51:44.2920 Debug Rules:
+2020-07-13 16:51:44.2920 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-13 16:51:44.2920 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-13 16:51:44.2920 Debug --- End of NLog configuration dump ---
+2020-07-13 16:51:44.3076 Trace FindReachableObject<System.Object>:
+2020-07-13 16:51:44.3076 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-13 16:51:44.3076 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-13 16:51:44.3076 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 16:51:44.3076 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-13 16:51:44.3274 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-13 16:51:44.4088 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 16:51:44.4346 Debug Hide assemblies for callsite
+2020-07-13 16:51:44.4346 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 16:51:44.4346 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-13 16:51:44.4346 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-13 16:51:44.4346 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-13 16:51:44.4494 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-13 16:51:44.4645 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-13 16:51:44.4858 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-13 16:51:44.4966 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-13 16:51:44.4966 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-13 16:51:44.5099 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-13 16:51:44.5411 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-13 16:51:44.5411 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-13 16:51:44.5425 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-13 16:51:44.5425 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-13 16:51:44.5425 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-13 16:51:44.5425 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-13 16:51:44.5425 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-13 16:51:44.5790 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-13 16:51:44.6013 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-13 16:51:44.6165 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-13 16:51:44.6225 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-13 16:51:44.6471 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-13 16:51:44.6513 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-13 16:51:44.6708 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-13 16:51:44.6876 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-13 16:51:44.6876 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-13 16:51:44.6876 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-13 16:51:44.6876 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-13 16:51:44.7007 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-13 16:51:44.7007 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper
+2020-07-13 16:54:39.8227 Info Message Template Auto Format enabled
+2020-07-13 16:54:39.8227 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-13 16:54:39.8227 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 16:54:39.8227 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-13 16:54:39.8483 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-13 16:54:39.8483 Trace ParseRulesElement
+2020-07-13 16:54:39.8483 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-13 16:54:39.8549 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-13 16:54:39.8549 Debug --- NLog configuration dump ---
+2020-07-13 16:54:39.8549 Debug Targets:
+2020-07-13 16:54:39.8549 Debug Rules:
+2020-07-13 16:54:39.8549 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-13 16:54:39.8549 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-13 16:54:39.8549 Debug --- End of NLog configuration dump ---
+2020-07-13 16:54:39.8549 Trace FindReachableObject<System.Object>:
+2020-07-13 16:54:39.8722 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-13 16:54:39.8722 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-13 16:54:39.8722 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 16:54:39.8722 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-13 16:54:39.8867 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-13 16:54:39.9695 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 16:54:39.9984 Debug Hide assemblies for callsite
+2020-07-13 16:54:39.9984 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 16:54:39.9984 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-13 16:54:40.0107 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-13 16:54:40.0284 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-13 16:54:40.0284 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-13 16:54:40.0284 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-13 16:54:40.0284 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-13 16:54:40.0284 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-13 16:54:40.0543 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-13 16:54:40.0685 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-13 16:54:40.0685 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-13 16:54:40.0827 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-13 16:54:40.1156 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-13 16:54:40.1156 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-13 16:54:40.1156 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-13 16:54:40.1156 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-13 16:54:40.1156 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-13 16:54:40.1199 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-13 16:54:40.1199 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-13 16:54:40.1504 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-13 16:54:40.1516 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-13 16:54:40.1714 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-13 16:54:40.1850 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-13 16:54:40.1850 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-13 16:54:40.2139 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-13 16:54:40.2337 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-13 16:54:40.2480 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-13 16:54:40.2480 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-13 16:54:40.2480 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-13 16:54:40.2480 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-13 16:54:40.2480 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-13 16:54:40.2635 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper
+2020-07-14 12:50:24.4000 Info Message Template Auto Format enabled
+2020-07-14 12:50:24.4645 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-14 12:50:24.4645 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:50:24.4645 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 12:50:24.6644 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 12:50:24.6644 Trace ParseRulesElement
+2020-07-14 12:50:24.6717 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-14 12:50:24.6717 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-14 12:50:24.6717 Debug --- NLog configuration dump ---
+2020-07-14 12:50:24.6717 Debug Targets:
+2020-07-14 12:50:24.6717 Debug Rules:
+2020-07-14 12:50:24.6717 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 12:50:24.6717 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 12:50:24.6717 Debug --- End of NLog configuration dump ---
+2020-07-14 12:50:24.6861 Trace FindReachableObject<System.Object>:
+2020-07-14 12:50:24.6861 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 12:50:24.6861 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 12:50:24.6861 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 12:50:24.6861 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-14 12:50:24.7623 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-14 12:50:30.1873 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:50:30.3455 Debug Hide assemblies for callsite
+2020-07-14 12:50:30.3455 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:50:30.3587 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-14 12:50:30.3587 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-14 12:50:30.3587 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-14 12:50:30.3587 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-14 12:50:30.4243 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-14 12:50:30.6079 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-14 12:50:30.6079 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-14 12:50:30.6079 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-14 12:50:30.6079 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-14 12:50:30.6079 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-14 12:50:30.8158 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-14 12:50:31.0683 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-14 12:50:31.0683 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-14 12:50:31.2639 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-14 12:50:31.7056 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-14 12:50:31.7056 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-14 12:50:31.7618 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-14 12:50:31.7618 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-14 12:50:31.7618 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-14 12:50:31.7618 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-14 12:50:31.7618 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-14 12:50:31.9263 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-14 12:50:31.9263 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-14 12:50:31.9263 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-14 12:50:31.9263 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-14 12:50:31.9263 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-14 12:50:31.9935 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-14 12:50:31.9935 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-14 12:50:32.1038 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-14 12:50:32.1217 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-14 12:50:32.1217 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-14 12:50:32.5631 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-14 12:50:32.5631 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-14 12:50:32.5631 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-14 12:50:32.5983 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-14 12:50:32.5983 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-14 12:50:32.5983 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-14 12:50:32.5983 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-14 12:50:32.6163 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-14 12:50:32.6897 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-14 12:50:32.6897 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-14 12:50:32.6897 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-14 12:50:32.6897 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-14 12:50:32.7025 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-14 12:50:32.7025 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper
+2020-07-14 12:57:08.9588 Info Message Template Auto Format enabled
+2020-07-14 12:57:09.0222 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-14 12:57:09.0222 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:57:09.0327 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 12:57:09.2172 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 12:57:09.2172 Trace ParseRulesElement
+2020-07-14 12:57:09.2172 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-14 12:57:09.2172 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-14 12:57:09.2342 Debug --- NLog configuration dump ---
+2020-07-14 12:57:09.2342 Debug Targets:
+2020-07-14 12:57:09.2342 Debug Rules:
+2020-07-14 12:57:09.2342 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 12:57:09.2342 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 12:57:09.2342 Debug --- End of NLog configuration dump ---
+2020-07-14 12:57:09.2342 Trace FindReachableObject<System.Object>:
+2020-07-14 12:57:09.2342 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 12:57:09.2457 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 12:57:09.2457 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 12:57:09.2457 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-14 12:57:09.3148 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-14 12:57:14.6835 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:57:14.8348 Debug Hide assemblies for callsite
+2020-07-14 12:57:14.8348 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 12:57:14.8449 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-14 12:57:14.8449 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-14 12:57:14.8449 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-14 12:57:14.8449 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-14 12:57:14.9100 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-14 12:57:14.9100 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-14 12:57:14.9100 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-14 12:57:14.9100 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-14 12:57:14.9168 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-14 12:57:14.9168 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-14 12:57:15.0964 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-14 12:57:15.0964 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-14 12:57:15.0964 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-14 12:57:15.0964 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-14 12:57:15.0964 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-14 12:57:15.2997 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-14 12:57:15.5446 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-14 12:57:15.5446 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-14 12:57:15.7393 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-14 12:57:16.2028 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-14 12:57:16.2028 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-14 12:57:16.2613 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-14 12:57:16.2613 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-14 12:57:16.2613 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-14 12:57:16.2613 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-14 12:57:16.2613 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-14 12:57:16.4188 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-14 12:57:16.4188 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-14 12:57:16.4188 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-14 12:57:16.4188 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-14 12:57:16.4188 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-14 12:57:16.4948 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-14 12:57:16.4955 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-14 12:57:16.6070 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-14 12:57:16.6236 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-14 12:57:16.6236 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-14 12:57:17.0664 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-14 12:57:17.1298 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-14 12:57:17.1298 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-14 12:57:17.1298 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-14 12:57:17.1298 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-14 12:57:17.1366 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-14 12:57:17.1366 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-14 12:57:17.1550 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-14 12:57:17.2403 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-14 12:57:17.2403 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-14 12:57:17.2403 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-14 12:57:17.2559 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-14 12:57:17.2682 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-14 12:57:17.2682 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper
+2020-07-14 13:03:07.3334 Info Message Template Auto Format enabled
+2020-07-14 13:03:07.3967 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-14 13:03:07.3967 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:03:07.4057 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 13:03:07.6005 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 13:03:07.6005 Trace ParseRulesElement
+2020-07-14 13:03:07.6062 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-14 13:03:07.6062 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-14 13:03:07.6062 Debug --- NLog configuration dump ---
+2020-07-14 13:03:07.6062 Debug Targets:
+2020-07-14 13:03:07.6062 Debug Rules:
+2020-07-14 13:03:07.6062 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 13:03:07.6062 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 13:03:07.6062 Debug --- End of NLog configuration dump ---
+2020-07-14 13:03:07.6062 Trace FindReachableObject<System.Object>:
+2020-07-14 13:03:07.6220 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 13:03:07.6220 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 13:03:07.6220 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 13:03:07.6220 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-14 13:03:07.6900 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-14 13:03:12.9955 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:03:13.1491 Debug Hide assemblies for callsite
+2020-07-14 13:03:13.1491 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:03:13.1620 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-14 13:03:13.1620 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-14 13:03:13.1620 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-14 13:03:13.1683 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-14 13:03:13.2271 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-14 13:03:13.2271 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-14 13:03:13.2271 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-14 13:03:13.2271 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-14 13:03:13.2322 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-14 13:03:13.2322 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-14 13:03:13.4101 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-14 13:03:13.4101 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-14 13:03:13.4101 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-14 13:03:13.4101 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-14 13:03:13.4101 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-14 13:03:13.6195 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-14 13:03:13.8395 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-14 13:03:13.8395 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-14 13:03:14.0304 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-14 13:03:14.4923 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-14 13:03:14.4923 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-14 13:03:14.5500 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-14 13:03:14.5500 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-14 13:03:14.5500 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-14 13:03:14.5500 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-14 13:03:14.5500 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-14 13:03:14.7138 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-14 13:03:14.7138 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-14 13:03:14.7138 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-14 13:03:14.7138 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-14 13:03:14.7138 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-14 13:03:14.7804 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-14 13:03:14.7804 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-14 13:03:14.8929 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-14 13:03:14.9395 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-14 13:03:14.9395 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-14 13:03:15.3778 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-14 13:03:15.3778 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-14 13:03:15.3778 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-14 13:03:15.4330 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-14 13:03:15.4330 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-14 13:03:15.4330 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-14 13:03:15.4330 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-14 13:03:15.4526 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-14 13:03:15.5264 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-14 13:03:15.5264 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-14 13:03:15.5264 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-14 13:03:15.5264 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-14 13:03:15.5264 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-14 13:03:15.5422 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper
+2020-07-14 13:07:36.1220 Info Message Template Auto Format enabled
+2020-07-14 13:07:36.1924 Info Loading assembly: NLog.Web.AspNetCore
+2020-07-14 13:07:36.1924 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:07:36.2052 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Log
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Log'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 13:07:36.3931 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create target type: Zidium.Errors
+ ---> System.ArgumentException: Target cannot be found: 'Zidium.Errors'
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.CreateTargetType(String targetTypeName)
+   --- End of inner exception stack trace ---
+2020-07-14 13:07:36.3931 Trace ParseRulesElement
+2020-07-14 13:07:36.4012 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumLog' not found for logging rule: *.
+2020-07-14 13:07:36.4012 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ZidiumErrors' not found for logging rule: *.
+2020-07-14 13:07:36.4012 Debug --- NLog configuration dump ---
+2020-07-14 13:07:36.4012 Debug Targets:
+2020-07-14 13:07:36.4012 Debug Rules:
+2020-07-14 13:07:36.4012 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 13:07:36.4012 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]
+2020-07-14 13:07:36.4012 Debug --- End of NLog configuration dump ---
+2020-07-14 13:07:36.4012 Trace FindReachableObject<System.Object>:
+2020-07-14 13:07:36.4199 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 13:07:36.4199 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ]'
+2020-07-14 13:07:36.4199 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-14 13:07:36.4199 Info Validating config: Targets=0, ConfigItems=2, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\nlog.config
+2020-07-14 13:07:36.4915 Debug Targets not configured for logger: FierceStukCloud_Web.Program
+2020-07-14 13:07:41.9560 Debug ScanAssembly('NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:07:42.1177 Debug Hide assemblies for callsite
+2020-07-14 13:07:42.1177 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-14 13:07:42.1333 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.ApplicationLifetime
+2020-07-14 13:07:42.1333 Debug Targets not configured for logger: Microsoft.Extensions.Hosting.Internal.Host
+2020-07-14 13:07:42.1369 Debug Targets not configured for logger: Microsoft.Hosting.Lifetime
+2020-07-14 13:07:42.1369 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.TypeForwardingActivator
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptorFactory
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor
+2020-07-14 13:07:42.1992 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+2020-07-14 13:07:42.3834 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver
+2020-07-14 13:07:42.3834 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider
+2020-07-14 13:07:42.3834 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService
+2020-07-14 13:07:42.3855 Debug Targets not configured for logger: Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer
+2020-07-14 13:07:42.3855 Debug Targets not configured for logger: Microsoft.AspNetCore.Hosting.Diagnostics
+2020-07-14 13:07:42.5908 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor
+2020-07-14 13:07:42.8591 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.MvcOptions
+2020-07-14 13:07:42.8591 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter
+2020-07-14 13:07:43.0514 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ApplicationModels.CompiledPageRouteModelProvider
+2020-07-14 13:07:43.4882 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionManager
+2020-07-14 13:07:43.4882 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionContext
+2020-07-14 13:07:43.5473 Debug Targets not configured for logger: Microsoft.AspNetCore.Http.Connections.Internal.HttpConnectionDispatcher
+2020-07-14 13:07:43.5473 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.DefaultHubLifetimeManager
+2020-07-14 13:07:43.5473 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubProtocolResolver
+2020-07-14 13:07:43.5473 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.HubConnectionHandler
+2020-07-14 13:07:43.5473 Debug Targets not configured for logger: Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher
+2020-07-14 13:07:43.7075 Debug Targets not configured for logger: Microsoft.AspNetCore.WebSockets.WebSocketMiddleware
+2020-07-14 13:07:43.7075 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointMiddleware
+2020-07-14 13:07:43.7075 Debug Targets not configured for logger: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware
+2020-07-14 13:07:43.7075 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware
+2020-07-14 13:07:43.7075 Debug Targets not configured for logger: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware
+2020-07-14 13:07:43.7746 Debug Targets not configured for logger: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+2020-07-14 13:07:43.7746 Debug Targets not configured for logger: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware
+2020-07-14 13:07:43.8855 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler
+2020-07-14 13:07:43.8855 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.Matching.DfaMatcher
+2020-07-14 13:07:43.9072 Debug Targets not configured for logger: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler
+2020-07-14 13:07:44.3882 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory
+2020-07-14 13:07:44.3882 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder
+2020-07-14 13:07:44.3882 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker
+2020-07-14 13:07:44.4251 Debug Targets not configured for logger: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector
+2020-07-14 13:07:44.4251 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+2020-07-14 13:07:44.4251 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+2020-07-14 13:07:44.4328 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker
+2020-07-14 13:07:44.4483 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor
+2020-07-14 13:07:44.5344 Debug Targets not configured for logger: Microsoft.AspNetCore.Routing.DefaultLinkGenerator
+2020-07-14 13:07:44.5344 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Routing.EndpointRoutingUrlHelper
+2020-07-14 13:07:44.5344 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker
+2020-07-14 13:07:44.5753 Debug Targets not configured for logger: Microsoft.AspNetCore.Antiforgery.DefaultAntiforgery
+2020-07-14 13:07:44.5960 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper
+2020-07-14 13:07:44.6073 Debug Targets not configured for logger: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper

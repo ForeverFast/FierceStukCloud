@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FierceStukCloud_Mobile.MVVM.Views.PlayerPage">
+    <ContentPage.Content>
+        <Grid Padding="0" RowSpacing="0"
+              BackgroundColor="#FF4D4D51">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="230"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" BackgroundColor="{x:Null}">
+
+                <Image 
+                        Margin="35"
+                        BackgroundColor="Aqua"/>
+
+            </Grid>
+            
+            <Grid Grid.Row="1" BackgroundColor="{x:Null}"
+                  
+                  RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="130"/>
+                </Grid.RowDefinitions>
+
+                <Grid ClassId="SliderGrid" Grid.Row="0"
+                      
+                      VerticalOptions="End"                    
+                      Margin="15,0"
+                      
+                      BackgroundColor="{x:Null}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0"
+                           
+                           Text="Title"
+                           FontSize="20"/>
+
+                    <Label Grid.Row="1"
+                           
+                           Text="Author"
+                           FontSize="15"/>
+
+                </Grid>
+
+                <Grid ClassId="SliderGrid" Grid.Row="1"
+                      
+                      BackgroundColor="{x:Null}">
+                    <Slider Value="0.5"/>
+                </Grid>
+               
+
+                <Grid Grid.Row="2"
+                      
+                      RowSpacing="0"
+                      BackgroundColor="{x:Null}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid ClassId="Buttons1" Grid.Row="0"
+                        
+                          BackgroundColor="{x:Null}">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"
+                                
+                                 
+                                
+                                BackgroundColor="{x:Null}"/>
+
+
+                        <Button Grid.Column="1"/>
+                        <Button Grid.Column="2"/>
+                        <Button Grid.Column="3"/>
+                        <Button Grid.Column="4"/>
+
+                    </Grid>
+
+
+                    <Grid ClassId="Buttons2" Grid.Row="1"
+                        
+                          BackgroundColor="{x:Null}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"/>
+                       
+                        <Button Grid.Column="4"/>
+
+
+                    </Grid>
+
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

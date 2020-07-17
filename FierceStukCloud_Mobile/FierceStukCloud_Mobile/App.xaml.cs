@@ -15,14 +15,14 @@ namespace FierceStukCloud_Mobile
 
         //http://localhost:52828/
         //http://fiercestukcloud.life/
-        public static string CurSiteLing = "http://localhost:52828/";
+        public static string CurSiteLing = "http://fiercestukcloud.life/";
 
         public App()
         {
             InitializeComponent();
 
             //DependencyService.Register<MockDataStore>();
-            MainPage = new AuthenticationV();
+            MainPage = new NavigationPage(new AuthenticationV());
         }
 
         protected override void OnStart()

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Screenshot_544.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="MVVM\Views\AuthenticationV.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MVVM\Views\PlayerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

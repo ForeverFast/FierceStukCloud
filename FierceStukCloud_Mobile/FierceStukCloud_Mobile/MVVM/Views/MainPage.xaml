@@ -8,7 +8,22 @@
             x:Class="FierceStukCloud_Mobile.Views.MainPage">
 
     <TabbedPage.Children>
-       
+        <ContentPage Title="Список">
+            <ListView ItemsSource="{Binding Songs, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Label Text="{Binding Title}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+            
+        </ContentPage>
     </TabbedPage.Children>
     
 </TabbedPage>

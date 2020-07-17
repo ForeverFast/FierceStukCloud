@@ -1,0 +1,89 @@
+2020-07-13 14:57:26.2835 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2020-07-13 14:57:26.3092 Debug Found assembly location directory: 'C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2020-07-13 14:57:26.3092 Debug Search for auto loading files in location: C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1
+2020-07-13 14:57:26.3092 Debug Start auto loading, location: C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1
+2020-07-13 14:57:26.3092 Info Auto loading assembly file: C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll
+2020-07-13 14:57:26.3092 Info Loading assembly file: C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll
+2020-07-13 14:57:26.3092 Info NLog.ZidiumTarget, Version=1.0.8.0, Culture=neutral, PublicKeyToken=null. File version: 1.0.8.0. Product version: 1.0.8. GlobalAssemblyCache: False
+2020-07-13 14:57:26.3092 Debug ScanAssembly('NLog.ZidiumTarget, Version=1.0.8.0, Culture=neutral, PublicKeyToken=null')
+2020-07-13 14:57:26.3092 Info Auto loading assembly file: C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll succeeded!
+2020-07-13 14:57:26.3092 Debug Auto loading done
+2020-07-13 14:57:26.3092 Info Message Template Auto Format enabled
+2020-07-13 14:57:26.3332 Debug Setting 'Zidium.NLogTargetLog.name' to 'ZidiumLog'
+2020-07-13 14:57:26.3332 Debug Setting 'Zidium.NLogTargetLog.componentId' to '65bd4f2b-6594-4f4a-b581-e8f63168ae4e'
+2020-07-13 14:57:26.3332 Info Adding target NLogTargetLog(Name=ZidiumLog)
+2020-07-13 14:57:26.3332 Debug Registered target ZidiumLog: Zidium.NLogTargetLog
+2020-07-13 14:57:26.3332 Debug Setting 'Zidium.NLogTargetErrors.name' to 'ZidiumErrors'
+2020-07-13 14:57:26.3332 Debug Setting 'Zidium.NLogTargetErrors.componentId' to '65bd4f2b-6594-4f4a-b581-e8f63168ae4e'
+2020-07-13 14:57:26.3332 Info Adding target NLogTargetErrors(Name=ZidiumErrors)
+2020-07-13 14:57:26.3332 Debug Registered target ZidiumErrors: Zidium.NLogTargetErrors
+2020-07-13 14:57:26.3332 Trace ParseRulesElement
+2020-07-13 14:57:26.3477 Debug --- NLog configuration dump ---
+2020-07-13 14:57:26.3477 Debug Targets:
+2020-07-13 14:57:26.3477 Debug Zidium.Log Target[ZidiumLog]
+2020-07-13 14:57:26.3477 Debug Zidium.Errors Target[ZidiumErrors]
+2020-07-13 14:57:26.3477 Debug Rules:
+2020-07-13 14:57:26.3477 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ZidiumLog ]
+2020-07-13 14:57:26.3477 Debug logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ZidiumErrors ]
+2020-07-13 14:57:26.3477 Debug --- End of NLog configuration dump ---
+2020-07-13 14:57:26.3477 Trace FindReachableObject<System.Object>:
+2020-07-13 14:57:26.3558 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ZidiumLog ]'
+2020-07-13 14:57:26.3558 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace  Scanning NLogTargetLog 'Zidium.Log Target[ZidiumLog]'
+2020-07-13 14:57:26.3558 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Trace Debug Info Warn Error Fatal ] appendTo: [ ZidiumErrors ]'
+2020-07-13 14:57:26.3558 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace  Scanning NLogTargetErrors 'Zidium.Errors Target[ZidiumErrors]'
+2020-07-13 14:57:26.3558 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2020-07-13 14:57:26.3558 Trace Scanning NLogTargetLog 'Zidium.Log Target[ZidiumLog]'
+2020-07-13 14:57:26.3558 Trace Scanning NLogTargetErrors 'Zidium.Errors Target[ZidiumErrors]'
+2020-07-13 14:57:26.3558 Info Validating config: TargetNames=ZidiumLog, ZidiumErrors, ConfigItems=6, FilePath=C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NLog.config
+2020-07-13 14:57:26.3558 Debug Unused target checking is started... Rule Count: 2, Target Count: 2
+2020-07-13 14:57:26.3558 Debug Unused target checking is completed. Total Rule Count: 2, Total Target Count: 2, Unused Target Count: 0
+2020-07-13 14:57:26.3558 Trace Initializing Zidium.Errors Target[ZidiumErrors]
+2020-07-13 14:57:26.3558 Trace FindReachableObject<NLog.Layouts.Layout>:
+2020-07-13 14:57:26.3558 Trace Scanning NLogTargetErrors 'Zidium.Errors Target[ZidiumErrors]'
+2020-07-13 14:57:26.3558 Trace Zidium.Errors Target[ZidiumErrors] has 0 layouts
+2020-07-13 14:57:26.3558 Trace Initializing Zidium.Log Target[ZidiumLog]
+2020-07-13 14:57:26.3558 Trace FindReachableObject<NLog.Layouts.Layout>:
+2020-07-13 14:57:26.3558 Trace Scanning NLogTargetLog 'Zidium.Log Target[ZidiumLog]'
+2020-07-13 14:57:26.3558 Trace Zidium.Log Target[ZidiumLog] has 0 layouts
+2020-07-13 14:57:26.3693 Trace Initializing Zidium.Errors Target[ZidiumErrors]
+2020-07-13 14:57:26.3693 Trace FindReachableObject<NLog.Layouts.Layout>:
+2020-07-13 14:57:26.3693 Trace Scanning NLogTargetErrors 'Zidium.Errors Target[ZidiumErrors]'
+2020-07-13 14:57:26.3693 Trace Zidium.Errors Target[ZidiumErrors] has 0 layouts
+2020-07-13 14:57:26.3693 Trace Initializing Zidium.Log Target[ZidiumLog]
+2020-07-13 14:57:26.3693 Trace FindReachableObject<NLog.Layouts.Layout>:
+2020-07-13 14:57:26.3693 Trace Scanning NLogTargetLog 'Zidium.Log Target[ZidiumLog]'
+2020-07-13 14:57:26.3693 Trace Zidium.Log Target[ZidiumLog] has 0 layouts
+2020-07-13 14:57:26.3693 Info Configuration initialized.
+2020-07-13 14:57:26.3693 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.2.11786. Product version: 4.7.2+024896f64b840a743d3fd89e29c2186681e7795f. GlobalAssemblyCache: False
+2020-07-13 14:57:26.3693 Debug Targets for Test.Program by level:
+2020-07-13 14:57:26.3693 Debug Trace => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.3693 Debug Debug => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.3693 Debug Info => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.3693 Debug Warn => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.3693 Debug Error => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.3693 Debug Fatal => ZidiumLog ZidiumErrors
+2020-07-13 14:57:26.4905 Info AppDomain Shutting down. Logger closing...
+2020-07-13 14:57:26.4905 Trace Flushing all 2 targets...
+2020-07-13 14:57:26.4905 Trace ForEachItemInParallel() 2 items
+2020-07-13 14:57:26.4970 Trace Continuation invoked: 
+2020-07-13 14:57:26.4970 Trace Continuation invoked: 
+2020-07-13 14:57:26.4970 Trace Parallel task completed. 1 items remaining
+2020-07-13 14:57:26.4970 Trace Parallel task completed. 0 items remaining
+2020-07-13 14:57:26.4970 Debug Flush completed
+2020-07-13 14:57:26.4970 Debug Targets not configured for logger: Test.Program
+2020-07-13 14:57:26.4970 Debug Closing logging configuration...
+2020-07-13 14:57:26.4970 Trace Closing Zidium.Log Target[ZidiumLog]
+2020-07-13 14:57:26.4970 Debug Closing target 'Zidium.Log Target[ZidiumLog]'.
+2020-07-13 14:57:26.4970 Debug Closed target 'Zidium.Log Target[ZidiumLog]'.
+2020-07-13 14:57:26.4970 Trace Closing Zidium.Errors Target[ZidiumErrors]
+2020-07-13 14:57:26.4970 Debug Closing target 'Zidium.Errors Target[ZidiumErrors]'.
+2020-07-13 14:57:26.4970 Debug Closed target 'Zidium.Errors Target[ZidiumErrors]'.
+2020-07-13 14:57:26.4970 Trace Closing Zidium.Log Target[ZidiumLog]
+2020-07-13 14:57:26.4970 Trace Closing Zidium.Errors Target[ZidiumErrors]
+2020-07-13 14:57:26.4970 Debug Finished closing logging configuration.
+2020-07-13 14:57:26.4970 Info Logger has been shut down.

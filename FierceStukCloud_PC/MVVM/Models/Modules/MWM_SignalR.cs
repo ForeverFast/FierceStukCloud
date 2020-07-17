@@ -5,8 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using static FierceStukCloud_NetCoreLib.Types.CustomEnums;
 using FierceStukCloud_NetStandardLib.MVVM;
+using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
+using static FierceStukCloud_NetStandardLib.Extension.TypeConventer;
+using System.Text.Json;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
+using FierceStukCloud_NetStandardLib.Extension;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
@@ -53,25 +58,57 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         }
 
 
-        public async Task CommandFromPhone(string command, object[] objects)
+        public async Task CommandFromPhone(DeviceType deviceFrom, Commands command)
         {
-            Commands _command;
-            if (command.TryConvert(out _command) == true)
-                switch (_command)
-                {
-                    case Commands.GetSongs:
 
-                        await hubConnection.SendAsync("Send",Commands.SendSongs.ToString(), Model.LocalFiles);
+            switch (command)
+            {
+                case Commands.GetSongs:
 
-                        break;
+                    List<LocalFolder> LocalFolders;
+                    List<Song> Songs;
 
-                    case Commands.SetCurrentSong:
+                    Model.LocalFiles.TrySort(out LocalFolders, out Songs);
 
-                        Model.SetCurrentSong(objects[0] as Song);
+                    var json1 = JsonSerializer.Serialize<List<LocalFolder>>(LocalFolders);
+                    var json2 = JsonSerializer.Serialize<List<Song>>(Songs);
 
-                        break;
-                }
+                    await hubConnection.SendAsync("SendSongsCommand", DeviceType.PC, deviceFrom, json1, json2);
 
+                    break;
+
+                case Commands.PrevSong:
+
+                   
+
+                    break;
+                case Commands.NextSong:
+
+                    
+
+                    break;
+                case Commands.PlaySong:
+
+                   
+
+                    break;
+                case Commands.PauseSong:
+
+                    
+
+                    break;
+                case Commands.StopSong:
+
+                    
+
+                    break;
+            }
+
+        }
+
+        public async Task SetCurrentSong(DeviceType deviceFrom, Song song)
+        {
+            Model.SetCurrentSong(song);
         }
 
         // подключение к чату
@@ -117,9 +154,32 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                 })
                 .Build();
 
-            hubConnection.On<string, object[]>("MessageFromPhone", CommandFromPhone);
+            hubConnection.On<DeviceType, Commands>("Commands", CommandFromPhone);
+            hubConnection.On<DeviceType, Song>("SetCurrentSong", SetCurrentSong);
+            //hubConnection.On("TestPhone", () =>
+            //{
+            //    int a = 1 + 1;
+            //});
+
+            hubConnection.Closed += async (Exception) =>
+            {
+                IsConnected = false;
+                //DialogService.ShowMessage(Exception);
+                Connect();
+            };
+
+            hubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
+            
+
+            
+
+
+            //hubConnection.On<DeviceType, Commands>("Commands", CommandFromPhone);
 
             Connect();
+
+
+            //hubConnection.SendAsync("TestPC");
         }
 
         #endregion

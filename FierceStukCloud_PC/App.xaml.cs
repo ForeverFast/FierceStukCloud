@@ -12,6 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using NLog;
+using static System.Diagnostics.Debug;
 
 namespace FierceStukCloud_PC
 {
@@ -22,12 +24,16 @@ namespace FierceStukCloud_PC
 
         public static SQLiteConnection Connection { get; set; }
 
+        public static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         //http://localhost:52828/
         //http://fiercestukcloud.life/
-        public static string CurSiteLing = "http://localhost:52828/";
+        public static string CurSiteLing = "http://fiercestukcloud.life/";
 
         public App()
         {
+            Log.Debug("Запуск приложения...");
+            WriteLine("Запуск приложения...");
             try
             {
                 #region Локальная БД
@@ -57,6 +63,8 @@ namespace FierceStukCloud_PC
                 cmd.ExecuteNonQuery();
                 Connection.Close();
                 #endregion
+
+
             }
             catch (Exception)
             {
@@ -73,10 +81,21 @@ namespace FierceStukCloud_PC
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+           
             var AVM = new AutorizationVM(Dispatcher);
             await DisplayRootRegistry.ShowModalPresentation(AVM);
+            
+        }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Log.Debug("Завершение работы приложения...");
+
+            Zidium.Api.Client.Instance.EventManager.Flush();
+            Zidium.Api.Client.Instance.WebLogManager.Flush();
+
+            base.OnExit(e);
         }
     }
 }
+

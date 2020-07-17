@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ohlk7qgTvxpMVptrPWk31lbPSgsFjj2amlmex+coST4x50/PB96Ka8/GpnijgRPlphezVoZwddXQsnEWW7itGg==",
+  "dgSpecHash": "xVZP/GyznIFIOlVEzZEehM3yPoqdwbCpU5NkFW4XH+iRYIp3Cbu6CW4NCSvFnxhQF+qkN2RPq9DacUi6m8/hVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_Web\\FierceStukCloud_Web.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,11 @@
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\naudio\\1.10.0\\naudio.1.10.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\nlog\\4.7.2\\nlog.4.7.2.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\nlog.config\\4.7.2\\nlog.config.4.7.2.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\nlog.extensions.logging\\1.6.2\\nlog.extensions.logging.1.6.2.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\nlog.schema\\4.7.2\\nlog.schema.4.7.2.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.2\\nlog.web.aspnetcore.4.9.2.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

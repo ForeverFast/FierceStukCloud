@@ -8,7 +8,21 @@
 
     <Application.Resources>
         <ResourceDictionary>
+            
             <!--Global Styles-->
+            <Color x:Key="Gor">#f3ca20</Color>
+
+            <Color x:Key="GrayLVL0">#FF4D4D51</Color>
+            <Color x:Key="GrayLVL1">#FF2D2D30</Color>
+            <Color x:Key="GrayLVL2">#FF252527</Color>
+            <Color x:Key="GrayLVL3">#FF1A1A1B</Color>
+            <Color x:Key="GrayLVL4">#FF121213</Color>
+
+            <Color x:Key="StandartTextColor">#FFCCC5C5</Color>
+            <Color x:Key="StandartTextLightColor">#FFE5E5E5</Color>
+            <Color x:Key="StandartLightColor">#FFCCC5C5"</Color>
+            <Color x:Key="DimColor">#FFCCC5C5</Color>
+
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
