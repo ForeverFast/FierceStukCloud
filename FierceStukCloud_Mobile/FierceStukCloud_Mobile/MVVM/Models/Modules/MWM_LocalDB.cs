@@ -53,7 +53,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                             Duration = SQL["Album"].ToString(),
 
                             PlayListNames = SQL["PlayListNames"].ToString(),
-                            LocalURL = SQL["LocalURL"].ToString(),
+                            LocalUrl = SQL["LocalURL"].ToString(),
                             UserLogin = SQL["UserLogin"].ToString(),
 
                             OnServer = Convert.ToBoolean(SQL["OnServer"]),
@@ -98,7 +98,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                         continue;
                     }
 
-                    var path = item.LocalURL.Substring(0, item.LocalURL.LastIndexOf('\\'));
+                    var path = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
 
                     var LF = temp.Find(x => x.LocalURL == path);
                     if (LF != null)
@@ -108,7 +108,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                     }
                     else
                     {
-                        var title = item.LocalURL.Substring(0, item.LocalURL.LastIndexOf('\\'));
+                        var title = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
                         title = title.Substring(title.LastIndexOf('\\') + 1);
 
                         temp.Add(new LocalFolder()

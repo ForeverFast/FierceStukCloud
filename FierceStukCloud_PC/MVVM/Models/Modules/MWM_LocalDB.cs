@@ -50,10 +50,10 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                             Title = SQL["Title"].ToString(),
                             Album = SQL["Album"].ToString(),
                             Year = Convert.ToUInt32(SQL["Year"]),
-                            Duration = SQL["Album"].ToString(),
+                            Duration = SQL["Duration"].ToString(),
 
                             PlayListNames = SQL["PlayListNames"].ToString(),
-                            LocalURL = SQL["LocalURL"].ToString(),
+                            LocalUrl = SQL["LocalURL"].ToString(),
                             UserLogin = SQL["UserLogin"].ToString(),
 
                             OnServer = Convert.ToBoolean(SQL["OnServer"]),
@@ -98,7 +98,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                         continue;
                     }
 
-                    var path = item.LocalURL.Substring(0, item.LocalURL.LastIndexOf('\\'));
+                    var path = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
 
                     var LF = temp.Find(x => x.LocalURL == path);
                     if (LF != null)
@@ -108,7 +108,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     }
                     else
                     {
-                        var title = item.LocalURL.Substring(0, item.LocalURL.LastIndexOf('\\'));
+                        var title = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
                         title = title.Substring(title.LastIndexOf('\\') + 1);
 
                         temp.Add(new LocalFolder()
@@ -176,7 +176,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                         Year = file_TAG.Tag.Year,
 
                         PlayListNames = "",
-                        LocalURL = item,
+                        LocalUrl = item,
                         UserLogin = "",
 
                         OnServer = false,
@@ -290,7 +290,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     Year = file_TAG.Tag.Year,
 
                     PlayListNames = "",
-                    LocalURL = path,
+                    LocalUrl = path,
                     UserLogin = "",
 
                     OnServer = false,

@@ -9,7 +9,8 @@
 
     <TabbedPage.Children>
         <ContentPage Title="Список">
-            <ListView ItemsSource="{Binding Songs, Mode=TwoWay}">
+            <ListView ItemsSource="{Binding LocalFiles, Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedBMO, Mode=TwoWay,UpdateSourceEventName=PropertyChanged}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

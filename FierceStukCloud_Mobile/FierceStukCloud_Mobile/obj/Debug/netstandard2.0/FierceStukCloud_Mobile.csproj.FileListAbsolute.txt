@@ -16,3 +16,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukClo
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\ref\FierceStukCloud_Mobile.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\PlayerPage.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\ListSongsV.xaml.g.cs

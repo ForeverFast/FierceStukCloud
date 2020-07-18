@@ -18,6 +18,7 @@ using System.IO;
 using FierceStukCloud_NetCoreLib.Services;
 using System.Collections.ObjectModel;
 using FierceStukCloud_NetStandardLib.MVVM;
+using System.Windows;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -182,7 +183,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         }
 
         /// <summary> Подготовка песни к воспроизведению </summary>
-        public void SetCurrentSong(Song song)
+        public void SetCurrentSong(Song song) => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
         {
             try
             {
@@ -192,13 +193,13 @@ namespace FierceStukCloud_PC.MVVM.Models
                     CurrentMusicContainer = song.CurrentMusicContainer;
 
                 CurrentSong = song;
-                MP.Open(new Uri(CurrentSong.LocalURL));
+                MP.Open(new Uri(CurrentSong.LocalUrl));
 
 
                 // Загрузка изображения
                 try
                 {
-                    TagLib.File file_TAG = TagLib.File.Create(song.LocalURL);
+                    TagLib.File file_TAG = TagLib.File.Create(song.LocalUrl);
                     var bin = file_TAG.Tag.Pictures[0].Data.Data; // Конвертация в массив байтов
 
                     var bitmapImage = new BitmapImage();
@@ -216,11 +217,11 @@ namespace FierceStukCloud_PC.MVVM.Models
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
             }
-        }
+        }));
 
         #endregion
 
@@ -269,6 +270,12 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #endregion
 
+        #region Хаб
+
+
+
+        #endregion
+
         public void ShutDownConnection() => MWM_SignalR.Disconnect();
         
         #endregion
@@ -287,7 +294,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
-            GetListLocalFiles();
+            //GetListLocalFiles();
             MWM_SignalR = new MWM_SignalR(this);
 
             

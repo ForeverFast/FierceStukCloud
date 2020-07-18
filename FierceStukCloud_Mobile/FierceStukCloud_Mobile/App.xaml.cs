@@ -23,6 +23,7 @@ namespace FierceStukCloud_Mobile
 
             //DependencyService.Register<MockDataStore>();
             MainPage = new NavigationPage(new AuthenticationV());
+            //MainPage = new PlayerPage();
         }
 
         protected override void OnStart()
@@ -36,5 +37,7 @@ namespace FierceStukCloud_Mobile
         protected override void OnResume()
         {
         }
+
+        
     }
 }

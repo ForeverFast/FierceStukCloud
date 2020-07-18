@@ -119,7 +119,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         Songs.Add(new ImageAsync<Song>
                             (
                                 Dispatcher,
-                                item.LocalURL,
+                                item.LocalUrl,
                                 item
                             ));
             }
@@ -163,7 +163,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
             else
             {
-                ShowFolder((SelectedBMO as Song).LocalURL);
+                ShowFolder((SelectedBMO as Song).LocalUrl);
             }
         }
 
@@ -195,22 +195,19 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public RelayCommand SongPosChangedEndedCommand { get; private set; }
 
-        private void SongPosChangedStartExecute(object parameter)
-        {
-            PosChanges = true;
-            tempVolume = model.MP.Volume;
-            model.MP.Volume = 0;
-        }
+        private bool PosChanges;
 
+        private void SongPosChangedStartExecute(object parameter)
+            => PosChanges = true;
+           
         private void SongPosChangedEndedExecute(object parameter)
         {
             model.MP.Position = TimeSpan.FromSeconds(SongTimeLineForSlider);
-            PosChanges = false;
-            model.MP.Volume = tempVolume;
+            PosChanges = false;        
         }
 
-        private bool PosChanges;
-        private double tempVolume;
+       
+      
 
         #endregion
 

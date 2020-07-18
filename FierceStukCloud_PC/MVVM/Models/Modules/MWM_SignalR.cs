@@ -17,8 +17,8 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
     public class MWM_SignalR : OnPropertyChangedClass
     {
-        private HubConnection hubConnection;
-        private MainWindowM Model;
+        private HubConnection hubConnection { get; set; }
+        private MainWindowM Model { get; set; }
 
         #region Свойства
 
@@ -27,91 +27,90 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         private bool _isConnected;
         #endregion
 
-        #endregion
 
         /// <summary> Идет ли отправка сообщений </summary>
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set
-            {
-                if (_isBusy != value)
-                {
-                    _isBusy = value;
-                    // OnPropertyChanged("IsBusy");
-                }
-            }
-        }
+        public bool IsBusy { get => _isBusy; set { if (_isBusy != value) SetProperty(ref _isBusy, value); } }
 
         /// <summary> Осуществлено ли подключение </summary>
-        public bool IsConnected
+        public bool IsConnected { get => _isConnected; set { if (_isConnected != value) SetProperty(ref _isConnected, value); } }
+
+        #endregion
+
+        private async Task CommandFromPhone(DeviceType deviceFrom, Commands command)
         {
-            get => _isConnected;
-            set
+            try
             {
-                if (_isConnected != value)
+
+
+                switch (command)
                 {
-                    _isConnected = value;
-                    //  OnPropertyChanged("IsConnected");
+                    case Commands.GetSongs:
+
+                        List<LocalFolder> LocalFolders;
+                        List<Song> Songs;
+
+                        Model.LocalFiles.TrySort(out LocalFolders, out Songs);
+
+                        var json1 = JsonSerializer.Serialize<List<LocalFolder>>(LocalFolders);
+                        var json2 = JsonSerializer.Serialize<List<Song>>(Songs);
+
+                        await hubConnection.SendAsync("SendSongsCommand", DeviceType.PC, deviceFrom, json1, json2);
+
+                        break;
+
+                    case Commands.PrevSong:
+
+                        Model.PrevSong();
+
+                        break;
+                    case Commands.NextSong:
+
+                        Model.NextSong();
+
+                        break;
+                    case Commands.PlaySong:
+
+                        Model.Play();
+
+                        break;
+                    case Commands.PauseSong:
+
+                        Model.Pause();
+
+                        break;
+                    case Commands.StopSong:
+
+                        Model.Stop();
+
+                        break;
                 }
             }
-        }
-
-
-        public async Task CommandFromPhone(DeviceType deviceFrom, Commands command)
-        {
-
-            switch (command)
+            catch(Exception ex)
             {
-                case Commands.GetSongs:
 
-                    List<LocalFolder> LocalFolders;
-                    List<Song> Songs;
-
-                    Model.LocalFiles.TrySort(out LocalFolders, out Songs);
-
-                    var json1 = JsonSerializer.Serialize<List<LocalFolder>>(LocalFolders);
-                    var json2 = JsonSerializer.Serialize<List<Song>>(Songs);
-
-                    await hubConnection.SendAsync("SendSongsCommand", DeviceType.PC, deviceFrom, json1, json2);
-
-                    break;
-
-                case Commands.PrevSong:
-
-                   
-
-                    break;
-                case Commands.NextSong:
-
-                    
-
-                    break;
-                case Commands.PlaySong:
-
-                   
-
-                    break;
-                case Commands.PauseSong:
-
-                    
-
-                    break;
-                case Commands.StopSong:
-
-                    
-
-                    break;
             }
-
         }
 
-        public async Task SetCurrentSong(DeviceType deviceFrom, Song song)
+        private async Task SetCurrentSong(DeviceType deviceFrom, Song song)
         {
+            foreach (var item in Model.LocalFiles)
+            {
+                if(item is LocalFolder)
+                {
+                    var temp = item.ToMC().Songs.Find(x=> x.)
+                }
+            }
+            var p = .Find(x => x.Title == song.)
             Model.SetCurrentSong(song);
+
         }
 
-        // подключение к чату
+        #region Основные методы
+
+        /// <summary>
+        /// Подключение к серверу
+        /// </summary>
+        /// <returns></returns>
         public async Task Connect()
         {
             if (IsConnected)
@@ -119,17 +118,18 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             try
             {
                 await hubConnection.StartAsync();
-                
-
                 IsConnected = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+
             }
         }
 
-        // Отключение от чата
+        /// <summary>
+        /// Отключение от сервера
+        /// </summary>
+        /// <returns></returns>
         public async Task Disconnect()
         {
             if (!IsConnected)
@@ -137,8 +137,10 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
             await hubConnection.StopAsync();
             IsConnected = false;
-           
+
         }
+
+        #endregion
 
 
         #region Конструкторы 
@@ -156,30 +158,17 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
             hubConnection.On<DeviceType, Commands>("Commands", CommandFromPhone);
             hubConnection.On<DeviceType, Song>("SetCurrentSong", SetCurrentSong);
-            //hubConnection.On("TestPhone", () =>
-            //{
-            //    int a = 1 + 1;
-            //});
 
             hubConnection.Closed += async (Exception) =>
             {
                 IsConnected = false;
                 //DialogService.ShowMessage(Exception);
-                Connect();
+                await Connect();
             };
 
             hubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
-            
-
-            
-
-
-            //hubConnection.On<DeviceType, Commands>("Commands", CommandFromPhone);
-
-            Connect();
-
-
-            //hubConnection.SendAsync("TestPC");
+           
+            Task.Run(() => Connect());
         }
 
         #endregion

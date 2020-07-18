@@ -9,7 +9,11 @@ using Android.OS;
 
 namespace FierceStukCloud_Mobile.Droid
 {
-    [Activity(Label = "FierceStukCloud_Mobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "FierceStukCloud_Mobile",
+              Icon = "@mipmap/icon",
+              Theme = "@style/MainTheme",
+              MainLauncher = true,
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

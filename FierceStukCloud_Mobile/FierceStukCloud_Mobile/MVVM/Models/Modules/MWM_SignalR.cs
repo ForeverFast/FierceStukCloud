@@ -4,57 +4,34 @@ using FierceStukCloud_NetStandardLib.Models.AbstractModels;
 using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using FierceStukCloud_NetStandardLib.MVVM;
 using Microsoft.AspNetCore.SignalR.Client;
+using RestSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
 
 namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 {
-    public class MWM_SignalR : OnPropertyChangedClass
+    public class MWM_SignalR
     {
         private HubConnection hubConnection;
-        private MusicPlayerM Model;
 
         #region Свойства
 
-        #region Поля 
-        private bool _isBusy;
-        private bool _isConnected;
-        #endregion
-
-        #endregion
-
         /// <summary> Идет ли отправка сообщений </summary>
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set
-            {
-                if (_isBusy != value)
-                {
-                    _isBusy = value;
-                    // OnPropertyChanged("IsBusy");
-                }
-            }
-        }
+        public bool IsBusy { get; set; }
 
         /// <summary> Осуществлено ли подключение </summary>
-        public bool IsConnected
-        {
-            get => _isConnected;
-            set
-            {
-                if (_isConnected != value)
-                {
-                    _isConnected = value;
-                    //  OnPropertyChanged("IsConnected");
-                }
-            }
-        }
+        public bool IsConnected { get; set; }
+
+        #endregion
+
+        #region Отправка сообщений
 
         public async Task MusicPlayerCommand(Commands command, DeviceType device)
             => await hubConnection.SendAsync("MusicPlayerCommand", DeviceType.Mobile, device, command);
@@ -62,30 +39,50 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
         public async Task SetCurrentSongCommand(DeviceType device, Song song)
            => await hubConnection.SendAsync("SetCurrentSongCommand", DeviceType.Mobile, device, song);
 
-        public async Task CommandFromPС(DeviceType deviceFrom, string json1, string json2)
+        #endregion
+
+        #region Получение сообщений
+
+        /// <summary>
+        /// Получение списка локальных файлов
+        /// </summary>
+        /// <param name="deviceFrom"></param>
+        /// <param name="json1"></param>
+        /// <param name="json2"></param>
+        public void CommandFromPС(DeviceType deviceFrom, string json1, string json2)
         {
-            var temp1 = JsonSerializer.Deserialize<List<LocalFolder>>(json1);
-            var temp2 = JsonSerializer.Deserialize<List<Song>>(json2);
-            foreach (var item in temp1)
+            try
             {
-                Model.LocalFiles.Add(item);
-            }
+                List<BaseMusicObject> temp = new List<BaseMusicObject>();
 
-            foreach (var item in temp2)
+                json1 = Regex.Replace(json1, @"\\u([0-9A-Fa-f]{4})", m => "" + (char)Convert.ToInt32(m.Groups[1].Value, 16));
+                json2 = Regex.Replace(json2, @"\\u([0-9A-Fa-f]{4})", m => "" + (char)Convert.ToInt32(m.Groups[1].Value, 16));
+
+                foreach (var item in JsonSerializer.Deserialize<List<LocalFolder>>(json1))
+                    temp.Add(item);
+
+                foreach (var item in JsonSerializer.Deserialize<List<Song>>(json2))
+                    temp.Add(item);
+
+                UpdateInfoFromPC?.Invoke(temp);
+            }
+            catch(Exception ex)
             {
-                Model.LocalFiles.Add(item);
-            }
 
-            Update?.Invoke(this);
+            }
         }
 
-        public event Action<object> Update;
+        public void NewCurrentSong(DeviceType deviceFrom, Song song)
+            => _NewCurrentSong?.Invoke(song);
 
+        #endregion
 
+        #region Основные методы
 
-
-
-        // подключение к чату
+        /// <summary>
+        /// Подключение к серверу
+        /// </summary>
+        /// <returns></returns>
         public async Task Connect()
         {
             if (IsConnected)
@@ -93,8 +90,6 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
             try
             {
                 await hubConnection.StartAsync();
-
-
                 IsConnected = true;
             }
             catch (Exception)
@@ -103,7 +98,10 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
             }
         }
 
-        // Отключение от чата
+        /// <summary>
+        /// Отключение от сервера
+        /// </summary>
+        /// <returns></returns>
         public async Task Disconnect()
         {
             if (!IsConnected)
@@ -114,31 +112,37 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 
         }
 
+        #endregion
+
+        #region События
+
+        public event Action<List<BaseMusicObject>> UpdateInfoFromPC;
+        public event Action<Song> _NewCurrentSong;
+
+        #endregion
 
         #region Конструкторы 
 
-        public MWM_SignalR(MusicPlayerM Model)
+        public MWM_SignalR()
         {
-            this.Model = Model;
-
             hubConnection = new HubConnectionBuilder()
                 .WithUrl(App.CurSiteLing + "hub", options =>
                 {
                     options.AccessTokenProvider = () => Task.FromResult(App.CurrentUser.AccessTokenPhone);
                 })
                 .Build();
-             
-            hubConnection.On<DeviceType, string, string>("SendSongs", CommandFromPС);
-            hubConnection.On("TestPC", () => 
-            {
-                int a = 1 + 1;
-            });
 
             hubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
+            hubConnection.On<DeviceType, string, string>("SendSongs", CommandFromPС);
+            hubConnection.On<DeviceType, Song>("NewCurrentSong", NewCurrentSong);
 
-            Connect();
+            hubConnection.Closed += async (error) =>
+            {
+                IsConnected = false;
+                await Connect();
+            };
 
-            //hubConnection.SendAsync("TestPhone");
+            Task.Run(() => Connect());
         }
 
         #endregion

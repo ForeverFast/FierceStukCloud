@@ -5,9 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FierceStukCloud_Mobile.MVVM.Views.PlayerPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid Padding="0" RowSpacing="0"
-              BackgroundColor="#FF4D4D51">
+              BackgroundColor="{StaticResource GrayLVL0}">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -16,12 +22,12 @@
 
             <Grid Grid.Row="0" BackgroundColor="{x:Null}">
 
-                <Image 
+                <Image  
                         Margin="35"
                         BackgroundColor="Aqua"/>
 
             </Grid>
-            
+
             <Grid Grid.Row="1" BackgroundColor="{x:Null}"
                   
                   RowSpacing="0">
@@ -47,12 +53,14 @@
                     <Label Grid.Row="0"
                            
                            Text="Title"
-                           FontSize="20"/>
+                           FontSize="20"
+                           TextColor="{StaticResource StandartLightColor}"/>
 
                     <Label Grid.Row="1"
                            
                            Text="Author"
-                           FontSize="15"/>
+                           FontSize="15"
+                           TextColor="{StaticResource StandartLightColor}"/>
 
                 </Grid>
 
@@ -86,15 +94,15 @@
                         </Grid.ColumnDefinitions>
 
                         <Button Grid.Column="0"
-                                
-                                 
-                                
-                                BackgroundColor="{x:Null}"/>
+                               />
 
 
-                        <Button Grid.Column="1"/>
-                        <Button Grid.Column="2"/>
-                        <Button Grid.Column="3"/>
+                        <Button Grid.Column="1"
+                                Command="{Binding PrevSongCommand}"/>
+                        <Button Grid.Column="2"
+                                Command="{Binding PlaySongCommand}"/>
+                        <Button Grid.Column="3"
+                                Command="{Binding NextSongCommand}"/>
                         <Button Grid.Column="4"/>
 
                     </Grid>

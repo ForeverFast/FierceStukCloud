@@ -35,7 +35,7 @@ namespace FierceStukCloud_Mobile.Models
         /// <summary> Список альбомов </summary>   
         public List<Album> Albums { get; set; }
         /// <summary> Список папок </summary>   
-        public ObservableCollection<BaseMusicObject> LocalFiles { get; set; }
+        public List<BaseMusicObject> LocalFiles { get; set; }
 
         /// <summary> Tекущий контейнер </summary>   
         public BaseMusicObject CurrentMusicContainer { get; set; }
@@ -165,9 +165,9 @@ namespace FierceStukCloud_Mobile.Models
         /// Получение списка локальных файлов
         /// </summary>
         /// <returns></returns>
-        public ObservableCollection<BaseMusicObject> GetListLocalFiles()
+        public List<BaseMusicObject> GetListLocalFiles()
         {
-            var temp = new ObservableCollection<BaseMusicObject>();
+            var temp = new List<BaseMusicObject>();
             if (PhoneMode == PhoneMode.RemoteСontroller)
             {
                 Task.Run(() => MWM_SignalR.MusicPlayerCommand(Commands.GetSongs, TargerDevice));
@@ -230,7 +230,7 @@ namespace FierceStukCloud_Mobile.Models
         {
             if (PhoneMode == PhoneMode.RemoteСontroller)
             {
-                Task.Run(() => MWM_SignalR.MusicPlayerCommand(Commands.NextSong, TargerDevice));
+                Task.Run(() => MWM_SignalR.MusicPlayerCommand(Commands.PrevSong, TargerDevice));
             }
             else
             {
@@ -271,18 +271,45 @@ namespace FierceStukCloud_Mobile.Models
         }
 
         /// <summary> Подготовка песни к воспроизведению </summary>
-        public void SetCurrentSong(Song song)
+        public void SetCurrentSong(Song song, int parameter = 0)
         {
             try
             {
-                if (song.CurrentMusicContainer == null)
-                    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
-                else
-                    CurrentMusicContainer = song.CurrentMusicContainer;
+                //if (song.CurrentMusicContainer == null)
+                //    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
+                //else
+                //    CurrentMusicContainer = song.CurrentMusicContainer;
 
                 CurrentSong = song;
 
-                Task.Run(() => MWM_SignalR.SetCurrentSongCommand(TargerDevice, CurrentSong)); 
+                switch (parameter)
+                {
+                    case 0:
+
+                        if (PhoneMode == PhoneMode.RemoteСontroller)
+                        {
+                            Task.Run(() => MWM_SignalR.SetCurrentSongCommand(TargerDevice, CurrentSong));
+                            OnPropertyChanged("MP_MediaOpened");
+                        }
+                        else
+                        {
+                            
+                        }
+                        
+
+                        break;
+
+                    case 1:
+
+                        OnPropertyChanged("MP_MediaOpened");
+
+                        break;
+                }
+
+
+               
+
+                
 
                 //MP.Open(new Uri(CurrentSong.LocalURL));
 
@@ -308,7 +335,7 @@ namespace FierceStukCloud_Mobile.Models
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
             }
@@ -361,6 +388,22 @@ namespace FierceStukCloud_Mobile.Models
 
         #endregion
 
+        #region События Хаба
+
+        private void MWM_SignalR_UpdateInfoFromPC(List<BaseMusicObject> obj)
+        {
+            LocalFiles = obj;
+            OnPropertyChanged("UpdateInfoFromPC");
+        }
+
+        private void MWM_SignalR__NewCurrentSong(Song obj)
+        {
+            SetCurrentSong(obj,1);
+        }
+
+        #endregion
+
+
         public void ShutDownConnection() => MWM_SignalR.Disconnect();
 
         #endregion
@@ -373,7 +416,7 @@ namespace FierceStukCloud_Mobile.Models
         {
             PhoneMode = PhoneMode.RemoteСontroller;
             TargerDevice = DeviceType.PC;
-            LocalFiles = new ObservableCollection<BaseMusicObject>();
+            LocalFiles = new List<BaseMusicObject>();
             
             //MP = new MediaPlayer();
             //MP.MediaEnded += MP_MediaEnded;
@@ -383,12 +426,11 @@ namespace FierceStukCloud_Mobile.Models
             //timer.Elapsed += Timer_Tick;
 
             //MWM_LocalDB = new MWM_LocalDB(App.Connection);
-            MWM_SignalR = new MWM_SignalR(this);
-            MWM_SignalR.Update += (s) => OnPropertyChanged("GettingSongsEvent");
-           
+            MWM_SignalR = new MWM_SignalR();
+            MWM_SignalR.UpdateInfoFromPC += MWM_SignalR_UpdateInfoFromPC;
+            MWM_SignalR._NewCurrentSong += MWM_SignalR__NewCurrentSong;
 
         }
-
 
         #endregion
     }

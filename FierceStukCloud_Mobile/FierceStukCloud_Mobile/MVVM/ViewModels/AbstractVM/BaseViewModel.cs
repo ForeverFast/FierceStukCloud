@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace FierceStukCloud_Mobile.ViewModels
+namespace FierceStukCloud_Mobile.MVVM.ViewModels.AbstractVM
 {
     public abstract class BaseViewModel : OnPropertyChangedClass
     {

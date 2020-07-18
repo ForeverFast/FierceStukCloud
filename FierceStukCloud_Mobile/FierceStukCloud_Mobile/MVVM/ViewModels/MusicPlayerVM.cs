@@ -1,95 +1,85 @@
 ﻿using FierceStukCloud_Mobile.Models;
+using FierceStukCloud_Mobile.MVVM.ViewModels;
+using FierceStukCloud_Mobile.MVVM.ViewModels.AbstractVM;
+using FierceStukCloud_Mobile.MVVM.Views;
+using FierceStukCloud_NetStandardLib.Extension;
 using FierceStukCloud_NetStandardLib.Models;
 using FierceStukCloud_NetStandardLib.Models.AbstractModels;
+using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 
 namespace FierceStukCloud_Mobile.ViewModels
 {
-    public class MusicPlayerVM : BaseViewModel
+    public class MusicPlayerVM : BaseListSongsVM
     {
-        private MusicPlayerM model { get; }
+        #region Основные свойства
 
-        public ObservableCollection<BaseMusicObject> Songs { get; set; }
+        private MusicContainer _selectedMusicContainer;
+       
+        public MusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
 
-        private Song _selectedSong;
-        public Song SelectedSong
+        #endregion
+
+        #region ListBox Локальных файлов
+
+        public ObservableCollection<BaseMusicObject> LocalFiles { get; set; }
+        
+        private BaseMusicObject _selectedBMO;
+
+        public BaseMusicObject SelectedBMO
         {
-            get => _selectedSong;
+            get => _selectedBMO;
             set
             {
-                if (value != null)
+                if (value is Song)
                 {
-                   // value.Content.CurrentMusicContainer = SelectedMusicContainer != null ?
-                     //                                     SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
-
-                    model.SetCurrentSong(value);
-                    SetProperty(ref _selectedSong, value);
+                    _selectedBMO = value;
+                    SelectedSong = value.ToSong();
+                }
+                else
+                {
+                    _selectedBMO = value;
+                    SelectedMusicContainer = value.ToMC();
+                    Navigation.PushAsync(new ListSongsV() { BindingContext = new ListSongsVM(this.SelectedMusicContainer) { model = this.model } });
                 }
             }
         }
 
+        private List<Song> GetLocalFilesAsMC() => (from temp in LocalFiles where temp is Song select temp) as List<Song>;
+
+
+        #endregion
+
         #region События
 
-        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        public override void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            base.Model_PropertyChanged(sender, e);
             if (!string.IsNullOrEmpty(e.PropertyName))
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(model.MP_MediaOpened):
-                        //SelectedStyle = "PauseButton";
-
-                        //SongTime = model.MP.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
-                        //SongTimeLineForSlider = 0;
-                        //SongTimeForSlider = model.MP.NaturalDuration.TimeSpan.TotalSeconds;
-
-                        //SongName = model.CurrentSong.Title;
-                        //SongAuthor = model.CurrentSong.Author;
-                        //SongBitmapImage = model.CurrentImage;
-                        break;
-
-                    case nameof(model.Timer_Tick):
-
-                        //if (PosChanges == false)
-                        //{
-                        //    SongPos = model.MP.Position.ToString(@"mm\:ss");
-                        //    SongTimeLineForSlider = model.MP.Position.TotalSeconds;
-                        //}
-
-                        break;
-
-                    case nameof(model.Play):
-
-                        //SelectedStyle = "PauseButton";
-
-                        break;
-
-                    case nameof(model.Pause):
-                    case nameof(model.Stop):
-
-                        //SelectedStyle = "PlayButton";
-
-                        break;
-                         
-                    case "GettingSongsEvent":
+                    case "UpdateInfoFromPC":
 
                         foreach (var item in model.LocalFiles)
                         {
                             try
-                            { 
-                                Songs.Add(item);
-                            }
-                            catch(Exception ex)
                             {
-                                int a = 1 + 1;
+                                LocalFiles.Add(item);
+                            }
+                            catch (Exception ex)
+                            {
+
                             }
                         }
-                        
+
 
                         break;
                 }
@@ -99,6 +89,7 @@ namespace FierceStukCloud_Mobile.ViewModels
         #endregion
 
 
+
         #region Конструкторы и методы инициализации
 
         public MusicPlayerVM()
@@ -106,7 +97,8 @@ namespace FierceStukCloud_Mobile.ViewModels
             model = new MusicPlayerM();
             model.PropertyChanged += Model_PropertyChanged;
 
-            Songs = new ObservableCollection<BaseMusicObject>(model.GetListLocalFiles());
+            LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetListLocalFiles());
+            Songs = new ObservableCollection<Song>();
         }
 
         #endregion

@@ -49,21 +49,12 @@ namespace FierceStukCloud_Web.Models
 
         public async Task SetCurrentSongCommand(DeviceType deviceFrom, DeviceType deviceTo, Song song)
             => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("SetCurrentSong", deviceFrom, song);
-       
+
+        public async Task NewCurrentSongCommand(DeviceType deviceFrom, DeviceType deviceTo, Song song)
+          => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("NewCurrentSong", deviceFrom, song);
+
         public async Task SendSongsCommand(DeviceType deviceFrom, DeviceType deviceTo, string json1, string json2)
          => await Clients.Clients(GetTargetConnectionId(deviceTo)).SendAsync("SendSongs", deviceFrom, json1, json2);
-
-        public async Task TestPhone()
-        {
-            await Clients.Clients(GetTargetConnectionId(DeviceType.PC)).SendAsync("TestPhone");
-            _logger.LogInformation("Тест для телефона");
-        }
-
-        public async Task TestPC()
-        {
-            await Clients.Clients(GetTargetConnectionId(DeviceType.Mobile)).SendAsync("TestPC");
-            _logger.LogInformation("Тест для ПК");
-        }
 
         public override Task OnConnectedAsync()
         {

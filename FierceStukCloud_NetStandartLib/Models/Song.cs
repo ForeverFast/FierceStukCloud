@@ -27,8 +27,10 @@ namespace FierceStukCloud_NetStandardLib.Models
         [JsonPropertyName("duration")]
         public string Duration { get; set; }
      
+        
 
-
+        [JsonPropertyName("LocalURL")]
+        public string LocalUrl { get; set; }
 
         [JsonPropertyName("playListNames")]
         public string PlayListNames { get; set; }
@@ -50,8 +52,7 @@ namespace FierceStukCloud_NetStandardLib.Models
         [JsonIgnore]
         public Album OAlbum { get; set; }
 
-        [JsonIgnore]
-        public string LocalURL { get; set; }
+        
         #endregion
     }
 }

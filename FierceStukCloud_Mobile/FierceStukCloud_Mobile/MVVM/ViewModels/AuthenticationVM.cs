@@ -1,4 +1,5 @@
-﻿using FierceStukCloud_Mobile.Views;
+﻿using FierceStukCloud_Mobile.MVVM.ViewModels.AbstractVM;
+using FierceStukCloud_Mobile.Views;
 using FierceStukCloud_NetStandardLib.Models;
 using RestSharp;
 using System;
