@@ -57,6 +57,7 @@ namespace FierceStukCloud_Web
                            ValidateIssuerSigningKey = true,
                        };
                    });
+
             services.AddDbContext<FierceStukCloudDbContext>(o
                 =>o.UseSqlServer(@"Data Source=88.135.50.215,1433; Initial Catalog=FSC_Data;
                                     User ID=Ivan; Password=789xxx44XX; Connect Timeout=30;

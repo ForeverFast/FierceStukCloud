@@ -93,14 +93,14 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         private async Task SetCurrentSong(DeviceType deviceFrom, Song song)
         {
-            foreach (var item in Model.LocalFiles)
-            {
-                if(item is LocalFolder)
-                {
-                    var temp = item.ToMC().Songs.Find(x=> x.)
-                }
-            }
-            var p = .Find(x => x.Title == song.)
+            //foreach (var item in Model.LocalFiles)
+            //{
+            //    if(item is LocalFolder)
+            //    {
+            //        var temp = item.ToMC().Songs.Find(x=> x.)
+            //    }
+            //}
+            //var p = .Find(x => x.Title == song.)
             Model.SetCurrentSong(song);
 
         }
