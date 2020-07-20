@@ -16,10 +16,10 @@ namespace FierceStukCloud_NetStandardLib.Models
         public int LocalID { get; set; } = 0;
 
         [JsonPropertyName("author")]
-        public string Author { get; set; }
+        public Author Author { get; set; }
 
         [JsonPropertyName("album")]
-        public string Album { get; set; }
+        public Album Album { get; set; }
 
         [JsonPropertyName("year")]
         public uint Year { get; set; }
@@ -33,7 +33,7 @@ namespace FierceStukCloud_NetStandardLib.Models
         public string LocalUrl { get; set; }
 
         [JsonPropertyName("playListNames")]
-        public string PlayListNames { get; set; }
+        public List<string> PlayLists { get; set; }
 
 
 

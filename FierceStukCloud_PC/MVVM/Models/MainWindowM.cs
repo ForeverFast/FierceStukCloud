@@ -121,7 +121,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// Получение списка локальных файлов
         /// </summary>
         /// <returns></returns>
-        public List<BaseMusicObject> GetListLocalFiles()
+        public List<BaseMusicObject> GetAllData()
         {
             var temp = new List<BaseMusicObject>();
             temp.AddRange(MWM_LocalDB.GetListLocalFolders());

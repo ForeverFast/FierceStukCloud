@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Threading;
+using FierceStukCloud_NetStandardLib.Models.AbstractModels;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
@@ -84,14 +85,22 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         /// Создание папок из списка песен
         /// </summary>
         /// <returns></returns>
-        public List<LocalFolder> GetListLocalFolders()
+        public List<BaseMusicObject> GetListLocalFolders()
         {
-            var temp = new List<LocalFolder>();
-            LocalSongs = new List<Song>();
+            var temp = new List<BaseMusicObject>();
+           
             try
             {
                 foreach (var item in GetSongsFromLocalDB())
                 {
+                    
+
+
+
+
+
+
+
                     if(item.OptionalInfo == "LF")
                     {
                         LocalSongs.Add(item);

@@ -85,8 +85,11 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #region Кнопки управления плеера
 
         public RelayCommand PrevSongCommand { get; set; }
-        private void PrevSongExecute(object parameter) => model.PrevSong();
         public RelayCommand PlayStateSongCommand { get; set; }
+        public RelayCommand NextSongCommand { get; set; }
+
+        private void PrevSongExecute(object parameter) => model.PrevSong();
+        
         private void PlayStateSongExecute(object parameter)
         {
             if (model.IsPlaying == true)
@@ -94,7 +97,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             else
                 model.Play();
         }
-        public RelayCommand NextSongCommand { get; set; }
+     
         private void NextSongExecute(object parameter) => model.NextSong();
 
         #endregion
@@ -312,7 +315,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 model = new MainWindowM();
                 model.PropertyChanged += Model_PropertyChanged;
 
-                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetListLocalFiles());
+                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetAllData());
 
                 //SongBitmapImage = model.CurrentImage;
 
