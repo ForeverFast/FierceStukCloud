@@ -24,13 +24,136 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         #region Получение данных их БД
 
+        public List<Album> GetAlbumList()
+        {
+            var tempAlbums = new List<Album>();
+            try
+            {
+                connection.Open();
+
+                SQLiteCommand CMD = connection.CreateCommand();
+                CMD.CommandText = "SELECT * FROM Albums";
+                SQLiteDataReader SQL = CMD.ExecuteReader();
+
+                if (SQL.HasRows)
+                    while (SQL.Read())
+                    {
+                        tempAlbums.Add(new Album()
+                        {
+                            ID = Convert.ToInt32(SQL["Id"]),
+
+                            Title = SQL["Title"].ToString(),
+                            Author = new Author() { Name = SQL["Author"].ToString() },
+                            Songs = JsonSerializer.Deserialize<List<Song>>(SQL["Songs"].ToString()),
+
+                            UserLogin = SQL["UserLogin"].ToString(),
+                            OnServer = Convert.ToBoolean(SQL["OnServer"]),
+                            OnPC = Convert.ToBoolean(SQL["OnPC"])
+                        });
+                    }
+
+                return tempAlbums;
+            }
+            catch(Exception)
+            {
+                return tempAlbums;
+            }
+            finally
+            {
+                connection.Close();         
+            }
+        }
+
+        public List<LocalFolder> GetLocalFoldersList()
+        {
+            var tempLocalFolders = new List<LocalFolder>();
+            try
+            {
+                connection.Open();
+
+                SQLiteCommand CMD = connection.CreateCommand();
+                CMD.CommandText = "SELECT * FROM LocalFolders";
+                SQLiteDataReader SQL = CMD.ExecuteReader();
+
+                if (SQL.HasRows)
+                    while (SQL.Read())
+                    {
+                        tempLocalFolders.Add(new LocalFolder()
+                        {
+                            ID = Convert.ToInt32(SQL["Id"]),
+
+                            Title = SQL["Title"].ToString(),
+                            LocalUrl = SQL["LocalUrl"].ToString(),
+                            Songs = JsonSerializer.Deserialize<List<Song>>(SQL["Songs"].ToString()),
+
+                            UserLogin = SQL["UserLogin"].ToString(),
+                            OnServer = Convert.ToBoolean(SQL["OnServer"]),
+                            OnPC = Convert.ToBoolean(SQL["OnPC"])
+                        });
+                    }
+
+                return tempLocalFolders;
+            }
+            catch (Exception)
+            {
+                return tempLocalFolders;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public List<PlayList> GetPlayListsList()
+        {
+            var tempPlayLists = new List<PlayList>();
+            try
+            {
+                connection.Open();
+
+                SQLiteCommand CMD = connection.CreateCommand();
+                CMD.CommandText = "SELECT * FROM PlayLists";
+                SQLiteDataReader SQL = CMD.ExecuteReader();
+
+                if (SQL.HasRows)
+                    while (SQL.Read())
+                    {
+                        tempPlayLists.Add(new PlayList()
+                        {
+                            ID = Convert.ToInt32(SQL["Id"]),
+
+                            Title = SQL["Title"].ToString(),
+                            Songs = JsonSerializer.Deserialize<List<Song>>(SQL["Songs"].ToString()),
+
+                            UserLogin = SQL["UserLogin"].ToString(),
+                            OnServer = Convert.ToBoolean(SQL["OnServer"]),
+                            OnPC = Convert.ToBoolean(SQL["OnPC"])
+                        });
+                    }
+
+                return tempPlayLists;
+            }
+            catch (Exception)
+            {
+                return tempPlayLists;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+
+
         /// <summary>
         /// Получение песен из локальной БД
         /// </summary>
         /// <returns></returns>
-        public List<Song> GetSongsFromLocalDB()
+        public List<Song> GetSongsList()
         {
-            var temp = new List<Song>();
+            var tempSongs = new List<Song>();
+          
             try
             {
                 connection.Open();
@@ -43,17 +166,16 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                 {
                     while (SQL.Read())
                     {
-                        temp.Add(new Song()
+                        tempSongs.Add(new Song()
                         {
                             ID = Convert.ToInt32(SQL["ID"]),
                             LocalID = Convert.ToInt32(SQL["LocalID"]),
-                            Author = SQL["Author"].ToString(),
+                            Author = new Author() { Name = SQL["Author"].ToString() },
                             Title = SQL["Title"].ToString(),
-                            Album = SQL["Album"].ToString(),
+                            Album = new Album() { Title = SQL["Album"].ToString() },
                             Year = Convert.ToUInt32(SQL["Year"]),
                             Duration = SQL["Duration"].ToString(),
 
-                            PlayListNames = SQL["PlayListNames"].ToString(),
                             LocalUrl = SQL["LocalURL"].ToString(),
                             UserLogin = SQL["UserLogin"].ToString(),
 
@@ -65,13 +187,15 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     }
                 }
 
-                connection.Close();
-                return temp;
+                return tempSongs;
             }
             catch (Exception)
             {
+                return tempSongs;
+            }
+            finally
+            {
                 connection.Close();
-                return null;
             }
         }
 
@@ -81,18 +205,18 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         #region Преобразование
 
-        /// <summary>
-        /// Создание папок из списка песен
-        /// </summary>
-        /// <returns></returns>
-        public List<BaseMusicObject> GetListLocalFolders()
-        {
-            var temp = new List<BaseMusicObject>();
+        ///// <summary>
+        ///// Создание папок из списка песен
+        ///// </summary>
+        ///// <returns></returns>
+        //public List<BaseMusicObject> GetListLocalFolders()
+        //{
+        //    var temp = new List<BaseMusicObject>();
            
-            try
-            {
-                foreach (var item in GetSongsFromLocalDB())
-                {
+        //    try
+        //    {
+        //        foreach (var item in GetSongsFromLocalDB())
+        //        {
                     
 
 
@@ -101,41 +225,41 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
 
 
-                    if(item.OptionalInfo == "LF")
-                    {
-                        LocalSongs.Add(item);
-                        continue;
-                    }
+        //            if(item.OptionalInfo == "LF")
+        //            {
+        //                LocalSongs.Add(item);
+        //                continue;
+        //            }
 
-                    var path = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
+        //            var path = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
 
-                    var LF = temp.Find(x => x.LocalURL == path);
-                    if (LF != null)
-                    {
-                        item.LocalID = LF.Songs.Count + 1;
-                        LF.Songs.Add(item);
-                    }
-                    else
-                    {
-                        var title = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
-                        title = title.Substring(title.LastIndexOf('\\') + 1);
+        //            var LF = temp.Find(x => x.LocalURL == path);
+        //            if (LF != null)
+        //            {
+        //                item.LocalID = LF.Songs.Count + 1;
+        //                LF.Songs.Add(item);
+        //            }
+        //            else
+        //            {
+        //                var title = item.LocalUrl.Substring(0, item.LocalUrl.LastIndexOf('\\'));
+        //                title = title.Substring(title.LastIndexOf('\\') + 1);
 
-                        temp.Add(new LocalFolder()
-                        {
-                            Title = title,
-                            LocalURL = path
-                        });
-                        item.LocalID = temp.Last().Songs.Count + 1;
-                        temp.Last().Songs.Add(item);
-                    }
-                }
-                return temp;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        //                temp.Add(new LocalFolder()
+        //                {
+        //                    Title = title,
+        //                    LocalURL = path
+        //                });
+        //                item.LocalID = temp.Last().Songs.Count + 1;
+        //                temp.Last().Songs.Add(item);
+        //            }
+        //        }
+        //        return temp;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    }
+        //}
 
         #endregion
 
@@ -153,7 +277,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             var temp = new LocalFolder()
             {
                 Title = path.Substring(path.IndexOf('\\') + 1),
-                LocalURL = path
+                LocalUrl = path
             };
 
             try
@@ -178,13 +302,13 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                         ID = ID_GlobalCounter++,
                         LocalID = ID_Counter++,
 
-                        Author = MAaTC.Author,
+                        Author = new Author() { Name = MAaTC.Author },
                         Title = MAaTC.Title,
-                        Album = file_TAG.Tag.Album,
+                        Album = new Album() { Title = file_TAG.Tag.Album },
                         Duration = file_TAG.Properties.Duration.ToString(@"mm\:ss"),
                         Year = file_TAG.Tag.Year,
 
-                        PlayListNames = "",
+                        //PlayListNames = "",
                         LocalUrl = item,
                         UserLogin = "",
 
@@ -277,66 +401,67 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         {
             try
             {
-                connection.Open();
-                SQLiteCommand CMD;
-                
-                var str = Path.GetFileName(path);
-                TagLib.File file_TAG = TagLib.File.Create(path);
-                Music_AuthorAndTitleCheck MAaTC = new Music_AuthorAndTitleCheck(str, file_TAG);
+                //connection.Open();
+                //SQLiteCommand CMD;
 
-                int ID_Counter = GetDBLocalSongsCount();
-                int ID_GlobalCounter = this.GetDBSongsCount() + 1;
+                //var str = Path.GetFileName(path);
+                //TagLib.File file_TAG = TagLib.File.Create(path);
+                //Music_AuthorAndTitleCheck MAaTC = new Music_AuthorAndTitleCheck(str, file_TAG);
 
-                Song temp = new Song()
-                {
-                    ID = ID_GlobalCounter,
-                    LocalID = ID_Counter,
+                //int ID_Counter = GetDBLocalSongsCount();
+                //int ID_GlobalCounter = this.GetDBSongsCount() + 1;
 
-                    Author = MAaTC.Author,
-                    Title = MAaTC.Title,
-                    Album = file_TAG.Tag.Album,
-                    Duration = file_TAG.Properties.Duration.ToString(@"mm\:ss"),
-                    Year = file_TAG.Tag.Year,
+                //Song temp = new Song()
+                //{
+                //    ID = ID_GlobalCounter,
+                //    LocalID = ID_Counter,
 
-                    PlayListNames = "",
-                    LocalUrl = path,
-                    UserLogin = "",
+                //    Author = MAaTC.Author,
+                //    Title = MAaTC.Title,
+                //    Album = file_TAG.Tag.Album,
+                //    Duration = file_TAG.Properties.Duration.ToString(@"mm\:ss"),
+                //    Year = file_TAG.Tag.Year,
 
-                    OnServer = false,
-                    OnPC = true,
+                //    PlayListNames = "",
+                //    LocalUrl = path,
+                //    UserLogin = "",
 
-                    OptionalInfo = "LF"
-                };
-              
+                //    OnServer = false,
+                //    OnPC = true,
 
-                CMD = connection.CreateCommand();
-                CMD.CommandText = $"INSERT INTO Songs (      LocalID,        Author,    Title,       Album,      Duration,  Year," +
-                                                           $"PlayListNames,  LocalURL,  UserLogin,   OnServer,   OnPC,      OptionalInfo)" +
-                                                  $" VALUES(@localID,       @author,   @title,       @album,    @duration, @year," +
-                                                          $"@playListNames, @localURL, @userLogin,   @onServer, @onPC,     @optionalInfo);";
-
-                CMD.Parameters.Add(new SQLiteParameter("@localID", ID_Counter));
-
-                CMD.Parameters.Add(new SQLiteParameter("@author", MAaTC.Author));
-                CMD.Parameters.Add(new SQLiteParameter("@title", MAaTC.Title));
-                CMD.Parameters.Add(new SQLiteParameter("@album", file_TAG.Tag.Album));
-                CMD.Parameters.Add(new SQLiteParameter("@duration", file_TAG.Properties.Duration.ToString(@"mm\:ss")));
-                CMD.Parameters.Add(new SQLiteParameter("@year", file_TAG.Tag.Year));
-
-                CMD.Parameters.Add(new SQLiteParameter("@playListNames", ""));
-                CMD.Parameters.Add(new SQLiteParameter("@localURL", path));
-                CMD.Parameters.Add(new SQLiteParameter("@userLogin", ""));
-
-                CMD.Parameters.Add(new SQLiteParameter("@onServer", false));
-                CMD.Parameters.Add(new SQLiteParameter("@onPC", true));
-
-                CMD.Parameters.Add(new SQLiteParameter("@optionalInfo", "LF"));
-                CMD.ExecuteNonQuery();
+                //    OptionalInfo = "LF"
+                //};
 
 
-                connection.Close();
+                //CMD = connection.CreateCommand();
+                //CMD.CommandText = $"INSERT INTO Songs (      LocalID,        Author,    Title,       Album,      Duration,  Year," +
+                //                                           $"PlayListNames,  LocalURL,  UserLogin,   OnServer,   OnPC,      OptionalInfo)" +
+                //                                  $" VALUES(@localID,       @author,   @title,       @album,    @duration, @year," +
+                //                                          $"@playListNames, @localURL, @userLogin,   @onServer, @onPC,     @optionalInfo);";
 
-                return temp;
+                //CMD.Parameters.Add(new SQLiteParameter("@localID", ID_Counter));
+
+                //CMD.Parameters.Add(new SQLiteParameter("@author", MAaTC.Author));
+                //CMD.Parameters.Add(new SQLiteParameter("@title", MAaTC.Title));
+                //CMD.Parameters.Add(new SQLiteParameter("@album", file_TAG.Tag.Album));
+                //CMD.Parameters.Add(new SQLiteParameter("@duration", file_TAG.Properties.Duration.ToString(@"mm\:ss")));
+                //CMD.Parameters.Add(new SQLiteParameter("@year", file_TAG.Tag.Year));
+
+                //CMD.Parameters.Add(new SQLiteParameter("@playListNames", ""));
+                //CMD.Parameters.Add(new SQLiteParameter("@localURL", path));
+                //CMD.Parameters.Add(new SQLiteParameter("@userLogin", ""));
+
+                //CMD.Parameters.Add(new SQLiteParameter("@onServer", false));
+                //CMD.Parameters.Add(new SQLiteParameter("@onPC", true));
+
+                //CMD.Parameters.Add(new SQLiteParameter("@optionalInfo", "LF"));
+                //CMD.ExecuteNonQuery();
+
+
+                //connection.Close();
+
+                //return temp;
+                return null;
             }
             catch (Exception)
             {

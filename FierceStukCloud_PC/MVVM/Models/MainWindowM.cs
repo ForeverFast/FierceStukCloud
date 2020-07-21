@@ -36,7 +36,11 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <summary> Список альбомов </summary>   
         public List<Album> Albums { get; set; }
         /// <summary> Список папок </summary>   
-        public List<BaseMusicObject> LocalFiles { get; set; }
+        public List<LocalFolder> LocalFolders { get; set; }
+        /// <summary> Список песен </summary>   
+        public List<Song> LocalSongs { get; set; }
+
+
 
         /// <summary> Tекущий контейнер </summary>   
         public BaseMusicObject CurrentMusicContainer { get; set; }
@@ -121,12 +125,12 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// Получение списка локальных файлов
         /// </summary>
         /// <returns></returns>
-        public List<BaseMusicObject> GetAllData()
+        public List<BaseMusicObject> GetLocalData()
         {
             var temp = new List<BaseMusicObject>();
-            temp.AddRange(MWM_LocalDB.GetListLocalFolders());
-            temp.AddRange(MWM_LocalDB.LocalSongs);
-            return LocalFiles = temp;
+            temp.AddRange(this.LocalFolders);
+            temp.AddRange(this.LocalSongs);
+            return temp;
         }
 
         /// <summary>
@@ -136,8 +140,9 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="caller"></param>
         /// <returns></returns>
         public LocalFolder AddLocalFolderFromPC(string path)
-            => MWM_LocalDB.AddLocalFoldersFromPC(path);
-
+        { 
+            LocalFolders.Add(MWM_LocalDB.AddLocalFoldersFromPC(path));
+        }
         /// <summary>
         /// Удаление папки из приложения
         /// </summary>
@@ -294,6 +299,13 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer.Tick += Timer_Tick;
 
             MWM_LocalDB = new MWM_LocalDB(App.Connection);
+
+            Albums = MWM_LocalDB.GetAlbumList();
+            LocalFolders = MWM_LocalDB.GetLocalFoldersList();
+            PlayLists = MWM_LocalDB.GetPlayListsList();
+            LocalSongs = MWM_LocalDB.GetSongsList();
+
+
             //GetListLocalFiles();
             MWM_SignalR = new MWM_SignalR(this);
 

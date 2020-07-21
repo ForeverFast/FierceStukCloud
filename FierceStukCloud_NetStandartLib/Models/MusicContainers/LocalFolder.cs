@@ -4,6 +4,6 @@ namespace FierceStukCloud_NetStandardLib.Models.MusicContainers
 {
     public class LocalFolder : MusicContainer
     {
-        public string LocalURL { get; set; }
+        public string LocalUrl { get; set; }
     }
 }

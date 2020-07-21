@@ -29,11 +29,11 @@ namespace FierceStukCloud_NetStandardLib.Models
      
         
 
-        [JsonPropertyName("LocalURL")]
+        [JsonPropertyName("localUrl")]
         public string LocalUrl { get; set; }
 
-        [JsonPropertyName("playListNames")]
-        public List<string> PlayLists { get; set; }
+        //[JsonPropertyName("playListNames")]
+        //public List<string> PlayListNames { get; set; }
 
 
 

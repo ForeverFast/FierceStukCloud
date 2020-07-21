@@ -162,7 +162,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         {
             if (SelectedBMO is LocalFolder)
             {
-                ShowFolder((SelectedBMO as LocalFolder).LocalURL);
+                ShowFolder((SelectedBMO as LocalFolder).LocalUrl);
             }
             else
             {
@@ -271,7 +271,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         SongTimeForSlider = model.MP.NaturalDuration.TimeSpan.TotalSeconds;
 
                         SongName = model.CurrentSong.Title;
-                        SongAuthor = model.CurrentSong.Author;
+                        SongAuthor = model.CurrentSong.Author.Name;
                         SongBitmapImage = model.CurrentImage;
                         break;
 

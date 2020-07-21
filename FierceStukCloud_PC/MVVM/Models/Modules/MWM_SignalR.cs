@@ -49,7 +49,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                         List<LocalFolder> LocalFolders;
                         List<Song> Songs;
 
-                        Model.LocalFiles.TrySort(out LocalFolders, out Songs);
+                        Model.LocalFolders.TrySort(out LocalFolders, out Songs);
 
                         var json1 = JsonSerializer.Serialize<List<LocalFolder>>(LocalFolders);
                         var json2 = JsonSerializer.Serialize<List<Song>>(Songs);
