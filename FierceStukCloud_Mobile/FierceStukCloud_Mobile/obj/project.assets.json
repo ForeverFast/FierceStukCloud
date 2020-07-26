@@ -460,6 +460,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "System.ComponentModel.Annotations": "4.7.0",
           "System.Text.Json": "4.7.2"
         },

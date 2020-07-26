@@ -19,6 +19,8 @@ using FierceStukCloud_NetCoreLib.Services;
 using System.Collections.ObjectModel;
 using FierceStukCloud_NetStandardLib.MVVM;
 using System.Windows;
+using System.Text.Json;
+using FierceStukCloud_NetStandardLib.Services;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -28,22 +30,27 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         /// <summary> Переменная плеера </summary>      
         public MediaPlayer MP { get; }
-        private MWM_LocalDB MWM_LocalDB { get; }
-        private MWM_SignalR MWM_SignalR { get; }
+
+        private IDataService _dbService { get; }
+        private ISignalRService _signalRService { get; }
 
         /// <summary> Список плейлистов </summary>   
-        public List<PlayList> PlayLists { get; set; }
+        public ObservableCollection<PlayList> PlayLists { get; set; }
         /// <summary> Список альбомов </summary>   
-        public List<Album> Albums { get; set; }
+        public ObservableCollection<Album> Albums { get; set; }
         /// <summary> Список папок </summary>   
-        public List<LocalFolder> LocalFolders { get; set; }
+        public ObservableCollection<LocalFolder> LocalFolders { get; set; }
         /// <summary> Список песен </summary>   
-        public List<Song> LocalSongs { get; set; }
+        public LocalFolder LocalSongs { get; set; }
 
 
 
         /// <summary> Tекущий контейнер </summary>   
-        public BaseMusicObject CurrentMusicContainer { get; set; }
+        public MusicContainer CurrentMusicContainer { get; set; }
+        /// <summary> Tекущий отображаемый контейнер </summary>   
+        public MusicContainer DisplayedMusicContainer { get; set; }
+
+
         /// <summary> Tекущая песня </summary>   
         public Song CurrentSong { get; set; } = null;
         /// <summary> Изображение текущей песни </summary>   
@@ -105,16 +112,16 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// </summary>
         /// <param name="path"> путь к mp3 файлу</param>
         /// <returns></returns>
-        public Song AddLocalSongFromPC(string path) 
-            => MWM_LocalDB.AddSongFromPC(path);
+        public async Task<Song> AddLocalSongFromPC(string path) 
+            => await _dbService.AddSong(path);
 
         /// <summary>
         /// Удаление песни из приложения
         /// </summary>
         /// <param name="song"></param>
         /// <returns></returns>
-        public Song DeleteLocalSongFromPC(Song song)
-            => MWM_LocalDB.DeleteSongFromApp(song);
+        public async Task<bool> DeleteLocalSongFromPC(Song song)
+            => await _dbService.RemoveSong(song);
        
         #endregion
 
@@ -129,7 +136,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             var temp = new List<BaseMusicObject>();
             temp.AddRange(this.LocalFolders);
-            temp.AddRange(this.LocalSongs);
+            temp.AddRange(this.LocalSongs.Songs);
             return temp;
         }
 
@@ -138,19 +145,18 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// </summary>
         /// <param name="path"></param>
         /// <param name="caller"></param>
-        /// <returns></returns>
-        public LocalFolder AddLocalFolderFromPC(string path)
-        { 
-            LocalFolders.Add(MWM_LocalDB.AddLocalFoldersFromPC(path));
-        }
+        /// <returns></returns>а
+        public async Task<LocalFolder> AddLocalFolderFromPC(string path)
+            => await _dbService.AddLocalFolder(path);
+        
         /// <summary>
         /// Удаление папки из приложения
         /// </summary>
         /// <param name="localFolder"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public LocalFolder DeleteLocalFolderFromPC(LocalFolder localFolder)
-            => MWM_LocalDB.DeleteLocalFolderFromApp(localFolder);
+        public async Task<bool> RemoveLocalFolderFromPC(LocalFolder localFolder)
+            => await _dbService.RemoveLocalFolder(localFolder);
 
         #endregion
 
@@ -161,14 +167,14 @@ namespace FierceStukCloud_PC.MVVM.Models
         public void PrevSong()
         {
             MP.Stop();
-
-            if (CurrentSong.LocalID - 1 < 0)
+            
+            if (CurrentSong.CurrentIdValue() - 1 < 0)
             {
                 SetCurrentSong(CurrentSong);
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID - 1);
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() - 1);
             SetCurrentSong(temp);
         }
 
@@ -177,18 +183,18 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             MP.Stop();
 
-            if (CurrentSong.LocalID + 1 > CurrentMusicContainer.ToMC().Songs.Count)
+            if (CurrentSong.CurrentIdValue() + 1 > CurrentMusicContainer.ToMC().Songs.Count)
             {
                 SetCurrentSong(CurrentSong);
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.LocalID == CurrentSong.LocalID + 1);
+            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() + 1);
             SetCurrentSong(temp);
         }
 
         /// <summary> Подготовка песни к воспроизведению </summary>
-        public void SetCurrentSong(Song song) => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+        public void SetCurrentSong(Song song)// => Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
         {
             try
             {
@@ -220,13 +226,13 @@ namespace FierceStukCloud_PC.MVVM.Models
                         = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
                 }
 
-
+                
             }
             catch (Exception ex)
             {
 
             }
-        }));
+        }//));
 
         #endregion
 
@@ -243,7 +249,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         private void MP_MediaEnded(object sender, EventArgs e)
         {
-            if (CurrentSong.LocalID == CurrentMusicContainer.ToLF().Songs.Count)
+            if (CurrentSong.CurrentIdValue() == CurrentMusicContainer.ToLF().Songs.Count)
             {
                 MP.Stop();
                 return;
@@ -260,6 +266,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 return;
             }
 
+            
             NextSong();
         }
 
@@ -277,12 +284,53 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Хаб
 
+        private void _signalRService_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(e.PropertyName))
+            {
+                switch (e.PropertyName)
+                {
+                    case "GetSongs":
 
+                        var json1 = JsonSerializer.Serialize<ObservableCollection<LocalFolder>>(LocalFolders);
+                        var json2 = JsonSerializer.Serialize<LocalFolder>(LocalSongs);
+
+                        //_signalRService.
+                        //await HubConnection.SendAsync("SendSongsCommand", DeviceType.PC, deviceFrom, json1, json2);
+
+                        break;
+
+                    case "PrevSong":
+
+                        this.PrevSong();
+                        break;
+                    case "NextSong":
+
+                        this.NextSong();
+                        break;
+                    case "PlaySong":
+
+                        this.Play();
+                        break;
+                    case "PauseSong":
+
+                        this.Pause();
+                        break;
+                    case "StopSong":
+
+                        this.Stop();
+                        break;
+
+                }
+            }
+        }
 
         #endregion
 
-        public void ShutDownConnection() => MWM_SignalR.Disconnect();
-        
+        public void ShutDownConnection()
+        {
+         //   _signalRService.Disconnect();
+        }
         #endregion
 
 
@@ -291,27 +339,37 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         public MainWindowM()
         {
+            // Инициализация плеера
             MP = new MediaPlayer();
             MP.MediaEnded += MP_MediaEnded;
             MP.MediaOpened += MP_MediaOpened;
-            
+
+            LocalSongs = new LocalFolder() { Title = "LF" };
+            Albums = new ObservableCollection<Album>();
+            LocalFolders = new ObservableCollection<LocalFolder>();
+            PlayLists = new ObservableCollection<PlayList>();
+
+
+            // Таймер
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
             timer.Tick += Timer_Tick;
 
-            MWM_LocalDB = new MWM_LocalDB(App.Connection);
+            // Инициализация класса работы с БД
+            _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser);
+            _dbService.GetData();
 
-            Albums = MWM_LocalDB.GetAlbumList();
-            LocalFolders = MWM_LocalDB.GetLocalFoldersList();
-            PlayLists = MWM_LocalDB.GetPlayListsList();
-            LocalSongs = MWM_LocalDB.GetSongsList();
-
-
-            //GetListLocalFiles();
-            MWM_SignalR = new MWM_SignalR(this);
-
-            
+            // Инициализация класса работы с SignalR
+            //_signalRService = new SignalRService();
+            //_signalRService.PropertyChanged += _signalRService_PropertyChanged;
         }
 
+
+
+        #endregion
+
+        #region Дополнительные методы
+
+       
 
         #endregion
     }

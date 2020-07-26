@@ -263,7 +263,9 @@
 
                 <ListBox ItemsSource="{Binding Songs}"
                          SelectedValue="{Binding SelectedSong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        
                          Style="{StaticResource SongsListBoxStyle}">
+                  
                 </ListBox>
 
 

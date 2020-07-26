@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.5" />
     <PackageReference Include="NLog" Version="4.7.2" />
     <PackageReference Include="NLog.Config" Version="4.7.2" />
     <PackageReference Include="NLog.Zidium" Version="1.0.8" />
     <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
   </ItemGroup>
 
   <ItemGroup>

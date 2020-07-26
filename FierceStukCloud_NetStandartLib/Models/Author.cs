@@ -6,9 +6,7 @@ namespace FierceStukCloud_NetStandardLib.Models
 {
     public class Author
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-
-       
-
     }
 }

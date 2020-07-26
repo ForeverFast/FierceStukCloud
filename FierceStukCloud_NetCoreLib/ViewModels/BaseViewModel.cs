@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using FierceStukCloud_NetCoreLib.Services;
+using FierceStukCloud_NetCoreLib.Commands;
 using FierceStukCloud_NetStandardLib.MVVM;
 
 namespace FierceStukCloud_NetCoreLib.ViewModels

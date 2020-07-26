@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aLh0ZkCWmb4OacQfnw0qJKufUKfg1Axi0YU7iuFWU7Wvs7TQW/GTxM1dkziPPmUrMm6YpeVp66eYHNLOYfksuQ==",
+  "dgSpecHash": "z8N9HdyMW8hKgVWK2FKhkJPmwc3ns5HmoRA/anQFm4zEvi/7yIB5RbmGHTNvs5PXrDBZjP2FBvvk5cea3OLiOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_PC\\FierceStukCloud_PC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ivans\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.5\\microsoft.aspnetcore.connections.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\3.1.5\\microsoft.aspnetcore.http.connections.client.3.1.5.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.http.connections.common\\3.1.5\\microsoft.aspnetcore.http.connections.common.3.1.5.nupkg.sha512",
@@ -95,7 +96,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.metadata\\1.4.1\\system.reflection.metadata.1.4.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",

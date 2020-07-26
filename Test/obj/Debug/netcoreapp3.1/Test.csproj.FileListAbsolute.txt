@@ -51,4 +51,14 @@ C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Microso
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Zidium.Api.NetCore.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\Dapper.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\System.Data.SQLite.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\netstandard2.1\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\netstandard2.1\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\netstandard2.1\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.0\SQLite.Interop.dll
+C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.1\SQLite.Interop.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.csproj.CoreCompileInputs.cache

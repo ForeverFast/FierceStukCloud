@@ -77,6 +77,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 
         #endregion
 
+
         #region Основные методы
 
         /// <summary>
@@ -114,12 +115,14 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
 
         #endregion
 
+
         #region События
 
         public event Action<List<BaseMusicObject>> UpdateInfoFromPC;
         public event Action<Song> _NewCurrentSong;
 
         #endregion
+
 
         #region Конструкторы 
 

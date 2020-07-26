@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JbYvc8/tKZ8NUaipDuc3+BTc4xYdCgiUjHnHtFhRP7F3bGvsYQ78zYUhEWw71OUkS+LCjnHe8e6KaGzu8T2e8Q==",
+  "dgSpecHash": "JGJThymhty4RMbKG3DHFBDocEp0iN4F7iIpDj/j/mO9fUAEUnmm6x3Jmfa8oivawRz7BZu2uKz0w8HsUFVoPWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ivans\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.5\\microsoft.aspnetcore.connections.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.http.features\\3.1.5\\microsoft.aspnetcore.http.features.3.1.5.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.signalr.client.core\\3.1.5\\microsoft.aspnetcore.signalr.client.core.3.1.5.nupkg.sha512",
@@ -64,6 +65,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.collections.specialized\\4.3.0\\system.collections.specialized.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.1\\system.data.sqlite.core.1.0.113.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.3.0\\system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.diagnostics.process\\4.3.0\\system.diagnostics.process.4.3.0.nupkg.sha512",
@@ -91,7 +93,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.metadata\\1.4.1\\system.reflection.metadata.1.4.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",

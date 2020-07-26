@@ -3,6 +3,7 @@ using FierceStukCloud_NetStandardLib.Models.AbstractModels;
 using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -70,5 +71,14 @@ namespace FierceStukCloud_NetStandardLib.Extension
                 return false;
             }
         }
+
+        public static void AddRange<T>(this ObservableCollection<T> ts, ICollection<T> items)
+        {
+            foreach (var item in items)
+                ts.Add(item);
+        }
+
+        public static int CurrentMusicContainerIdValue(this Song song) => song.LocalId.Find(x => x.Key == song.CurrentMusicContainer).Value;
+
     }
 }

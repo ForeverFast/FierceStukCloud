@@ -74,3 +74,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Zidium.Api.NetCore.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud_PC.dll.config
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Dapper.dll

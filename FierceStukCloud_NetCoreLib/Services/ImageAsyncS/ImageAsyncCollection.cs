@@ -10,7 +10,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 	{
 		private ImageSource _imageDefault;
 		private Dispatcher _dispatcher;
-
+		 
 		/// <summary>Изображение по умолчанию.
 		/// Выводится пока не загружено основное изображение</summary>
 		public ImageSource ImageDefault
@@ -18,6 +18,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			get => _imageDefault;
 			set
 			{
+			    
 				if (_imageDefault == value) return;
 				_imageDefault = value;
 				OnPropertyChanged(ImageDefaultArgs);

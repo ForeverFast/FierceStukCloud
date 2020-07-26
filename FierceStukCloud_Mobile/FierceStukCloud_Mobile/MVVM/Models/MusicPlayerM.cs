@@ -356,11 +356,11 @@ namespace FierceStukCloud_Mobile.Models
 
         private void MP_MediaEnded(object sender, EventArgs e)
         {
-            if (CurrentSong.LocalID == CurrentMusicContainer.ToLF().Songs.Count)
-            {
+            //if (CurrentSong.LocalID == CurrentMusicContainer.ToLF().Songs.Count)
+            //{
                 //MP.Stop();
-                return;
-            }
+            //   return;
+            //}
 
             if (IsRandomSong == true)
             {

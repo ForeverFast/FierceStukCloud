@@ -9,6 +9,8 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 	{
 		private T _content;
 
+
+
 		protected ImageAsyncBase(Dispatcher dispatcher)
 			: base(dispatcher) { }
 

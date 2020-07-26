@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FierceStukCloud_NetStandardLib.MVVM;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace FierceStukCloud_NetStandardLib.Models.AbstractModels
 {
-    public abstract class BaseMusicObject
+    public abstract class BaseMusicObject : OnPropertyChangedClass
     {
         [Key]
         [JsonPropertyName("id")]

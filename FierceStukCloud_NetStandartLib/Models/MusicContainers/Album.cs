@@ -4,6 +4,6 @@ namespace FierceStukCloud_NetStandardLib.Models.MusicContainers
 {
     public class Album : MusicContainer
     {
-        public Author Author { get; set; }
+        public string Author { get; set; }
     }
 }

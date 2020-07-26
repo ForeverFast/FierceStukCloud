@@ -40,6 +40,20 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			Content = content;
 		}
 
+		#region Поля
+		private Boolean _isSelected;
+		#endregion
+
+		public Boolean IsSelected
+		{
+			get { return _isSelected; }
+			set
+			{
+				_isSelected = value;
+				OnPropertyChanged("IsSelected");
+			}
+		}
+
 		/// <summary>Конструктор BitmapImage.
 		/// Должен выполняться в Диспетчере основногопотока!</summary>
 		/// <param name="stream">Поток с источником изображения.</param>
@@ -61,6 +75,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
             }
 			return (BitmapImage)ImageDefault;
 		}
+
 		/// <summary>Делегат метода создания BitmapImage.
 		/// Без делегата не возможно вызвать перегрузку Dispatcher.Invoke,
 		/// возвращающую результат по переданому параметру</summary>
