@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JGJThymhty4RMbKG3DHFBDocEp0iN4F7iIpDj/j/mO9fUAEUnmm6x3Jmfa8oivawRz7BZu2uKz0w8HsUFVoPWQ==",
+  "dgSpecHash": "VB06ZGY6/EhfCY0nIvMkBMdBN7zD9QWh0DZ5rNmUKDPEyrgLFya5opzC6R3S/5c+sG4+9YLRtTyFq/F8FolD1A==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\Test\\Test.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\mvvmlight\\5.4.1.1\\mvvmlight.5.4.1.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\naudio\\1.10.0\\naudio.1.10.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",

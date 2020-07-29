@@ -31,18 +31,18 @@ namespace Test
         {
             string str = "Data Source=fscLocalDB.db;Version=3;";
 
-            ObservableCollection<BaseMusicObject> ListBMO = new ObservableCollection<BaseMusicObject>();
+            IList<BaseMusicObject> ListBMO = new ObservableCollection<BaseMusicObject>();
             ListBMO.Add(new Song() { Title = "rofl" });
             ListBMO.Add(new Song() { Title = "kek" });
 
-            ObservableCollection<BaseMusicObject> ObservableCollectionBMO = ListBMO;
+            ObservableCollection<BaseMusicObject> ObservableCollectionBMO = ListBMO as ObservableCollection<BaseMusicObject>;
 
             ObservableCollectionBMO.Add(new Song() { Title = "lol" });
 
             var json1 = System.Text.Json.JsonSerializer.Serialize<ObservableCollection<BaseMusicObject>>(ObservableCollectionBMO);
 
 
-
+            
 
 
 

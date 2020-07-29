@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using NLog;
 using static System.Diagnostics.Debug;
+using GalaSoft.MvvmLight.Messaging;
+using Egor92.MvvmNavigation;
+using FierceStukCloud_PC.MVVM.Views.Pages;
+using FierceStukCloud_PC.Services.CustomNavigation;
 
 namespace FierceStukCloud_PC
 {
@@ -24,7 +28,7 @@ namespace FierceStukCloud_PC
 
         public static SQLiteConnection Connection { get; set; }
 
-        public static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        //public static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         //http://localhost:52828/
         //http://fiercestukcloud.life/
@@ -32,8 +36,8 @@ namespace FierceStukCloud_PC
 
         public App()
         {
-            Log.Debug("Запуск приложения...");
-            WriteLine("Запуск приложения...");
+            //Log.Debug("Запуск приложения...");
+            
             try
             {
                 #region Локальная БД
@@ -68,31 +72,45 @@ namespace FierceStukCloud_PC
             }
             catch (Exception)
             {
-
+                
             }
 
             #region Настройка окон
             DisplayRootRegistry = new DisplayRootRegistry();
             DisplayRootRegistry.RegisterWindowType<AutorizationVM, AuthorizationV>();
-            DisplayRootRegistry.RegisterWindowType<MainWindowVM, MainWindowV>();
+            DisplayRootRegistry.RegisterWindowType<MainWindowVM, Test1/*MainWindowV*/>();
             #endregion
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-           
-            var AVM = new AutorizationVM(Dispatcher);
-            await DisplayRootRegistry.ShowModalPresentation(AVM);
+
+            CurrentUser = new User() { Login = "ForeverFast" };
+
+            var window = new Test1();
+            var navigationManager = new NavigationManager(window.FrameContent);
+
+            var viewModel = new MainWindowVM(Dispatcher, navigationManager);
+            window.DataContext = viewModel;
+            
+            navigationManager.Register<Page1>("test1", new TestVM(navigationManager));
+            navigationManager.Register<Page1>("test2", new TestVM(navigationManager));
+            navigationManager.Register<HomePage>("home1", new HomePageVM(navigationManager));
+
+            window.Show();
+
+            //var AVM = new AutorizationVM(Dispatcher);
+            //await DisplayRootRegistry.ShowModalPresentation(AVM);
             
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            Log.Debug("Завершение работы приложения...");
+            //Log.Debug("Завершение работы приложения...");
 
-            Zidium.Api.Client.Instance.EventManager.Flush();
-            Zidium.Api.Client.Instance.WebLogManager.Flush();
+            //Zidium.Api.Client.Instance.EventManager.Flush();
+            //Zidium.Api.Client.Instance.WebLogManager.Flush();
 
             base.OnExit(e);
         }

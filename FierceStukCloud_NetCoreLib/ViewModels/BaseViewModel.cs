@@ -19,6 +19,8 @@ namespace FierceStukCloud_NetCoreLib.ViewModels
         }
         public virtual void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
 
+       
+
         #endregion
 
         #region Конструкторы и методы инициализации

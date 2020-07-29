@@ -222,6 +222,9 @@
           }
         }
       },
+      "MvvmLight/5.4.1.1": {
+        "type": "package"
+      },
       "NAudio/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -724,6 +727,21 @@
         "version.txt"
       ]
     },
+    "MvvmLight/5.4.1.1": {
+      "sha512": "fTUDMWT//ChZGd7Q5k0IaJuIXgh+FM43pCStxup7kgh1MQXvC48CjpjWkp5Auru/YXhHOJOMgD1NdtFZgn6K2g==",
+      "type": "package",
+      "path": "mvvmlight/5.4.1.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/ViewModel/MainViewModel.cs.pp",
+        "Content/ViewModel/ViewModelLocator.cs.pp",
+        "mvvmlight.5.4.1.1.nupkg.sha512",
+        "mvvmlight.nuspec",
+        "tools/install.ps1"
+      ]
+    },
     "NAudio/1.10.0": {
       "sha512": "y6VvwSPfJhElUllkzE2FHXHAADYFGLwMPt048KlPyuUXcq4E0VEi+4hWrFd+lBsrb+Q5DvPA9w86oRTvKRO9UQ==",
       "type": "package",
@@ -1128,6 +1146,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FierceStukCloud_NetStandardLib >= 1.0.0",
+      "MvvmLight >= 5.4.1.1",
       "NAudio >= 1.10.0",
       "System.Drawing.Common >= 4.7.0",
       "System.Windows.Interactivity.WPF >= 2.0.20525",
@@ -1182,6 +1201,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "MvvmLight": {
+            "target": "Package",
+            "version": "[5.4.1.1, )"
+          },
           "NAudio": {
             "target": "Package",
             "version": "[1.10.0, )"

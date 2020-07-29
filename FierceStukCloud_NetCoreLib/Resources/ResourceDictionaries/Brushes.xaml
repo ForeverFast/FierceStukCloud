@@ -9,7 +9,9 @@
     <SolidColorBrush x:Key="GrayLVL2" Color="#FF252527"/>
     <SolidColorBrush x:Key="GrayLVL3" Color="#FF1A1A1B"/>
     <SolidColorBrush x:Key="GrayLVL4" Color="#FF121213"/>
-    
+    <SolidColorBrush x:Key="GrayLVL4_WithLowOpacity" Color="#FF121213" Opacity="0.01"/>
+
+
     <SolidColorBrush x:Key="StandartTextColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="StandartTextLightColor" Color="#FFE5E5E5"/>
     <SolidColorBrush x:Key="StandartLightColor" Color="#FFCCC5C5"/>

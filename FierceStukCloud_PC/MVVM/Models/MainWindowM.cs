@@ -21,6 +21,7 @@ using FierceStukCloud_NetStandardLib.MVVM;
 using System.Windows;
 using System.Text.Json;
 using FierceStukCloud_NetStandardLib.Services;
+using System.Linq;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -30,6 +31,8 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         /// <summary> Переменная плеера </summary>      
         public MediaPlayer MP { get; }
+        private Dispatcher Dispatcher { get; }
+
 
         private IDataService _dbService { get; }
         private ISignalRService _signalRService { get; }
@@ -174,7 +177,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() - 1);
+            var temp = CurrentMusicContainer.ToMC().Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() - 1);
             SetCurrentSong(temp);
         }
 
@@ -189,7 +192,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.Find(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() + 1);
+            var temp = CurrentMusicContainer.ToMC().Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() + 1);
             SetCurrentSong(temp);
         }
 
@@ -337,6 +340,19 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Конструкторы 
 
+        public MainWindowM(Dispatcher dispatcher) : this()
+        {
+            Dispatcher = dispatcher;
+
+            // Инициализация класса работы с БД
+            _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser, dispatcher);
+            _dbService.GetData();
+
+            // Инициализация класса работы с SignalR
+            //_signalRService = new SignalRService();
+            //_signalRService.PropertyChanged += _signalRService_PropertyChanged;
+        }
+
         public MainWindowM()
         {
             // Инициализация плеера
@@ -354,13 +370,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
             timer.Tick += Timer_Tick;
 
-            // Инициализация класса работы с БД
-            _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser);
-            _dbService.GetData();
-
-            // Инициализация класса работы с SignalR
-            //_signalRService = new SignalRService();
-            //_signalRService.PropertyChanged += _signalRService_PropertyChanged;
+           
         }
 
 

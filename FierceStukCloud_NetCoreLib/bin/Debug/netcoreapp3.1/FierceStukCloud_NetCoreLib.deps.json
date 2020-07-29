@@ -9,6 +9,7 @@
       "FierceStukCloud_NetCoreLib/1.0.0": {
         "dependencies": {
           "FierceStukCloud_NetStandardLib": "1.0.0",
+          "MvvmLight": "5.4.1.1",
           "NAudio": "1.10.0",
           "System.Drawing.Common": "4.7.0",
           "System.Windows.Interactivity.WPF": "2.0.20525",
@@ -188,6 +189,7 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         }
       },
+      "MvvmLight/5.4.1.1": {},
       "NAudio/1.10.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -414,6 +416,13 @@
       "sha512": "sha512-mtVirZr++rq+XCDITMUdnETD59XoeMxSpLRIII7JRI6Yj0LEDiO1pPn0ktlnIj12Ix8bfvQqQDMMIF9wC98oCA==",
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
+    },
+    "MvvmLight/5.4.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fTUDMWT//ChZGd7Q5k0IaJuIXgh+FM43pCStxup7kgh1MQXvC48CjpjWkp5Auru/YXhHOJOMgD1NdtFZgn6K2g==",
+      "path": "mvvmlight/5.4.1.1",
+      "hashPath": "mvvmlight.5.4.1.1.nupkg.sha512"
     },
     "NAudio/1.10.0": {
       "type": "package",

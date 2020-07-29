@@ -5,16 +5,16 @@ namespace FierceStukCloud_NetCoreLib.Commands
 {
     public class AsyncRelayCommand : AsyncCommandBase
     {
-        private readonly Func<Task> _callback;
+        private readonly Func<object, Task> _callback;
 
-        public AsyncRelayCommand(Func<Task> callback, Action<Exception> onException) : base(onException)
+        public AsyncRelayCommand(Func<object, Task> callback, Action<Exception> onException) : base(onException)
         {
             _callback = callback;
         }
 
         protected override async Task ExecuteAsync(object parameter)
         {
-            await _callback();
+            await _callback(parameter);
         }
     }
 }

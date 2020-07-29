@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2xHYcOSUmSp8e6LpC+LyiGTH+DXE4kUHLO7/XflAG5xPNDblzzjvUiKZRyZMLb7gB+EUU2Zou6amWTvU7mORcg==",
+  "dgSpecHash": "MNzUc0lfrndWOic2QijFx9uoFma3iaTocIBPZzLV+Sju9GqrdWQEmUAuFGxSE/aIOUJw5PCdNFL7tjb+U1FNZA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetCoreLib\\FierceStukCloud_NetCoreLib.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\mvvmlight\\5.4.1.1\\mvvmlight.5.4.1.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\naudio\\1.10.0\\naudio.1.10.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",

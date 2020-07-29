@@ -19,12 +19,16 @@ using System.Data;
 using Dapper;
 using static Dapper.SqlMapper;
 using System.Collections.ObjectModel;
+using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
+using System.Windows.Threading;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
     public class DataService : IDataService
     {
         private User _user { get; }
+        private Dispatcher Dispatcher { get; }
+
 
         public LocalFolder LocalSongs { get; }
         public ObservableCollection<Album> Albums { get; }
@@ -200,8 +204,11 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     var NewAlbum = new Album()
                     {
                         Author = song.Author,
-                        UserLogin = _user.Login
+                        //Songs = new ImageAsyncCollection<ImageAsync<Song>>(Dispatcher),
+                        UserLogin = song.UserLogin
                     };
+
+                    
 
                     if (!string.IsNullOrEmpty(song.Album))
                         NewAlbum.Title = song.Album;
@@ -246,7 +253,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     {
                         Title = path.Remove(0, path.IndexOf('\\') + 1),
                         LocalUrl = path,
-                        UserLogin = _user.Login
+                        UserLogin = song.UserLogin
                     };
 
                     song.LocalId.Add(new KeyValuePair<MusicContainer, int>(NewLF, NewLF.Songs.Count));
@@ -278,7 +285,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                             var NewPL = new PlayList()
                             {
                                 Title = playList,
-                                UserLogin = _user.Login
+                                UserLogin = song.UserLogin
                             };
 
                             song.LocalId.Add(new KeyValuePair<MusicContainer, int>(NewPL, NewPL.Songs.Count));
@@ -308,11 +315,12 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         #endregion
 
 
-        public DataService(LocalFolder LocalSongs, ObservableCollection<Album> Albums, ObservableCollection<LocalFolder> LocalFolders, ObservableCollection<PlayList> PlayLists, User user)
+        public DataService(LocalFolder LocalSongs, ObservableCollection<Album> Albums, ObservableCollection<LocalFolder> LocalFolders, ObservableCollection<PlayList> PlayLists, User user, Dispatcher dispatcher)
         {
             SqlMapper.AddTypeHandler(typeof(List<string>), new DictTypeHandler());
 
             _user = user;
+            this.Dispatcher = dispatcher;
 
             this.LocalSongs = LocalSongs;
             this.Albums = Albums;

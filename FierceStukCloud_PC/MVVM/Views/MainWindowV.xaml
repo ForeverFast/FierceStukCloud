@@ -233,7 +233,7 @@
                                     <ScrollViewer Style="{DynamicResource styleScrollViewer}"/>
 
 
-                                    <ListBox ItemsSource="{Binding LocalFiles}"
+                                    <ListBox ItemsSource="{Binding LocalFolders}"
                                              SelectedValue="{Binding SelectedBMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{StaticResource MainListBoxStyle}">
                                     </ListBox>

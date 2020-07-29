@@ -51,6 +51,7 @@ namespace FierceStukCloud_NetCoreLib.Services
             return window;
         }
 
+      
 
         Dictionary<object, Window> openWindows = new Dictionary<object, Window>();
         public void ShowPresentation(object vm)
