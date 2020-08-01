@@ -15,9 +15,9 @@ using System.Windows;
 using NLog;
 using static System.Diagnostics.Debug;
 using GalaSoft.MvvmLight.Messaging;
-using Egor92.MvvmNavigation;
+
 using FierceStukCloud_PC.MVVM.Views.Pages;
-using FierceStukCloud_PC.Services.CustomNavigation;
+using Egor92.MvvmNavigation;
 
 namespace FierceStukCloud_PC
 {
@@ -82,7 +82,7 @@ namespace FierceStukCloud_PC
             #endregion
         }
 
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
@@ -93,16 +93,14 @@ namespace FierceStukCloud_PC
 
             var viewModel = new MainWindowVM(Dispatcher, navigationManager);
             window.DataContext = viewModel;
-            
-            navigationManager.Register<Page1>("test1", new TestVM(navigationManager));
-            navigationManager.Register<Page1>("test2", new TestVM(navigationManager));
-            navigationManager.Register<HomePage>("home1", new HomePageVM(navigationManager));
+
+            navigationManager.Register<HomePage>("home", new HomePageVM(navigationManager), true);
+            navigationManager.Navigate("home", null);
 
             window.Show();
 
             //var AVM = new AutorizationVM(Dispatcher);
-            //await DisplayRootRegistry.ShowModalPresentation(AVM);
-            
+            //await DisplayRootRegistry.ShowModalPresentation(AVM);   
         }
 
         protected override void OnExit(ExitEventArgs e)

@@ -478,50 +478,6 @@
           "lib/net45/System.Windows.Interactivity.dll": {}
         }
       },
-      "MvvmNavigation.Abstractions/3.2.0": {
-        "type": "package",
-        "dependencies": {
-          "JetBrains.Annotations": "2019.1.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/MvvmNavigation.Abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/MvvmNavigation.Abstractions.dll": {}
-        }
-      },
-      "MvvmNavigation.Core/3.2.0": {
-        "type": "package",
-        "dependencies": {
-          "JetBrains.Annotations": "2019.1.3",
-          "MvvmNavigation.Abstractions": "3.2.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/MvvmNavigation.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/MvvmNavigation.Core.dll": {}
-        }
-      },
-      "MvvmNavigation.Wpf/3.2.0": {
-        "type": "package",
-        "dependencies": {
-          "JetBrains.Annotations": "2019.1.3",
-          "MvvmNavigation.Abstractions": "3.2.0",
-          "MvvmNavigation.Core": "3.2.0"
-        },
-        "compile": {
-          "lib/netcoreapp3.0/MvvmNavigation.Internal.dll": {},
-          "lib/netcoreapp3.0/MvvmNavigation.Wpf.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/MvvmNavigation.Internal.dll": {},
-          "lib/netcoreapp3.0/MvvmNavigation.Wpf.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
-      },
       "NAudio/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -2357,6 +2313,51 @@
         "runtime": {
           "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
         }
+      },
+      "MvvmNavigation.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3"
+        },
+        "compile": {
+          "bin/placeholder/MvvmNavigation.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MvvmNavigation.Abstractions.dll": {}
+        }
+      },
+      "MvvmNavigation.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3",
+          "MvvmNavigation.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MvvmNavigation.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MvvmNavigation.Core.dll": {}
+        }
+      },
+      "MvvmNavigation.Wpf/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "JetBrains.Annotations": "2019.1.3",
+          "MvvmNavigation.Abstractions": "1.0.0",
+          "MvvmNavigation.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MvvmNavigation.Wpf.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MvvmNavigation.Wpf.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -3171,45 +3172,6 @@
         "lib/xamarin.ios10/GalaSoft.MvvmLight.pdb",
         "mvvmlightlibs.5.4.1.1.nupkg.sha512",
         "mvvmlightlibs.nuspec"
-      ]
-    },
-    "MvvmNavigation.Abstractions/3.2.0": {
-      "sha512": "JbxN2+gZGr7V3/VHRQ9QyRcZU2RFFIQk5/ZXZsTC6iVR4fxmNBiu8s9El0vJn02IddBN3HZPBfecWJdVyp1c3Q==",
-      "type": "package",
-      "path": "mvvmnavigation.abstractions/3.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/MvvmNavigation.Abstractions.dll",
-        "mvvmnavigation.abstractions.3.2.0.nupkg.sha512",
-        "mvvmnavigation.abstractions.nuspec"
-      ]
-    },
-    "MvvmNavigation.Core/3.2.0": {
-      "sha512": "SHNgTJFzsFXgFCmlz+5TYtAjtvvjUzMoA3D7tdKtRNvvDLJzovLxWL6sMCBn2KGj4Y6Y5LHs2IKF9zBgWYKfyw==",
-      "type": "package",
-      "path": "mvvmnavigation.core/3.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/MvvmNavigation.Core.dll",
-        "mvvmnavigation.core.3.2.0.nupkg.sha512",
-        "mvvmnavigation.core.nuspec"
-      ]
-    },
-    "MvvmNavigation.Wpf/3.2.0": {
-      "sha512": "WDWY8S2zSP+lo0rtH/DHCqreZXFV+8RPE6ziycm7Y20Y7346ZOcXJiq5ia7DmIU6jmU4sFs0eBQWhSZ9DEHpRQ==",
-      "type": "package",
-      "path": "mvvmnavigation.wpf/3.2.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net461/MvvmNavigation.Internal.dll",
-        "lib/net461/MvvmNavigation.Wpf.dll",
-        "lib/netcoreapp3.0/MvvmNavigation.Internal.dll",
-        "lib/netcoreapp3.0/MvvmNavigation.Wpf.dll",
-        "mvvmnavigation.wpf.3.2.0.nupkg.sha512",
-        "mvvmnavigation.wpf.nuspec"
       ]
     },
     "NAudio/1.10.0": {
@@ -7640,6 +7602,21 @@
       "type": "project",
       "path": "../FierceStukCloud_NetStandartLib/FierceStukCloud_NetStandardLib.csproj",
       "msbuildProject": "../FierceStukCloud_NetStandartLib/FierceStukCloud_NetStandardLib.csproj"
+    },
+    "MvvmNavigation.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../../MvvmNavigation/code/src/MvvmNavigation.Abstractions/MvvmNavigation.Abstractions.csproj",
+      "msbuildProject": "../../MvvmNavigation/code/src/MvvmNavigation.Abstractions/MvvmNavigation.Abstractions.csproj"
+    },
+    "MvvmNavigation.Core/1.0.0": {
+      "type": "project",
+      "path": "../../MvvmNavigation/code/src/MvvmNavigation.Core/MvvmNavigation.Core.csproj",
+      "msbuildProject": "../../MvvmNavigation/code/src/MvvmNavigation.Core/MvvmNavigation.Core.csproj"
+    },
+    "MvvmNavigation.Wpf/1.0.0": {
+      "type": "project",
+      "path": "../../MvvmNavigation/code/src/MvvmNavigation.Wpf/MvvmNavigation.Wpf.csproj",
+      "msbuildProject": "../../MvvmNavigation/code/src/MvvmNavigation.Wpf/MvvmNavigation.Wpf.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7651,7 +7628,7 @@
       "Microsoft.AspNetCore.SignalR.Client >= 3.1.5",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.1.5",
       "MvvmLightLibs >= 5.4.1.1",
-      "MvvmNavigation.Wpf >= 3.2.0",
+      "MvvmNavigation.Wpf >= 1.0.0",
       "NLog >= 4.7.2",
       "NLog.Config >= 4.7.2",
       "NLog.Zidium >= 1.0.8",
@@ -7696,6 +7673,9 @@
             },
             "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
               "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj"
+            },
+            "C:\\Users\\ivans\\source\\repos\\MvvmNavigation\\code\\src\\MvvmNavigation.Wpf\\MvvmNavigation.Wpf.csproj": {
+              "projectPath": "C:\\Users\\ivans\\source\\repos\\MvvmNavigation\\code\\src\\MvvmNavigation.Wpf\\MvvmNavigation.Wpf.csproj"
             }
           }
         }
@@ -7728,10 +7708,6 @@
           "MvvmLightLibs": {
             "target": "Package",
             "version": "[5.4.1.1, )"
-          },
-          "MvvmNavigation.Wpf": {
-            "target": "Package",
-            "version": "[3.2.0, )"
           },
           "NLog": {
             "target": "Package",
@@ -7776,7 +7752,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   },

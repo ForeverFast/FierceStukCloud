@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uJ84jBnl7HkB54JSka2OVM2eCwnfd/rrP4s4O2Ooky9rsVESVp6nFHKblov/DNUPYX6z/NUAhexLhMikHVL1Dg==",
+  "dgSpecHash": "Jpg44+Xe1CXTrCCA94xYSexFpj5yPilGo/gCjOlHM9np4TAGQ16z5ltyL+WvY49ixPgh82ZgeB+5euH08EAInw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_PC\\FierceStukCloud_PC.csproj",
   "expectedPackageFiles": [
@@ -40,9 +40,6 @@
     "C:\\Users\\ivans\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\mvvmlight\\5.4.1.1\\mvvmlight.5.4.1.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\mvvmnavigation.abstractions\\3.2.0\\mvvmnavigation.abstractions.3.2.0.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\mvvmnavigation.core\\3.2.0\\mvvmnavigation.core.3.2.0.nupkg.sha512",
-    "C:\\Users\\ivans\\.nuget\\packages\\mvvmnavigation.wpf\\3.2.0\\mvvmnavigation.wpf.3.2.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\naudio\\1.10.0\\naudio.1.10.0.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\ivans\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",

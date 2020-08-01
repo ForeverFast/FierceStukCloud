@@ -1,4 +1,5 @@
-﻿using Egor92.MvvmNavigation.Abstractions;
+﻿using Egor92.MvvmNavigation;
+using Egor92.MvvmNavigation.Abstractions;
 using FierceStukCloud_NetCoreLib.Commands;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using FierceStukCloud_NetStandardLib.Models;
@@ -13,7 +14,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     public class TestVM : BaseViewModel, INavigatedToAware
     {
-        private readonly INavigationManager _navigationManager;
+        private readonly NavigationManager _navigationManager;
 
        
 
@@ -30,12 +31,12 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private async Task TaskQ(object parameter)
         {
             //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/Pages/HomePage.xaml", new Song(), NavigateType.NavigateTo));
-            _navigationManager.Navigate("home1");
+            _navigationManager.Navigate(parameter.ToString());
         }
 
         public void OnNavigatedTo(object arg)
         {
-            test = (string)arg;
+            
         }
 
         
@@ -44,7 +45,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             update = new AsyncRelayCommand(TaskQ, null);
         }
 
-        public TestVM(INavigationManager navigationManager) : this()
+        public TestVM(NavigationManager navigationManager) : this()
         {
             _navigationManager = navigationManager;
         }

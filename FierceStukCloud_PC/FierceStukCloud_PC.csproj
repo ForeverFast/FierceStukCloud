@@ -13,7 +13,6 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.5" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
-    <PackageReference Include="MvvmNavigation.Wpf" Version="3.2.0" />
     <PackageReference Include="NLog" Version="4.7.2" />
     <PackageReference Include="NLog.Config" Version="4.7.2" />
     <PackageReference Include="NLog.Zidium" Version="1.0.8" />
@@ -23,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MvvmNavigation\code\src\MvvmNavigation.Wpf\MvvmNavigation.Wpf.csproj" />
     <ProjectReference Include="..\FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj" />
     <ProjectReference Include="..\FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandardLib.csproj" />
   </ItemGroup>

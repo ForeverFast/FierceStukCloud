@@ -10,6 +10,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
     {
         private readonly INavigationManager _navigationManager;
 
+        public string _test;
+        public string test
+        {
+            get => _test;
+            set => SetProperty(ref _test, value);
+        }
+
         public HomePageVM(INavigationManager navigationManager)
         {
             _navigationManager = navigationManager;
@@ -17,7 +24,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public void OnNavigatedTo(object arg)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

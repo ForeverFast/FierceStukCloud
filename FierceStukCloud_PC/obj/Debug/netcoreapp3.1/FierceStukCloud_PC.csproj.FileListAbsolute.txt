@@ -85,9 +85,13 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\Pages\HomePage.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\Pages\HomePage.baml
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\JetBrains.Annotations.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Abstractions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Core.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Internal.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Wpf.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_PC.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\JetBrains.Annotations.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Wpf.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Abstractions.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Core.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Internal.pdb

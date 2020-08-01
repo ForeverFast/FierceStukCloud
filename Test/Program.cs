@@ -29,20 +29,23 @@ namespace Test
 
         static void Main(string[] args)
         {
-            string str = "Data Source=fscLocalDB.db;Version=3;";
+            var t = Guid.NewGuid().ToString();
+            Console.WriteLine(t);
 
-            IList<BaseMusicObject> ListBMO = new ObservableCollection<BaseMusicObject>();
-            ListBMO.Add(new Song() { Title = "rofl" });
-            ListBMO.Add(new Song() { Title = "kek" });
+            //string str = "Data Source=fscLocalDB.db;Version=3;";
 
-            ObservableCollection<BaseMusicObject> ObservableCollectionBMO = ListBMO as ObservableCollection<BaseMusicObject>;
+            //IList<BaseMusicObject> ListBMO = new ObservableCollection<BaseMusicObject>();
+            //ListBMO.Add(new Song() { Title = "rofl" });
+            //ListBMO.Add(new Song() { Title = "kek" });
 
-            ObservableCollectionBMO.Add(new Song() { Title = "lol" });
+            //ObservableCollection<BaseMusicObject> ObservableCollectionBMO = ListBMO as ObservableCollection<BaseMusicObject>;
 
-            var json1 = System.Text.Json.JsonSerializer.Serialize<ObservableCollection<BaseMusicObject>>(ObservableCollectionBMO);
+            //ObservableCollectionBMO.Add(new Song() { Title = "lol" });
+
+            //var json1 = System.Text.Json.JsonSerializer.Serialize<ObservableCollection<BaseMusicObject>>(ObservableCollectionBMO);
 
 
-            
+
 
 
 

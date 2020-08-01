@@ -25,6 +25,8 @@ using FierceStukCloud_NetCoreLib.Commands;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
 using Egor92.MvvmNavigation.Abstractions;
+using Egor92.MvvmNavigation;
+using FierceStukCloud_PC.MVVM.Views.TestView;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -32,7 +34,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
     {
         private MainWindowM model { get; }
         private readonly Dispatcher _dispatcher;
-        private readonly INavigationManager _navigationManager;
+        private readonly NavigationManager _navigationManager;
 
         public string Title { get; set; }
       
@@ -261,20 +263,30 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #endregion
 
 
-        #region Тестовые команды
+        #region Команды - Навигациия
 
+        public ICommand NavigateToHomePageCommand { get; private set; }
+        public ICommand NavigateToProfilePageCommand { get; private set; }
 
 
         public ICommand NavigationToCommand { get; private set; }
         public ICommand NavigationBackCommand { get; private set; }
         public ICommand NavigationForwardCommand { get; private set; }
 
+
+        public void NavigateToHomePageExecute(object parameter)
+        {
+            
+        }
+
         public void NavigationToExecute(object parameter)
         {
             //NavigationToExecute("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek"});
             //var values = (object[])parameter;
             //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek" }, NavigateType.NavigateTo));
-            _navigationManager.Navigate("test1","хуй");
+            //if(_navigationManager.CanNavigate("test1"))
+            _navigationManager.Navigate<Page1>(new TestVM() { test = "kek" });
+            
         }
 
         public void NavigationBackExecute(object parameter)
@@ -376,7 +388,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        public MainWindowVM(Dispatcher dispatcher, INavigationManager navigationManager) : this()
+        public MainWindowVM(Dispatcher dispatcher, NavigationManager navigationManager) : this()
         {
             _dispatcher = dispatcher;
             _navigationManager = navigationManager;
@@ -410,7 +422,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute, null);
             NextSongCommand = new RelayCommand(NextSongExecute, null);
 
-            NavigationToCommand = new RelayCommand(NavigationToExecute, null);
+            NavigationToCommand = new RelayCommand(NavigationToExecute);
             NavigationBackCommand = new RelayCommand(NavigationBackExecute);
             NavigationForwardCommand = new RelayCommand(NavigationForwardExecute);
 

@@ -119,7 +119,7 @@
                 </Grid.Resources>
 
 
-                <RadioButton Grid.Row="0">
+                <RadioButton Grid.Row="0" Command="{Binding NavigateToHomePageCommand}">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Главная</sys:String>
                         <materialDesign:PackIconKind x:Key="KindType">Home</materialDesign:PackIconKind>
