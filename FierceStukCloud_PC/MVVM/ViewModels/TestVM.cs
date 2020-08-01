@@ -31,7 +31,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private async Task TaskQ(object parameter)
         {
             //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/Pages/HomePage.xaml", new Song(), NavigateType.NavigateTo));
-            _navigationManager.Navigate(parameter.ToString());
+            _navigationManager.Navigate(parameter.ToString(),NavigateType.Default);
         }
 
         public void OnNavigatedTo(object arg)

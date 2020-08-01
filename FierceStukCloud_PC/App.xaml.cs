@@ -94,8 +94,11 @@ namespace FierceStukCloud_PC
             var viewModel = new MainWindowVM(Dispatcher, navigationManager);
             window.DataContext = viewModel;
 
-            navigationManager.Register<HomePage>("home", new HomePageVM(navigationManager), true);
-            navigationManager.Navigate("home", null);
+            navigationManager.Register<HomePage>("home", new HomePageVM(navigationManager));
+            navigationManager.Register<ReviewPage>("review", new HomePageVM(navigationManager));
+            navigationManager.Register<ProfilePage>("profile", new HomePageVM(navigationManager));
+
+            navigationManager.Navigate("home", null,Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
 
             window.Show();
 

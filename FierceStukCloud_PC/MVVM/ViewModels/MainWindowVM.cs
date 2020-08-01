@@ -265,37 +265,23 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Команды - Навигациия
 
-        public ICommand NavigateToHomePageCommand { get; private set; }
-        public ICommand NavigateToProfilePageCommand { get; private set; }
+        //public ICommand NavigateToHomePageCommand { get; private set; }
+        //public ICommand NavigateToReviewPageCommand { get; private set; }
+        //public ICommand NavigateToProfilePageCommand { get; private set; }
 
 
         public ICommand NavigationToCommand { get; private set; }
         public ICommand NavigationBackCommand { get; private set; }
         public ICommand NavigationForwardCommand { get; private set; }
 
-
-        public void NavigateToHomePageExecute(object parameter)
-        {
-            
-        }
-
         public void NavigationToExecute(object parameter)
-        {
-            //NavigationToExecute("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek"});
-            //var values = (object[])parameter;
-            //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek" }, NavigateType.NavigateTo));
-            //if(_navigationManager.CanNavigate("test1"))
-            _navigationManager.Navigate<Page1>(new TestVM() { test = "kek" });
-            
-        }
+            => _navigationManager.Navigate(parameter.ToString(),NavigateType.Default);
 
         public void NavigationBackExecute(object parameter)
-            => Messenger.Default.Send<NavigateArgs>(new NavigateArgs(NavigateType.Back));
-        
+            => _navigationManager.GoBack();
 
         public void NavigationForwardExecute(object parameter)
-            => Messenger.Default.Send<NavigateArgs>(new NavigateArgs(NavigateType.Forward));
-        
+            => _navigationManager.GoForward();
 
         #endregion
 
@@ -423,8 +409,8 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             NextSongCommand = new RelayCommand(NextSongExecute, null);
 
             NavigationToCommand = new RelayCommand(NavigationToExecute);
-            NavigationBackCommand = new RelayCommand(NavigationBackExecute);
-            NavigationForwardCommand = new RelayCommand(NavigationForwardExecute);
+            NavigationBackCommand = new RelayCommand(NavigationBackExecute, (o) => _navigationManager.CanGoBack());
+            NavigationForwardCommand = new RelayCommand(NavigationForwardExecute, (o) => _navigationManager.CanGoForward());
 
             
 
@@ -442,3 +428,11 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         #endregion
     }
 }
+
+/*
+        //NavigationToExecute("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek"});
+            //var values = (object[])parameter;
+            //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek" }, NavigateType.NavigateTo));
+            //if(_navigationManager.CanNavigate("test1"))
+            //_navigationManager.Navigate<Page1>(new TestVM() { test = "kek" });
+ */

@@ -103,7 +103,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        private async void OpenMainWindow()
+        private void OpenMainWindow()
         {
             //var mainwindodVM = new MainWindowVM(Dispatcher);
 

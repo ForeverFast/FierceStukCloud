@@ -231,7 +231,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

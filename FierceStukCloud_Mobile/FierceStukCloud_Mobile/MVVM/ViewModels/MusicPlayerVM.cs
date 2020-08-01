@@ -74,7 +74,7 @@ namespace FierceStukCloud_Mobile.ViewModels
                             {
                                 LocalFiles.Add(item);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
 
                             }

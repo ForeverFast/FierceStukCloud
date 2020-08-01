@@ -119,21 +119,21 @@
                 </Grid.Resources>
 
 
-                <RadioButton Grid.Row="0" Command="{Binding NavigateToHomePageCommand}">
+                <RadioButton Grid.Row="0" Command="{Binding NavigationToCommand}" CommandParameter="home">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Главная</sys:String>
                         <materialDesign:PackIconKind x:Key="KindType">Home</materialDesign:PackIconKind>
                     </RadioButton.Resources>
                 </RadioButton>
 
-                <RadioButton Grid.Row="1">
+                <RadioButton Grid.Row="1" Command="{Binding NavigationToCommand}" CommandParameter="review">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Обзор</sys:String>
                         <materialDesign:PackIconKind x:Key="KindType">apps</materialDesign:PackIconKind>
                     </RadioButton.Resources>
                 </RadioButton>
 
-                <RadioButton Grid.Row="2">
+                <RadioButton Grid.Row="2" Command="{Binding NavigationToCommand}" CommandParameter="profile">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Аккаунт</sys:String>
                         <materialDesign:PackIconKind x:Key="KindType">Account</materialDesign:PackIconKind>
