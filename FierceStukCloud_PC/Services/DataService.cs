@@ -1,7 +1,4 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
-using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
-using static FierceStukCloud_NetCoreLib.Services.DialogService;
+﻿using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -11,8 +8,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Threading;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Services;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.Data;
@@ -21,6 +16,11 @@ using static Dapper.SqlMapper;
 using System.Collections.ObjectModel;
 using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
 using System.Windows.Threading;
+using FierceStukCloud.Core.Services;
+using FierceStukCloud.Core;
+using FierceStukCloud.Core.MusicPlayerModels;
+using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
+using FierceStukCloud.Abstractions;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
@@ -143,7 +143,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                 foreach (var item in tempMas)
                 {
                     var song = await AddSong(item, "");
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(temp, temp.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(temp, temp.Songs.Count));
                     temp.Songs.Add(song);
                 }
 
@@ -196,7 +196,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                                               x.Author.ToLower() == song.Author.ToLower());
                 if (Album != null)
                 {
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(Album, Album.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(Album, Album.Songs.Count));
                     Album.Songs.Add(song);
                 }
                 else
@@ -205,7 +205,6 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     {
                         Author = song.Author,
                         //Songs = new ImageAsyncCollection<ImageAsync<Song>>(Dispatcher),
-                        UserLogin = song.UserLogin
                     };
 
                     
@@ -215,7 +214,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     else
                         NewAlbum.Title = "Неизвестный";
 
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(NewAlbum, NewAlbum.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewAlbum, NewAlbum.Songs.Count));
                     NewAlbum.Songs.Add(song);
                     Albums.Add(NewAlbum);
                 }
@@ -232,7 +231,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             {
                 if (song.OptionalInfo == "LF")
                 {
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(LocalSongs, LocalSongs.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LocalSongs, LocalSongs.Songs.Count));
                     LocalSongs.Songs.Add(song);
                     return;
                 }
@@ -244,7 +243,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                 var LF = LocalFolders.FirstOrDefault(x => x.LocalUrl == path);
                 if (LF != null)
                 {
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(LF, LF.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LF, LF.Songs.Count));
                     LF.Songs.Add(song);
                 }
                 else
@@ -252,11 +251,10 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     var NewLF = new LocalFolder()
                     {
                         Title = path.Remove(0, path.IndexOf('\\') + 1),
-                        LocalUrl = path,
-                        UserLogin = song.UserLogin
+                        LocalUrl = path
                     };
 
-                    song.LocalId.Add(new KeyValuePair<MusicContainer, int>(NewLF, NewLF.Songs.Count));
+                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewLF, NewLF.Songs.Count));
                     NewLF.Songs.Add(song);
                     LocalFolders.Add(NewLF);
                 }
@@ -277,7 +275,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                         var PL = PlayLists.FirstOrDefault(x => x.Title == playList);
                         if (PL != null)
                         {
-                            song.LocalId.Add(new KeyValuePair<MusicContainer, int>(PL, PL.Songs.Count));
+                            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(PL, PL.Songs.Count));
                             PL.Songs.Add(song);
                         }
                         else
@@ -288,7 +286,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                                 UserLogin = song.UserLogin
                             };
 
-                            song.LocalId.Add(new KeyValuePair<MusicContainer, int>(NewPL, NewPL.Songs.Count));
+                            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewPL, NewPL.Songs.Count));
                             NewPL.Songs.Add(song);
                             PlayLists.Add(NewPL);
                         }

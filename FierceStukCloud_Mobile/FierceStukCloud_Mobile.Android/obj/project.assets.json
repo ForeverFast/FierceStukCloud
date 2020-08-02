@@ -1174,10 +1174,41 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "FierceStukCloud.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        }
+      },
+      "FierceStukCloud.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FierceStukCloud.Abstractions": "1.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        }
+      },
       "FierceStukCloud_Mobile/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "FierceStukCloud.Core": "1.0.0",
           "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
@@ -3005,6 +3036,16 @@
         "xamarin.forms.4.5.0.495.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
+    },
+    "FierceStukCloud.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj",
+      "msbuildProject": "../../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj"
+    },
+    "FierceStukCloud.Core/1.0.0": {
+      "type": "project",
+      "path": "../../FierceStukCloud.Core/FierceStukCloud.Core.csproj",
+      "msbuildProject": "../../FierceStukCloud.Core/FierceStukCloud.Core.csproj"
     },
     "FierceStukCloud_Mobile/1.0.0": {
       "type": "project",

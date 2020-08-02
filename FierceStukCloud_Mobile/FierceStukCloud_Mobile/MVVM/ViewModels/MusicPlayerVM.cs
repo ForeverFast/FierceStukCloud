@@ -1,4 +1,5 @@
-﻿using FierceStukCloud_Mobile.Models;
+﻿using FierceStukCloud.Abstractions;
+using FierceStukCloud_Mobile.Models;
 using FierceStukCloud_Mobile.MVVM.ViewModels;
 using FierceStukCloud_Mobile.MVVM.ViewModels.AbstractVM;
 using FierceStukCloud_Mobile.MVVM.Views;
@@ -20,9 +21,9 @@ namespace FierceStukCloud_Mobile.ViewModels
     {
         #region Основные свойства
 
-        private MusicContainer _selectedMusicContainer;
+        private IMusicContainer _selectedMusicContainer;
        
-        public MusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
+        public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
 
         #endregion

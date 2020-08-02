@@ -9,9 +9,13 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Style x:Key="DCFrame" TargetType="{x:Type Frame}">
+            <!--<Style x:Key="DCFrame" TargetType="{x:Type Frame}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Frame}">
@@ -33,7 +37,7 @@
                         <Setter Property="Template" Value="{StaticResource FrameNavChromeTemplateKey}"/>
                     </MultiTrigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
 
         </ResourceDictionary>

@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
     <ProjectReference Include="..\..\FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandardLib.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4VEIkEuoBN72xTcy5sfUQiyT2STNhjOnwm3gW+vmkOwJ+iBHvpRClY03dubmckvYHAiu/8ZuNnvcRzt4x2ksEg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

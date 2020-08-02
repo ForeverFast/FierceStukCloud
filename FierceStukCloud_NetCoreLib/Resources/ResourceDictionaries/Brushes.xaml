@@ -16,5 +16,6 @@
     <SolidColorBrush x:Key="StandartTextLightColor" Color="#FFE5E5E5"/>
     <SolidColorBrush x:Key="StandartLightColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>
-   
+    <SolidColorBrush x:Key="DimColorWithLowOpacity" Color="#FFCCC5C5" Opacity="0.3"/>
+
 </ResourceDictionary>

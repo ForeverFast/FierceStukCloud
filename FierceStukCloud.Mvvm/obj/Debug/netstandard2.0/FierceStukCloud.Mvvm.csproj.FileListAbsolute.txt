@@ -1,0 +1,9 @@
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\bin\Debug\netstandard2.0\FierceStukCloud.Mvvm.deps.json
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\bin\Debug\netstandard2.0\FierceStukCloud.Mvvm.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\bin\Debug\netstandard2.0\FierceStukCloud.Mvvm.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.AssemblyInfoInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.AssemblyInfo.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Mvvm\obj\Debug\netstandard2.0\FierceStukCloud.Mvvm.pdb

@@ -1,8 +1,7 @@
 ﻿using Egor92.MvvmNavigation;
 using Egor92.MvvmNavigation.Abstractions;
-using FierceStukCloud_NetCoreLib.Commands;
+using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud_NetCoreLib.ViewModels;
-using FierceStukCloud_NetStandardLib.Models;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;

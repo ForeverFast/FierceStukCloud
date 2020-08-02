@@ -1,5 +1,4 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetCoreLib.Services;
+﻿using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_PC.MVVM.ViewModels;
 using FierceStukCloud_PC.MVVM.Views;
 using FierceStukCloud_PC.MVVM.Views.TestView;
@@ -18,6 +17,7 @@ using GalaSoft.MvvmLight.Messaging;
 
 using FierceStukCloud_PC.MVVM.Views.Pages;
 using Egor92.MvvmNavigation;
+using FierceStukCloud.Core;
 
 namespace FierceStukCloud_PC
 {

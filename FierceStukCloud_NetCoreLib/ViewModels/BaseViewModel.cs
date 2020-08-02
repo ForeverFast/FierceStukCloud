@@ -1,16 +1,16 @@
 ﻿using System.Windows;
-using FierceStukCloud_NetCoreLib.Commands;
+using System.Windows.Input;
 using FierceStukCloud_NetStandardLib.MVVM;
 
-namespace FierceStukCloud_NetCoreLib.ViewModels
+namespace FierceStukCloud_PC
 {
     public class BaseViewModel : OnPropertyChangedClass
     {
         #region Управление окном
 
-        public RelayCommand MinimizedWindowCommand { get; private set; }
-        public RelayCommand CloseWindowCommand { get; private set; }
-        public RelayCommand DragWindowCommand { get; private set; }
+        public ICommand MinimizedWindowCommand { get; private set; }
+        public ICommand CloseWindowCommand { get; private set; }
+        public ICommand DragWindowCommand { get; private set; }
 
         public virtual void MinimizedWindowMethod(object parameter) => Application.Current.MainWindow.WindowState = WindowState.Minimized;
         public virtual void CloseWindowMethod(object parameter)

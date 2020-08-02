@@ -23,6 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MvvmNavigation\code\src\MvvmNavigation.Wpf\MvvmNavigation.Wpf.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
     <ProjectReference Include="..\FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj" />
     <ProjectReference Include="..\FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandardLib.csproj" />
   </ItemGroup>

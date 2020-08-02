@@ -456,6 +456,36 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "FierceStukCloud.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        }
+      },
+      "FierceStukCloud.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FierceStukCloud.Abstractions": "1.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        }
+      },
       "FierceStukCloud_NetStandardLib/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -1663,6 +1693,16 @@
         "xamarin.forms.nuspec"
       ]
     },
+    "FierceStukCloud.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj",
+      "msbuildProject": "../../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj"
+    },
+    "FierceStukCloud.Core/1.0.0": {
+      "type": "project",
+      "path": "../../FierceStukCloud.Core/FierceStukCloud.Core.csproj",
+      "msbuildProject": "../../FierceStukCloud.Core/FierceStukCloud.Core.csproj"
+    },
     "FierceStukCloud_NetStandardLib/1.0.0": {
       "type": "project",
       "path": "../../FierceStukCloud_NetStandartLib/FierceStukCloud_NetStandardLib.csproj",
@@ -1671,6 +1711,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "FierceStukCloud.Core >= 1.0.0",
       "FierceStukCloud_NetStandardLib >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client >= 3.1.5",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.1.5",
@@ -1713,6 +1754,9 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
+            "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj": {
+              "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj"
+            },
             "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
               "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj"
             }

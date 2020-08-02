@@ -221,9 +221,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Выключение звука при перетаскивании ползунка слайдера таймлайна.
 
-        public RelayCommand SongPosChangedStartCommand { get; private set; }
+        public ICommand SongPosChangedStartCommand { get; private set; }
 
-        public RelayCommand SongPosChangedEndedCommand { get; private set; }
+        public ICommand SongPosChangedEndedCommand { get; private set; }
 
         private bool PosChanges;
 
@@ -244,9 +244,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Команды - Управления плеера
 
-        public RelayCommand PrevSongCommand { get; set; }
-        public RelayCommand PlayStateSongCommand { get; set; }
-        public RelayCommand NextSongCommand { get; set; }
+        public ICommand PrevSongCommand { get; set; }
+        public ICommand PlayStateSongCommand { get; set; }
+        public ICommand NextSongCommand { get; set; }
 
         private void PrevSongExecute(object parameter) => model.PrevSong();
 

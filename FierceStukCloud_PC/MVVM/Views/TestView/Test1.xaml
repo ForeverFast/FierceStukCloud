@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" mc:Ignorable="d"
         Title="Test1"
         Height="800" Width="1500"
-        MinHeight="600" MinWidth="800" WindowStyle="None">
+        MinHeight="600" MinWidth="800" WindowStyle="SingleBorderWindow">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -79,6 +79,7 @@
                 <Grid.Resources>
 
                     <Style TargetType="{x:Type RadioButton}">
+                        <Setter Property="Cursor" Value="Hand"/>
                         <Setter Property="GroupName" Value="MenuRB"/>
                         <Setter Property="Template">
                             <Setter.Value>

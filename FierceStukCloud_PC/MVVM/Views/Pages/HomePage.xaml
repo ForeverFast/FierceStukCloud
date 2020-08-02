@@ -9,7 +9,11 @@
        KeepAlive="True"
       Title="HomePage">
 
-    <Grid Background="Green">
-        
+    <Grid Background="{StaticResource GrayLVL2}">
+
+       
+       
+
+
     </Grid>
 </Page>
