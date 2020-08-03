@@ -334,6 +334,36 @@
         "runtime": {
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {}
         }
+      },
+      "FierceStukCloud.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        }
+      },
+      "FierceStukCloud.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FierceStukCloud.Abstractions": "1.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        }
       }
     }
   },
@@ -1088,10 +1118,21 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "FierceStukCloud.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj",
+      "msbuildProject": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj"
+    },
+    "FierceStukCloud.Core/1.0.0": {
+      "type": "project",
+      "path": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj",
+      "msbuildProject": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "FierceStukCloud.Core >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.1.5",
       "NETStandard.Library >= 2.0.3",
       "System.ComponentModel.Annotations >= 4.7.0",
@@ -1128,7 +1169,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj": {
+              "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:FierceStukCloud_PC.MVVM.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage" Background="GreenYellow">
+      Title="ProfilePage" Background="{StaticResource GrayLVL2}">
 
     <Grid>
         <TextBlock Text="{Binding test, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" VerticalAlignment="Center" Foreground="Black"/>

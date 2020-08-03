@@ -1,26 +1,21 @@
-﻿using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Threading;
-using Newtonsoft.Json;
-using System.Configuration;
-using System.Data;
-using Dapper;
-using static Dapper.SqlMapper;
-using System.Collections.ObjectModel;
-using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
-using System.Windows.Threading;
-using FierceStukCloud.Core.Services;
+﻿using Dapper;
 using FierceStukCloud.Core;
 using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
-using FierceStukCloud.Abstractions;
+using FierceStukCloud.Core.Services;
+using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Threading;
+using static Dapper.SqlMapper;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
@@ -34,6 +29,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         public ObservableCollection<Album> Albums { get; }
         public ObservableCollection<LocalFolder> LocalFolders { get; }
         public ObservableCollection<PlayList> PlayLists { get; }
+
 
         public async Task<Song> AddSong(string path, string optionalInfo = "LF")
         {
@@ -313,17 +309,21 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         #endregion
 
 
-        public DataService(LocalFolder LocalSongs, ObservableCollection<Album> Albums, ObservableCollection<LocalFolder> LocalFolders, ObservableCollection<PlayList> PlayLists, User user, Dispatcher dispatcher)
+        public DataService(LocalFolder LocalSongs,
+                           ObservableCollection<Album> Albums,
+                           ObservableCollection<LocalFolder> LocalFolders,
+                           ObservableCollection<PlayList> PlayLists,
+                           User user, Dispatcher dispatcher)
         {
             SqlMapper.AddTypeHandler(typeof(List<string>), new DictTypeHandler());
-
-            _user = user;
-            this.Dispatcher = dispatcher;
 
             this.LocalSongs = LocalSongs;
             this.Albums = Albums;
             this.LocalFolders = LocalFolders;
             this.PlayLists = PlayLists;
+
+            _user = user;
+            this.Dispatcher = dispatcher;
         }
     }
 }

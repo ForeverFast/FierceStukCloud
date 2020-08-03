@@ -1,18 +1,10 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetCoreLib.Services;
+﻿using FierceStukCloud.Core.MusicPlayerModels;
+using FierceStukCloud.Core.Services;
+using FierceStukCloud.Mvvm;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using FierceStukCloud_NetStandardLib.MVVM;
-using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
-using static FierceStukCloud_NetStandardLib.Extension.TypeConventer;
-using System.Text.Json;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
-using FierceStukCloud_NetStandardLib.Extension;
-using FierceStukCloud_NetStandardLib.Services;
+using static FierceStukCloud.Core.CustomEnums;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {

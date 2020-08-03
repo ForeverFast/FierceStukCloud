@@ -1,27 +1,18 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
-using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
-using FierceStukCloud_PC.MVVM.Models.Modules;
+﻿using FierceStukCloud_PC.MVVM.Models.Modules;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static FierceStukCloud_NetCoreLib.Services.DialogService;
-using static FierceStukCloud_NetStandardLib.Extension.TypeConventer;
-using System.Diagnostics.Tracing;
 using System.Windows.Threading;
 using System.IO;
-using FierceStukCloud_NetCoreLib.Services;
 using System.Collections.ObjectModel;
-using FierceStukCloud_NetStandardLib.MVVM;
-using System.Windows;
 using System.Text.Json;
-using FierceStukCloud_NetStandardLib.Services;
 using System.Linq;
+using FierceStukCloud.Mvvm;
+using FierceStukCloud.Core.Services;
+using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
+using FierceStukCloud.Core.MusicPlayerModels;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -49,9 +40,9 @@ namespace FierceStukCloud_PC.MVVM.Models
 
 
         /// <summary> Tекущий контейнер </summary>   
-        public MusicContainer CurrentMusicContainer { get; set; }
+        public IMusicContainer CurrentMusicContainer { get; set; }
         /// <summary> Tекущий отображаемый контейнер </summary>   
-        public MusicContainer DisplayedMusicContainer { get; set; }
+        public IMusicContainer DisplayedMusicContainer { get; set; }
 
 
         /// <summary> Tекущая песня </summary>   
@@ -135,13 +126,13 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// Получение списка локальных файлов
         /// </summary>
         /// <returns></returns>
-        public List<BaseMusicObject> GetLocalData()
-        {
-            var temp = new List<BaseMusicObject>();
-            temp.AddRange(this.LocalFolders);
-            temp.AddRange(this.LocalSongs.Songs);
-            return temp;
-        }
+        //public List<BaseMusicObject> GetLocalData()
+        //{
+        //    var temp = new List<BaseMusicObject>();
+        //    temp.AddRange(this.LocalFolders);
+        //    temp.AddRange(this.LocalSongs.Songs);
+        //    return temp;
+        //}
 
         /// <summary>
         /// Добавление папки в приложение
@@ -150,7 +141,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="caller"></param>
         /// <returns></returns>а
         public async Task<LocalFolder> AddLocalFolderFromPC(string path)
-            => await _dbService.AddLocalFolder(path);
+            => await Task.Run(() => _dbService.AddLocalFolder(path));
         
         /// <summary>
         /// Удаление папки из приложения
@@ -159,7 +150,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="caller"></param>
         /// <returns></returns>
         public async Task<bool> RemoveLocalFolderFromPC(LocalFolder localFolder)
-            => await _dbService.RemoveLocalFolder(localFolder);
+            => await Task.Run(() => _dbService.RemoveLocalFolder(localFolder));
 
         #endregion
 
@@ -177,7 +168,7 @@ namespace FierceStukCloud_PC.MVVM.Models
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() - 1);
+            var temp = CurrentMusicContainer.Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() - 1);
             SetCurrentSong(temp);
         }
 
@@ -186,13 +177,13 @@ namespace FierceStukCloud_PC.MVVM.Models
         {
             MP.Stop();
 
-            if (CurrentSong.CurrentIdValue() + 1 > CurrentMusicContainer.ToMC().Songs.Count)
+            if (CurrentSong.CurrentIdValue() + 1 > CurrentMusicContainer.Songs.Count)
             {
                 SetCurrentSong(CurrentSong);
                 return;
             }
 
-            var temp = CurrentMusicContainer.ToMC().Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() + 1);
+            var temp = CurrentMusicContainer.Songs.FirstOrDefault(x => x.IdValueInMC(CurrentMusicContainer) == CurrentSong.CurrentIdValue() + 1);
             SetCurrentSong(temp);
         }
 
@@ -202,7 +193,7 @@ namespace FierceStukCloud_PC.MVVM.Models
             try
             {
                 if (song.CurrentMusicContainer == null)
-                    song.CurrentMusicContainer = CurrentMusicContainer.ToMC();
+                    song.CurrentMusicContainer = CurrentMusicContainer;
                 else
                     CurrentMusicContainer = song.CurrentMusicContainer;
 
@@ -252,7 +243,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         private void MP_MediaEnded(object sender, EventArgs e)
         {
-            if (CurrentSong.CurrentIdValue() == CurrentMusicContainer.ToLF().Songs.Count)
+            if (CurrentSong.CurrentIdValue() == CurrentMusicContainer.Songs.Count)
             {
                 MP.Stop();
                 return;
@@ -346,7 +337,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
             // Инициализация класса работы с БД
             _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser, dispatcher);
-            _dbService.GetData();
+            //_dbService.GetData();
 
             // Инициализация класса работы с SignalR
             //_signalRService = new SignalRService();

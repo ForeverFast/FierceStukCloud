@@ -16,4 +16,8 @@
     <Folder Include="Types\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+  </ItemGroup>
+
 </Project>

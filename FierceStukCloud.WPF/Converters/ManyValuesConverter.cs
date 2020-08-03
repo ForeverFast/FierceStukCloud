@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Windows.Data;
 
-namespace FierceStukCloud_NetCoreLib.Converters
+namespace FierceStukCloud.Wpf.Converters
 {
     public class ManyValuesConverter : IMultiValueConverter
     {

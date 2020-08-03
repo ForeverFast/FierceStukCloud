@@ -8,6 +8,6 @@ namespace FierceStukCloud.Core.MusicPlayerModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<Album> Albums { get; set; } = new List<Album>();
+        public List<Album> Albums { get; set; }
     }
 }

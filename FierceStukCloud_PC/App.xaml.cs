@@ -18,6 +18,7 @@ using GalaSoft.MvvmLight.Messaging;
 using FierceStukCloud_PC.MVVM.Views.Pages;
 using Egor92.MvvmNavigation;
 using FierceStukCloud.Core;
+using FierceStukCloud.Wpf;
 
 namespace FierceStukCloud_PC
 {

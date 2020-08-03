@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 
-1-1996443635
+12716223108
 
-8-1389394433
-1921654412462
-Brushes.xaml;
+141321697234
+213-334690742
+Styles\Brushes.xaml;Styles\Button\AuthenticationButtons.xaml;Styles\Button\NavigationButtons.xaml;Styles\Button\PlayerButtons.xaml;Styles\Button\SystemButtons.xaml;Styles\ListBoxs\ListBoxStyles.xaml;Styles\Menu\MenuStyles.xaml;Styles\ScrollBar\ScrollBarStyles.xaml;Styles\Slider\SliderStyles.xaml;Styles\Tab\TabControlStyles.xaml;Styles\TextBlock\TextBlockStyles.xaml;Styles\TextBox\TextBoxStyles.xaml;
 
 False
 

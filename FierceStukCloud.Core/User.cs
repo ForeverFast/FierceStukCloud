@@ -40,6 +40,5 @@ namespace FierceStukCloud.Core
         public string AccessTokenPhone { get; set; }
         [JsonPropertyName("connectionIdPhone")]
         public string ConnectionIdPhone { get; set; }
-
     }
 }

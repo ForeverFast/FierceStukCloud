@@ -7,8 +7,42 @@
 
   <ItemGroup>
     <Folder Include="Behavior\" />
-    <Folder Include="Styles\ListBoxStyles\" />
-    <Folder Include="Styles\" />
+    <Folder Include="Styles\Label\" />
+    <Folder Include="Styles\ListView\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\ListBoxs\ListBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Menu\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ScrollBar\ScrollBarStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Slider\SliderStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Tab\TabControlStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBlock\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

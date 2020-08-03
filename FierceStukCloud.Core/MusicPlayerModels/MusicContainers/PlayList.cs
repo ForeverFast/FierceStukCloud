@@ -6,7 +6,7 @@ namespace FierceStukCloud.Core.MusicPlayerModels.MusicContainers
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public IList<Song> Songs { get; set; } = new List<Song>();
+        public IList<Song> Songs { get; set; }
         public string UserLogin { get; set; }
     }
 }

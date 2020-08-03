@@ -29,7 +29,6 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\ivans\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
     <PkgNLog_Config Condition=" '$(PkgNLog_Config)' == '' ">C:\Users\ivans\.nuget\packages\nlog.config\4.7.2</PkgNLog_Config>
-    <PkgMvvmLight Condition=" '$(PkgMvvmLight)' == '' ">C:\Users\ivans\.nuget\packages\mvvmlight\5.4.1.1</PkgMvvmLight>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\ivans\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.5</PkgMicrosoft_EntityFrameworkCore_Tools>
   </PropertyGroup>
 </Project>

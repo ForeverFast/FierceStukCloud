@@ -556,7 +556,6 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FierceStukCloud.Core": "1.0.0",
-          "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "RestSharp": "106.10.1",
@@ -570,21 +569,6 @@
         },
         "runtime": {
           "bin/placeholder/FierceStukCloud_Mobile.dll": {}
-        }
-      },
-      "FierceStukCloud_NetStandardLib/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
-          "System.ComponentModel.Annotations": "4.7.0",
-          "System.Text.Json": "4.7.2"
-        },
-        "compile": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
         }
       }
     },
@@ -1109,7 +1093,6 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FierceStukCloud.Core": "1.0.0",
-          "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "RestSharp": "106.10.1",
@@ -1123,21 +1106,6 @@
         },
         "runtime": {
           "bin/placeholder/FierceStukCloud_Mobile.dll": {}
-        }
-      },
-      "FierceStukCloud_NetStandardLib/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
-          "System.ComponentModel.Annotations": "4.7.0",
-          "System.Text.Json": "4.7.2"
-        },
-        "compile": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
         }
       }
     },
@@ -1666,7 +1634,6 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FierceStukCloud.Core": "1.0.0",
-          "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "RestSharp": "106.10.1",
@@ -1680,21 +1647,6 @@
         },
         "runtime": {
           "bin/placeholder/FierceStukCloud_Mobile.dll": {}
-        }
-      },
-      "FierceStukCloud_NetStandardLib/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
-          "System.ComponentModel.Annotations": "4.7.0",
-          "System.Text.Json": "4.7.2"
-        },
-        "compile": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
         }
       }
     },
@@ -2223,7 +2175,6 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FierceStukCloud.Core": "1.0.0",
-          "FierceStukCloud_NetStandardLib": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client": "3.1.5",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "RestSharp": "106.10.1",
@@ -2237,21 +2188,6 @@
         },
         "runtime": {
           "bin/placeholder/FierceStukCloud_Mobile.dll": {}
-        }
-      },
-      "FierceStukCloud_NetStandardLib/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
-          "System.ComponentModel.Annotations": "4.7.0",
-          "System.Text.Json": "4.7.2"
-        },
-        "compile": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud_NetStandardLib.dll": {}
         }
       }
     }
@@ -3311,11 +3247,6 @@
       "type": "project",
       "path": "../FierceStukCloud_Mobile/FierceStukCloud_Mobile.csproj",
       "msbuildProject": "../FierceStukCloud_Mobile/FierceStukCloud_Mobile.csproj"
-    },
-    "FierceStukCloud_NetStandardLib/1.0.0": {
-      "type": "project",
-      "path": "../../FierceStukCloud_NetStandartLib/FierceStukCloud_NetStandardLib.csproj",
-      "msbuildProject": "../../FierceStukCloud_NetStandartLib/FierceStukCloud_NetStandardLib.csproj"
     }
   },
   "projectFileDependencyGroups": {

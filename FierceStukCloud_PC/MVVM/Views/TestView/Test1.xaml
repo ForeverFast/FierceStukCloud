@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:FierceStukCloud_PC.MVVM.Views.TestView"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-        xmlns:converter="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib"
+        xmlns:converter="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" mc:Ignorable="d"
         Title="Test1"
         Height="800" Width="1500"
@@ -28,12 +28,6 @@
     
     <Window.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TabControlStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
 
             <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
 
@@ -44,7 +38,7 @@
 
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="90" />
         </Grid.RowDefinitions>
@@ -306,8 +300,13 @@
 
             <Grid Grid.Column="1" Background="{StaticResource GrayLVL4_WithLowOpacity}">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="NavigationBack" Command="{Binding NavigationBackCommand}"/>
-                    <Button x:Name="NavigationForward" Command="{Binding NavigationForwardCommand}"/>
+                    <Button x:Name="NavigationBack"
+                            Command="{Binding NavigationBackCommand}"
+                            Style="{StaticResource NavigationBack}"/>
+                    
+                    <Button x:Name="NavigationForward"
+                            Command="{Binding NavigationForwardCommand}"
+                            Style="{StaticResource NavigationForward}"/>
                 </StackPanel>
             </Grid>
             
@@ -337,7 +336,8 @@
                 </StackPanel>
 
                 <Button Grid.Column="2"
-                        Command="{Binding NavigationToCommand}"/>
+                        Command="{Binding NavigationToCommand}"
+                        CommandParameter="хуй"/>
 
             </Grid>
             

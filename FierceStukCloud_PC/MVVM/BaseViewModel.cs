@@ -1,6 +1,7 @@
 ﻿using System.Windows;
-using FierceStukCloud_NetCoreLib.Commands;
-using FierceStukCloud_NetStandardLib.MVVM;
+using System.Windows.Input;
+using FierceStukCloud.Mvvm;
+using FierceStukCloud_PC.MVVM;
 
 namespace FierceStukCloud_NetCoreLib.ViewModels
 {
@@ -8,9 +9,9 @@ namespace FierceStukCloud_NetCoreLib.ViewModels
     {
         #region Управление окном
 
-        public RelayCommand MinimizedWindowCommand { get; private set; }
-        public RelayCommand CloseWindowCommand { get; private set; }
-        public RelayCommand DragWindowCommand { get; private set; }
+        public ICommand MinimizedWindowCommand { get; private set; }
+        public ICommand CloseWindowCommand { get; private set; }
+        public ICommand DragWindowCommand { get; private set; }
 
         public virtual void MinimizedWindowMethod(object parameter) => Application.Current.MainWindow.WindowState = WindowState.Minimized;
         public virtual void CloseWindowMethod(object parameter)
@@ -18,8 +19,6 @@ namespace FierceStukCloud_NetCoreLib.ViewModels
             Application.Current.MainWindow.Close(); 
         }
         public virtual void DragWindowMethod(object parameter) => Application.Current.MainWindow.DragMove();
-
-       
 
         #endregion
 

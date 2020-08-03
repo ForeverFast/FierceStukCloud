@@ -236,9 +236,6 @@
             "projectReferences": {
               "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj": {
                 "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj"
-              },
-              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
-                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj"
               }
             }
           }
@@ -285,77 +282,6 @@
             "Xamarin.Forms": {
               "target": "Package",
               "version": "[4.5.0.495, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj",
-        "projectName": "FierceStukCloud_NetStandardLib",
-        "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\FierceStukCloud_NetStandardLib.csproj",
-        "packagesPath": "C:\\Users\\ivans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_NetStandartLib\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\ivans\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netstandard2.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netstandard2.0": {
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netstandard2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.SignalR.Client.Core": {
-              "target": "Package",
-              "version": "[3.1.5, )"
-            },
-            "NETStandard.Library": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[4.7.0, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[4.7.2, )"
             }
           },
           "imports": [

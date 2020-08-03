@@ -1,8 +1,30 @@
 {
   "version": 2,
-  "dgSpecHash": "YVlRKRgcWZbKASp/UBG8t0fHkguNnMkwxOZ5UJYfOMGKIHrU5ei2C/NqOfndRa7XVE1Y6QZYwSWQRnA2FreyFg==",
+  "dgSpecHash": "MVh83gVNYolNnsQZFd32REz8Xb3crUwi0JNfCSI5zTgO2IqgbjorBmuLALeuoq8fH1wv5TWrLXtcL/4ez2qX4Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.WPF\\FierceStukCloud.Wpf.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ivans\\.nuget\\packages\\materialdesigncolors\\1.2.6\\materialdesigncolors.1.2.6.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\materialdesignthemes\\3.1.3\\materialdesignthemes.3.1.3.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.5\\microsoft.aspnetcore.connections.abstractions.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.http.features\\3.1.5\\microsoft.aspnetcore.http.features.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.signalr.client.core\\3.1.5\\microsoft.aspnetcore.signalr.client.core.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\3.1.5\\microsoft.aspnetcore.signalr.common.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.json\\3.1.5\\microsoft.aspnetcore.signalr.protocols.json.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.5\\microsoft.extensions.configuration.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.5\\microsoft.extensions.configuration.abstractions.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.5\\microsoft.extensions.configuration.binder.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.5\\microsoft.extensions.dependencyinjection.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.5\\microsoft.extensions.dependencyinjection.abstractions.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.logging\\3.1.5\\microsoft.extensions.logging.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.5\\microsoft.extensions.logging.abstractions.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.options\\3.1.5\\microsoft.extensions.options.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.5\\microsoft.extensions.primitives.3.1.5.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.io.pipelines\\4.7.1\\system.io.pipelines.4.7.1.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\taglibsharp\\2.2.0\\taglibsharp.2.2.0.nupkg.sha512"
+  ],
   "logs": []
 }

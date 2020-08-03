@@ -7,3 +7,8 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\D
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandardLib.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandardLib.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandardLib.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud.Abstractions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud.Core.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud.Core.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud.Abstractions.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandardLib.csproj.CopyComplete

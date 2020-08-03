@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FierceStukCloud_PC {
+namespace FierceStukCloud.Pс {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

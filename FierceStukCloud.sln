@@ -11,9 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileApps", "MobileApps", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{9E3FB507-9D34-4B15-9574-17664B0C5EBD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_PC", "FierceStukCloud_PC\FierceStukCloud_PC.csproj", "{2B10CACD-E03A-4274-B138-654F1BA6850B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_NetCoreLib", "FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj", "{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud.Pс", "FierceStukCloud_PC\FierceStukCloud.Pс.csproj", "{2B10CACD-E03A-4274-B138-654F1BA6850B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}"
 EndProject
@@ -25,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud_Mobile.iOS"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_Mobile", "FierceStukCloud_Mobile\FierceStukCloud_Mobile\FierceStukCloud_Mobile.csproj", "{ED351566-9738-4D61-9FA5-6E03C89D5A2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud_NetStandardLib", "FierceStukCloud_NetStandartLib\FierceStukCloud_NetStandardLib.csproj", "{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvvmNavigation", "MvvmNavigation", "{CB2468A4-637B-4099-9585-BA28E0E3941F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvvmNavigation.Wpf", "..\MvvmNavigation\code\src\MvvmNavigation.Wpf\MvvmNavigation.Wpf.csproj", "{61A76CA2-85E4-410D-B36E-7A3EFEB96014}"
@@ -37,13 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvvmNavigation.Abstractions
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvvmNavigation.Internal", "..\MvvmNavigation\code\src\MvvmNavigation.Internal\MvvmNavigation.Internal.csproj", "{67789FF9-1345-4856-99B3-D30BC118995F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud.Core", "FierceStukCloud.Core\FierceStukCloud.Core.csproj", "{738CE91D-F28A-4200-B501-4AE98FA56954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud.Core", "FierceStukCloud.Core\FierceStukCloud.Core.csproj", "{738CE91D-F28A-4200-B501-4AE98FA56954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud.Abstractions", "FierceStukCloud.Abstractions\FierceStukCloud.Abstractions.csproj", "{5C8C3D1C-CD52-4544-B3E3-3787D59A040C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud.Abstractions", "FierceStukCloud.Abstractions\FierceStukCloud.Abstractions.csproj", "{5C8C3D1C-CD52-4544-B3E3-3787D59A040C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud.Wpf", "FierceStukCloud.WPF\FierceStukCloud.Wpf.csproj", "{ADC41DCA-2E1C-492E-BF27-222B56CB977D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud.Wpf", "FierceStukCloud.WPF\FierceStukCloud.Wpf.csproj", "{ADC41DCA-2E1C-492E-BF27-222B56CB977D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud.Mvvm", "FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj", "{1F593A50-BBD2-44A0-8CBE-CF2A7433E345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FierceStukCloud.Mvvm", "FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj", "{1F593A50-BBD2-44A0-8CBE-CF2A7433E345}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,18 +63,6 @@ Global
 		{2B10CACD-E03A-4274-B138-654F1BA6850B}.Release|iPhone.Build.0 = Release|Any CPU
 		{2B10CACD-E03A-4274-B138-654F1BA6850B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{2B10CACD-E03A-4274-B138-654F1BA6850B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|iPhone.Build.0 = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8D623A3-A21C-4894-B5C6-1A395E2C16F2}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -143,18 +127,6 @@ Global
 		{ED351566-9738-4D61-9FA5-6E03C89D5A2A}.Release|iPhone.Build.0 = Release|Any CPU
 		{ED351566-9738-4D61-9FA5-6E03C89D5A2A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{ED351566-9738-4D61-9FA5-6E03C89D5A2A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|iPhone.Build.0 = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{61A76CA2-85E4-410D-B36E-7A3EFEB96014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{61A76CA2-85E4-410D-B36E-7A3EFEB96014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61A76CA2-85E4-410D-B36E-7A3EFEB96014}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -257,12 +229,10 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2B10CACD-E03A-4274-B138-654F1BA6850B} = {32C3554F-EFB2-48FB-B0C0-079BD373B187}
-		{C0CCAE8A-5F25-4A9C-9E44-3A77832F0B97} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
 		{1B26652A-5315-473E-BF6C-62CD6FF736E6} = {9E3FB507-9D34-4B15-9574-17664B0C5EBD}
 		{47F55F59-6A74-454A-8E42-4AE3A9C85D2C} = {48901C2D-5E29-430B-8932-FD0F05B53A79}
 		{50F75C7A-40C6-453F-89D1-E332A641979C} = {48901C2D-5E29-430B-8932-FD0F05B53A79}
 		{ED351566-9738-4D61-9FA5-6E03C89D5A2A} = {48901C2D-5E29-430B-8932-FD0F05B53A79}
-		{B2F25FDB-5D9B-4A7B-82DA-D30783E8AF7B} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
 		{CB2468A4-637B-4099-9585-BA28E0E3941F} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
 		{61A76CA2-85E4-410D-B36E-7A3EFEB96014} = {CB2468A4-637B-4099-9585-BA28E0E3941F}
 		{7F00993A-4BED-4E2B-85AA-C0DB0659883D} = {CB2468A4-637B-4099-9585-BA28E0E3941F}

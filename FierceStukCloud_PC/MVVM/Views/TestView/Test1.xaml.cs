@@ -26,57 +26,7 @@ namespace FierceStukCloud_PC.MVVM.Views.TestView
         public Test1()
         {
             InitializeComponent();
-           
-            //NavigationSetup();
-
         }
-
-        //void NavigationSetup()
-        //{
-        //    Messenger.Default.Register<NavigateArgs>(this, (x) =>
-        //    {
-        //        switch (x.NavigateType)
-        //        {
-        //            case NavigateType.NavigateTo:
-
-        //                FrameContent.NavigationService.Navigate(new Uri(x.Url, UriKind.Relative));
-        //                FrameContent.DataContext = x.VM;
-                        
-
-        //                break;
-
-        //            case NavigateType.Back:
-        //                if (FrameContent.NavigationService.CanGoBack)
-        //                    FrameContent.NavigationService.GoBack();
-        //                break;
-
-        //            case NavigateType.Forward:
-        //                if (FrameContent.NavigationService.CanGoForward)
-        //                    FrameContent.NavigationService.GoForward();
-        //                break;
-        //        }
-        //    });
-        //}
-
-        //private void Frame1_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    UpdateFrameDataContext();
-        //}
-
-        //private void Frame1_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        //{
-        //    UpdateFrameDataContext();
-        //}
-
-        //private void UpdateFrameDataContext()
-        //{
-        //    var content = FrameContent.Content as FrameworkElement;
-        //    if (content == null)
-        //        return;
-        //    content.DataContext = FrameContent.DataContext;
-        //}
-
-
 
         private void HeaderGrid2_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -87,8 +37,6 @@ namespace FierceStukCloud_PC.MVVM.Views.TestView
                 Top = e.GetPosition(null).Y - 15;
             }
             DragMove();
-        }
-
-       
+        }  
     }
 }

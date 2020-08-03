@@ -2,7 +2,40 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Page Update="Brushes.xaml">
+    <Page Update="Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\AuthenticationButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\NavigationButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\PlayerButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\SystemButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ListBoxs\ListBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Menu\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ScrollBar\ScrollBarStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Slider\SliderStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Tab\TabControlStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBlock\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

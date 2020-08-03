@@ -1,11 +1,9 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
+﻿using FierceStukCloud.Core.MusicPlayerModels;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Windows.Data;
 
-namespace FierceStukCloud_NetCoreLib.Converters
+namespace FierceStukCloud.Wpf.Converters
 {
     class SongToTextConventer : IValueConverter
     {

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace FierceStukCloud_NetCoreLib.Converters
+namespace FierceStukCloud.Wpf.Converters
 {
     public class ButtonStyleConverter : IMultiValueConverter
     {
