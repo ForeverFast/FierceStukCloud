@@ -195,7 +195,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         private async void OpenMainWindow()
         {
-            var mainwindodVM = new MainWindowVM(Dispatcher);
+            var mainwindodVM = new MainWindowVM( false);
 
             App.DisplayRootRegistry.HidePresentation(this);
             await App.DisplayRootRegistry.ShowModalPresentation(mainwindodVM);

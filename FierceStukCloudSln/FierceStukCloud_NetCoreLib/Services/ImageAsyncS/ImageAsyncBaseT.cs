@@ -1,6 +1,4 @@
-﻿using System.Windows.Threading;
-
-namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
+﻿namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 {
 	/// <summary>Базовый класс с ImageSource загружаемым
 	/// ассинхронно после первого требования и возможностью добавления дополнительного Контента</summary>
@@ -8,9 +6,6 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 	public abstract class ImageAsyncBase<T> : ImageAsyncBase
 	{
 		private T _content;
-
-		protected ImageAsyncBase(Dispatcher dispatcher)
-			: base(dispatcher) { }
 
 		public T Content { get => _content; set => SetProperty(ref _content, value); }
 	}

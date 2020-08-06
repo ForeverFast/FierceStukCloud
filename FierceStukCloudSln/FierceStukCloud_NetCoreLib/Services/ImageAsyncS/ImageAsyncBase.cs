@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 {
@@ -14,12 +13,6 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 		private object _imageUri;
 		#endregion
 
-		public Dispatcher Dispatcher { get; internal set; }
-
-		protected ImageAsyncBase(Dispatcher dispatcher)
-		{
-			Dispatcher = dispatcher;
-		}
 
 
 		/// <summary>Изображение по умолчанию.
@@ -61,7 +54,7 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			if (ImageUri == default)
 				return;
 			object ImageUriLoad = DownloadUri = ImageUri;
-			ImageSource image = await Task.Factory.StartNew(ImageLoad, new object[] { ImageUriLoad, Dispatcher });
+			ImageSource image = await Task.Factory.StartNew(ImageFreezeLoad, ImageUriLoad);
 
 			if (ImageUriLoad.Equals(ImageUri))
 			{
@@ -70,19 +63,21 @@ namespace FierceStukCloud_NetCoreLib.Services.ImageAsyncS
 			}
 		}
 
-		/// <summary>Перегрузка для парсинга параметров из object</summary>
-		/// <param name="arg">Параметры в единном Object</param>
-		/// <returns>ImageSource от перегрузки ImageLoad(object uri, Dispatcher dispatcher)</returns>
-		private ImageSource ImageLoad(object arg)
-		{
-			object[] args = (object[])arg;
-			return ImageLoad(args[0], (Dispatcher)args[1]);
-		}
+		/// <summary>Синхронная загрузка изображения заданого Uri и его заморозка.</summary>
+		/// <param name="uri">Uri изображения</param>
+		/// <returns>Замороженный ImageSource с загруженным изображением</returns>
+		protected ImageSource ImageFreezeLoad(object uri)
+        {
+			ImageSource image = ImageLoad(uri);
+			image.Freeze();
+			return image;
+        }
+
 
 		/// <summary>Синхронная загрузка изображения заданого Uri</summary>
 		/// <param name="uri">Uri изображения</param>
 		/// <returns>ImageSource с загруженным изображением</returns>
-		public abstract ImageSource ImageLoad(object uri, Dispatcher dispatcher);
+		public abstract ImageSource ImageLoad(object uri);
 
 		protected override void PropertyNewValue<T>(ref T fieldProperty, T newValue, string propertyName)
 		{
