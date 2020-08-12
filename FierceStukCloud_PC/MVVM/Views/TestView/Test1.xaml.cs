@@ -27,16 +27,5 @@ namespace FierceStukCloud_PC.MVVM.Views.TestView
         {
             InitializeComponent();
         }
-
-        private void HeaderGrid2_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if(WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                Left = e.GetPosition(null).X - Width/2;
-                Top = e.GetPosition(null).Y - 15;
-            }
-            DragMove();
-        }  
     }
 }

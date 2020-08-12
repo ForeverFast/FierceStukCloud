@@ -2,7 +2,7 @@
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using System.Threading.Tasks;
 
-namespace FierceStukCloud.Core.Services
+namespace FierceStukCloud.Wpf.Services
 {
     public interface IDataService
     {

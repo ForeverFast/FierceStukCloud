@@ -76,7 +76,7 @@ namespace FierceStukCloud.Core.Extension
                 ts.Add(item);
         }
 
-        public static int CurrentMusicContainerIdValue(this Song song) => song.LocalId.Find(x => x.Key == song.CurrentMusicContainer).Value;
+        //public static int CurrentMusicContainerIdValue(this Song song) => song.LocalId.Find(x => x.Key == song.CurrentMusicContainer).Value;
 
     }
 }

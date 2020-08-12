@@ -2,8 +2,8 @@
 using FierceStukCloud.Core;
 using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
-using FierceStukCloud.Core.Services;
-using FierceStukCloud_NetCoreLib.Services.MusicTransromations.Tags;
+using FierceStukCloud.Core.Other;
+using FierceStukCloud.Wpf.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,6 @@ using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using static Dapper.SqlMapper;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
@@ -22,7 +21,6 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
     public class DataService : IDataService
     {
         private User _user { get; }
-        private Dispatcher Dispatcher { get; }
 
 
         public LocalFolder LocalSongs { get; }
@@ -189,7 +187,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             try
             {
                 var Album = Albums.FirstOrDefault(x => x.Title.ToLower() == song.Album.ToLower() &&
-                                              x.Author.ToLower() == song.Author.ToLower());
+                                                      x.Author.ToLower() == song.Author.ToLower());
                 if (Album != null)
                 {
                     song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(Album, Album.Songs.Count));
@@ -200,7 +198,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     var NewAlbum = new Album()
                     {
                         Author = song.Author,
-                        //Songs = new ImageAsyncCollection<ImageAsync<Song>>(Dispatcher),
+                        Songs = new ObservableCollection<Song>()
                     };
 
                     
@@ -247,8 +245,10 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     var NewLF = new LocalFolder()
                     {
                         Title = path.Remove(0, path.IndexOf('\\') + 1),
-                        LocalUrl = path
+                        LocalUrl = path,
+                        Songs = new ObservableCollection<Song>()
                     };
+
 
                     song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewLF, NewLF.Songs.Count));
                     NewLF.Songs.Add(song);
@@ -279,7 +279,8 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                             var NewPL = new PlayList()
                             {
                                 Title = playList,
-                                UserLogin = song.UserLogin
+                                UserLogin = song.UserLogin,
+                                Songs = new ObservableCollection<Song>()
                             };
 
                             song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewPL, NewPL.Songs.Count));
@@ -313,7 +314,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                            ObservableCollection<Album> Albums,
                            ObservableCollection<LocalFolder> LocalFolders,
                            ObservableCollection<PlayList> PlayLists,
-                           User user, Dispatcher dispatcher)
+                           User user)
         {
             SqlMapper.AddTypeHandler(typeof(List<string>), new DictTypeHandler());
 
@@ -323,7 +324,6 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             this.PlayLists = PlayLists;
 
             _user = user;
-            this.Dispatcher = dispatcher;
         }
     }
 }
@@ -529,4 +529,43 @@ public class DictTypeHandler : ITypeHandler
 
                         CMD.Parameters.Add(new SQLiteParameter("@optionalInfo", ""));
                         CMD.ExecuteNonQuery();
+ */
+
+/*
+  try
+            {
+                #region Локальная БД
+                string dbFileName = "fscLocalDB.db";
+
+                if (!File.Exists(dbFileName))
+                    SQLiteConnection.CreateFile(dbFileName);
+
+                Connection = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+                Connection.Open();
+
+                SQLiteCommand cmd = App.Connection.CreateCommand();
+                cmd.CommandText = "CREATE TABLE IF NOT EXISTS Songs (" +
+                    "ID             INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "LocalID        INTEGER," +
+                    "Author         nvarchar(300)," +
+                    "Title          nvarchar(300)," +
+                    "Album          nvarchar(300)," +
+                    "Duration       nvarchar(20)," +
+                    "Year           nvarchar(20)," +
+                    "PlayListNames  nvarchar(4000)," +
+                    "LocalURL       nvarchar(2000), " +
+                    "UserLogin      nvarchar(200)," +
+                    "OnServer       BOOLEAN," +
+                    "OnPC           BOOLEAN," +
+                    "OptionalInfo   nvarchar(200))";
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                #endregion
+
+
+            }
+            catch (Exception)
+            {
+                
+            }
  */

@@ -100,6 +100,9 @@
             "projectReferences": {
               "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj": {
                 "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj"
+              },
+              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj": {
+                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj"
               }
             }
           }
@@ -117,6 +120,10 @@
               "target": "Package",
               "version": "[3.1.5, )"
             },
+            "Microsoft.WindowsAPICodePack-Shell": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -130,6 +137,14 @@
             "System.Text.Json": {
               "target": "Package",
               "version": "[4.7.2, )"
+            },
+            "System.Threading": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "TagLibSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [
@@ -371,6 +386,10 @@
             "System.Data.SQLite.Core": {
               "target": "Package",
               "version": "[1.0.112.2, )"
+            },
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             },
             "System.Windows.Interactivity.WPF": {
               "target": "Package",

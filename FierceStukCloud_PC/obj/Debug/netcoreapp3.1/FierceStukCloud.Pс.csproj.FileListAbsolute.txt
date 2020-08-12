@@ -49,7 +49,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.Platform.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\GalaSoft.MvvmLight.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\NAudio.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\NLog.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\NLog.ZidiumTarget.dll
@@ -60,7 +59,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\TagLibSharp.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Zidium.Api.NetCore.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\netstandard2.0\SQLite.Interop.dll
@@ -75,7 +73,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Mvvm.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Wpf.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Abstractions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Core.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Wpf.dll
@@ -84,7 +81,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Mvvm.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Wpf.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud_NetCoreLib.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\FierceStukCloud.Abstractions.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Abstractions.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\MvvmNavigation.Core.pdb
@@ -105,3 +101,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud.Pс.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud.Pс.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud.Pс.genruntimeconfig.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.ShellExtensions.dll

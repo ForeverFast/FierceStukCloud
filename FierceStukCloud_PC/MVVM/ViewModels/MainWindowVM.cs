@@ -4,9 +4,11 @@ using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm.Commands;
+using FierceStukCloud.Pс.Services;
 using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using FierceStukCloud_PC.MVVM.Models;
+using FierceStukCloud_PC.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,11 +26,13 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
     {
         private MainWindowM model { get; }
         private readonly Dispatcher _dispatcher;
-        private readonly NavigationManager _navigationManager;
-        private IDialogService _dialogService;
+      
+        private readonly IDialogService _dialogService;
 
         public string Title { get; set; }
-      
+
+        public ITest test { get; set; }
+
 
         #region Управление плеером
 
@@ -104,12 +108,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         if (item == model.CurrentSong)
                             Songs.Add(SelectedSong);
                         else
-                            Songs.Add(new ImageAsync<Song>
-                                (
-                                    _dispatcher,
-                                    item.LocalUrl,
-                                    item
-                                ));
+                            Songs.Add(new ImageAsync<Song>(item.LocalUrl, item));
                     }
                 }
             }
@@ -288,9 +287,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         SongAuthor = model.CurrentSong.Author;
                         SongBitmapImage = model.CurrentImage;
 
-                        SelectedSong.IsSelected = false;
+                        SelectedSong.Content.IsSelected = false;
                         SelectedSong = Songs.FirstOrDefault(x => x.Content == model.CurrentSong);
-                        SelectedSong.IsSelected = true;
+                        SelectedSong.Content.IsSelected = true;
 
                         break;
 
@@ -330,15 +329,19 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             try
             {
                 InitiailizeCommands();
+                _dialogService = new DialogService();
+                test = new Test();
+                test.str1 = "kek";
 
-                model = new MainWindowM(_dispatcher);
+
+                model = new MainWindowM();
                 model.PropertyChanged += Model_PropertyChanged;
 
                 Albums = model.Albums;
                 LocalFolders = model.LocalFolders;
                 PlayLists = model.PlayLists;
 
-                SongBitmapImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
+                //SongBitmapImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
 
                 model.MP.Volume = 0.15;
                 SongVolumeForSlider = 0.15;
@@ -351,16 +354,15 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        public MainWindowVM(Dispatcher dispatcher, NavigationManager navigationManager) : this()
-        {
-            _dispatcher = dispatcher;
+        public MainWindowVM(INavigationManager navigationManager) : this()
+        {          
             _navigationManager = navigationManager;
 
-            Songs = new ImageAsyncCollection<ImageAsync<Song>>
-            (
-                _dispatcher,
-                new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"))
-            );
+            //Songs = new ImageAsyncCollection<ImageAsync<Song>>
+            //(
+            //    _dispatcher,
+            //    new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Core;component/Images/fsc_icon.png"))
+            //);
            
         }
 

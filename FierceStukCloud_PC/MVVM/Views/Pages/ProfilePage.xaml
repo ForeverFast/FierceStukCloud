@@ -8,8 +8,49 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProfilePage" Background="{StaticResource GrayLVL2}">
 
-    <Grid>
-        <TextBlock Text="{Binding test, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="30" VerticalAlignment="Center" Foreground="Black"/>
+    <Grid Background="{StaticResource GrayLVL2}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                
+                Margin="15,0,15,0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource DimColorWithLowOpacity}">
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    
+                    <Image Source="/fsc_icon.png" Width="200"/>
+                    
+                    <TextBlock Text="NickName"
+                               FontSize="30"
+                               Foreground="{StaticResource StandartLightColor}"
+                               
+                               HorizontalAlignment="Center"/>
+
+                </StackPanel>
+                
+            </StackPanel>
+            
+            <!--<TextBlock 
+                   
+                   Padding="0"
+                   Margin="0,0,0,5"
+                   VerticalAlignment="Bottom"
+ 
+                   Text="Обзор"
+                   FontSize="50"
+                   FontWeight="SemiBold"
+                   Foreground="{StaticResource StandartLightColor}"/>-->
+        </Border>
+       
+       
+        
+
     </Grid>
-    
+
 </Page>

@@ -1,24 +1,14 @@
-﻿using FierceStukCloud_NetCoreLib.Services;
-using FierceStukCloud_PC.MVVM.ViewModels;
-using FierceStukCloud_PC.MVVM.Views;
-using FierceStukCloud_PC.MVVM.Views.TestView;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SQLite;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using NLog;
-using static System.Diagnostics.Debug;
-using GalaSoft.MvvmLight.Messaging;
-
-using FierceStukCloud_PC.MVVM.Views.Pages;
-using Egor92.MvvmNavigation;
+﻿using Egor92.MvvmNavigation;
 using FierceStukCloud.Core;
 using FierceStukCloud.Wpf;
+using FierceStukCloud_PC.MVVM.ViewModels;
+using FierceStukCloud_PC.MVVM.Views;
+using FierceStukCloud_PC.MVVM.Views.Pages;
+using FierceStukCloud_PC.MVVM.Views.TestView;
+using System;
+using System.Data.SQLite;
+using System.IO;
+using System.Windows;
 
 namespace FierceStukCloud_PC
 {
@@ -86,22 +76,24 @@ namespace FierceStukCloud_PC
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            
             CurrentUser = new User() { Login = "ForeverFast" };
 
             var window = new Test1();
             var navigationManager = new NavigationManager(window.FrameContent);
 
-            var viewModel = new MainWindowVM(Dispatcher, navigationManager);
+            var viewModel = new MainWindowVM(navigationManager);
             window.DataContext = viewModel;
 
             navigationManager.Register<HomePage>("home", new HomePageVM(navigationManager));
             navigationManager.Register<ReviewPage>("review", new HomePageVM(navigationManager));
             navigationManager.Register<ProfilePage>("profile", new HomePageVM(navigationManager));
 
-            navigationManager.Navigate("home", null,Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
+            navigationManager.Navigate("home", null, Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
 
             window.Show();
+
+            
 
             //var AVM = new AutorizationVM(Dispatcher);
             //await DisplayRootRegistry.ShowModalPresentation(AVM);   

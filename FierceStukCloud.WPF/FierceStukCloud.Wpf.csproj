@@ -8,7 +8,6 @@
   <ItemGroup>
     <Folder Include="Behavior\" />
     <Folder Include="Styles\Label\" />
-    <Folder Include="Styles\ListView\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,13 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Styles\ListBoxs\ListBoxStyles.xaml">
+    <Page Update="Styles\ListBox\ListBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Menu\MenuStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\ScrollBar\ScrollBarStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Slider\SliderStyles.xaml">

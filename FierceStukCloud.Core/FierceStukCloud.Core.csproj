@@ -5,23 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\fsc_icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
-  </ItemGroup>
+    <PackageReference Include="System.Threading" Version="4.3.0" />
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+  </ItemGroup> 
 
   <ItemGroup>
     <ProjectReference Include="..\FierceStukCloud.Abstractions\FierceStukCloud.Abstractions.csproj" />
-  </ItemGroup>
+    <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
+  </ItemGroup> 
 
   <ItemGroup>
-    <Resource Include="Images\fsc_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\WindowsBase.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

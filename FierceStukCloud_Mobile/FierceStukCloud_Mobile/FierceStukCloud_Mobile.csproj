@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
   </ItemGroup>
 
   <ItemGroup>

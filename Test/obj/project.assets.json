@@ -797,6 +797,15 @@
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
         }
       },
+      "System.ComponentModel.Annotations/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {}
+        }
+      },
       "System.Console/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1789,6 +1798,15 @@
           "ref/netstandard1.3/System.Text.Encoding.Extensions.dll": {}
         }
       },
+      "System.Text.Json/4.7.2": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        }
+      },
       "System.Text.RegularExpressions/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2004,6 +2022,15 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "TagLibSharp/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/TagLibSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TagLibSharp.dll": {}
+        }
+      },
       "Zidium.Api.NetCore/1.0.23": {
         "type": "package",
         "dependencies": {
@@ -2027,6 +2054,59 @@
         },
         "runtime": {
           "lib/netstandard1.6/Zidium.Api.NetCore.dll": {}
+        }
+      },
+      "FierceStukCloud.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
+        }
+      },
+      "FierceStukCloud.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FierceStukCloud.Abstractions": "1.0.0",
+          "FierceStukCloud.Mvvm": "1.0.0",
+          "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Text.Json": "4.7.2",
+          "System.Threading": "4.3.0",
+          "TagLibSharp": "2.2.0"
+        },
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Core.dll": {}
+        }
+      },
+      "FierceStukCloud.Mvvm/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
+        }
+      },
+      "TestNetStandardLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/TestNetStandardLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TestNetStandardLib.dll": {}
         }
       }
     }
@@ -3191,6 +3271,95 @@
         "ref/xamarinwatchos10/_._",
         "system.collections.specialized.4.3.0.nupkg.sha512",
         "system.collections.specialized.nuspec"
+      ]
+    },
+    "System.ComponentModel.Annotations/4.7.0": {
+      "sha512": "0YFqjhp/mYkDGpU0Ye1GjE53HMp9UVfGN7seGpAMttAC0C40v5gw598jCgpbBLMmCo0E5YRLBv5Z2doypO49ZQ==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.4.7.0.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Console/4.3.0": {
@@ -5936,6 +6105,28 @@
         "system.text.encoding.extensions.nuspec"
       ]
     },
+    "System.Text.Json/4.7.2": {
+      "sha512": "TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
+      "type": "package",
+      "path": "system.text.json/4.7.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Text.Json.dll",
+        "lib/net461/System.Text.Json.xml",
+        "lib/netcoreapp3.0/System.Text.Json.dll",
+        "lib/netcoreapp3.0/System.Text.Json.xml",
+        "lib/netstandard2.0/System.Text.Json.dll",
+        "lib/netstandard2.0/System.Text.Json.xml",
+        "system.text.json.4.7.2.nupkg.sha512",
+        "system.text.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Text.RegularExpressions/4.3.0": {
       "sha512": "RpT2DA+L660cBt1FssIE9CAGpLFdFPuheB7pLpKpn6ZXNby7jDERe8Ua/Ne2xGiwLVG2JOqziiaVCGDon5sKFA==",
       "type": "package",
@@ -6617,6 +6808,23 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "TagLibSharp/2.2.0": {
+      "sha512": "X8UOWeaJgHGrN3xilg3O0lqowhUSwNEiGrE8ITDd1rCn14LqGCWKgn5GX++SW4vuXBMne8+pyic6aUvOFQMRlA==",
+      "type": "package",
+      "path": "taglibsharp/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/TagLibSharp.dll",
+        "lib/net45/TagLibSharp.pdb",
+        "lib/net45/TaglibSharp.xml",
+        "lib/netstandard2.0/TagLibSharp.dll",
+        "lib/netstandard2.0/TagLibSharp.pdb",
+        "lib/netstandard2.0/TaglibSharp.xml",
+        "taglibsharp.2.2.0.nupkg.sha512",
+        "taglibsharp.nuspec"
+      ]
+    },
     "Zidium.Api.NetCore/1.0.23": {
       "sha512": "aV1gqKZr6rVEUj+h9aVjyCYhYOa3qr4f/P53I/aVuwAyymIJ+hDDseM1n2V8YkhN0JYtqikpWrFE9YQPN1PysA==",
       "type": "package",
@@ -6628,17 +6836,39 @@
         "zidium.api.netcore.1.0.23.nupkg.sha512",
         "zidium.api.netcore.nuspec"
       ]
+    },
+    "FierceStukCloud.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj",
+      "msbuildProject": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj"
+    },
+    "FierceStukCloud.Core/1.0.0": {
+      "type": "project",
+      "path": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj",
+      "msbuildProject": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj"
+    },
+    "FierceStukCloud.Mvvm/1.0.0": {
+      "type": "project",
+      "path": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj",
+      "msbuildProject": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj"
+    },
+    "TestNetStandardLib/1.0.0": {
+      "type": "project",
+      "path": "../TestNetStandardLib/TestNetStandardLib.csproj",
+      "msbuildProject": "../TestNetStandardLib/TestNetStandardLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Dapper >= 2.0.35",
+      "FierceStukCloud.Core >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.1.5",
       "NLog >= 4.7.2",
       "NLog.Config >= 4.7.2",
       "NLog.Zidium >= 1.0.8",
       "RestSharp >= 106.10.1",
-      "System.Data.SQLite.Core >= 1.0.113.1"
+      "System.Data.SQLite.Core >= 1.0.113.1",
+      "TestNetStandardLib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6671,7 +6901,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj": {
+              "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Core\\FierceStukCloud.Core.csproj"
+            },
+            "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\TestNetStandardLib\\TestNetStandardLib.csproj": {
+              "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\TestNetStandardLib\\TestNetStandardLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -6727,7 +6964,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -31,10 +31,43 @@
                    Foreground="{StaticResource StandartLightColor}"/>
         </Border>
 
-        <ListBox>
+        <ListBox Grid.Row="1">
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="{StaticResource Gor}"/>
+                    <Setter Property="Margin" Value="2"/>
+
+                    <Setter Property="Height" Value="160"/>
+                    <Setter Property="Width" Value="160"/>
+
+                </Style>
+            </ListBox.ItemContainerStyle>
             
-            
-            
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
+            <ListBoxItem/>
         </ListBox>
         
         

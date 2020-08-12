@@ -6,7 +6,7 @@ namespace FierceStukCloud.Core.MusicPlayerModels
 {
     public class Author : IBaseObject
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Title { get; set; }
         public List<Album> Albums { get; set; }
     }

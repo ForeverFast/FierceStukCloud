@@ -13,6 +13,8 @@ using FierceStukCloud.Mvvm;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.MusicPlayerModels;
+using FierceStukCloud.Wpf.Services.ImageAsyncS;
+using FierceStukCloud.Wpf.Services;
 
 namespace FierceStukCloud_PC.MVVM.Models
 {
@@ -22,7 +24,7 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         /// <summary> Переменная плеера </summary>      
         public MediaPlayer MP { get; }
-        private Dispatcher Dispatcher { get; }
+      
 
 
         private IDataService _dbService { get; }
@@ -331,19 +333,6 @@ namespace FierceStukCloud_PC.MVVM.Models
 
         #region Конструкторы 
 
-        public MainWindowM(Dispatcher dispatcher) : this()
-        {
-            Dispatcher = dispatcher;
-
-            // Инициализация класса работы с БД
-            _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser, dispatcher);
-            //_dbService.GetData();
-
-            // Инициализация класса работы с SignalR
-            //_signalRService = new SignalRService();
-            //_signalRService.PropertyChanged += _signalRService_PropertyChanged;
-        }
-
         public MainWindowM()
         {
             // Инициализация плеера
@@ -356,12 +345,18 @@ namespace FierceStukCloud_PC.MVVM.Models
             LocalFolders = new ObservableCollection<LocalFolder>();
             PlayLists = new ObservableCollection<PlayList>();
 
+            // Инициализация класса работы с БД
+            _dbService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, App.CurrentUser);
+            //_dbService.GetData();
+
+            // Инициализация класса работы с SignalR
+            //_signalRService = new SignalRService();
+            //_signalRService.PropertyChanged += _signalRService_PropertyChanged;
+
 
             // Таймер
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
             timer.Tick += Timer_Tick;
-
-           
         }
 
 

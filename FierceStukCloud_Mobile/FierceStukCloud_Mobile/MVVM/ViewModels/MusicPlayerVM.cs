@@ -1,19 +1,13 @@
-﻿using FierceStukCloud.Abstractions;
+﻿using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud_Mobile.Models;
 using FierceStukCloud_Mobile.MVVM.ViewModels;
 using FierceStukCloud_Mobile.MVVM.ViewModels.AbstractVM;
 using FierceStukCloud_Mobile.MVVM.Views;
-using FierceStukCloud_NetStandardLib.Extension;
-using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using Xamarin.Forms;
 
 namespace FierceStukCloud_Mobile.ViewModels
 {

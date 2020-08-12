@@ -7,7 +7,7 @@ namespace FierceStukCloud.Mvvm.Commands
     {
         private readonly Func<object, Task> _callback;
 
-        public AsyncRelayCommand(Func<object, Task> callback, Action<Exception> onException) : base(onException)
+        public AsyncRelayCommand(Func<object, Task> callback, Action<Exception> onException = null) : base(onException)
         {
             _callback = callback;
         }

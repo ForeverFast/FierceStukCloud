@@ -11,9 +11,29 @@
 
     <Grid Background="{StaticResource GrayLVL2}">
 
-       
-       
+        <Grid Background="{StaticResource GrayLVL2}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
+            <Border Grid.Row="0"
+                
+                Margin="15,0,15,0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource DimColorWithLowOpacity}">
+                <TextBlock 
+                   
+                   Padding="0"
+                   Margin="0,0,0,5"
+                   VerticalAlignment="Bottom"
+                   Text="Главная"
+                   FontSize="50"
+                   FontWeight="SemiBold"
+                   Foreground="{StaticResource StandartLightColor}"/>
+            </Border>
+        </Grid>
 
+       
     </Grid>
 </Page>

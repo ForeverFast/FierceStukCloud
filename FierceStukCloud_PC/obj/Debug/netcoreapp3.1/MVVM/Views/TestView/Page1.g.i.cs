@@ -53,7 +53,7 @@ namespace FierceStukCloud_PC.MVVM.Views.TestView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FierceStukCloud.Pс;V1.0.0.0;component/mvvm/views/testview/page1.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FierceStukCloud_Pс;V1.0.0.0;component/mvvm/views/testview/page1.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\MVVM\Views\TestView\Page1.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

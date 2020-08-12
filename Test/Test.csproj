@@ -15,4 +15,9 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\TestNetStandardLib\TestNetStandardLib.csproj" />
+  </ItemGroup>
+
 </Project>

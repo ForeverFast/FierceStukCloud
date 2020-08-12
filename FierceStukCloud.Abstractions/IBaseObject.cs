@@ -5,9 +5,8 @@ namespace FierceStukCloud.Abstractions
 {
     public interface IBaseObject
     {
-        [Key]
         [JsonPropertyName("id")]
-        int Id { get; set; }
+        string Id { get; set; }
 
         string Title { get; set; }
     }

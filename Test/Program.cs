@@ -1,7 +1,6 @@
 ﻿using Dapper;
-using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
+using FierceStukCloud.Core.MusicPlayerModels;
+using FierceStukCloud.Core.Services;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -12,25 +11,53 @@ using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TagLib.Ape;
+using TestNetStandardLib;
 using static Dapper.SqlMapper;
 
 namespace Test
 {
-    
+
+    class re1 : test1
+    {
+        public int Songs { get; set; }
+    }
 
     class Program
     {
 
+        
+
+
+
         static void Main(string[] args)
         {
-            var t = Guid.NewGuid().ToString();
-            Console.WriteLine(t);
+            var path = @"D:\temp2";
+
+            string[] tempMas = Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories);
+
+            if (tempMas == null)
+            {
+                Console.WriteLine("пусто");
+            }
+
+
+
+
+
+
+            //var t = Guid.NewGuid().ToString();
+            //Console.WriteLine(t);
+
+
+
+
+
 
             //string str = "Data Source=fscLocalDB.db;Version=3;";
 

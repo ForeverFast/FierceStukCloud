@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qe4i3hC3GrDfW4j02h9bwErpuv3+nmkLb2JoU5W2WbFmDZq6wpATpsSQ/eL6DXnvIVvOdhaL34ZBtMle+NDmoQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\TestNetStandardLib\\TestNetStandardLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ivans\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ivans\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -22,11 +22,11 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Button\NavigationButtons.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Button\PlayerButtons.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Button\SystemButtons.baml
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Label\LabelStyles.baml
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListBoxs\ListBoxStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Menu\MenuStyles.baml
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ScrollBar\ScrollBarStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Slider\SliderStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Tab\TabControlStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\TextBlock\TextBlockStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\TextBox\TextBoxStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListView\SongsListView.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ScrollBar\DefaultScrollBar.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListBox\ListBoxStyles.baml

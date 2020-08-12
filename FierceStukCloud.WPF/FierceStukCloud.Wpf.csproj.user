@@ -17,13 +17,13 @@
     <Page Update="Styles\Button\SystemButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\ListBoxs\ListBoxStyles.xaml">
+    <Page Update="Styles\ListBox\ListBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Menu\MenuStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\ScrollBar\ScrollBarStyles.xaml">
+    <Page Update="Styles\ScrollBar\DefaultScrollBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Slider\SliderStyles.xaml">

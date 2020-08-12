@@ -14,8 +14,8 @@ namespace FierceStukCloud.Core
 
         [JsonPropertyName("login")]
         public string Login { get; set; }
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
+        //[JsonPropertyName("password")]
+        //public string Password { get; set; }
 
 
         [JsonPropertyName("name")]
