@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:FierceStukCloud.Wpf.Styles.ListBox">
+
+    <Style x:Key="BasePlayListLBStyle" TargetType="{x:Type ListBox}">
+
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource GrayLVL4}"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+
+    </Style>
+
+    <Style x:Key="PlayListListBox" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BasePlayListLBStyle}">
+
+       
+        
+    </Style>
+    
+</ResourceDictionary>

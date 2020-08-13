@@ -30,3 +30,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListView\SongsListView.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ScrollBar\DefaultScrollBar.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListBox\ListBoxStyles.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ListBox\PlayListLB.baml

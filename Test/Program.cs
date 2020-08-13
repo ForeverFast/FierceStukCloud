@@ -17,6 +17,8 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading;
+using System.Threading.Tasks;
 using TestNetStandardLib;
 using static Dapper.SqlMapper;
 
@@ -31,22 +33,177 @@ namespace Test
     class Program
     {
 
-        
+        public static async Task Me()
+        {
+           
+            await Task.Run(() =>
+            {
+                try
+                {
+                   
+                    Console.WriteLine("1");
+                }
+                catch (Exception ex)
+                {
+
+                }
 
 
+            });
+
+            await Task.Run(() =>
+            {
+
+                Console.WriteLine("2");
+
+            });
+            
+        }
+
+        public static async Task syncStuff()
+        {
+            await Me();
+        }
+
+        static int x = 0;
+        static object locker = new object();
+        public static void Count(string name)
+        {
+            lock (locker)
+            {
+                x++;
+                
+                Console.WriteLine("{0}: {1}", name, x);
+                
+                
+                
+            }
+        }
 
         static void Main(string[] args)
         {
-            var path = @"D:\temp2";
+            //_ = Task.FromResult(syncStuff());
 
-            string[] tempMas = Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories);
-
-            if (tempMas == null)
+            for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("пусто");
+                var name = i.ToString();
+                Task.Run(() => Count(name));
             }
 
+            Console.WriteLine("Загрузка потоков завершена");
 
+            Console.ReadLine();
+        
+
+
+            Console.WriteLine("End");
+
+
+
+
+            //double[] t1 = new double[10];
+            //double[] t2 = new double[3];
+
+            //t2[0] = 1;
+            //t2[1] = 2;
+            //t2[2] = 3;
+
+            //Array.Copy(t2, t1, 3);
+
+            //int q = 0;
+
+
+
+            //var cc = "4556364607935616";
+
+            //int index = 0;
+            //while (index < cc.Length - 4)
+            //{
+            //    cc.Remove(index, 1);
+            //    cc.Insert(index++, "#");
+            //}
+
+
+
+            //Dictionary<string, string> morseD = new Dictionary<string, string>();
+            //morseD.Add(".-", "A");
+            //morseD.Add("-...", "B");
+            //morseD.Add("-.-.", "C");
+            //morseD.Add("-..", "D");
+            //morseD.Add(".", "E");
+            //morseD.Add("..-.", "F");
+            //morseD.Add("--.", "G");
+            //morseD.Add("....", "H");
+            //morseD.Add("..", "I");
+            //morseD.Add(".---", "J");
+            //morseD.Add("-.-", "K");
+            //morseD.Add(".-..", "L");
+            //morseD.Add("--", "M");
+            //morseD.Add("-.", "N");
+            //morseD.Add("---", "O");
+            //morseD.Add(".--.", "P");
+            //morseD.Add("--.-", "Q");
+            //morseD.Add(".-.", "R");
+            //morseD.Add("...", "S");
+            //morseD.Add("-", "T");
+            //morseD.Add("..-", "U");
+            //morseD.Add("...-", "V");
+            //morseD.Add(".--", "W");
+            //morseD.Add("-..-", "X");
+            //morseD.Add("-.--", "Y");
+            //morseD.Add("--..", "Z");
+
+            //morseD.Add("...---...", "SOS");
+            //morseD.Add("-.-.--", "!");
+            //morseD.Add(".-.-.-", ".");
+            //morseD.Add("", " ");
+
+            //string input = "      ...---... -.-.--   - .... .   --.- ..- .. -.-. -.-   -... .-. --- .-- -.   ..-. --- -..-   .--- ..- -- .--. ...   --- ...- . .-.   - .... .   .-.. .- --.. -.--   -.. --- --. .-.-.-  ";
+            //string temp = "";
+            //string[] mass = input.Split(' ');
+
+            //int i = 0;
+            //int k = mass.Length - 1;
+
+            //while (true)
+            //{
+            //    if (mass[i] != "")
+            //        break;
+            //    i++;
+            //}
+
+            //while(true)
+            //{
+            //    if (mass[k] != "")
+            //        break;
+            //    k--;
+            //}
+
+
+
+
+            //for (int j = i; j <= k; j++)
+            //{
+            //    if (j != i)
+            //        if (temp[temp.Length - 1] == ' ')
+            //            j++;
+            //    //var q = mass[j];
+            //    temp += morseD.GetValueOrDefault(mass[j]);
+
+            //}
+            //Console.WriteLine(" ");
+
+            //var path = @"D:\temp2";
+
+            //string[] tempMas = Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories);
+
+            //if (tempMas == null)
+            //{
+            //    Console.WriteLine("пусто");
+            //}
+
+            //string str = "lel";
+            //str.Length
 
 
 

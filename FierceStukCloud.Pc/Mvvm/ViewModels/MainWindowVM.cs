@@ -23,13 +23,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
-       
-
-        public string Title { get; set; }
-
-
-
-
         #region Управление плеером
 
 
@@ -177,6 +170,72 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #endregion
 
+
+        #region Команды - Навигациия
+
+        //public ICommand NavigateToHomePageCommand { get; private set; }
+        //public ICommand NavigateToReviewPageCommand { get; private set; }
+        //public ICommand NavigateToProfilePageCommand { get; private set; }
+
+        public ICommand NavigationToCommand { get; private set; }
+        public ICommand NavigationBackCommand { get; private set; }
+        public ICommand NavigationForwardCommand { get; private set; }
+
+        public void NavigationToExecute(object parameter)
+            => _navigationManager.Navigate(parameter.ToString(), NavigateType.Default);
+
+        public void NavigationBackExecute(object parameter)
+            => _navigationManager.GoBack();
+
+        public void NavigationForwardExecute(object parameter)
+            => _navigationManager.GoForward();
+
+        #endregion
+
+        #region Команды - Управления плеера
+
+        public ICommand SetRandomPlaybackCommand { get; private set; }
+        public ICommand PrevSongCommand { get; private set; }
+        public ICommand PlayStateSongCommand { get; private set; }
+        public ICommand NextSongCommand { get; private set; }
+        public ICommand SetLoopPlaybackCommand { get; private set; }
+
+        private void SetRandomPlaybackExecute(object parameter) => _musicPlayer.IsRandomSong = !_musicPlayer.IsRandomSong;
+
+        private void PrevSongExecute(object parameter) => _musicPlayer.PrevSong();
+
+        private void PlayStateSongExecute(object parameter)
+        {
+            if (_musicPlayer.IsPlaying == true)
+                _musicPlayer.Pause();
+            else
+                _musicPlayer.Play();
+        }
+
+        private void NextSongExecute(object parameter) => _musicPlayer.NextSong();
+
+        private void SetLoopPlaybackExecute(object parameter) => _musicPlayer.IsRepeatSong = !_musicPlayer.IsRepeatSong;
+        #endregion
+
+        #region Команды - Плейлисты
+
+        public ICommand AddPlayListCommand { get; private set; }
+        public ICommand RemovePlayListCommand { get; private set; }
+
+        private async Task AddPlayListExecute(object parameter)
+            => await _musicPlayer.AddPlayList((parameter as object[])[0].ToString(), (parameter as object[])[1].ToString());
+
+        private async void RemovePlayListExecute(object parameter)
+        {
+            if (await _musicPlayer.RemovePlayList(parameter as PlayList) == false)
+            {
+
+            }
+        }
+
+        #endregion
+
+
         #region Команды - Старые 
 
         public ICommand OpenOnDiskCommand { get; private set; }
@@ -248,52 +307,10 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         #endregion
 
 
-        #region Команды - Управления плеера
-
-        public ICommand SetRandomPlaybackCommand { get; private set; }
-        public ICommand PrevSongCommand { get; private set; }
-        public ICommand PlayStateSongCommand { get; private set; }
-        public ICommand NextSongCommand { get; private set; }
-        public ICommand SetLoopPlaybackCommand { get; private set; }
-
-        private void SetRandomPlaybackExecute(object parameter) => _musicPlayer.IsRandomSong = !_musicPlayer.IsRandomSong;
-
-        private void PrevSongExecute(object parameter) => _musicPlayer.PrevSong();
-
-        private void PlayStateSongExecute(object parameter)
-        {
-            if (_musicPlayer.IsPlaying == true)
-                _musicPlayer.Pause();
-            else
-                _musicPlayer.Play();
-        }
-
-        private void NextSongExecute(object parameter) => _musicPlayer.NextSong();
-
-        private void SetLoopPlaybackExecute(object parameter) => _musicPlayer.IsRepeatSong = !_musicPlayer.IsRepeatSong;
-        #endregion
+       
 
 
-        #region Команды - Навигациия
-
-        //public ICommand NavigateToHomePageCommand { get; private set; }
-        //public ICommand NavigateToReviewPageCommand { get; private set; }
-        //public ICommand NavigateToProfilePageCommand { get; private set; }
-
-        public ICommand NavigationToCommand { get; private set; }
-        public ICommand NavigationBackCommand { get; private set; }
-        public ICommand NavigationForwardCommand { get; private set; }
-
-        public void NavigationToExecute(object parameter)
-            => _navigationManager.Navigate(parameter.ToString(), NavigateType.Default);
-
-        public void NavigationBackExecute(object parameter)
-            => _navigationManager.GoBack();
-
-        public void NavigationForwardExecute(object parameter)
-            => _navigationManager.GoForward();
-
-        #endregion
+       
 
 
        

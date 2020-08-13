@@ -20,6 +20,9 @@
     <Page Update="Styles\ListBox\ListBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\ListBox\PlayListLB.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Menu\MenuStyles.xaml">
       <SubType>Designer</SubType>
     </Page>

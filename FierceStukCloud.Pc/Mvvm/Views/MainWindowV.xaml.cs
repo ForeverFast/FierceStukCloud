@@ -19,7 +19,8 @@ namespace FierceStukCloud.Pc.Mvvm.Views
     {
         public MainWindowV()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            
         }
     }
 }

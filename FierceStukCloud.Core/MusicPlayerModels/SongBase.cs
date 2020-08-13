@@ -41,7 +41,7 @@ namespace FierceStukCloud.Core.MusicPlayerModels
 
         [Column("PlayLists")]
         [JsonPropertyName("playLists")]
-        public List<string> PlayLists { get; set; } = new List<string>();
+        public List<string> PlayLists { get; set; }
 
 
         [Column("UserLogin")]
@@ -54,11 +54,8 @@ namespace FierceStukCloud.Core.MusicPlayerModels
 
         [Column("OnPC")]
         [JsonPropertyName("onPC")]
-        public bool OnPC { get; set; }
+        public bool OnDevice { get; set; }
 
-        [Column("OnPhone")]
-        [JsonPropertyName("onPhone")]
-        public bool OnPhone { get; set; }
 
         [Column("OptionalInfo")]
         [JsonPropertyName("optionalInfo")]

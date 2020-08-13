@@ -24,6 +24,9 @@ namespace FierceStukCloud.Pc.Services
         private IDataService _dataService { get; }
         private ISignalRService _signalRService { get; }
 
+        public List<Song> AllSongs { get; }
+        public PlayList Favourites { get; set; }
+
         /// <summary> Список плейлистов </summary>   
         public ObservableCollection<PlayList> PlayLists { get; set; }
         /// <summary> Список альбомов </summary>   
@@ -31,8 +34,7 @@ namespace FierceStukCloud.Pc.Services
         /// <summary> Список папок </summary>   
         public ObservableCollection<LocalFolder> LocalFolders { get; set; }
         /// <summary> Список песен </summary>   
-        public LocalFolder LocalSongs { get; set; }
-
+       
 
 
         /// <summary> Tекущий контейнер </summary>   
@@ -139,19 +141,26 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы добавление/удаления плейлистов на устройстве
 
-        public async Task<PlayList> AddPlayList(string title, string description)
+        public async Task AddPlayList(string title, string description)
         {
-
+            PlayLists.Add(new PlayList()
+            {
+                Title = title,
+                Songs = new LinkedList<Song>()
+            });
         }
 
         public async Task<bool> RemovePlayList(PlayList playList)
         {
 
+
+            PlayLists.Remove(playList);
+            return true;
         }
 
         public async Task<bool> UpdatePlayList(PlayList playList)
         {
-
+            return true;
         }
 
         #endregion
@@ -354,7 +363,7 @@ namespace FierceStukCloud.Pc.Services
             MP.MediaEnded += SongEnded;
             MP.MediaOpened += SongLoaded;
 
-            LocalSongs = new LocalFolder() { Title = "LF" };
+            Favourites = new PlayList() { Title = "LF" };
             Albums = new ObservableCollection<Album>();
             LocalFolders = new ObservableCollection<LocalFolder>();
             PlayLists = new ObservableCollection<PlayList>();
@@ -367,8 +376,8 @@ namespace FierceStukCloud.Pc.Services
         public MusicPlayerService(User user) : this()
         {
             // Инициализация класса работы с БД
-            _dataService = new DataService(LocalSongs, Albums, LocalFolders, PlayLists, user);
-            //_dbService.GetData();
+            _dataService = new DataService(AllSongs, Favourites, Albums, LocalFolders, PlayLists, user);
+            _dataService.GetData();
 
             // Инициализация класса работы с SignalR
             //_signalRService = new SignalRService();

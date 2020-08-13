@@ -1,6 +1,7 @@
 ﻿using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -11,13 +12,15 @@ namespace FierceStukCloud.Core.Services
     {
         event PropertyChangedEventHandler PropertyChanged;
 
+        List<Song> AllSongs { get; }
+        PlayList Favourites { get; set; }
         ObservableCollection<PlayList> PlayLists { get; set; }
         /// <summary> Список альбомов </summary>   
         ObservableCollection<Album> Albums { get; set; }
         /// <summary> Список папок </summary>   
         ObservableCollection<LocalFolder> LocalFolders { get; set; }
         /// <summary> Список песен </summary>   
-        LocalFolder LocalSongs { get; set; }
+        
 
         /// <summary> Tекущий контейнер </summary>   
         IMusicContainer CurrentMusicContainer { get; set; }
@@ -102,7 +105,7 @@ namespace FierceStukCloud.Core.Services
         Task<LocalFolder> AddLocalFolderFromDevice(string path);
         Task<bool> RemoveLocalFolderFromDevice(LocalFolder localFolder);
 
-        Task<PlayList> AddPlayList(string title, string description);
+        Task AddPlayList(string title, string description);
         Task<bool> RemovePlayList(PlayList playList);
         Task<bool> UpdatePlayList(PlayList playList);
     }

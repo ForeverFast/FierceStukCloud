@@ -19,6 +19,9 @@
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/NavigationButtons.xaml"/>
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/SystemButtons.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>
+
 
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Brushes.xaml"/>

@@ -54,7 +54,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
                         UserLogin = _user.Login,
                         OnServer = false,
-                        OnPC = true,
+                        OnDevice = true,
 
                         OptionalInfo = optionalInfo
                     };

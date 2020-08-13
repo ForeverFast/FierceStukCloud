@@ -82,3 +82,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.genruntimeconfig.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll

@@ -42,8 +42,8 @@ namespace FierceStukCloud.Pc
 
             navigationManager.Register<PlaylistPage>("pl", new PlaylistVM(null));
 
-            navigationManager.Navigate("pl", null, Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
-            //navigationManager.Navigate("home", null, Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
+            //navigationManager.Navigate("pl", null, Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
+            navigationManager.Navigate("home", null, Egor92.MvvmNavigation.Abstractions.NavigateType.Root);
 
             window.Show();
 

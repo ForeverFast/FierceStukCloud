@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:converter="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views"
         mc:Ignorable="d"
         Title="FierceStukCloud"
+        x:Name="MainWindow"
         Height="800" Width="1500"
         MinHeight="600" MinWidth="800" WindowStyle="SingleBorderWindow">
+    
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
@@ -101,6 +104,8 @@
         </ResourceDictionary>
     </Window.Resources>
 
+        
+    
     <Grid Background="{StaticResource DimColor}">
 
         <Grid.RowDefinitions>
@@ -132,12 +137,15 @@
                 <Grid.Resources>
 
                     <Style TargetType="{x:Type RadioButton}">
+                        
                         <Setter Property="Cursor" Value="Hand"/>
                         <Setter Property="GroupName" Value="MenuRB"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                                    <StackPanel Orientation="Horizontal" Background="{StaticResource GrayLVL4}">
+                                    <StackPanel x:Name="SP"
+                                                Orientation="Horizontal"
+                                                Background="{StaticResource GrayLVL4}">
                                         <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="40"
                                               StrokeThickness="5"/>
 
@@ -158,6 +166,16 @@
                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
                                     <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
+
+                                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
+
+                                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
+                                        </DataTrigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
                                         </Trigger>
@@ -207,6 +225,8 @@
                     <RowDefinition Height="33"/>
                 </Grid.RowDefinitions>
 
+
+               
                 <Grid.Resources>
 
                     <Style TargetType="{x:Type RadioButton}">
@@ -215,7 +235,9 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                                    <StackPanel Orientation="Horizontal" Background="{StaticResource GrayLVL4}">
+                                    <StackPanel x:Name="SP"
+                                                Orientation="Horizontal"
+                                                Background="{StaticResource GrayLVL4}">
                                         <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="40"
                                               StrokeThickness="5" Margin="0,0,10,0"/>
 
@@ -228,7 +250,18 @@
                                                    Margin="10,0,0,0"
                                                    VerticalAlignment="Center"/>
                                     </StackPanel>
+                                    
                                     <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
+
+                                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
+
+                                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
+                                        </DataTrigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
                                         </Trigger>
@@ -295,8 +328,69 @@
                            Margin="15,0,0,0"
                            VerticalAlignment="Center"/>
 
-                <ListBox Grid.Row="1">
+                <ListBox Grid.Row="1" Style="{StaticResource PlayListListBox}">
 
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            
+                            <Setter Property="Cursor" Value="Hand"/>
+
+                            <Setter Property="Tag"
+                                    Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                    AncestorType={x:Type ListBox}}, Path=DataContext}"/>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}"
+                                         >
+                                        <MenuItem Header="Открыть в проводнике" Command="{Binding Path= Tag.OpenLocalFolderOnDiskCommand}"/>
+                                        <MenuItem Header="Изменить сведения" Command="{Binding Path=Tag.AddToMainServerCommand}" IsEnabled="False"/>
+                                        <MenuItem Header="Удалить" Command="{Binding Path=Tag.DeleteFromAppCommand}"/>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <RadioButton x:Name="RB" GroupName="MenuRB">
+                                            <RadioButton.Template>
+                                                <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                    <StackPanel Orientation="Horizontal" Background="{StaticResource GrayLVL4}">
+                                                        <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="20"
+                                                        StrokeThickness="5" Margin="0,0,10,0"/>
+
+
+                                                        <TextBlock Text="Test"
+                                                   Foreground="{StaticResource StandartLightColor}"
+                                                   FontSize="13.5"
+                                                   FontWeight="Bold"
+                                                   
+                                                   Margin="0,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsChecked" Value="False">
+                                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource GrayLVL4}"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                                
+                                            </RadioButton.Template>
+                                        </RadioButton>
+                                       
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    
+                    <ListBoxItem/>
+
+                    
                 </ListBox>
 
                 <Button Grid.Row="2"
