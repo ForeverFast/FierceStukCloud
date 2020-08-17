@@ -561,6 +561,7 @@
           "FierceStukCloud.Core": "1.0.0",
           "FierceStukCloud.Mvvm": "1.0.0",
           "MaterialDesignThemes": "3.1.3",
+          "System.Windows.Interactivity.WPF": "2.0.20525",
           "TagLibSharp": "2.2.0"
         },
         "compile": {

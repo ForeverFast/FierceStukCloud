@@ -46,7 +46,7 @@
                         Width="auto"
                         ctrl:RangeColumn.MinWidth="350"
                         ctrl:RangeColumn.MaxWidth="530"
-                        Header="Название" />
+                        Header="Название"/>
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=Author}"
                         ctrl:RangeColumn.MinWidth="150"

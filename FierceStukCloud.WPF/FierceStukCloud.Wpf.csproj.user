@@ -29,6 +29,9 @@
     <Page Update="Styles\Menu\MenuStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\RadioButton\MenuRadioButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\ScrollBar\DefaultScrollBar.xaml">
       <SubType>Designer</SubType>
     </Page>

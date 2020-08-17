@@ -27,6 +27,8 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>
                 <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/RadioButton/MenuRadioButtons.xaml"/>
+                <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ScrollBar/DefaultScrollBar.xaml"/>
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ScrollViewer/DefaultScrollViewer.xaml"/>
