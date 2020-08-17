@@ -1,0 +1,9 @@
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\AuthenticationV.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\ListSongsV.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\MainPage.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\MVVM\Views\PlayerPage.xaml.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.AssemblyInfoInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.AssemblyInfo.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Mobile\FierceStukCloud_Mobile\obj\Debug\netstandard2.0\FierceStukCloud_Mobile.csproj.CoreCompileInputs.cache

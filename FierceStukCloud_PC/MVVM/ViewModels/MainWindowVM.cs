@@ -250,14 +250,14 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public ICommand NavigationBackCommand { get; private set; }
         public ICommand NavigationForwardCommand { get; private set; }
 
-        public void NavigationToExecute(object parameter)
-            => _navigationManager.Navigate(parameter.ToString(),NavigateType.Default);
+        //public void NavigationToExecute(object parameter)
+        //    => _navigationManager.Navigate(parameter.ToString(),NavigateType.Default);
 
-        public void NavigationBackExecute(object parameter)
-            => _navigationManager.GoBack();
+        //public void NavigationBackExecute(object parameter)
+        //    => _navigationManager.GoBack();
 
-        public void NavigationForwardExecute(object parameter)
-            => _navigationManager.GoForward();
+        //public void NavigationForwardExecute(object parameter)
+        //    => _navigationManager.GoForward();
 
         #endregion
 
@@ -356,7 +356,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         public MainWindowVM(INavigationManager navigationManager) : this()
         {          
-            _navigationManager = navigationManager;
+            //_navigationManager = navigationManager;
 
             //Songs = new ImageAsyncCollection<ImageAsync<Song>>
             //(
@@ -387,9 +387,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute, null);
             NextSongCommand = new RelayCommand(NextSongExecute, null);
 
-            NavigationToCommand = new RelayCommand(NavigationToExecute, (o) => _navigationManager.CanNavigate(o.ToString()));
-            NavigationBackCommand = new RelayCommand(NavigationBackExecute, (o) => _navigationManager.CanGoBack());
-            NavigationForwardCommand = new RelayCommand(NavigationForwardExecute, (o) => _navigationManager.CanGoForward());
+            //NavigationToCommand = new RelayCommand(NavigationToExecute, (o) => _navigationManager.CanNavigate(o.ToString()));
+            //NavigationBackCommand = new RelayCommand(NavigationBackExecute, (o) => _navigationManager.CanGoBack());
+            //NavigationForwardCommand = new RelayCommand(NavigationForwardExecute, (o) => _navigationManager.CanGoForward());
         }
 
         public override void CloseWindowMethod(object parameter)

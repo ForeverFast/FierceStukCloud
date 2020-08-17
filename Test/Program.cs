@@ -19,81 +19,39 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TestNetStandardLib;
 using static Dapper.SqlMapper;
 
 namespace Test
 {
-
-    class re1 : test1
+    public class t1
     {
-        public int Songs { get; set; }
+        public ObservableCollection<Song> Songs { get; set; }
     }
+
+    public class t2
+    {
+        public ObservableCollection<Song> Songs { get; set; }
+    }
+
 
     class Program
     {
-
-        public static async Task Me()
-        {
-           
-            await Task.Run(() =>
-            {
-                try
-                {
-                   
-                    Console.WriteLine("1");
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-
-            });
-
-            await Task.Run(() =>
-            {
-
-                Console.WriteLine("2");
-
-            });
-            
-        }
-
-        public static async Task syncStuff()
-        {
-            await Me();
-        }
-
-        static int x = 0;
-        static object locker = new object();
-        public static void Count(string name)
-        {
-            lock (locker)
-            {
-                x++;
-                
-                Console.WriteLine("{0}: {1}", name, x);
-                
-                
-                
-            }
-        }
-
         static void Main(string[] args)
         {
-            //_ = Task.FromResult(syncStuff());
+            ObservableCollection<Song> songs = new ObservableCollection<Song>();
+            songs.Add(new Song() { Title = "1" });
 
-            for (int i = 0; i < 5; i++)
-            {
-                var name = i.ToString();
-                Task.Run(() => Count(name));
-            }
+            t1 t1 = new t1();
+            t1.Songs = songs;
 
-            Console.WriteLine("Загрузка потоков завершена");
+            t1.Songs.Add(new Song() { Title = "2" });
 
-            Console.ReadLine();
-        
+            t2 t2 = new t2();
+            t2.Songs = songs;
+
+            t2.Songs.Add(new Song() { Title = "2" });
 
 
             Console.WriteLine("End");

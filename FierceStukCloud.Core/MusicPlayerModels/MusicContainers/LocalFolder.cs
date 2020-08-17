@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace FierceStukCloud.Core.MusicPlayerModels.MusicContainers
 {
-    public class LocalFolder : IMusicContainer,IStatusExistence
+    public class LocalFolder : IMusicContainer, IStatusExistence
     {
         [Column("Id")]
         public string Id { get; set; }

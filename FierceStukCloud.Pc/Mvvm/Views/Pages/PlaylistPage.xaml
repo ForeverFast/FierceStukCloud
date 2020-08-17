@@ -32,34 +32,35 @@
                    Foreground="{StaticResource StandartLightColor}"/>
         </Border>
 
-        <Button Grid.Row="1" Command="{Binding AddLocalFolderFromPcCommand}"></Button>
-        
-        <!--<ListView Grid.Row="1"
+        <Button Command="{Binding AddSongFromDeviceCommand}"/>
+
+        <ListView Grid.Row="1"
                   Margin="15,0"
-                  ctrl:ListViewLayoutManager.Enabled="true" >
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  ItemsSource="{Binding Path=PlayList.Songs}">
             <ListView.View>
-                <GridView >
+                <GridView>
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Ticks}"
+                        DisplayMemberBinding="{Binding Path=Title}"
                         ctrl:RangeColumn.IsFillColumn="False"
                         Width="auto"
                         ctrl:RangeColumn.MinWidth="350"
                         ctrl:RangeColumn.MaxWidth="530"
                         Header="Название" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=DayOfWeek}"
+                        DisplayMemberBinding="{Binding Path=Author}"
                         ctrl:RangeColumn.MinWidth="150"
                         ctrl:RangeColumn.MaxWidth="300"
                         Header="Исполнитель" />
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=TimeOfDay}"
+                        DisplayMemberBinding="{Binding Path=Album}"
                         ctrl:RangeColumn.MinWidth="0"
                         
                         ctrl:RangeColumn.MaxWidth="300"
                         Header="Альбом" />
 
                     <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Year}"
+                        DisplayMemberBinding="{Binding Path=Duration}"
                         Width="auto"
                         ctrl:RangeColumn.MinWidth="0"
                         ctrl:RangeColumn.MaxWidth="160"
@@ -71,11 +72,9 @@
 
           
 
-            <ListViewItem Background="AliceBlue"/>
-            <ListViewItem Background="AliceBlue"/>
-            <ListViewItem Background="AliceBlue"/>
+           
 
-        </ListView>-->
+        </ListView>
         
     </Grid>
 </Page>

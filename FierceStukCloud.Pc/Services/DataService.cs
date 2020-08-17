@@ -3,6 +3,7 @@ using FierceStukCloud.Core;
 using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Other;
+using FierceStukCloud.Core.Services;
 using FierceStukCloud.Wpf.Services;
 using Newtonsoft.Json;
 using System;
@@ -20,16 +21,199 @@ namespace FierceStukCloud.Pc.Services
 {
     public class DataService : IDataService
     {
-        private User _user { get; }
 
-        public List<Song> AllSongs { get; set; }
-        public PlayList Favourites { get; }
-        public ObservableCollection<Album> Albums { get; }
-        public ObservableCollection<LocalFolder> LocalFolders { get; }
-        public ObservableCollection<PlayList> PlayLists { get; }
+        private readonly User _user;
+        private IMusicStorage _musicStorage;
 
 
-        public async Task<Song> AddSong(string path, string optionalInfo = "LF")
+        #region Получение информации
+
+        public async Task GetData()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    var output = await cnn.QueryAsync<Song>("SELECT * FROM Songs");
+                    _musicStorage.AllSongs = new ObservableCollection<Song>(output.ToList());
+
+                    foreach (var item in await cnn.QueryAsync<Album>("SELECT * FROM Albums"))
+                        _musicStorage.Albums.Add(item);
+                    foreach (var item in await cnn.QueryAsync<LocalFolder>("SELECT * FROM LocalFolders"))
+                        _musicStorage.LocalFolders.Add(item);
+                    foreach (var item in await cnn.QueryAsync<PlayList>("SELECT * FROM PlayLists"))
+                        _musicStorage.PlayLists.Add(item);
+
+
+                    foreach (var item in _musicStorage.AllSongs)
+                        await SongIntegrating(item, cnn);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+
+
+        #region Методы интеграции
+
+        private async Task SongIntegrating(Song song, IDbConnection cnn)
+        {
+            await SearchSongAlbum(song, cnn);
+            await SearchSongLocalFolder(song, cnn);
+            await SearchSongPlayLists(song, cnn);
+        }
+
+        private async Task SearchSongAlbum(Song song, IDbConnection cnn)
+        {
+            try
+            {
+                var Album = _musicStorage.Albums.FirstOrDefault(x => x.Title.ToLower() == song.Album.ToLower() &&
+                                                                x.Author.ToLower() == song.Author.ToLower());
+                if (Album != null)
+                {
+                    if (Album.Songs == null)
+                        Album.Songs = new LinkedList<Song>();
+                    Album.Songs.AddLast(song);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(song.Album) && song.Album != "Неизвестный")
+                    {
+                        var NewAlbum = new Album()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            //Title
+                            Author = song.Author,
+                            UserLogin = song.UserLogin,
+                            Songs = new LinkedList<Song>()
+                        };
+                        NewAlbum.Title = song.Album;
+
+                        string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
+                                                $" VALUES(@Id, @Title, @Author, @UserLogin);";
+
+                        await cnn.ExecuteAsync(sql, NewAlbum);
+
+                        
+                        NewAlbum.Songs.AddLast(song);
+                        _musicStorage.Albums.Add(NewAlbum);
+                       
+                    }
+                    else
+                    {
+                        var NAlbum = _musicStorage.Albums.FirstOrDefault(x => x.Title == "Неизвестный");
+                        if (NAlbum != null)
+                        {
+                            if (NAlbum.Songs == null)
+                                NAlbum.Songs = new LinkedList<Song>();
+                            NAlbum.Songs.AddLast(song);
+                        } 
+                        else
+                        {
+                            NAlbum = new Album()
+                            {
+                                Id = Guid.NewGuid().ToString(),
+                                Title = "Неизвестный",
+                                Author = song.Author,
+                                UserLogin = song.UserLogin,
+                                Songs = new LinkedList<Song>()
+                            };
+
+                            string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
+                                             $" VALUES(@Id, @Title, @Author, @UserLogin);";
+
+                            await cnn.ExecuteAsync(sql, NAlbum);
+
+                            NAlbum.Songs.AddLast(song);
+                            _musicStorage.Albums.Add(NAlbum);
+                        }
+                    }
+
+                    
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async Task SearchSongLocalFolder(Song song, IDbConnection cnn)
+        {
+            try
+            {
+                var FolderPath = GetSongFolderPath(song.LocalUrl);
+
+                var LF = _musicStorage.LocalFolders.FirstOrDefault(x => x.LocalUrl == FolderPath);
+                if (LF != null)
+                {
+                    if (LF.Songs == null)
+                        LF.Songs = new LinkedList<Song>();
+                    LF.Songs.AddLast(song);
+                }
+                else
+                {
+                    var NewLF = new LocalFolder()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Title = FolderPath.Remove(0, FolderPath.IndexOf('\\') + 1),
+                        LocalUrl = FolderPath,
+                        UserLogin = song.UserLogin,
+                        OnDevice = true,
+                        OnServer = false,
+                        Songs = new LinkedList<Song>()
+                    };
+
+                    string sql = $"INSERT INTO LocalFolders (Id,  Title,  LocalUrl,  UserLogin,  OnServer,   OnDevice)" +
+                                                  $" VALUES(@Id, @Title, @LocalUrl, @UserLogin, @OnServer,  @OnDevice);";
+
+                    await cnn.ExecuteAsync(sql, NewLF);
+
+                    NewLF.Songs.AddLast(song);
+                    _musicStorage.LocalFolders.Add(NewLF);
+                }
+               
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+        private async Task SearchSongPlayLists(Song song, IDbConnection cnn)
+        {
+            try
+            {
+                if (song.PlayLists != null)
+                    foreach (var playList in song.PlayLists)
+                    {
+                        var PL = _musicStorage.PlayLists.FirstOrDefault(x => x.Id == playList);
+                        if (PL != null)
+                        {
+                            if (PL.Songs == null)
+                                PL.Songs = new LinkedList<Song>();
+                            PL.Songs.AddLast(song);
+                        }
+                    }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        #endregion
+
+
+        #endregion
+
+
+        #region Добавление/удаление треков
+
+        public async Task<Song> AddSongAsync(string path, string optionalInfo = "")
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -62,6 +246,19 @@ namespace FierceStukCloud.Pc.Services
                     else
                         temp.Album = "Неизвестный";
 
+                    if(!string.IsNullOrEmpty(optionalInfo))
+                    {
+                        switch(optionalInfo)
+                        {
+                            default:
+
+                                temp.PlayLists = new List<string>();
+                                temp.PlayLists.Add(optionalInfo);
+
+                                break;
+                        }
+                    }   
+
                     string sql = $"INSERT INTO Songs (Author,    Title,       Album,      Duration,  Year," +
                                                     $"PlayLists,  LocalURL,  UserLogin,   OnServer,   OnPC,      OptionalInfo)" +
                                            $" VALUES(@author,   @title,       @album,    @duration, @year," +
@@ -81,7 +278,7 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        public async Task<bool> RemoveSong(Song song)
+        public async Task<bool> RemoveSongAsync(Song song)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -99,218 +296,13 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-
-        #region Получение информации
-
-        public async Task GetData()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                try
-                {
-                    var output = await cnn.QueryAsync<Song>("SELECT * FROM Songs");
-                    AllSongs = output.ToList();
-
-                    foreach (var item in await cnn.QueryAsync<Album>("SELECT * FROM Albums"))
-                        Albums.Add(item);
-                    foreach (var item in await cnn.QueryAsync<LocalFolder>("SELECT * FROM LocalFolders"))
-                        LocalFolders.Add(item);
-                    foreach (var item in await cnn.QueryAsync<PlayList>("SELECT * FROM PlayLists"))
-                        PlayLists.Add(item);
-
-
-                    foreach (var item in AllSongs)
-                        await SongIntegrating(item, cnn);
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-        }
-
-        #region Методы интеграции
-
-
-        private async Task SongIntegrating(Song song, IDbConnection cnn)
-        {
-            await SearchSongAlbum(song, cnn);
-            await SearchSongLocalFolder(song, cnn);
-            await SearchSongPlayLists(song, cnn);
-        }
-
-        private async Task SearchSongAlbum(Song song, IDbConnection cnn)
-        {
-            try
-            {
-                var Album = Albums.FirstOrDefault(x => x.Title.ToLower() == song.Album.ToLower() &&
-                                                      x.Author.ToLower() == song.Author.ToLower());
-                if (Album != null)
-                {
-                    if (Album.Songs == null)
-                        Album.Songs = new LinkedList<Song>();
-                    Album.Songs.AddLast(song);
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(song.Album) && song.Album != "Неизвестный")
-                    {
-                        var NewAlbum = new Album()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            //Title
-                            Author = song.Author,
-                            UserLogin = song.UserLogin,
-                            Songs = new LinkedList<Song>()
-                        };
-                        NewAlbum.Title = song.Album;
-
-                        string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
-                                                $" VALUES(@Id, @Title, @Author, @UserLogin);";
-
-                        await cnn.ExecuteAsync(sql, NewAlbum);
-
-                        
-                        NewAlbum.Songs.AddLast(song);
-                        Albums.Add(NewAlbum);
-                       
-                    }
-                    else
-                    {
-                        var NAlbum = Albums.FirstOrDefault(x => x.Title == "Неизвестный");
-                        if (NAlbum != null)
-                        {
-                            if (NAlbum.Songs == null)
-                                NAlbum.Songs = new LinkedList<Song>();
-                            NAlbum.Songs.AddLast(song);
-                        } 
-                        else
-                        {
-                            NAlbum = new Album()
-                            {
-                                Id = Guid.NewGuid().ToString(),
-                                Title = "Неизвестный",
-                                Author = song.Author,
-                                UserLogin = song.UserLogin,
-                                Songs = new LinkedList<Song>()
-                            };
-
-                            string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
-                                             $" VALUES(@Id, @Title, @Author, @UserLogin);";
-
-                            await cnn.ExecuteAsync(sql, NAlbum);
-
-                            NAlbum.Songs.AddLast(song);
-                            Albums.Add(NAlbum);
-                        }
-                    }
-
-                    
-
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private async Task SearchSongLocalFolder(Song song, IDbConnection cnn)
-        {
-            try
-            {
-                var FolderPath = GetSongFolderPath(song.LocalUrl);
-
-                var LF = LocalFolders.FirstOrDefault(x => x.LocalUrl == FolderPath);
-                if (LF != null)
-                {
-                    if (LF.Songs == null)
-                        LF.Songs = new LinkedList<Song>();
-                    LF.Songs.AddLast(song);
-                }
-                else
-                {
-                    var NewLF = new LocalFolder()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        Title = FolderPath.Remove(0, FolderPath.IndexOf('\\') + 1),
-                        LocalUrl = FolderPath,
-                        UserLogin = song.UserLogin,
-                        OnDevice = true,
-                        OnServer = false,
-                        Songs = new LinkedList<Song>()
-                    };
-
-                    string sql = $"INSERT INTO LocalFolders (Id,  Title,  LocalUrl,  UserLogin,  OnServer,   OnDevice)" +
-                                                  $" VALUES(@Id, @Title, @LocalUrl, @UserLogin, @OnServer,  @OnDevice);";
-
-                    await cnn.ExecuteAsync(sql, NewLF);
-
-                    NewLF.Songs.AddLast(song);
-                    LocalFolders.Add(NewLF);
-                }
-               
-            }
-            catch (Exception)
-            {
-                
-            }
-        }
-
-        private async Task SearchSongPlayLists(Song song, IDbConnection cnn)
-        {
-            try
-            {
-                if (song.PlayLists != null)
-                    foreach (var playList in song.PlayLists)
-                    {
-                        var PL = PlayLists.FirstOrDefault(x => x.Id == playList);
-                        if (PL != null)
-                        {
-                            if (PL.Songs == null)
-                                PL.Songs = new LinkedList<Song>();
-                            PL.Songs.AddLast(song);
-                        }
-                        else
-                        {
-                            var NewPL = new PlayList()
-                            {
-                                Id = Guid.NewGuid().ToString(),
-                                Title = playList,
-                                CreationDate = DateTime.Now,
-                                UserLogin = song.UserLogin,
-                                OnDevice = true,
-                                OnServer = false,
-                                Songs = new LinkedList<Song>()
-                            };
-
-                            string sql = $"INSERT INTO PlayLists (Id,  Title,  UserLogin,  OnServer,   OnPC)" +
-                                                       $" VALUES(@Id, @Title, @UserLogin, @OnServer,  @OnPC);";
-
-                            await cnn.ExecuteAsync(sql, NewPL);
-
-                            NewPL.Songs.AddLast(song);
-                            PlayLists.Add(NewPL);
-                        }
-                    }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
         #endregion
 
 
-        #endregion
+        #region Добавление/удаление папок
 
-
-
-        public async Task<LocalFolder> AddLocalFolder(string path)
+        public async Task<LocalFolder> AddLocalFolderAsync(string path)
         {
-          
-
             try
             {
                 string[] tempMas = Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories);
@@ -320,22 +312,18 @@ namespace FierceStukCloud.Pc.Services
                     return null;
                 }
 
-                //var temp = new LocalFolder()
-                //{
-                //    Title = path.Substring(path.IndexOf('\\') + 1),
-                //    LocalUrl = path,
-                //    Songs = new LinkedList<Song>()
-                //};
-                //LocalFolders.Add(temp);
+                var temp = new LocalFolder()
+                {
+                    Title = path.Substring(path.IndexOf('\\') + 1),
+                    LocalUrl = path,
+                    Songs = new LinkedList<Song>()
+                };
+                _musicStorage.LocalFolders.Add(temp);
 
                 foreach (var item in tempMas)
-                {
-                    var song = await AddSong(item, "");
-                    await SongIntegrating(song, null);
-                    
-                }
+                    await SongIntegrating(await AddSongAsync(item, ""), null);
 
-                
+                return temp;
             }
             catch (Exception)
             {
@@ -344,16 +332,12 @@ namespace FierceStukCloud.Pc.Services
 
         }
 
-        public async Task<bool> RemoveLocalFolder(LocalFolder localFolder)
+        public async Task<bool> RemoveLocalFolderAsync(LocalFolder localFolder)
         {
             try
             {
-                foreach (var item in localFolder.Songs)
-                {
-                    //CMD = connection.CreateCommand();
-                    //CMD.CommandText = $"DELETE FROM Songs WHERE ID = {item.Id}";
-                    //CMD.ExecuteNonQuery();
-                }
+                foreach (Song song in localFolder.Songs)
+                    await RemoveSongAsync(song);
 
                 return true;
             }
@@ -363,42 +347,74 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        private string LoadConnectionString(string id = "SQLite")
-            => ConfigurationManager.ConnectionStrings[id].ConnectionString;
-
-
-      
-
-        #region Дополнительные методы
-
-        private int GetDBSongsCount(IDbConnection cnn)
-            => Convert.ToInt32(cnn.ExecuteScalar("select seq from sqlite_sequence where name ='Songs'"));
-
-        private string GetSongFolderPath(string songPath)
-            => songPath.Remove(songPath.LastIndexOf('\\'));
-        
-
-
-
-
         #endregion
 
 
-        public DataService(List<Song> allSongs,
-                           PlayList favourites,
-                           ObservableCollection<Album> albums,
-                           ObservableCollection<LocalFolder> localFolders,
-                           ObservableCollection<PlayList> playLists,
-                           User user)
+        #region Добавление/удаление плейлистов
+
+        public async Task<PlayList> AddPlayListAsync(string title, string description)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    var NewPlayList = new PlayList()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Title = title,
+                        Description = description,
+                        CreationDate = DateTime.Now,
+                        UserLogin = _user.Login,
+                        OnDevice = true,
+                        OnServer = false,
+                        Songs = new LinkedList<Song>()
+                    };
+
+
+                    string sql = $"INSERT INTO PlayLists (Id,  Title,  Description,  CreationDate,  UserLogin,  OnServer,   OnDevice)" +
+                                               $" VALUES(@Id, @Title, @Description, @CreationDate, @UserLogin, @OnServer,  @OnDevice);";
+
+                    await cnn.ExecuteAsync(sql, NewPlayList);
+                    _musicStorage.PlayLists.Add(NewPlayList);
+                    return NewPlayList;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<bool> RemovePlayListAsync(PlayList playList)
+        {
+            try
+            {
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Дополнительные методы
+
+        private string LoadConnectionString(string id = "SQLite")
+             => ConfigurationManager.ConnectionStrings[id].ConnectionString;
+
+        private string GetSongFolderPath(string songPath)
+            => songPath.Remove(songPath.LastIndexOf('\\'));
+
+        #endregion
+
+        public DataService(IMusicStorage musicStorage, User user)
         {
             SqlMapper.AddTypeHandler(typeof(List<string>), new DictTypeHandler());
 
-            this.AllSongs = allSongs;
-            this.Favourites = favourites;
-            this.Albums = albums;
-            this.LocalFolders = localFolders;
-            this.PlayLists = playLists;
-
+            _musicStorage = musicStorage;
             _user = user;
         }
     }

@@ -1,17 +1,12 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
+﻿using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud_Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using static FierceStukCloud_NetStandardLib.Types.CustomEnums;
+using static FierceStukCloud.Core.CustomEnums;
 
 namespace FierceStukCloud_Web.Models
 {
@@ -28,7 +23,7 @@ namespace FierceStukCloud_Web.Models
         public string GetTargetConnectionId(DeviceType deviceTo)
         {
             var user = _context.Users.FirstOrDefault(x => x.Login == Context.User.Identity.Name);
-
+           
             switch (deviceTo)
             {
                 case DeviceType.PC:

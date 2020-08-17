@@ -7,24 +7,30 @@ namespace FierceStukCloud.Wpf.Services
     public interface IDataService
     {
         /// <summary>
-        /// Добавлние песни с устройства
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        Task<Song> AddSong(string path, string optionalInfo = "LF");
-        /// <summary>
-        /// Удаление песни из БД
-        /// </summary>
-        /// <returns></returns>
-        Task<bool> RemoveSong(Song song);
-        /// <summary>
         /// Получение информации о песнях из БД
         /// </summary>
         /// <returns></returns>
         Task GetData();
 
-        Task<LocalFolder> AddLocalFolder(string path);
+        /// <summary>
+        /// Добавлние песни с устройства
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        Task<Song> AddSongAsync(string path, string optionalInfo = "LF");
+        /// <summary>
+        /// Удаление песни из БД
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> RemoveSongAsync(Song song);
 
-        Task<bool> RemoveLocalFolder(LocalFolder localFolder);
+
+        Task<LocalFolder> AddLocalFolderAsync(string path);
+
+        Task<bool> RemoveLocalFolderAsync(LocalFolder localFolder);
+
+        Task<PlayList> AddPlayListAsync(string title, string description);
+
+        Task<bool> RemovePlayListAsync(PlayList playList);
     }
 }

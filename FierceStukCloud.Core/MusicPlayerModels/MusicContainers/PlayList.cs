@@ -11,6 +11,9 @@ namespace FierceStukCloud.Core.MusicPlayerModels.MusicContainers
         public string Id { get; set; }
         [Column("Title")]
         public string Title { get; set; }
+        [Column("Description")]
+        public string Description { get; set; }
+
         [Column("CreationDate")]
         public DateTime CreationDate { get; set; }
 

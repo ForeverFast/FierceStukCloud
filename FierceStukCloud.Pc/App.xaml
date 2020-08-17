@@ -5,6 +5,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+             
+
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary
@@ -20,8 +22,14 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/SystemButtons.xaml"/>
                 <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/PlayerButtons.xaml"/>
 
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ScrollBar/DefaultScrollBar.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ScrollViewer/DefaultScrollViewer.xaml"/>
 
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Brushes.xaml"/>

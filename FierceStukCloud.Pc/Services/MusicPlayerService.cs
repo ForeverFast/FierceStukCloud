@@ -1,13 +1,10 @@
-﻿using FierceStukCloud.Core;
-using FierceStukCloud.Core.MusicPlayerModels;
+﻿using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm;
 using FierceStukCloud.Wpf.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -21,42 +18,22 @@ namespace FierceStukCloud.Pc.Services
         /// <summary> Переменная плеера </summary>      
         public MediaPlayer MP { get; }
 
-        private IDataService _dataService { get; }
-        private ISignalRService _signalRService { get; }
-
-        public List<Song> AllSongs { get; }
-        public PlayList Favourites { get; set; }
-
-        /// <summary> Список плейлистов </summary>   
-        public ObservableCollection<PlayList> PlayLists { get; set; }
-        /// <summary> Список альбомов </summary>   
-        public ObservableCollection<Album> Albums { get; set; }
-        /// <summary> Список папок </summary>   
-        public ObservableCollection<LocalFolder> LocalFolders { get; set; }
-        /// <summary> Список песен </summary>   
-       
-
+        private readonly IDataService _dataService;
+        private readonly IMusicStorage _musicStorage;
+        private readonly ISignalRService _signalRService;
 
         /// <summary> Tекущий контейнер </summary>   
         public IMusicContainer CurrentMusicContainer { get; set; }
         /// <summary> Tекущий отображаемый контейнер </summary>   
         public IMusicContainer DisplayedMusicContainer { get; set; }
         /// <summary> Tекущая песня </summary>   
-        public Song CurrentSong
-        {
-            get => CurrentSongNode.Value;
-            set
-            {
-                SetCurrentSong(value);
-                OnPropertyChanged();
-            }
-        }
+        public Song CurrentSong { get => CurrentSongNode.Value; set => SetCurrentSong(value); }
         private LinkedListNode<Song> CurrentSongNode { get; set; }
 
 
         public bool IsRepeatSong { get; set; }
         public bool IsRandomSong { get; set; }
-        public bool IsPlaying { get; set; }
+        public bool IsPlaying { get => CurrentSong.IsPlaying; set => CurrentSong.IsPlaying = value; }
 
         public double Volume
         {
@@ -87,8 +64,8 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы добавления/удаления песен на устройстве
 
-        public async Task<Song> AddSongFromDevice(string path)
-            => await _dataService.AddSong(path);
+        public async Task<Song> AddSongFromDevice(string path, string ContainerId = "")
+            => await _dataService.AddSongAsync(path, ContainerId);
 
         public async Task<bool> RemoveSongFromDevice(Song song)
         {
@@ -97,7 +74,7 @@ namespace FierceStukCloud.Pc.Services
         }
 
         public async Task<bool> RemoveSongFromApp(Song song)
-            => await _dataService.RemoveSong(song);
+            => await _dataService.RemoveSongAsync(song);
 
         #endregion
 
@@ -131,10 +108,10 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавления/удаления папок на устройстве
 
         public async Task<LocalFolder> AddLocalFolderFromDevice(string path)
-            => await Task.Run(() => _dataService.AddLocalFolder(path));
+            => await Task.Run(() => _dataService.AddLocalFolderAsync(path));
 
         public async Task<bool> RemoveLocalFolderFromDevice(LocalFolder localFolder)
-            => await Task.Run(() => _dataService.RemoveLocalFolder(localFolder));
+            => await Task.Run(() => _dataService.RemoveLocalFolderAsync(localFolder));
 
         #endregion
 
@@ -142,21 +119,10 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавление/удаления плейлистов на устройстве
 
         public async Task AddPlayList(string title, string description)
-        {
-            PlayLists.Add(new PlayList()
-            {
-                Title = title,
-                Songs = new LinkedList<Song>()
-            });
-        }
+            => await _dataService.AddPlayListAsync(title, description);
 
         public async Task<bool> RemovePlayList(PlayList playList)
-        {
-
-
-            PlayLists.Remove(playList);
-            return true;
-        }
+            => await _dataService.RemovePlayListAsync(playList);
 
         public async Task<bool> UpdatePlayList(PlayList playList)
         {
@@ -248,7 +214,7 @@ namespace FierceStukCloud.Pc.Services
                 else
                     CurrentMusicContainer = song.CurrentMusicContainer;
 
-                CurrentSongNode = CurrentMusicContainer.Songs.Find(song);            
+                CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
                 MP.Open(new Uri(CurrentSong.LocalUrl));
             }
             catch (Exception)
@@ -267,11 +233,14 @@ namespace FierceStukCloud.Pc.Services
             MP.Play();
             IsPlaying = true;
             timer.Start();
-            OnPropertyChanged();
+            OnPropertyChanged("CurrentSong");
         }
 
         private void SongEnded(object sender, EventArgs e)
         {
+            IsPlaying = false;
+            timer.Stop();
+
             //if (CurrentSong.CurrentIdValue() == CurrentMusicContainer.Songs.Count)
             //{
             //    MP.Stop();
@@ -300,7 +269,7 @@ namespace FierceStukCloud.Pc.Services
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (MP.Source != null)
-                OnPropertyChanged();
+                Position = MP.NaturalDuration.TimeSpan;
         }
 
         #endregion
@@ -349,11 +318,9 @@ namespace FierceStukCloud.Pc.Services
 
         #endregion
 
-        public void ShutDownConnection()
-        {
-            //   _signalRService.Disconnect();
-        }
+       
         #endregion
+
 
         #region Конструкторы
 
@@ -362,22 +329,25 @@ namespace FierceStukCloud.Pc.Services
             MP = new MediaPlayer();
             MP.MediaEnded += SongEnded;
             MP.MediaOpened += SongLoaded;
-
-            Favourites = new PlayList() { Title = "LF" };
-            Albums = new ObservableCollection<Album>();
-            LocalFolders = new ObservableCollection<LocalFolder>();
-            PlayLists = new ObservableCollection<PlayList>();
+           
 
             // Таймер
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(17) };
             timer.Tick += Timer_Tick;
         }
 
-        public MusicPlayerService(User user) : this()
+        public MusicPlayerService(IDataService dataService,
+                                  IMusicStorage musicStorage,
+                                  ISignalRService signalRService) : this()
         {
-            // Инициализация класса работы с БД
-            _dataService = new DataService(AllSongs, Favourites, Albums, LocalFolders, PlayLists, user);
+            _dataService = dataService;
+            _musicStorage = musicStorage;
+            _signalRService = signalRService;
+
             _dataService.GetData();
+            // Инициализация класса работы с БД
+            //_dataService = new DataService(AllSongs, Favourites, Albums, LocalFolders, PlayLists, );
+
 
             // Инициализация класса работы с SignalR
             //_signalRService = new SignalRService();
@@ -389,7 +359,7 @@ namespace FierceStukCloud.Pc.Services
 
         public void Dispose()
         {
-            _signalRService.Disconnect();  
+            _signalRService.Disconnect();
         }
     }
 }

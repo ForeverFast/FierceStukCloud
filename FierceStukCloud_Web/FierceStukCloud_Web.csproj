@@ -25,5 +25,9 @@
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+  </ItemGroup>
+
 
 </Project>

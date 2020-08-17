@@ -18,7 +18,7 @@ using static Dapper.SqlMapper;
 
 namespace FierceStukCloud_PC.MVVM.Models.Modules
 {
-    public class DataService : IDataService
+    public class DataService 
     {
         private User _user { get; }
 
@@ -29,7 +29,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         public ObservableCollection<PlayList> PlayLists { get; }
 
 
-        public async Task<Song> AddSong(string path, string optionalInfo = "LF")
+        public async Task<Song> AddSongAsync(string path, string optionalInfo = "LF")
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -38,11 +38,11 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     TagLib.File file_TAG = TagLib.File.Create(path);
                     Music_AuthorAndTitleCheck MAaTC = new Music_AuthorAndTitleCheck(Path.GetFileName(path), file_TAG);
 
-                    int ID_GlobalCounter = this.GetDBSongsCount(cnn) + 1;
+                    //int ID_GlobalCounter = this.GetDBSongsCount(cnn) + 1;
 
                     Song temp = new Song()
                     {
-                        Id = ID_GlobalCounter,
+                        //Id = ID_GlobalCounter,
 
                         Author = MAaTC.Author,
                         Title = MAaTC.Title,
@@ -83,7 +83,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             }
         }
 
-        public async Task<bool> RemoveSong(Song song)
+        public async Task<bool> RemoveSongAsync(Song song)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -110,8 +110,8 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
                     var output = await cnn.QueryAsync<Song>("SELECT * FROM Songs");
                     var tempSongs = output.ToList();
 
-                    foreach (var item in tempSongs)
-                        SongIntegrating(item);
+                    //foreach (var item in tempSongs)
+                    //    SongIntegrating(item);
                 }
                 catch (Exception)
                 {
@@ -121,7 +121,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
         }
 
 
-        public async Task<LocalFolder> AddLocalFolder(string path)
+        public async Task<LocalFolder> AddLocalFolderAsync(string path)
         {
             var temp = new LocalFolder()
             {
@@ -136,9 +136,9 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
                 foreach (var item in tempMas)
                 {
-                    var song = await AddSong(item, "");
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(temp, temp.Songs.Count));
-                    temp.Songs.Add(song);
+                    var song = await AddSongAsync(item, "");
+                   // song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(temp, temp.Songs.Count));
+                   // temp.Songs.Add(song);
                 }
 
                 return temp;
@@ -150,7 +150,7 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
 
         }
 
-        public async Task<bool> RemoveLocalFolder(LocalFolder localFolder)
+        public async Task<bool> RemoveLocalFolderAsync(LocalFolder localFolder)
         {
             try
             {
@@ -173,141 +173,151 @@ namespace FierceStukCloud_PC.MVVM.Models.Modules
             => ConfigurationManager.ConnectionStrings[id].ConnectionString;
 
 
-        #region Методы сортировки
+        //#region Методы сортировки
 
-        public void SongIntegrating(Song song)
-        {
-            SearchSongAlbum(song);
-            SearchSongLocalFolder(song);
-            SearchSongPlayLists(song);
-        }
+        //public void SongIntegrating(Song song)
+        //{
+        //    SearchSongAlbum(song);
+        //    SearchSongLocalFolder(song);
+        //    SearchSongPlayLists(song);
+        //}
 
-        public void SearchSongAlbum(Song song)
-        {
-            try
-            {
-                var Album = Albums.FirstOrDefault(x => x.Title.ToLower() == song.Album.ToLower() &&
-                                                      x.Author.ToLower() == song.Author.ToLower());
-                if (Album != null)
-                {
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(Album, Album.Songs.Count));
-                    Album.Songs.Add(song);
-                }
-                else
-                {
-                    var NewAlbum = new Album()
-                    {
-                        Author = song.Author,
-                        Songs = new ObservableCollection<Song>()
-                    };
+        //public void SearchSongAlbum(Song song)
+        //{
+        //    try
+        //    {
+        //        var Album = Albums.FirstOrDefault(x => x.Title.ToLower() == song.Album.ToLower() &&
+        //                                              x.Author.ToLower() == song.Author.ToLower());
+        //        if (Album != null)
+        //        {
+        //            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(Album, Album.Songs.Count));
+        //            Album.Songs.Add(song);
+        //        }
+        //        else
+        //        {
+        //            var NewAlbum = new Album()
+        //            {
+        //                Author = song.Author,
+        //                Songs = new ObservableCollection<Song>()
+        //            };
 
                     
 
-                    if (!string.IsNullOrEmpty(song.Album))
-                        NewAlbum.Title = song.Album;
-                    else
-                        NewAlbum.Title = "Неизвестный";
+        //            if (!string.IsNullOrEmpty(song.Album))
+        //                NewAlbum.Title = song.Album;
+        //            else
+        //                NewAlbum.Title = "Неизвестный";
 
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewAlbum, NewAlbum.Songs.Count));
-                    NewAlbum.Songs.Add(song);
-                    Albums.Add(NewAlbum);
-                }
-            }
-            catch(Exception)
-            {
+        //            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewAlbum, NewAlbum.Songs.Count));
+        //            NewAlbum.Songs.Add(song);
+        //            Albums.Add(NewAlbum);
+        //        }
+        //    }
+        //    catch(Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        public void SearchSongLocalFolder(Song song)
-        {
-            try
-            {
-                if (song.OptionalInfo == "LF")
-                {
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LocalSongs, LocalSongs.Songs.Count));
-                    LocalSongs.Songs.Add(song);
-                    return;
-                }
-
-
-                var itemPath = song.LocalUrl;
-                var path = itemPath.Remove(itemPath.LastIndexOf('\\'));
-
-                var LF = LocalFolders.FirstOrDefault(x => x.LocalUrl == path);
-                if (LF != null)
-                {
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LF, LF.Songs.Count));
-                    LF.Songs.Add(song);
-                }
-                else
-                {
-                    var NewLF = new LocalFolder()
-                    {
-                        Title = path.Remove(0, path.IndexOf('\\') + 1),
-                        LocalUrl = path,
-                        Songs = new ObservableCollection<Song>()
-                    };
+        //public void SearchSongLocalFolder(Song song)
+        //{
+        //    try
+        //    {
+        //        if (song.OptionalInfo == "LF")
+        //        {
+        //            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LocalSongs, LocalSongs.Songs.Count));
+        //            LocalSongs.Songs.Add(song);
+        //            return;
+        //        }
 
 
-                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewLF, NewLF.Songs.Count));
-                    NewLF.Songs.Add(song);
-                    LocalFolders.Add(NewLF);
-                }
-            }
-            catch(Exception)
-            {
+        //        var itemPath = song.LocalUrl;
+        //        var path = itemPath.Remove(itemPath.LastIndexOf('\\'));
 
-            }
-        }
-
-        public void SearchSongPlayLists(Song song)
-        {
-            try
-            {
-                if (song.PlayLists != null)
-                    foreach (var playList in song.PlayLists)
-                    {
-                        var PL = PlayLists.FirstOrDefault(x => x.Title == playList);
-                        if (PL != null)
-                        {
-                            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(PL, PL.Songs.Count));
-                            PL.Songs.Add(song);
-                        }
-                        else
-                        {
-                            var NewPL = new PlayList()
-                            {
-                                Title = playList,
-                                UserLogin = song.UserLogin,
-                                Songs = new ObservableCollection<Song>()
-                            };
-
-                            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewPL, NewPL.Songs.Count));
-                            NewPL.Songs.Add(song);
-                            PlayLists.Add(NewPL);
-                        }
-                    }
-            }
-            catch(Exception)
-            {
-
-            }
-        }
-
-        #endregion
-
-        #region Дополнительные методы
-
-        private int GetDBSongsCount(IDbConnection cnn) 
-            => Convert.ToInt32(cnn.ExecuteScalar("select seq from sqlite_sequence where name ='Songs'"));
-             
+        //        var LF = LocalFolders.FirstOrDefault(x => x.LocalUrl == path);
+        //        if (LF != null)
+        //        {
+        //            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(LF, LF.Songs.Count));
+        //            LF.Songs.Add(song);
+        //        }
+        //        else
+        //        {
+        //            var NewLF = new LocalFolder()
+        //            {
+        //                Title = path.Remove(0, path.IndexOf('\\') + 1),
+        //                LocalUrl = path,
+        //                Songs = new ObservableCollection<Song>()
+        //            };
 
 
+        //            song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewLF, NewLF.Songs.Count));
+        //            NewLF.Songs.Add(song);
+        //            LocalFolders.Add(NewLF);
+        //        }
+        //    }
+        //    catch(Exception)
+        //    {
+
+        //    }
+        //}
+
+        //public void SearchSongPlayLists(Song song)
+        //{
+        //    try
+        //    {
+        //        if (song.PlayLists != null)
+        //            foreach (var playList in song.PlayLists)
+        //            {
+        //                var PL = PlayLists.FirstOrDefault(x => x.Title == playList);
+        //                if (PL != null)
+        //                {
+        //                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(PL, PL.Songs.Count));
+        //                    PL.Songs.Add(song);
+        //                }
+        //                else
+        //                {
+        //                    var NewPL = new PlayList()
+        //                    {
+        //                        Title = playList,
+        //                        UserLogin = song.UserLogin,
+        //                        Songs = new ObservableCollection<Song>()
+        //                    };
+
+        //                    song.LocalId.Add(new KeyValuePair<IMusicContainer, int>(NewPL, NewPL.Songs.Count));
+        //                    NewPL.Songs.Add(song);
+        //                    PlayLists.Add(NewPL);
+        //                }
+        //            }
+        //    }
+        //    catch(Exception)
+        //    {
+
+        //    }
+        //}
+
+        //#endregion
+
+        //#region Дополнительные методы
+
+        //private int GetDBSongsCount(IDbConnection cnn) 
+        //    => Convert.ToInt32(cnn.ExecuteScalar("select seq from sqlite_sequence where name ='Songs'"));
+
+        //public Task<PlayList> AddPlayListAsync(string title, string description)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task<bool> RemovePlayListAsync(PlayList playList)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
 
-        #endregion
+
+
+
+        //#endregion
 
 
         public DataService(LocalFolder LocalSongs,

@@ -109,7 +109,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="path"> путь к mp3 файлу</param>
         /// <returns></returns>
         public async Task<Song> AddLocalSongFromPC(string path) 
-            => await _dbService.AddSong(path);
+            => await _dbService.AddSongAsync(path);
 
         /// <summary>
         /// Удаление песни из приложения
@@ -117,7 +117,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="song"></param>
         /// <returns></returns>
         public async Task<bool> DeleteLocalSongFromPC(Song song)
-            => await _dbService.RemoveSong(song);
+            => await _dbService.RemoveSongAsync(song);
        
         #endregion
 
@@ -143,7 +143,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="caller"></param>
         /// <returns></returns>а
         public async Task<LocalFolder> AddLocalFolderFromPC(string path)
-            => await Task.Run(() => _dbService.AddLocalFolder(path));
+            => await Task.Run(() => _dbService.AddLocalFolderAsync(path));
         
         /// <summary>
         /// Удаление папки из приложения
@@ -152,7 +152,7 @@ namespace FierceStukCloud_PC.MVVM.Models
         /// <param name="caller"></param>
         /// <returns></returns>
         public async Task<bool> RemoveLocalFolderFromPC(LocalFolder localFolder)
-            => await Task.Run(() => _dbService.RemoveLocalFolder(localFolder));
+            => await Task.Run(() => _dbService.RemoveLocalFolderAsync(localFolder));
 
         #endregion
 

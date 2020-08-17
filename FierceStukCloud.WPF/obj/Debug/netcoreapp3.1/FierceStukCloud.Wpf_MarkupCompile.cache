@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 
-14131259903
+161550021901
 
 13-434793001
 213-334690742
-Styles\Brushes.xaml;Styles\Button\AuthenticationButtons.xaml;Styles\Button\NavigationButtons.xaml;Styles\Button\PlayerButtons.xaml;Styles\Button\SystemButtons.xaml;Styles\ListBox\ListBoxStyles.xaml;Styles\ListBox\PlayListLB.xaml;Styles\ListView\SongsListView.xaml;Styles\Menu\MenuStyles.xaml;Styles\ScrollBar\DefaultScrollBar.xaml;Styles\Slider\SliderStyles.xaml;Styles\Tab\TabControlStyles.xaml;Styles\TextBlock\TextBlockStyles.xaml;Styles\TextBox\TextBoxStyles.xaml;
+Styles\Brushes.xaml;Styles\Button\AuthenticationButtons.xaml;Styles\Button\NavigationButtons.xaml;Styles\Button\PlayerButtons.xaml;Styles\Button\StandardButtons.xaml;Styles\Button\SystemButtons.xaml;Styles\ListBox\ListBoxStyles.xaml;Styles\ListBox\PlayListLB.xaml;Styles\ListView\SongsListView.xaml;Styles\Menu\MenuStyles.xaml;Styles\ScrollBar\DefaultScrollBar.xaml;Styles\ScrollViewer\DefaultScrollViewer.xaml;Styles\Slider\SliderStyles.xaml;Styles\Tab\TabControlStyles.xaml;Styles\TextBlock\TextBlockStyles.xaml;Styles\TextBox\TextBoxStyles.xaml;
 
 False
 

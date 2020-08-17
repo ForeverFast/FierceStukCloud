@@ -6,14 +6,15 @@
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:converter="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views"
+        xmlns:vm="clr-namespace:FierceStukCloud.Pc.Mvvm.ViewModels"
         mc:Ignorable="d"
         Title="FierceStukCloud"
         x:Name="MainWindow"
         Height="800" Width="1500"
         MinHeight="600" MinWidth="800" WindowStyle="SingleBorderWindow">
-    
+
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
@@ -89,6 +90,9 @@
 
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -104,8 +108,10 @@
         </ResourceDictionary>
     </Window.Resources>
 
-        
-    
+    <!--<Window.DataContext>
+        <vm:MainWindowVM/>
+    </Window.DataContext>-->
+
     <Grid Background="{StaticResource DimColor}">
 
         <Grid.RowDefinitions>
@@ -122,8 +128,8 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
-                <RowDefinition Height="180"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
             <Grid x:Name="MainPages" Grid.Row="0" Background="Aqua">
@@ -137,7 +143,7 @@
                 <Grid.Resources>
 
                     <Style TargetType="{x:Type RadioButton}">
-                        
+
                         <Setter Property="Cursor" Value="Hand"/>
                         <Setter Property="GroupName" Value="MenuRB"/>
                         <Setter Property="Template">
@@ -149,15 +155,15 @@
                                         <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="40"
                                               StrokeThickness="5"/>
 
-                                        <materialDesign:PackIcon x:Name="icon"
-                                                                 Kind="{DynamicResource KindType}"
-                                                                 Foreground="{StaticResource StandartLightColor}"
+                                        <md:PackIcon x:Name="icon"
+                                                    Kind="{DynamicResource KindType}"
+                                                    Foreground="{StaticResource StandartLightColor}"
                                                                      
-                                                                 Width="25"
-                                                                 Height="25"
+                                                    Width="25"
+                                                    Height="25"
                                                                      
-                                                                 VerticalAlignment="Center"
-                                                                 Margin="10"/>
+                                                    VerticalAlignment="Center"
+                                                    Margin="17,10,10,10"/>
                                         <TextBlock Text="{DynamicResource CustomText}"
                                                    Foreground="{StaticResource StandartLightColor}"
                                                    FontSize="17"
@@ -194,223 +200,260 @@
                 <RadioButton Grid.Row="0" Command="{Binding NavigationToCommand}" CommandParameter="home">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Главная</sys:String>
-                        <materialDesign:PackIconKind x:Key="KindType">Home</materialDesign:PackIconKind>
+                        <md:PackIconKind x:Key="KindType">Home</md:PackIconKind>
                     </RadioButton.Resources>
                 </RadioButton>
 
                 <RadioButton Grid.Row="1" Command="{Binding NavigationToCommand}" CommandParameter="review">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Обзор</sys:String>
-                        <materialDesign:PackIconKind x:Key="KindType">apps</materialDesign:PackIconKind>
+                        <md:PackIconKind x:Key="KindType">apps</md:PackIconKind>
                     </RadioButton.Resources>
                 </RadioButton>
 
                 <RadioButton Grid.Row="2" Command="{Binding NavigationToCommand}" CommandParameter="profile">
                     <RadioButton.Resources>
                         <sys:String x:Key="CustomText">Аккаунт</sys:String>
-                        <materialDesign:PackIconKind x:Key="KindType">Account</materialDesign:PackIconKind>
+                        <md:PackIconKind x:Key="KindType">Account</md:PackIconKind>
                     </RadioButton.Resources>
                 </RadioButton>
 
             </Grid>
 
-            <Grid x:Name="MediaLib" Grid.Row="1"
-                  Margin="0,10,0,0">
+            <ScrollViewer Style="{StaticResource DefaultScrollViewer}" Grid.Row="1">
+                <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="33"/>
-                    <RowDefinition Height="33"/>
-                    <RowDefinition Height="33"/>
-                    <RowDefinition Height="33"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <Grid x:Name="MediaLib" Grid.Row="0" 
+                          Margin="0,10,0,0">
 
 
-               
-                <Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                        </Grid.RowDefinitions>
 
-                    <Style TargetType="{x:Type RadioButton}">
-                        <Setter Property="GroupName" Value="MenuRB"/>
 
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type RadioButton}">
-                                    <StackPanel x:Name="SP"
+
+                        <Grid.Resources>
+
+                            <Style TargetType="{x:Type RadioButton}">
+                                <Setter Property="GroupName" Value="MenuRB"/>
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                                            <StackPanel x:Name="SP"
                                                 Orientation="Horizontal"
                                                 Background="{StaticResource GrayLVL4}">
-                                        <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="40"
+                                                <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="40"
                                               StrokeThickness="5" Margin="0,0,10,0"/>
 
 
-                                        <TextBlock Text="{DynamicResource CustomText}"
+                                                <TextBlock Text="{DynamicResource CustomText}"
                                                    Foreground="{StaticResource StandartLightColor}"
                                                    FontSize="13.5"
                                                    FontWeight="Bold"
                                                    
                                                    Margin="10,0,0,0"
                                                    VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                    
-                                    <ControlTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                            </StackPanel>
+
+                                            <ControlTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                                        AncestorType=Window}, Path=WindowState}"  Value="Normal">
-
-                                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                    <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                                        AncestorType=Window}, Path=WindowState}"  Value="Maximized">
+                                                    <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
+                                                </DataTrigger>
+                                                
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="False">
+                                                    <Setter TargetName="line" Property="Stroke" Value="{StaticResource GrayLVL4}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
 
-                                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
-                                        </DataTrigger>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
-                                        </Trigger>
-                                        <Trigger Property="IsChecked" Value="False">
-                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource GrayLVL4}"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
+                        </Grid.Resources>
 
-                </Grid.Resources>
-
-                <TextBlock Grid.Row="0"
+                        <TextBlock Grid.Row="0"
                            Text="МОЯ МЕДИАТЕКА"
                            Foreground="{StaticResource StandartLightColor}"
                            FontSize="13"
                            FontFamily="Aharoni"
                            
-                           Margin="15,0,0,0"
+                           Margin="25,0,0,0"
                            VerticalAlignment="Center"/>
 
-                <RadioButton Grid.Row="1">
-                    <RadioButton.Resources>
-                        <sys:String x:Key="CustomText">Любимые треки</sys:String>
-                    </RadioButton.Resources>
-                </RadioButton>
+                        <RadioButton Grid.Row="1">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Любимые треки</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
 
-                <RadioButton Grid.Row="2">
-                    <RadioButton.Resources>
-                        <sys:String x:Key="CustomText">Альбомы</sys:String>
-                    </RadioButton.Resources>
-                </RadioButton>
+                        <RadioButton Grid.Row="2">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Альбомы</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
 
-                <RadioButton Grid.Row="3">
-                    <RadioButton.Resources>
-                        <sys:String x:Key="CustomText">Исполнители</sys:String>
-                    </RadioButton.Resources>
-                </RadioButton>
+                        <RadioButton Grid.Row="3">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Исполнители</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
 
-                <RadioButton Grid.Row="4">
-                    <RadioButton.Resources>
-                        <sys:String x:Key="CustomText">Локальные файлы</sys:String>
-                    </RadioButton.Resources>
-                </RadioButton>
+                        <RadioButton Grid.Row="4">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Локальные файлы</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
 
-            </Grid>
+                    </Grid>
 
-            <Grid x:Name="PlayListsGrid" Grid.Row="2">
+                    <Grid x:Name="PlayListsGrid" Grid.Row="2">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0"
-                           Text="ПЛЕЙЛИСТЫ"
-                           Foreground="{StaticResource StandartLightColor}"
-                           FontSize="13"
-                           FontFamily="Aharoni"
+                        <TextBlock Grid.Row="0"
+                                   Text="ПЛЕЙЛИСТЫ"
+                                   Foreground="{StaticResource StandartLightColor}"
+                                   FontSize="13"
+                                   FontFamily="Aharoni"
                            
-                           Margin="15,0,0,0"
-                           VerticalAlignment="Center"/>
+                                   Margin="25,0,0,0"
+                                   VerticalAlignment="Center"/>
 
-                <ListBox Grid.Row="1" Style="{StaticResource PlayListListBox}">
 
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}">
-                            
-                            <Setter Property="Cursor" Value="Hand"/>
 
-                            <Setter Property="Tag"
-                                    Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                    AncestorType={x:Type ListBox}}, Path=DataContext}"/>
-                            <Setter Property="ContextMenu">
-                                <Setter.Value>
-                                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}"
+                        <ListBox  Grid.Row="1"
+                                  
+                                  SelectedValue="{Binding SelectedMusicContainer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.CanContentScroll="True"
+                                  ItemsSource="{Binding Path=PlayLists}"
+                                  Style="{StaticResource PlayListListBox}">
+
+                          
+
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+
+                                    <Setter Property="Margin" Value="0,0,0,10"/>
+
+                                    <Setter Property="Cursor" Value="Hand"/>
+
+                                    <Setter Property="Tag"
+                                            Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                            AncestorType={x:Type ListBox}}, Path=DataContext}"/>
+                                    <Setter Property="ContextMenu">
+                                        <Setter.Value>
+                                            <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}"
                                          >
-                                        <MenuItem Header="Открыть в проводнике" Command="{Binding Path= Tag.OpenLocalFolderOnDiskCommand}"/>
-                                        <MenuItem Header="Изменить сведения" Command="{Binding Path=Tag.AddToMainServerCommand}" IsEnabled="False"/>
-                                        <MenuItem Header="Удалить" Command="{Binding Path=Tag.DeleteFromAppCommand}"/>
-                                    </ContextMenu>
-                                </Setter.Value>
-                            </Setter>
+                                                <MenuItem Header="Открыть в проводнике" Command="{Binding Path= Tag.OpenLocalFolderOnDiskCommand}"/>
+                                                <MenuItem Header="Изменить сведения" Command="{Binding Path=Tag.AddToMainServerCommand}" IsEnabled="False"/>
+                                                <MenuItem Header="Удалить" Command="{Binding Path=Tag.DeleteFromAppCommand}"/>
+                                            </ContextMenu>
+                                        </Setter.Value>
+                                    </Setter>
 
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <RadioButton x:Name="RB" GroupName="MenuRB">
-                                            <RadioButton.Template>
-                                                <ControlTemplate TargetType="{x:Type RadioButton}">
-                                                    <StackPanel Orientation="Horizontal" Background="{StaticResource GrayLVL4}">
-                                                        <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="20"
-                                                        StrokeThickness="5" Margin="0,0,10,0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <RadioButton x:Name="RB" GroupName="MenuRB">
+                                                    <RadioButton.Template>
+                                                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                                                            <StackPanel Orientation="Horizontal"
+                                                                        Background="{StaticResource GrayLVL4}">
+
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}},
+                                                                                                                 Path=DataContext.NavigationToPlayListCommand}"
+                                                                                               CommandParameter="{Binding}" />
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+
+                                                                <Line x:Name="line" X1="3" Y1="0" X2="3" Y2="20"
+                                                                      StrokeThickness="5" Margin="0,0,20,0"/>
 
 
-                                                        <TextBlock Text="Test"
-                                                   Foreground="{StaticResource StandartLightColor}"
-                                                   FontSize="13.5"
-                                                   FontWeight="Bold"
+                                                                <TextBlock Text="{Binding Title}"
+                                                                           Foreground="{StaticResource StandartLightColor}"
+                                                                           FontSize="13.5"
+                                                                           FontWeight="Bold"
                                                    
-                                                   Margin="0,0,0,0"
-                                                   VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsChecked" Value="True">
-                                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
-                                                        </Trigger>
-                                                        <Trigger Property="IsChecked" Value="False">
-                                                            <Setter TargetName="line" Property="Stroke" Value="{StaticResource GrayLVL4}"/>
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                                
-                                            </RadioButton.Template>
-                                        </RadioButton>
-                                       
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    
-                    <ListBoxItem/>
+                                                                           Margin="0,0,0,0"
+                                                                           VerticalAlignment="Center">
+                                                              
+                                                                </TextBlock>
+                                                            </StackPanel>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsChecked" Value="False">
+                                                                    <Setter TargetName="line" Property="Stroke" Value="{StaticResource GrayLVL4}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
 
-                    
-                </ListBox>
+                                                    </RadioButton.Template>
+                                                </RadioButton>
 
-                <Button Grid.Row="2"
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+
+
+
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+            <Button Grid.Row="2"
                         CommandTarget="{Binding ElementName=rootD}"
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        Command="{x:Static md:DialogHost.OpenDialogCommand}"
                         Height="60">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border BorderThickness="0,0.5,0,0"
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border BorderThickness="0,0.7,0,0"
                                     BorderBrush="Gray"
+                                    Background="{StaticResource GrayLVL4}"
                                     Width="{TemplateBinding Width}"
                                     Height="{TemplateBinding Height}">
 
-                                <StackPanel  Orientation="Horizontal">
+                            <StackPanel  Orientation="Horizontal">
 
-                                    <materialDesign:PackIcon Kind="AddCircleOutline"
+                                <md:PackIcon Kind="AddCircleOutline"
                                                              Height="35" Width="35"
                                                              Margin="20,0,0,0"
                                                              VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Row="0"
+                                <TextBlock Grid.Row="0"
                                                Text="Новый плейлист"
                                                Foreground="{StaticResource StandartLightColor}"
                                                FontSize="13"
@@ -419,15 +462,15 @@
                                                Margin="10,0,0,0"
                                                VerticalAlignment="Center"/>
 
-                                </StackPanel>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-            </Grid>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
         </Grid>
+
+
 
         <Grid x:Name="ContentGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
               Background="{StaticResource GrayLVL2}">
@@ -435,54 +478,219 @@
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Grid x:Name="PlayerGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL0}">
+        <Grid x:Name="PlayerGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL1}">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="280"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="PG1" Grid.Column="0">
+            <Grid x:Name="PG1" Grid.Column="0" Background="AliceBlue">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="90"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"/>
+                <Border Grid.Column="0">
+                    <Image Margin="15" />
+                </Border>
 
-                <StackPanel Grid.Column="1" DataContext="{Binding test}">
-                    <TextBlock Text="{Binding str1}"/>
-                    <TextBlock Text="{Binding str2}"/>
-                </StackPanel>
+                <Grid Grid.Column="1">
 
-                <Button Grid.Column="2"
-                        Command="{Binding NavigationToCommand}"
-                        CommandParameter="хуй"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="Title" Grid.Row="0"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,7"
+                               
+                               Text="Title" 
+                               FontSize="15"
+                               Foreground="{StaticResource StandartLightColor2}"
+                               />
+                    <TextBlock x:Name="Author" Grid.Row="1"
+                               VerticalAlignment="Top"
+                               
+                               Text="Author" 
+                               FontSize="15"
+                               Foreground="{StaticResource StandartLightColor}"
+                               />
+                </Grid>
 
             </Grid>
 
+            <Grid x:Name="PG2" Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="Buttons" Grid.Row="0" HorizontalAlignment="Center" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="RandomPlayback" Grid.Column="0"/>
+                    <Button x:Name="PrevSong" Grid.Column="1"
+                            Width="30"
+                            Style="{StaticResource NextOrPrevSong}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="PlayAndPause" Grid.Column="2"
+                            Width="35" Height="35"
+                            Style="{StaticResource PlayButton}"
+                            >
+                      
+                    </Button>
+                    <Button x:Name="NextSong" Grid.Column="3"
+                            Width="30" Height="20"
+                            Style="{StaticResource NextOrPrevSong}"/>
+                    <Button x:Name="LoopPlayback" Grid.Column="4"/>
+
+
+                </Grid>
+
+                
+                <Grid x:Name="SliderAndTimeInfo" Grid.Row="1">
+
+
+
+                </Grid>
+
+                
+            </Grid>
+
+            <Grid x:Name="PG3" Grid.Column="2" Background="AntiqueWhite">
+
+
+
+            </Grid>
 
         </Grid>
 
 
-        <!--<materialDesign:DialogHost Grid.Row="0" Grid.RowSpan="3" 
-                                   Grid.Column="0" Grid.ColumnSpan="2"
-                                   Background="Red" CloseOnClickAway="True"
+        <md:DialogHost Grid.Row="0" Grid.RowSpan="3" 
+                        Grid.Column="0" Grid.ColumnSpan="2"
+                        Background="Red" CloseOnClickAway="True"
+                        IsOpen="{Binding IsDialogOpen, UpdateSourceTrigger=PropertyChanged}"
+                        x:Name="rootD">
+            
+            <md:DialogHost.DialogContent>
+                <Grid Background="{StaticResource GrayLVL1}" 
+                      Height="370" Width="680">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Padding="0"
+                                   Margin="0,15,0,0"
+                                   HorizontalAlignment="Center"
+                               
+                                   Text="Создание плейлиста"
+                                   Foreground="{StaticResource StandartLightColor2}"
+                                   FontSize="19"
+                                   FontWeight="Bold"/>
+                        
+                        <Button Grid.Column="1"
+                                Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                                Style="{StaticResource CloseButton2}"/>
+                        
+                    </Grid>
+                        
+                 
+
+                    <Grid Grid.Row="1">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="255"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Margin="25,30,0,0"
+                                Background="{StaticResource GrayLVL0}">
+                            
+                        </Border>
+
+                        <Grid Grid.Column="1" Margin="20,30,25,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Row="0"
+                                   Padding="0"
+                                   VerticalAlignment="Top"
                                    
-                                   x:Name="rootD">
-            <materialDesign:DialogHost.DialogContent>
-                <Grid Background="AliceBlue" Height="200" Width="400" >
-                    <TextBlock Text="kek"/>
-                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+                                   Content="Название"
+                                   FontSize="14"
+                                   Foreground="{StaticResource StandartLightColor}"/>
+                            <TextBox x:Name="TitleName" Grid.Row="1"
+                                     Style="{x:Null}"/>
+                            <Label Grid.Row="2"
+                                   Padding="0"
+                                   Margin="0,12,0,0"
+                                   VerticalAlignment="Top"
+                                   
+                                   Content="Описание"
+                                   FontSize="14"
+                                   Foreground="{StaticResource StandartLightColor}"/>
+                            <TextBox x:Name="Description" Grid.Row="3"
+                                     Style="{x:Null}"/>
+
+
+                        </Grid>
+                        
+                        
+                    </Grid>
+
+                    <Button Grid.Row="2"
+                            Command="{Binding AddPlayListCommand}">
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ManyValueConverter}">
+                                <Binding Path="Text" ElementName="TitleName"/>
+                                <Binding Path="Text" ElementName="Description"/>
+                            </MultiBinding>
+                        </Button.CommandParameter>
+                    </Button>
                 </Grid>
-            </materialDesign:DialogHost.DialogContent>
+            </md:DialogHost.DialogContent>
 
           
 
-        </materialDesign:DialogHost>-->
+        </md:DialogHost>
 
 
 

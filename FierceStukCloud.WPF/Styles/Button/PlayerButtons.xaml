@@ -9,11 +9,13 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid Background="Transparent">
-                        <Ellipse x:Name="Ellipse" Fill="{x:Null}" StrokeThickness="3"/>
+                        <Ellipse x:Name="Ellipse" Fill="{x:Null}" StrokeThickness="2"/>
                         <Polygon x:Name="Polygon" Fill="{StaticResource DimColor}"
-                                 Points="0,0 20,15 0,30"
+                                 Points="0,0
+                                         12,9
+                                         0,17"
                                  
-                                 Margin="5,0,0,0"
+                                 Margin="3.5,0,0,0"
                                  
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center"/>
@@ -76,17 +78,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid Background="Transparent">
-                        <Ellipse x:Name="Ellipse" Fill="{x:Null}" Stroke="{StaticResource DimColor}" StrokeThickness="3"/>
+                    <Grid Background="Transparent" Height="15">
+                        <Ellipse x:Name="Ellipse" Fill="{x:Null}"
+                                 Stroke="{StaticResource DimColor}" 
+                                 StrokeThickness="3"
+                                 Visibility="Hidden"/>
                         <Polygon x:Name="Polygon" Fill="{StaticResource DimColor}"  
-                                Points="0,2,
-                                        10,8,
+                                Points="0, 0,
+                                        10,6,
                                         10,0,
-                                        15,0,
-                                        15,20,
-                                        10,20,
-                                        10,12,
-                                        0,18"
+                                        12,0,
+                                        12,15,
+                                        10,15,
+                                        10,9,
+                                        0, 15"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
                     </Grid>

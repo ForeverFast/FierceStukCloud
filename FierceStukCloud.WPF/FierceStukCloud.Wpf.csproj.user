@@ -14,6 +14,9 @@
     <Page Update="Styles\Button\PlayerButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Button\StandardButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Button\SystemButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -27,6 +30,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ScrollBar\DefaultScrollBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ScrollViewer\DefaultScrollViewer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Slider\SliderStyles.xaml">

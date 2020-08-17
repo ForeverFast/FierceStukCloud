@@ -1,4 +1,5 @@
 ﻿using FierceStukCloud.Abstractions;
+using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -66,12 +67,18 @@ namespace FierceStukCloud.Core.MusicPlayerModels
 
         #region Поля
         private bool _isSelected;
+        private bool _isPlaying;
         #endregion
 
         [JsonIgnore]
         public IMusicContainer CurrentMusicContainer { get; set; }
+        [JsonIgnore]
+        public IMusicPlayerService MusicPlayer { get; set; }
+
 
         public bool IsSelected { get => _isSelected; set => SetProperty(ref _isSelected, value); }
+
+        public bool IsPlaying { get => _isPlaying; set => SetProperty(ref _isPlaying, value); }
 
         #endregion
     }

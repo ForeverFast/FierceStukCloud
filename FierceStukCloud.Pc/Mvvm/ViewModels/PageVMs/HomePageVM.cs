@@ -6,11 +6,16 @@ using System.Text;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 {
-    public class HomePageVM : BaseViewModel, INavigatedToAware
+    public class HomePageVM : BasePageViewModel, INavigatedToAware
     {
         public HomePageVM(INavigationManager navigationManager)
         {
             _navigationManager = navigationManager;
+        }
+
+        public override void InitiailizeCommands()
+        {
+            throw new NotImplementedException();
         }
 
         public void OnNavigatedTo(object arg)

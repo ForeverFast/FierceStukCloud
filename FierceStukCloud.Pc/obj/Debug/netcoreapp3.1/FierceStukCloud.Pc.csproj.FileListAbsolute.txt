@@ -84,3 +84,9 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll

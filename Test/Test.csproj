@@ -20,4 +20,10 @@
     <ProjectReference Include="..\TestNetStandardLib\TestNetStandardLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
