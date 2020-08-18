@@ -17,7 +17,7 @@ namespace FierceStukCloud.Wpf.Services
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        Task<Song> AddSongAsync(string path, string optionalInfo = "LF");
+        Task<Song> AddSongAsync(string path, string optionalInfo = "");
         /// <summary>
         /// Удаление песни из БД
         /// </summary>
@@ -29,7 +29,7 @@ namespace FierceStukCloud.Wpf.Services
 
         Task<bool> RemoveLocalFolderAsync(LocalFolder localFolder);
 
-        Task<PlayList> AddPlayListAsync(string title, string description);
+        Task<PlayList> AddPlayListAsync(string title, string description, string imageUri);
 
         Task<bool> RemovePlayListAsync(PlayList playList);
     }

@@ -3,6 +3,7 @@ using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm;
 using FierceStukCloud.Wpf.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,13 +28,13 @@ namespace FierceStukCloud.Pc.Services
         /// <summary> Tекущий отображаемый контейнер </summary>   
         public IMusicContainer DisplayedMusicContainer { get; set; }
         /// <summary> Tекущая песня </summary>   
-        public Song CurrentSong { get => CurrentSongNode.Value; set => SetCurrentSong(value); }
+        public Song CurrentSong { get => CurrentSongNode?.Value; set => SetCurrentSong(value); }
         private LinkedListNode<Song> CurrentSongNode { get; set; }
 
 
         public bool IsRepeatSong { get; set; }
         public bool IsRandomSong { get; set; }
-        public bool IsPlaying { get => CurrentSong.IsPlaying; set => CurrentSong.IsPlaying = value; }
+        public bool IsPlaying { get => CurrentSong == null ? false : CurrentSong.IsPlaying; set => CurrentSong.IsPlaying = value; }
 
         public double Volume
         {
@@ -118,8 +119,8 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы добавление/удаления плейлистов на устройстве
 
-        public async Task AddPlayList(string title, string description)
-            => await _dataService.AddPlayListAsync(title, description);
+        public async Task AddPlayList(string title, string description, string imageUri)
+            => await _dataService.AddPlayListAsync(title, description, imageUri);
 
         public async Task<bool> RemovePlayList(PlayList playList)
             => await _dataService.RemovePlayListAsync(playList);
@@ -344,6 +345,7 @@ namespace FierceStukCloud.Pc.Services
             _musicStorage = musicStorage;
             _signalRService = signalRService;
 
+           
             _dataService.GetData();
             // Инициализация класса работы с БД
             //_dataService = new DataService(AllSongs, Favourites, Albums, LocalFolders, PlayLists, );

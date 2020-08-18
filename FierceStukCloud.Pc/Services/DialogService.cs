@@ -11,10 +11,11 @@ namespace FierceStukCloud.Pc.Services
 
         public void ShowFolder(string path) => Process.Start("explorer", path);
 
-        public string FileBrowserDialog()
+        public string FileBrowserDialog(string Extension = "*.mp3;")
         {
             var dlg = new CommonOpenFileDialog();
-            dlg.DefaultExtension = ".mp3";
+            //dlg.DefaultExtension = Extension;
+            dlg.Filters.Add(new CommonFileDialogFilter("Файлы", Extension));
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
                 return dlg.FileName;
             else

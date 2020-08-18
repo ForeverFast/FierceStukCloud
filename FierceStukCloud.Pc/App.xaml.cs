@@ -60,8 +60,8 @@ namespace FierceStukCloud.Pc
             navigationManager.Register<ReviewPage>("review", new HomePageVM(navigationManager));
             navigationManager.Register<ProfilePage>("profile", new HomePageVM(navigationManager));
 
-            navigationManager.Navigate("home", null, NavigateType.Root);
-
+            navigationManager.Navigate("home", NavigateType.Root, null);
+            
             mainWindow.Show();
         }
 

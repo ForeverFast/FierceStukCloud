@@ -18,6 +18,7 @@
           "Microsoft.Extensions.Configuration.Json": "3.1.7",
           "Microsoft.Extensions.DependencyInjection": "3.1.7",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.7",
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0.2",
           "Microsoft.WindowsAPICodePack-Shell": "1.1.0",
           "MvvmNavigation.Wpf": "1.0.0",
           "Newtonsoft.Json": "12.0.3",
@@ -330,6 +331,14 @@
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.WindowsAPICodePack-Core/1.1.0.2": {
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
       "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
         "runtime": {
           "lib/Microsoft.WindowsAPICodePack.Shell.dll": {
@@ -758,6 +767,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.WindowsAPICodePack-Core/1.1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rfcfF2KwFVLt/zAaJfkqFPk/WPRAgFIamvGw+SSC0lYWNKMT+hTtIcNNifc/ZFDmoozYtldDgrHsj4qbsLQZtQ==",
+      "path": "microsoft.windowsapicodepack-core/1.1.0.2",
+      "hashPath": "microsoft.windowsapicodepack-core.1.1.0.2.nupkg.sha512"
     },
     "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
       "type": "package",

@@ -33,16 +33,6 @@
                                                    VerticalAlignment="Center"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
-                        <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
-
-                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
-
-                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
-                        </DataTrigger>-->
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
                         </Trigger>
@@ -78,15 +68,6 @@
                     </StackPanel>
 
                     <ControlTemplate.Triggers>
-                        <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
-                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
-                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
-                        </DataTrigger>-->
-
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="line" Property="Stroke" Value="{StaticResource Gor}"/>
                         </Trigger>
@@ -99,5 +80,18 @@
         </Setter>
     </Style>
 
-
 </ResourceDictionary>
+    
+    
+<!-- OLD CODE -->
+    
+<!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
+
+                            <Setter TargetName="SP" Property="Margin" Value="0,0,0,0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
+
+                            <Setter TargetName="SP" Property="Margin" Value="8,0,0,0"/>
+                        </DataTrigger>-->

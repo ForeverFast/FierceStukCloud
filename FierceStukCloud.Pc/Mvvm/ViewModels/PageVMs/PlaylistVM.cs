@@ -3,6 +3,7 @@ using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions;
+using FierceStukCloud.Pc.Services;
 using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -12,12 +13,18 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 {
     public class PlaylistVM : BasePageViewModel, INavigatedToAware
     {
+        #region Свойства
+
+        #region Поля
+        private Song _selectedSong;
+
+        #endregion
+
         public PlayList PlayList { get; set; }
 
         public ObservableCollection<PlayList> PlayLists { get; set; }
 
 
-        private Song _selectedSong;
         public  Song SelectedSong
         {
             get => _selectedSong;
@@ -25,7 +32,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             {
                 if (value != null)
                 {
-                    _selectedSong.IsSelected = false;
+                    if (_selectedSong != null)
+                        _selectedSong.IsSelected = false;
                     value.CurrentMusicContainer = PlayList;
                     value.IsSelected = true;
                     SetProperty(ref _selectedSong, value);
@@ -33,6 +41,31 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 }
             }
         }
+
+        public bool IsPlaying { get => _musicPlayerService.IsPlaying; set => _musicPlayerService.IsPlaying = value; }
+
+        #endregion
+
+        #region Команды - Управление плеером
+
+        public ICommand PlayStateSongCommand { get; private set; }
+
+        public ICommand ListenPlaylistsCommand { get; private set; }
+
+        private void PlayStateSongExecute(object parameter)
+        {
+            if (_musicPlayerService.IsPlaying == true)
+                _musicPlayerService.Pause();
+            else
+                _musicPlayerService.Play();
+        }
+
+        private void ListenPlaylistsExecute(object parameter)
+        {
+            SelectedSong = PlayList.Songs?.First?.Value;
+        }
+
+        #endregion
 
         #region Команды - Контекстное меню песни
 
@@ -152,6 +185,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         public PlaylistVM(PlayList playList)
         {
             PlayList = playList;
+            _dialogService = new DialogService();
             InitiailizeCommands();
             // _musicPlayer.PropertyChanged += _musicPlayer_PropertyChanged;
             //_musicPlayer 
@@ -161,6 +195,9 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         public override void InitiailizeCommands()
         {
+            PlayStateSongCommand = new RelayCommand(PlayStateSongExecute);
+            ListenPlaylistsCommand = new RelayCommand(ListenPlaylistsExecute);
+
             GoToAuthorPageCommand = new RelayCommand(GoToAuthorPageExecute);
             GoToAlbumPageCommand = new RelayCommand(GoToAlbumPageExecute);
             ShowDetailsCommand = new RelayCommand(ShowDetailsExecute);
@@ -173,9 +210,14 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         }
 
-        public void OnNavigatedTo(object arg)
+        public void OnNavigatedTo(params object[] args)
         {
-            PlayLists = arg as ObservableCollection<PlayList>;
+            if (PlayLists == null)
+                PlayLists = args[0] as ObservableCollection<PlayList>;
+            if (_dialogService == null)
+                _dialogService = args[1] as DialogService;
+            if (_musicPlayerService == null)
+                _musicPlayerService = args[2] as MusicPlayerService;
         }
 
         #endregion

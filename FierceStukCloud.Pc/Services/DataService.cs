@@ -250,6 +250,10 @@ namespace FierceStukCloud.Pc.Services
                     {
                         switch(optionalInfo)
                         {
+                            case "":
+
+                                break;
+
                             default:
 
                                 temp.PlayLists = new List<string>();
@@ -259,12 +263,13 @@ namespace FierceStukCloud.Pc.Services
                         }
                     }   
 
-                    string sql = $"INSERT INTO Songs (Author,    Title,       Album,      Duration,  Year," +
+                    string sql = $"INSERT INTO Songs (Title,    Author,       Album,      Duration,  Year," +
                                                     $"PlayLists,  LocalURL,  UserLogin,   OnServer,   OnPC,      OptionalInfo)" +
-                                           $" VALUES(@author,   @title,       @album,    @duration, @year," +
+                                           $" VALUES(@Title,   @Author,       @album,    @duration, @year," +
                                                    $"@playLists, @localURL, @userLogin,   @onServer, @onPC,     @optionalInfo);";
 
                     await cnn.ExecuteAsync(sql, temp);
+                    await SongIntegrating(temp, cnn);
 
                     return temp;
                 }
@@ -321,7 +326,7 @@ namespace FierceStukCloud.Pc.Services
                 _musicStorage.LocalFolders.Add(temp);
 
                 foreach (var item in tempMas)
-                    await SongIntegrating(await AddSongAsync(item, ""), null);
+                    await AddSongAsync(item, "");
 
                 return temp;
             }
@@ -352,17 +357,21 @@ namespace FierceStukCloud.Pc.Services
 
         #region Добавление/удаление плейлистов
 
-        public async Task<PlayList> AddPlayListAsync(string title, string description)
+        public async Task<PlayList> AddPlayListAsync(string title, string description, string imageUri)
         {
             try
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
+                    if (string.IsNullOrEmpty(imageUri))
+                        imageUri = @"C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\Images\fsc_icon.png";
+
                     var NewPlayList = new PlayList()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Title = title,
                         Description = description,
+                        ImageUri = imageUri,
                         CreationDate = DateTime.Now,
                         UserLogin = _user.Login,
                         OnDevice = true,
@@ -371,8 +380,8 @@ namespace FierceStukCloud.Pc.Services
                     };
 
 
-                    string sql = $"INSERT INTO PlayLists (Id,  Title,  Description,  CreationDate,  UserLogin,  OnServer,   OnDevice)" +
-                                               $" VALUES(@Id, @Title, @Description, @CreationDate, @UserLogin, @OnServer,  @OnDevice);";
+                    string sql = $"INSERT INTO PlayLists (Id,  Title,  Description,  ImageUri,  CreationDate,  UserLogin,  OnServer,   OnDevice)" +
+                                               $" VALUES(@Id, @Title, @Description, @ImageUri, @CreationDate, @UserLogin, @OnServer,  @OnDevice);";
 
                     await cnn.ExecuteAsync(sql, NewPlayList);
                     _musicStorage.PlayLists.Add(NewPlayList);

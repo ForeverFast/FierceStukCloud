@@ -23,6 +23,8 @@
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/SystemButtons.xaml"/>
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/PlayerButtons.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/StandardButtons.xaml"/>
 
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>

@@ -34,71 +34,17 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <Border BorderThickness="0,0,0,0">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <ContentPresenter x:Name="CP" Content="{TemplateBinding Content}" Grid.Row="1"/>
-
-                                <Grid x:Name="HeaderGrid" Grid.Row="0" Background="{StaticResource GrayLVL2}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Grid Grid.Column="0" Background="{StaticResource GrayLVL4}">
-
-                                    </Grid>
-
-                                    <Grid Grid.Column="1" Background="{StaticResource GrayLVL4WithLowOpacity}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button x:Name="NavigationBack"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
-                                                    Command="{Binding NavigationBackCommand}"
-                                                    Style="{StaticResource NavigationBack}"/>
-
-                                            <Button x:Name="NavigationForward"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding NavigationForwardCommand}"
-                                                    Style="{StaticResource NavigationForward}"/>
-                                        </StackPanel>
-                                    </Grid>
-
-                                    <Grid Grid.Column="2" Background="{StaticResource GrayLVL4WithLowOpacity}">
-
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <Button x:Name="Minimize"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding MinimizedWindowCommand}"
-                                                    Style="{StaticResource MinimizeButton2}"/>
-
-                                            <Button x:Name="Resize"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding ResizeWindowCommand}"
-                                                    Style="{StaticResource ResizeButton2}"/>
-
-                                            <Button x:Name="Close"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding CloseWindowCommand}"
-                                                    Style="{StaticResource CloseButton2}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </Grid>
-
-                            </Grid>
+                            <ContentPresenter x:Name="CP" Content="{TemplateBinding Content}" Grid.Row="1"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             
                             <Trigger Property="WindowState" Value="Normal">
                                 <Setter Property="Margin" TargetName="CP" Value="0"/>
-                                <Setter Property="Margin" TargetName="HeaderGrid" Value="0"/>
+                               
                             </Trigger>
                             <Trigger Property="WindowState" Value="Maximized">
                                 <Setter Property="Margin" TargetName="CP" Value="8,0,0,0"/>
-                                <Setter Property="Margin" TargetName="HeaderGrid" Value="8,0,0,0"/>
+                                
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -112,6 +58,7 @@
         <ResourceDictionary>
 
             <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
+            <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
 
         </ResourceDictionary>
     </Window.Resources>
@@ -123,6 +70,7 @@
     <Grid Background="{StaticResource DimColor}">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="90" />
         </Grid.RowDefinitions>
@@ -132,7 +80,53 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="MenuGrid" Grid.Row="0" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="{StaticResource GrayLVL4}">
+
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{StaticResource GrayLVL4WithLowOpacity}">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="NavigationBack"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
+                                                    Command="{Binding NavigationBackCommand}"
+                                                    Style="{StaticResource NavigationBack}"/>
+
+                    <Button x:Name="NavigationForward"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding NavigationForwardCommand}"
+                                                    Style="{StaticResource NavigationForward}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2" Background="{StaticResource GrayLVL4WithLowOpacity}">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="Minimize"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding MinimizedWindowCommand}"
+                                                    Style="{StaticResource MinimizeButton2}"/>
+
+                    <Button x:Name="Resize"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding ResizeWindowCommand}"
+                                                    Style="{StaticResource ResizeButton2}"/>
+
+                    <Button x:Name="Close"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding CloseWindowCommand}"
+                                                    Style="{StaticResource CloseButton2}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
@@ -294,13 +288,13 @@
 
         </Grid>
 
-        <Grid x:Name="ContentGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+        <Grid x:Name="ContentGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
               Background="{StaticResource GrayLVL2}">
             <Frame x:Name="FrameContent"
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Grid x:Name="PlayerGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL1}">
+        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL1}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280"/>
@@ -436,7 +430,7 @@
 
                         <TextBlock Grid.Column="0"
                                    Padding="0"
-                                   Margin="0,15,0,0"
+                                   Margin="115,15,0,0"
                                    HorizontalAlignment="Center"
                                
                                    Text="Создание плейлиста"
@@ -459,11 +453,46 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0"
+                        <Button Grid.Column="0"
+                                Height="225"
                                 Margin="25,30,0,0"
-                                Background="{StaticResource GrayLVL0}">
+                                
+                                Command="{Binding SetPlayListImage}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid Background="{StaticResource GrayLVL0}">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2.5*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <Image x:Name="ImageD" Grid.Row="0" Grid.RowSpan="2"
+                                               Source="{Binding TempImageUri, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <md:PackIcon x:Name="IconD" Kind="Music" Grid.Row="0"
+                                                     Height="100"
+                                                     Width="100"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Bottom"
+                                                     HorizontalAlignment="Center"/>
+
+                                        <TextBlock x:Name="TextD" Grid.Row="1"
+                                                   Text="Выбрать картнику"
+                                                   HorizontalAlignment="Center"/>
+
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ImageD, Path=Source,
+                                                                       Converter={StaticResource StringToBoolConverter}}">
+                                            
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
                             
-                        </Border>
+
+                        </Button>
 
                         <Grid Grid.Column="1" Margin="20,30,25,0">
 

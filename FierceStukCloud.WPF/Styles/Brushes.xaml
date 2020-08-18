@@ -9,6 +9,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <SolidColorBrush x:Key="Gor" Color="#f3ca20"/>
+    <SolidColorBrush x:Key="GorWithLowOpacity" Color="#f3ca20" Opacity="0.75"/>
 
     <SolidColorBrush x:Key="GrayLVL0" Color="#FF4D4D51"/>
     <SolidColorBrush x:Key="GrayLVL1" Color="#FF2D2D30"/>

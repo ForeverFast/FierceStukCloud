@@ -349,6 +349,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {}
+        }
+      },
       "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
         "type": "package",
         "compile": {
@@ -1117,6 +1126,20 @@
         "runtime.json"
       ]
     },
+    "Microsoft.WindowsAPICodePack-Core/1.1.0.2": {
+      "sha512": "rfcfF2KwFVLt/zAaJfkqFPk/WPRAgFIamvGw+SSC0lYWNKMT+hTtIcNNifc/ZFDmoozYtldDgrHsj4qbsLQZtQ==",
+      "type": "package",
+      "path": "microsoft.windowsapicodepack-core/1.1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Microsoft.WindowsAPICodePack.XML",
+        "lib/Microsoft.WindowsAPICodePack.dll",
+        "lib/Microsoft.WindowsAPICodePack.pdb",
+        "microsoft.windowsapicodepack-core.1.1.0.2.nupkg.sha512",
+        "microsoft.windowsapicodepack-core.nuspec"
+      ]
+    },
     "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
       "sha512": "8WvLG0TNTylzMB8gnZeZDG68/DsagAF64K35RC2Y/zocHp4e03Uj/kba6egQlq1+0uVv04FpLG+CmENEIN53rg==",
       "type": "package",
@@ -1748,6 +1771,7 @@
       "Microsoft.Extensions.Configuration.Json >= 3.1.7",
       "Microsoft.Extensions.DependencyInjection >= 3.1.7",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 3.1.7",
+      "Microsoft.WindowsAPICodePack-Core >= 1.1.0.2",
       "Microsoft.WindowsAPICodePack-Shell >= 1.1.0",
       "MvvmNavigation.Wpf >= 1.0.0",
       "Newtonsoft.Json >= 12.0.3",
@@ -1838,6 +1862,10 @@
             "target": "Package",
             "version": "[3.1.7, )"
           },
+          "Microsoft.WindowsAPICodePack-Core": {
+            "target": "Package",
+            "version": "[1.1.0.2, )"
+          },
           "Microsoft.WindowsAPICodePack-Shell": {
             "target": "Package",
             "version": "[1.1.0, )"
@@ -1878,6 +1906,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Microsoft.WindowsAPICodePack-Core 1.1.0.2\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Microsoft.WindowsAPICodePack-Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

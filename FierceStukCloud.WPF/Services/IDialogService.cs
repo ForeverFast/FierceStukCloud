@@ -4,7 +4,7 @@
     {
         void ShowMessage(string text);
         void ShowFolder(string path);
-        string FileBrowserDialog();
+        string FileBrowserDialog(string Extension = ".mp3");
         string FolderBrowserDialog();
     }
 }

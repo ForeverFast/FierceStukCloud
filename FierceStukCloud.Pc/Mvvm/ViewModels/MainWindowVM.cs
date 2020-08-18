@@ -161,7 +161,10 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             => _navigationManager.GoForward();
 
         private void NavigationToPlayListExecute(object parameter)
-            => _navigationManager.Navigate<PlaylistPage>(new PlaylistVM(parameter as PlayList), _musicStorage.PlayLists);
+            => _navigationManager.Navigate<PlaylistPage>(new PlaylistVM(parameter as PlayList),
+                                                         _musicStorage.PlayLists,
+                                                         _dialogService,
+                                                         _musicPlayerService);
 
         #endregion
 
@@ -199,7 +202,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         private async Task AddPlayListExecute(object parameter)
         {
             IsDialogOpen = false;
-            await _musicPlayerService.AddPlayList((parameter as object[])[0].ToString(), (parameter as object[])[1].ToString());
+            var parameters = (object[])parameter;
+
+            await _musicPlayerService.AddPlayList(parameters[0].ToString(),
+                                                  parameters[1].ToString(),
+                                                  TempImageUri);
         }
         private async Task RemovePlayListExecute(object parameter)
         {
@@ -209,18 +216,32 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             }
         }
 
+        #region Логика - Диалоговое окно
+
+        public ICommand SetPlayListImage
+        {
+            get => new RelayCommand((o) => {
+                TempImageUri = _dialogService.FileBrowserDialog("*.jpg;*.png");
+            });
+        }
+
+
         private bool _isDialogOpen;
+        private string _tempImageUri;
         public bool IsDialogOpen { get => _isDialogOpen; set => SetProperty(ref _isDialogOpen, value); }
+        public string TempImageUri { get =>_tempImageUri; set => SetProperty(ref _tempImageUri, value); }
+
+        #endregion
 
         #endregion
 
 
-      
-
-       
 
 
-      
+
+
+
+
 
         #region Обработка событий
 

@@ -77,7 +77,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\ProfilePage.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\ReviewPage.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.g.resources
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.genruntimeconfig.cache
@@ -90,3 +89,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CoreCompileInputs.cache

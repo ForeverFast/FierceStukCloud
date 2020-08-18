@@ -18,7 +18,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             throw new NotImplementedException();
         }
 
-        public void OnNavigatedTo(object arg)
+        public void OnNavigatedTo(params object[] args)
         {
 
         }

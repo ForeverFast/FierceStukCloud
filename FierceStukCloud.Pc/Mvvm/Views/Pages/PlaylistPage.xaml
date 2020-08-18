@@ -3,39 +3,83 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views.Pages"
       mc:Ignorable="d" 
       xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PlaylistPage">
 
-    <Grid Background="{StaticResource GrayLVL0}">
+    <Grid Background="{StaticResource GrayLVL2}">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0"
-                
-                Margin="15,0,15,0"
-                BorderThickness="0,0,0,1"
-                BorderBrush="{StaticResource DimColorWithLowOpacity}">
-            <TextBlock 
-                   
-                   Padding="0"
-                   Margin="0,0,0,5"
-                   VerticalAlignment="Bottom"
+        <Border Grid.Row="0"              
+                    Margin="15,15,15,0"
+                    BorderThickness="0,0,0,1"
+                    BorderBrush="{StaticResource DimColorWithLowOpacity}">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Margin="25,0" Source="{Binding PlayList.ImageUri}">
+                  
+                </Image>
+
+                <Grid Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Плейлист"/>
+
+                    <TextBlock Grid.Row="1"
+                               Padding="0"
+                               Margin="0,0,0,5"
+                               VerticalAlignment="Bottom"
  
-                   Text="Главная"
-                   FontSize="50"
-                   FontWeight="SemiBold"
-                   Foreground="{StaticResource StandartLightColor}"/>
+                               Text="{Binding PlayList.Title}"
+                               FontSize="50"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource StandartLightColor}"/>
+
+                    <TextBlock Grid.Row="2" Text="Author"/>
+
+                    <Grid Grid.Row="3">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource StandardButton}"
+                                Tag="G">
+                          
+                        </Button>
+
+                    </Grid>
+                    
+                </Grid>
+
+            </Grid>
         </Border>
-
-        <Button Command="{Binding AddSongFromDeviceCommand}"/>
-
+        
         <ListView Grid.Row="1"
                   Margin="15,0"
+                  
+                 
+                  
                   ctrl:ListViewLayoutManager.Enabled="true"
                   ItemsSource="{Binding Path=PlayList.Songs}">
             <ListView.View>
@@ -70,7 +114,12 @@
                 </GridView>
             </ListView.View>
 
-          
+            <ListView.ContextMenu>
+                <ContextMenu Background="{StaticResource GrayLVL0}"
+                             Foreground="{StaticResource StandartLightColor}">
+                    <MenuItem Header="Добавить песню с устройства" Command="{Binding AddSongFromDeviceCommand}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
 
            
 
