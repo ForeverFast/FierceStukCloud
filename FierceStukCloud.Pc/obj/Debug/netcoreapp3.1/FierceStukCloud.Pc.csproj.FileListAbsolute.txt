@@ -91,3 +91,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll

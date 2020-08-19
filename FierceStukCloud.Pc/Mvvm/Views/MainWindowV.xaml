@@ -9,6 +9,7 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views"
         xmlns:vm="clr-namespace:FierceStukCloud.Pc.Mvvm.ViewModels"
+        xmlns:scroll="clr-namespace:SoftwareArchitects.Windows.Controls;assembly=SoftwareArchitects.Windows.Controls.ScrollSynchronizer"
         mc:Ignorable="d"
         Title="FierceStukCloud"
         x:Name="MainWindow"
@@ -168,15 +169,15 @@
 
             </Grid>
 
-            <ScrollViewer Style="{StaticResource DefaultScrollViewer}" Grid.Row="1">
+            <ScrollViewer Style="{StaticResource DefaultScrollViewer}" Grid.Row="1"
+                          ScrollViewer.CanContentScroll="True">
                 <Grid>
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="180"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                              
-                    <Grid x:Name="MediaLib" Grid.Row="0" 
+
+                    <Grid x:Name="MediaLibGrid" Grid.Row="0"
                           Margin="0,10,0,0">
 
                         <Grid.RowDefinitions>
@@ -230,7 +231,7 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition/>
+                            <RowDefinition />
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
 
@@ -239,24 +240,24 @@
                                    Foreground="{StaticResource StandartLightColor}"
                                    FontSize="13"
                                    FontFamily="Aharoni"
-                           
+                          
                                    Margin="25,0,0,0"
                                    VerticalAlignment="Center"/>
 
-                        <ListBox  Grid.Row="1"
-                                  SelectedValue="{Binding SelectedMusicContainer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <ListBox  Grid.Row="1" x:Name="empListBox"                                                    
+                                  SelectedValue="{Binding SelectedMusicContainer, Mode=TwoWay,
+                                                          UpdateSourceTrigger=PropertyChanged}"
                                   ItemsSource="{Binding Path=PlayLists}"
                                   Style="{StaticResource PlayListListBox}">
-      
                         </ListBox>
                     </Grid>
                 </Grid>
             </ScrollViewer>
 
             <Button Grid.Row="2"
-                        CommandTarget="{Binding ElementName=rootD}"
-                        Command="{x:Static md:DialogHost.OpenDialogCommand}"
-                        Height="60">
+                    CommandTarget="{Binding ElementName=rootD}"
+                    Command="{x:Static md:DialogHost.OpenDialogCommand}"
+                    Height="60">
                 <Button.Template>
                     <ControlTemplate>
                         <Border BorderThickness="0,0.7,0,0"
@@ -468,6 +469,7 @@
                                         </Grid.RowDefinitions>
                                         
                                         <Image x:Name="ImageD" Grid.Row="0" Grid.RowSpan="2"
+                                               Stretch="Fill"
                                                Source="{Binding TempImageUri, UpdateSourceTrigger=PropertyChanged}"/>
 
                                         <md:PackIcon x:Name="IconD" Kind="Music" Grid.Row="0"
@@ -484,8 +486,14 @@
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <DataTrigger Binding="{Binding ElementName=ImageD, Path=Source,
-                                                                       Converter={StaticResource StringToBoolConverter}}">
-                                            
+                                                                       Converter={StaticResource StringToBoolConverter}}" Value="False">
+                                            <Setter Property="Visibility"  TargetName="IconD" Value="Hidden"/>
+                                            <Setter Property="Visibility"  TargetName="TextD" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ImageD, Path=Source,
+                                                                       Converter={StaticResource StringToBoolConverter}}" Value="True">
+                                            <Setter Property="Visibility"  TargetName="IconD" Value="Visible"/>
+                                            <Setter Property="Visibility"  TargetName="TextD" Value="Visible"/>
                                         </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>

@@ -1,5 +1,6 @@
 ﻿using FierceStukCloud.Pc.Mvvm.ViewModels;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FierceStukCloud.Pc.Mvvm.Views
 {

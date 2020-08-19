@@ -13,7 +13,7 @@ namespace FierceStukCloud.Core
 
 
         [JsonPropertyName("login")]
-        public string Login { get; set; }
+        public string Login { get; set; } = "ForeverFast";
         //[JsonPropertyName("password")]
         //public string Password { get; set; }
 

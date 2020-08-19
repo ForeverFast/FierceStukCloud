@@ -72,34 +72,9 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         private ImageAsync<Song> _selectedSong;
         #endregion
             
-        public ObservableCollection<PlayList> PlayLists
-        {
-            get => _musicStorage.PlayLists;
-            
-        }
+        public ObservableCollection<PlayList> PlayLists { get => _musicStorage.PlayLists; }
 
-        public IMusicContainer SelectedMusicContainer
-        {
-            get => _selectedMusicContainer;
-            set
-            {
-                SetProperty(ref _selectedMusicContainer, value);
-
-                //Songs.Clear();
-                //if (value != null)
-                //{
-                //    _musicPlayer.DisplayedMusicContainer = value;
-
-                //    foreach (var item in value.Songs)
-                //    {
-                //        if (item == _musicPlayer.CurrentSong)
-                //            Songs.Add(SelectedSong);
-                //        else
-                //            Songs.Add(new ImageAsync<Song>(item.LocalUrl, item));
-                //    }
-                //}
-            }
-        }
+        public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
         public ImageAsync<Song> SelectedSong
         {
@@ -121,7 +96,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
      
 
-        #region Логика перетаскивания ползунка слайдера таймлайна.
+        #region Логика - Перетаскивание ползунка таймлайна.
 
         public ICommand SongPosChangedStartCommand { get; private set; }
 
@@ -228,7 +203,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         private bool _isDialogOpen;
         private string _tempImageUri;
-        public bool IsDialogOpen { get => _isDialogOpen; set => SetProperty(ref _isDialogOpen, value); }
+        public bool IsDialogOpen { get => _isDialogOpen; set { SetProperty(ref _isDialogOpen, value); if (value == false) TempImageUri = ""; } }
         public string TempImageUri { get =>_tempImageUri; set => SetProperty(ref _tempImageUri, value); }
 
         #endregion

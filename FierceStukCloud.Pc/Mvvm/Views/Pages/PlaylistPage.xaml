@@ -17,33 +17,35 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0"              
-                    Margin="15,15,15,0"
-                    BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource DimColorWithLowOpacity}">
-            <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"              
+                  Margin="15,15,15,0">
 
-                <Image Grid.Column="0" Margin="25,0" Source="{Binding PlayList.ImageUri}">
-                  
-                </Image>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="1">
+            <Image Grid.Column="0"
+                   Margin="25,0" 
+                   Source="{Binding PlayList.ImageUri}"
+                   Stretch="Fill"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Плейлист"/>
 
-                    <TextBlock Grid.Row="1"
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Плейлист"/>
+
+                <TextBlock Grid.Row="1"
                                Padding="0"
                                Margin="0,0,0,5"
                                VerticalAlignment="Bottom"
@@ -53,28 +55,27 @@
                                FontWeight="SemiBold"
                                Foreground="{StaticResource StandartLightColor}"/>
 
-                    <TextBlock Grid.Row="2" Text="Author"/>
+                <TextBlock Grid.Row="3" Text="{Binding UserLogin}"/>
 
-                    <Grid Grid.Row="3">
+                <Grid Grid.Row="4">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                        <Button Style="{StaticResource StandardButton}"
-                                Tag="G">
-                          
-                        </Button>
+                    <Button Grid.Column="0" Style="{StaticResource StandardButton}">
 
-                    </Grid>
-                    
+                    </Button>
+
                 </Grid>
 
             </Grid>
-        </Border>
-        
+
+        </Grid>
+
+
         <ListView Grid.Row="1"
                   Margin="15,0"
                   

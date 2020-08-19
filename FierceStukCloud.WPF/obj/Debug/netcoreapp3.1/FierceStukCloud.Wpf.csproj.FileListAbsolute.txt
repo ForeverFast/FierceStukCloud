@@ -34,3 +34,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Button\StandardButtons.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\ScrollViewer\DefaultScrollViewer.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\RadioButton\MenuRadioButtons.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\bin\Debug\netcoreapp3.1\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll

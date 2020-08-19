@@ -40,23 +40,30 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            ObservableCollection<Song> songs = new ObservableCollection<Song>();
-            songs.Add(new Song() { Title = "1" });
 
-            t1 t1 = new t1();
-            t1.Songs = songs;
-
-            t1.Songs.Add(new Song() { Title = "2" });
-
-            t2 t2 = new t2();
-            t2.Songs = songs;
-
-            t2.Songs.Add(new Song() { Title = "2" });
-
+            
 
             Console.WriteLine("End");
 
+            //var songs = new ReadOnlyCollection<Song>(new List<Song> { new Song { Title = "kek" } });
+            //var q = songs.FirstOrDefault(x => x.Title == "kek");
+            //q = new Song();
 
+            //ObservableCollection<Song> songs = new ObservableCollection<Song>();
+            //songs.Add(new Song() { Title = "1" });
+
+            //t1 t1 = new t1();
+            //t1.Songs = songs;
+
+            //t1.Songs.Add(new Song() { Title = "2" });
+
+            //t2 t2 = new t2();
+            //t2.Songs = songs;
+
+            //t2.Songs.Add(new Song() { Title = "2" });
+
+            //var q = songs.FirstOrDefault(x => x.Title == "1");
+            //q.Title = "4";
 
 
             //double[] t1 = new double[10];

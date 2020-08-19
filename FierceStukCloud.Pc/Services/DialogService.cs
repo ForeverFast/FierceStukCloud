@@ -14,7 +14,7 @@ namespace FierceStukCloud.Pc.Services
         public string FileBrowserDialog(string Extension = "*.mp3;")
         {
             var dlg = new CommonOpenFileDialog();
-            //dlg.DefaultExtension = Extension;
+            dlg.Multiselect = false;
             dlg.Filters.Add(new CommonFileDialogFilter("Файлы", Extension));
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
                 return dlg.FileName;

@@ -24,7 +24,8 @@
           "Newtonsoft.Json": "12.0.3",
           "System.Data.SQLite.Core": "1.0.113.1",
           "System.Windows.Interactivity.WPF": "2.0.20525",
-          "Itenso.Windows.Controls.ListViewLayout": "1.3.0.0"
+          "Itenso.Windows.Controls.ListViewLayout": "1.3.0.0",
+          "SoftwareArchitects.Windows.Controls.ScrollSynchronizer": "1.0.0.0"
         },
         "runtime": {
           "FierceStukCloud.Pc.dll": {}
@@ -549,6 +550,14 @@
           }
         }
       },
+      "SoftwareArchitects.Windows.Controls.ScrollSynchronizer/1.0.0.0": {
+        "runtime": {
+          "SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "MvvmNavigation.Internal/1.0.0.0": {
         "runtime": {
           "MvvmNavigation.Internal.dll": {
@@ -902,6 +911,11 @@
       "sha512": ""
     },
     "Itenso.Windows.Controls.ListViewLayout/1.3.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SoftwareArchitects.Windows.Controls.ScrollSynchronizer/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
