@@ -83,8 +83,9 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             {
                 if (value != null)
                 {
+                    
                     //value.Content.CurrentMusicContainer = SelectedMusicContainer;
-                    _musicPlayerService.CurrentSong = value.Content;
+                    //_musicPlayerService.CurrentSong = value.Content;
                     SetProperty(ref _selectedSong, value);
                 }
             }
@@ -211,13 +212,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         #endregion
 
 
-
-
-
-
-
-
-
         #region Обработка событий
 
 
@@ -231,16 +225,14 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                     case nameof(_musicPlayerService.CurrentSong):
 
                         var temp = _musicPlayerService.CurrentSong;
-                        if (temp != SelectedSong.Content)
+                        if (temp != SelectedSong?.Content)
                         {
                             SelectedSong = new ImageAsync<Song>(temp.LocalUrl, temp);
                             SongPos = "00:00";
                             SongTimeLineForSlider = 0;
 
                             SongTime = temp.Duration;
-                           
-                            //SongTimeForSlider = 
-                            //_musicPlayer.MP.NaturalDuration.TimeSpan.TotalSeconds;
+                            SelectedStyle = "PauseButton";
                         }
                         break;
 
@@ -253,22 +245,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                         }
 
                         break;
-
-                    case "SongLoaded":
-
-                        SelectedStyle = "PauseButton";
-
-                       
-
-                        //SongName = .Title;
-                        //SongAuthor = _musicPlayer.CurrentSong.Author;
-                        //SongBitmapImage = _musicPlayer.CurrentImage;
-
-                       
-
-                        break;
-
-                  
 
                     case nameof(_musicPlayerService.Play):
 

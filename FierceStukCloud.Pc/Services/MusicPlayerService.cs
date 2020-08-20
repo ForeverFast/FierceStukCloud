@@ -3,7 +3,6 @@ using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm;
 using FierceStukCloud.Wpf.Services;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,7 +27,8 @@ namespace FierceStukCloud.Pc.Services
         /// <summary> Tекущий отображаемый контейнер </summary>   
         public IMusicContainer DisplayedMusicContainer { get; set; }
         /// <summary> Tекущая песня </summary>   
-        public Song CurrentSong { get => CurrentSongNode?.Value; set => SetCurrentSong(value); }
+        public Song CurrentSong { get => CurrentSongNode?.Value;
+                                  set => SetCurrentSong(value); }
         private LinkedListNode<Song> CurrentSongNode { get; set; }
 
 
@@ -270,7 +270,7 @@ namespace FierceStukCloud.Pc.Services
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (MP.Source != null)
-                Position = MP.NaturalDuration.TimeSpan;
+                OnPropertyChanged("Position");
         }
 
         #endregion

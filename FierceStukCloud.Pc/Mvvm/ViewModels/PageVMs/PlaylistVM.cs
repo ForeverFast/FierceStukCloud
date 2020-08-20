@@ -25,7 +25,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         public ObservableCollection<PlayList> PlayLists { get; set; }
 
 
-        public  Song SelectedSong
+        public Song SelectedSong
         {
             get => _selectedSong;
             set
@@ -185,10 +185,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         public PlaylistVM(PlayList playList)
         {
             PlayList = playList;
-            _dialogService = new DialogService();
             InitiailizeCommands();
-            // _musicPlayer.PropertyChanged += _musicPlayer_PropertyChanged;
-            //_musicPlayer 
         }
 
        
@@ -217,7 +214,10 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             if (_dialogService == null)
                 _dialogService = args[1] as DialogService;
             if (_musicPlayerService == null)
+            { 
                 _musicPlayerService = args[2] as MusicPlayerService;
+                _musicPlayerService.PropertyChanged += _musicPlayer_PropertyChanged;
+            }
         }
 
         #endregion

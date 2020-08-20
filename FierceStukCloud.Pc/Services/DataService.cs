@@ -263,10 +263,10 @@ namespace FierceStukCloud.Pc.Services
                         }
                     }   
 
-                    string sql = $"INSERT INTO Songs (Title,    Author,       Album,      Duration,  Year," +
-                                                    $"PlayLists,  LocalURL,  UserLogin,   OnServer,   OnPC,      OptionalInfo)" +
-                                           $" VALUES(@Title,   @Author,       @album,    @duration, @year," +
-                                                   $"@playLists, @localURL, @userLogin,   @onServer, @onPC,     @optionalInfo);";
+                    string sql = $"INSERT INTO Songs (Author,     Title,     Album,      Duration,  Year," +
+                                                    $"PlayLists,  LocalURL,  UserLogin,  OnServer,  OnDevice,  OptionalInfo)" +
+                                           $" VALUES(@Author,    @Title,    @Album,     @Duration, @Year," +
+                                                   $"@PlayLists, @LocalURL, @UserLogin, @OnServer, @OnDevice, @OptionalInfo);";
 
                     await cnn.ExecuteAsync(sql, temp);
                     await SongIntegrating(temp, cnn);

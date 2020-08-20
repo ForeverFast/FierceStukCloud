@@ -40,14 +40,6 @@
                                      Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
 
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <!--<Trigger Property="CanContentScroll" Value="False">
-                            <Setter Property="Visibility" TargetName="PART_VerticalScrollBar" Value="Hidden"/>
-                        </Trigger>
-                        <Trigger Property="CanContentScroll" Value="True">
-                            <Setter Property="Visibility" TargetName="PART_VerticalScrollBar" Value="Visible"/>
-                        </Trigger>-->
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

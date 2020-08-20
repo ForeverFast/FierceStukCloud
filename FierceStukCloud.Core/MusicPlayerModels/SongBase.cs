@@ -12,54 +12,54 @@ namespace FierceStukCloud.Core.MusicPlayerModels
     public abstract class SongBase : OnPropertyChangedClass, IBaseObject, IStatusExistence
     {
         [Column("Id")]
-        [JsonPropertyName("id")]
+        [JsonPropertyName("Id")]
         public string Id { get; set; }
 
         [Column("Title")]
-        [JsonPropertyName("title")]
+        [JsonPropertyName("Title")]
         public string Title { get; set; }
 
         [Column("Author")]
-        [JsonPropertyName("author")]
+        [JsonPropertyName("Author")]
         public string Author { get; set; }
 
         [Column("Album")]
-        [JsonPropertyName("album")]
+        [JsonPropertyName("Album")]
         public string Album { get; set; }
 
         [Column("Year")]
-        [JsonPropertyName("year")]
+        [JsonPropertyName("Year")]
         public uint Year { get; set; }
 
 
         [Column("Duration")]
-        [JsonPropertyName("duration")]
+        [JsonPropertyName("Duration")]
         public string Duration { get; set; }
 
         [Column("LocalUrl")]
-        [JsonPropertyName("localUrl")]
+        [JsonPropertyName("LocalUrl")]
         public string LocalUrl { get; set; }
 
         [Column("PlayLists")]
-        [JsonPropertyName("playLists")]
+        [JsonPropertyName("PlayLists")]
         public List<string> PlayLists { get; set; }
 
 
         [Column("UserLogin")]
-        [JsonPropertyName("userLogin")]
+        [JsonPropertyName("UserLogin")]
         public string UserLogin { get; set; }
 
         [Column("OnServer")]
-        [JsonPropertyName("onServer")]
+        [JsonPropertyName("OnServer")]
         public bool OnServer { get; set; }
 
-        [Column("OnPC")]
-        [JsonPropertyName("onPC")]
+        [Column("OnDevice")]
+        [JsonPropertyName("OnDevice")]
         public bool OnDevice { get; set; }
 
 
         [Column("OptionalInfo")]
-        [JsonPropertyName("optionalInfo")]
+        [JsonPropertyName("OptionalInfo")]
         public string OptionalInfo { get; set; }
 
 

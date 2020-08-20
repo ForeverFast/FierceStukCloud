@@ -13,7 +13,7 @@
 
     <Grid Background="{StaticResource GrayLVL2}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="225"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -37,25 +37,47 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Плейлист"/>
+                <Grid.Resources>
 
-                <TextBlock Grid.Row="1"
-                               Padding="0"
-                               Margin="0,0,0,5"
-                               VerticalAlignment="Bottom"
- 
-                               Text="{Binding PlayList.Title}"
-                               FontSize="50"
-                               FontWeight="SemiBold"
-                               Foreground="{StaticResource StandartLightColor}"/>
+                    <Style TargetType="{x:Type TextBlock}">
 
-                <TextBlock Grid.Row="3" Text="{Binding UserLogin}"/>
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+                                
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+
+                        <Setter Property="Foreground" Value="{StaticResource StandartLightColor2}"/>
+
+                    </Style>
+                    
+                </Grid.Resources>
+                
+                <TextBlock Grid.Row="0" Text="Плейлист"
+                           FontSize="20"
+                           VerticalAlignment="Bottom"/>
+
+                <TextBlock Grid.Row="1" Text="{Binding PlayList.Title}"
+                           FontSize="45"
+                           FontWeight="SemiBold"/>
+
+                <TextBlock Grid.Row="2" Text="Авторы"
+                           FontSize="14"/>
+
+                <TextBlock Grid.Row="3" DataContext="{Binding PlayList}"
+                           FontSize="14">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Автор: {0}  •  Треков:{1}  •  ">
+                            <Binding Path="UserLogin"/>
+                            <Binding Path="Count" Source="Songs"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
                 <Grid Grid.Row="4">
 
@@ -78,13 +100,11 @@
 
         <ListView Grid.Row="1"
                   Margin="15,0"
-                  
-                 
-                  
                   ctrl:ListViewLayoutManager.Enabled="true"
-                  ItemsSource="{Binding Path=PlayList.Songs}">
+                  ItemsSource="{Binding PlayList.Songs}"
+                  SelectedItem="{Binding SelectedSong}">
             <ListView.View>
-                <GridView>
+                <GridView AllowsColumnReorder="False">
                     <GridViewColumn
                         DisplayMemberBinding="{Binding Path=Title}"
                         ctrl:RangeColumn.IsFillColumn="False"
