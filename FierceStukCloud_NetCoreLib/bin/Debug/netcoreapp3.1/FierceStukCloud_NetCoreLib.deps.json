@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "FierceStukCloud_NetCoreLib/1.0.0": {
         "dependencies": {
-          "FierceStukCloud_NetStandardLib": "1.0.0",
+          "MvvmLight": "5.4.1.1",
           "NAudio": "1.10.0",
           "System.Drawing.Common": "4.7.0",
           "System.Windows.Interactivity.WPF": "2.0.20525",
@@ -32,6 +32,7 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         }
       },
+      "MvvmLight/5.4.1.1": {},
       "NAudio/1.10.0": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -44,7 +45,6 @@
           }
         }
       },
-      "System.ComponentModel.Annotations/4.7.0": {},
       "System.Drawing.Common/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -59,14 +59,6 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
-      "System.Text.Json/4.7.2": {
-        "runtime": {
-          "lib/netcoreapp3.0/System.Text.Json.dll": {
-            "assemblyVersion": "4.0.1.2",
-            "fileVersion": "4.700.20.21406"
-          }
-        }
-      },
       "System.Windows.Interactivity.WPF/2.0.20525": {
         "runtime": {
           "lib/net40/Microsoft.Expression.Interactions.dll": {
@@ -105,15 +97,6 @@
             "fileVersion": "1.1.0.0"
           }
         }
-      },
-      "FierceStukCloud_NetStandardLib/1.0.0": {
-        "dependencies": {
-          "System.ComponentModel.Annotations": "4.7.0",
-          "System.Text.Json": "4.7.2"
-        },
-        "runtime": {
-          "FierceStukCloud_NetStandardLib.dll": {}
-        }
       }
     }
   },
@@ -144,19 +127,19 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
+    "MvvmLight/5.4.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fTUDMWT//ChZGd7Q5k0IaJuIXgh+FM43pCStxup7kgh1MQXvC48CjpjWkp5Auru/YXhHOJOMgD1NdtFZgn6K2g==",
+      "path": "mvvmlight/5.4.1.1",
+      "hashPath": "mvvmlight.5.4.1.1.nupkg.sha512"
+    },
     "NAudio/1.10.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-y6VvwSPfJhElUllkzE2FHXHAADYFGLwMPt048KlPyuUXcq4E0VEi+4hWrFd+lBsrb+Q5DvPA9w86oRTvKRO9UQ==",
       "path": "naudio/1.10.0",
       "hashPath": "naudio.1.10.0.nupkg.sha512"
-    },
-    "System.ComponentModel.Annotations/4.7.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-0YFqjhp/mYkDGpU0Ye1GjE53HMp9UVfGN7seGpAMttAC0C40v5gw598jCgpbBLMmCo0E5YRLBv5Z2doypO49ZQ==",
-      "path": "system.componentmodel.annotations/4.7.0",
-      "hashPath": "system.componentmodel.annotations.4.7.0.nupkg.sha512"
     },
     "System.Drawing.Common/4.7.0": {
       "type": "package",
@@ -186,13 +169,6 @@
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
-    "System.Text.Json/4.7.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
-      "path": "system.text.json/4.7.2",
-      "hashPath": "system.text.json.4.7.2.nupkg.sha512"
-    },
     "System.Windows.Interactivity.WPF/2.0.20525": {
       "type": "package",
       "serviceable": true,
@@ -220,11 +196,6 @@
       "sha512": "sha512-CPFamhL3jPo8O6+ErGsLS4LK3DWP5ncxqhbzpPnYkIW9rjatunUij35iTjprbr9mlYR/5Pbguw21MwSmTOKR4g==",
       "path": "windowsapicodepack-shell/1.1.1",
       "hashPath": "windowsapicodepack-shell.1.1.1.nupkg.sha512"
-    },
-    "FierceStukCloud_NetStandardLib/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

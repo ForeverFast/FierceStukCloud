@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Windows;
-using System.Security;
 using System.Text.Json;
-using System.Net;
 using RestSharp;
-using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetCoreLib.Services;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using System.Windows.Threading;
-using System.Windows.Documents;
-using System.Collections.Generic;
 using static System.Diagnostics.Debug;
+using FierceStukCloud.Pс;
+using FierceStukCloud.Core;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
@@ -55,7 +50,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private void AutorizationMethod(object parameter)
         {
             IsAuthentication = true;
-            App.Log.Info("Авторизация...");
+            //App.Log.Info("Авторизация...");
 
 
             //OpenMainWindow();
@@ -92,24 +87,24 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             {
                 IsAuthentication = false;
                 ServerAnswer = "Авторизован";
-                App.Log.Info("Авторизирован.");
+                //App.Log.Info("Авторизирован.");
                 OpenMainWindow();
             }
             else
             {
                 IsAuthentication = false;
                 ServerAnswer = "Ошибка входа";
-                App.Log.Info("Ошибка входа.");
+                //App.Log.Info("Ошибка входа.");
             }
         }
 
-        private async void OpenMainWindow()
+        private void OpenMainWindow()
         {
-            var mainwindodVM = new MainWindowVM(Dispatcher);
+            //var mainwindodVM = new MainWindowVM(Dispatcher);
 
-            App.DisplayRootRegistry.HidePresentation(this);
-            await App.DisplayRootRegistry.ShowModalPresentation(mainwindodVM);
-            App.DisplayRootRegistry.ClosePresentation(this);
+            //App.DisplayRootRegistry.HidePresentation(this);
+            //await App.DisplayRootRegistry.ShowModalPresentation(mainwindodVM);
+            //App.DisplayRootRegistry.ClosePresentation(this);
         }
 
         #endregion
@@ -126,6 +121,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             
             
             Login = FSC_Settings.Default.Login;
+
             //SecurePassword = new NetworkCredential("",FSC_Settings.Default.Password).SecurePassword;
 
             //if (Login != null && SecurePassword != null)
@@ -135,8 +131,9 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             //        this.AutorizationMethod(this);
             //    }
             //}
+
             WriteLine("Создание VM для окна авторизации завершено.");
-            App.Log.Trace("Тест");
+           //App.Log.Trace("Тест");
             
         }
 

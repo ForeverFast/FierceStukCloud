@@ -1,40 +1,43 @@
-﻿using FierceStukCloud_NetStandardLib.Models;
-using FierceStukCloud_NetStandardLib.Models.AbstractModels;
-using FierceStukCloud_NetStandardLib.Models.MusicContainers;
-using FierceStukCloud_NetCoreLib.Services;
+﻿using Egor92.MvvmNavigation;
+using Egor92.MvvmNavigation.Abstractions;
+using FierceStukCloud.Core.MusicPlayerModels;
+using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
+using FierceStukCloud.Core.Services;
+using FierceStukCloud.Mvvm.Commands;
+using FierceStukCloud.Pс.Services;
+using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using FierceStukCloud_NetCoreLib.ViewModels;
 using FierceStukCloud_PC.MVVM.Models;
+using FierceStukCloud_PC.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using static FierceStukCloud_NetCoreLib.Services.DialogService;
-using System.Threading.Tasks;
-using System.Threading;
-
-using FierceStukCloud_NetCoreLib.Services.ImageAsyncS;
-using System.ComponentModel;
-using System.IO;
-using FierceStukCloud_NetStandardLib;
-using FierceStukCloud_NetStandardLib.Extension;
 
 namespace FierceStukCloud_PC.MVVM.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
-
         private MainWindowM model { get; }
-        private Dispatcher Dispatcher { get; }
+        private readonly Dispatcher _dispatcher;
+      
+        private readonly IDialogService _dialogService;
+
+        public string Title { get; set; }
+
+        public ITest test { get; set; }
+
 
         #region Управление плеером
 
 
-        #region Отображение информации о текущем треке
+        #region Свойства - Отображение информации о текущем треке
 
         #region Поля
         private BitmapImage _songBitmapImage;
@@ -47,8 +50,6 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         private double _songTimeLineForSlider;
 
         private double _songVolumeForSlider;
-
-        private int _selectedSongOnLB;
 
         private string _selectedStyle;
         #endregion
@@ -74,40 +75,24 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
         public double SongVolumeForSlider {  get => _songVolumeForSlider; set {  model.MP.Volume = value; SetProperty(ref _songVolumeForSlider, value); } }
 
 
-        public int SelectedSongOnLB { get => _selectedSongOnLB; set => SetProperty(ref _selectedSongOnLB, value); }
-
-  
         public string SelectedStyle{ get => _selectedStyle; set => SetProperty(ref _selectedStyle, value); }
-       
-        #endregion
-
-
-        #region Кнопки управления плеера
-
-        public RelayCommand PrevSongCommand { get; set; }
-        private void PrevSongExecute(object parameter) => model.PrevSong();
-        public RelayCommand PlayStateSongCommand { get; set; }
-        private void PlayStateSongExecute(object parameter)
-        {
-            if (model.IsPlaying == true)
-                model.Pause();
-            else
-                model.Play();
-        }
-        public RelayCommand NextSongCommand { get; set; }
-        private void NextSongExecute(object parameter) => model.NextSong();
 
         #endregion
 
 
-        #region Свойства
+        #region Свойства - Коллекции/выбранные элементы списков
 
+        #region Поля
+        private IMusicContainer _selectedMusicContainer;
+        private ImageAsync<Song> _selectedSong;
+        #endregion
+
+        public ObservableCollection<Album> Albums { get; set; }
+        public ObservableCollection<LocalFolder> LocalFolders { get; set; }
+        public ObservableCollection<PlayList> PlayLists { get; set; }    
         public ImageAsyncCollection<ImageAsync<Song>> Songs { get; set; }
 
-        private MusicContainer _selectedMusicContainer;
-        private ImageAsync<Song> _selectedSong;
-
-        public MusicContainer SelectedMusicContainer
+        public IMusicContainer SelectedMusicContainer
         { 
             get => _selectedMusicContainer;
             set
@@ -115,16 +100,19 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 SetProperty(ref _selectedMusicContainer, value);
                 Songs.Clear();
                 if (value != null)
+                {
+                    model.DisplayedMusicContainer = value;
+                    
                     foreach (var item in value.Songs)
-                        Songs.Add(new ImageAsync<Song>
-                            (
-                                Dispatcher,
-                                item.LocalUrl,
-                                item
-                            ));
+                    {
+                        if (item == model.CurrentSong)
+                            Songs.Add(SelectedSong);
+                        else
+                            Songs.Add(new ImageAsync<Song>(item.LocalUrl, item));
+                    }
+                }
             }
         }
-
         public ImageAsync<Song> SelectedSong
         {
             get => _selectedSong;
@@ -132,14 +120,37 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             {
                 if (value != null)
                 {
-                    value.Content.CurrentMusicContainer = SelectedMusicContainer != null ?
-                                                          SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
+                    value.Content.CurrentMusicContainer = SelectedMusicContainer;// != null ?
+                                                          //SelectedMusicContainer : new LocalFolder() { Songs = GetLocalFilesAsMC() };
 
                     model.SetCurrentSong(value.Content);
                     SetProperty(ref _selectedSong, value);
                 }
             }
         }
+        //public BaseMusicObject SelectedBMO
+        //{
+        //    get => _selectedBMO;
+        //    set
+        //    {
+        //        if (value is Song)
+        //        {
+        //            _selectedBMO = value;
+        //            SelectedSong = new ImageAsync<Song>(
+        //                _dispatcher,
+        //                new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"),
+        //                value as Song);
+        //        }
+        //        else
+        //        {
+        //            _selectedBMO = value;
+        //            SelectedMusicContainer = value as MusicContainer;
+        //        }
+        //    }
+        //}
+
+
+        // private List<Song> GetLocalFilesAsMC() => (from temp in LocalFolder where temp is Song select temp) as List<Song>;
 
 
         #endregion
@@ -147,53 +158,49 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
         #region Команды - Локальные папки/песни
 
-        public RelayCommand OpenOnDiskCommand { get; private set; }
+        public ICommand OpenOnDiskCommand { get; private set; }
 
-        public RelayCommand AddLocalFolderFromPCCommand { get; private set; }
-        public RelayCommand AddLocalSongFromPCCommand { get; private set; }
+        public ICommand AddLocalFolderFromPcCommand { get; private set; }
+        public ICommand AddLocalSongFromPCCommand { get; private set; }
 
-        public RelayCommand DeleteFromAppCommand { get; private set; }
+        public ICommand DeleteFromAppCommand { get; private set; }
 
         /// <summary>Метод открытия папки на диске</summary>
         public void OpenFolderOnDiskExecute(object parameter)
-        {
-            if (SelectedBMO is LocalFolder)
-            {
-                ShowFolder((SelectedBMO as LocalFolder).LocalURL);
-            }
-            else
-            {
-                ShowFolder((SelectedBMO as Song).LocalUrl);
-            }
-        }
+            => _dialogService.ShowFolder(parameter.ToString());
+       
+        private async Task AddLocalFolderFromPcExecute(object parameter)
+            => LocalFolders.Add(await model.AddLocalFolderFromPC(_dialogService.FolderBrowserDialog()));    
+       
+        private async Task AddSongFromPcExecute(object parameter)
+            => LocalFolders.Add(await model.AddLocalFolderFromPC(_dialogService.FileBrowserDialog()));
+        //var path = ;
+        //LocalFolders.Add(await Task.Run(() => model.AddLocalSongFromPC(path)));
+    
 
-        private async void AddLocalFolderFromPCExecute(object parameter)
-        {
-            var path = FolderBrowserDialog();
-            LocalFiles.Add(await Task.Run(() => model.AddLocalFolderFromPC(path)));
-        }
-
-        private async void AddLocalSongFromPCExecute(object parameter)
-        {
-            var path = FileBrowserDialog();
-            LocalFiles.Add(await Task.Run(() => model.AddLocalSongFromPC(path)));
-        }
-        private async void DeleteFromAppExecute(object parameter)
+        private async Task RemoveFromAppExecute(object parameter)
         {
             model.Stop();
-            if (SelectedBMO is LocalFolder)
-                LocalFiles.Remove(await Task.Run(() => model.DeleteLocalFolderFromPC(SelectedMusicContainer.ToLF())));
-            else
-                LocalFiles.Remove(await Task.Run(() => model.DeleteLocalSongFromPC(SelectedSong.Content)));        
-        }
+            //if (SelectedBMO is LocalFolder)
+            //{
+            //    if (await model.RemoveLocalFolderFromPC(SelectedMusicContainer.ToLF()) == true)
+            //    {
+            //        LocalFolders.Remove(SelectedMusicContainer.ToLF());
+            //    }
+            //}
+            //else
+            //{
+            //    //LocalFiles.Remove(await Task.Run(() => model.DeleteLocalSongFromPC(SelectedSong.Content)));
 
+            //}
+        }
 
 
         #region Выключение звука при перетаскивании ползунка слайдера таймлайна.
 
-        public RelayCommand SongPosChangedStartCommand { get; private set; }
+        public ICommand SongPosChangedStartCommand { get; private set; }
 
-        public RelayCommand SongPosChangedEndedCommand { get; private set; }
+        public ICommand SongPosChangedEndedCommand { get; private set; }
 
         private bool PosChanges;
 
@@ -206,53 +213,61 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             PosChanges = false;        
         }
 
-       
-      
-
         #endregion
 
 
         #endregion
 
 
-        #region ListBox Локальных файлов
+        #region Команды - Управления плеера
 
-        public ObservableCollection<BaseMusicObject> LocalFiles { get; set; }
-             = new ObservableCollection<BaseMusicObject>();
+        public ICommand PrevSongCommand { get; set; }
+        public ICommand PlayStateSongCommand { get; set; }
+        public ICommand NextSongCommand { get; set; }
 
+        private void PrevSongExecute(object parameter) => model.PrevSong();
 
-        private BaseMusicObject _selectedBMO;
-
-        public BaseMusicObject SelectedBMO
+        private void PlayStateSongExecute(object parameter)
         {
-            get => _selectedBMO;
-            set
-            {
-                if (value is Song)
-                {
-                    _selectedBMO = value;
-                    SelectedSong = new ImageAsync<Song>(
-                        Dispatcher,
-                        new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"),
-                        value as Song);
-                }
-                else
-                {
-                    _selectedBMO = value;
-                    SelectedMusicContainer = value as MusicContainer;
-                }
-            }
+            if (model.IsPlaying == true)
+                model.Pause();
+            else
+                model.Play();
         }
 
-        private List<Song> GetLocalFilesAsMC() => (from temp in LocalFiles where temp is Song select temp) as List<Song>;
-        
+        private void NextSongExecute(object parameter) => model.NextSong();
 
         #endregion
+
+
+        #region Команды - Навигациия
+
+        //public ICommand NavigateToHomePageCommand { get; private set; }
+        //public ICommand NavigateToReviewPageCommand { get; private set; }
+        //public ICommand NavigateToProfilePageCommand { get; private set; }
+
+        public ICommand NavigationToCommand { get; private set; }
+        public ICommand NavigationBackCommand { get; private set; }
+        public ICommand NavigationForwardCommand { get; private set; }
+
+        //public void NavigationToExecute(object parameter)
+        //    => _navigationManager.Navigate(parameter.ToString(),NavigateType.Default);
+
+        //public void NavigationBackExecute(object parameter)
+        //    => _navigationManager.GoBack();
+
+        //public void NavigationForwardExecute(object parameter)
+        //    => _navigationManager.GoForward();
+
+        #endregion
+
 
         #endregion
 
 
         #region Обработка событий
+
+
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -261,6 +276,7 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                 switch (e.PropertyName)
                 {
                     case nameof(model.MP_MediaOpened):
+
                         SelectedStyle = "PauseButton";
 
                         SongTime = model.MP.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
@@ -270,6 +286,11 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
                         SongName = model.CurrentSong.Title;
                         SongAuthor = model.CurrentSong.Author;
                         SongBitmapImage = model.CurrentImage;
+
+                        SelectedSong.Content.IsSelected = false;
+                        SelectedSong = Songs.FirstOrDefault(x => x.Content == model.CurrentSong);
+                        SelectedSong.Content.IsSelected = true;
+
                         break;
 
                     case nameof(model.Timer_Tick):
@@ -308,13 +329,19 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             try
             {
                 InitiailizeCommands();
+                _dialogService = new DialogService();
+                test = new Test();
+                test.str1 = "kek";
+
 
                 model = new MainWindowM();
                 model.PropertyChanged += Model_PropertyChanged;
 
-                LocalFiles = new ObservableCollection<BaseMusicObject>(model.GetListLocalFiles());
+                Albums = model.Albums;
+                LocalFolders = model.LocalFolders;
+                PlayLists = model.PlayLists;
 
-                //SongBitmapImage = model.CurrentImage;
+                //SongBitmapImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
 
                 model.MP.Volume = 0.15;
                 SongVolumeForSlider = 0.15;
@@ -327,28 +354,17 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             }
         }
 
-        public MainWindowVM(Dispatcher dispatcher) : this()
-        {
-            Dispatcher = dispatcher;
+        public MainWindowVM(INavigationManager navigationManager) : this()
+        {          
+            //_navigationManager = navigationManager;
 
-            //try
-            //{
-
-            //    Songs.Add(new ImageAsync<Song>());
-            //}
-            //catch (Exception ex)
-            //{
-            //    App.Log.Error(ex, "Комментарий к ошибке");
-            //}
-
-            Songs = new ImageAsyncCollection<ImageAsync<Song>>
-            (
-                Dispatcher,
-                new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"))
-            );
+            //Songs = new ImageAsyncCollection<ImageAsync<Song>>
+            //(
+            //    _dispatcher,
+            //    new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Core;component/Images/fsc_icon.png"))
+            //);
            
         }
-
 
         /// <summary>
         /// Инициализация команд
@@ -359,10 +375,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
 
             OpenOnDiskCommand = new RelayCommand(OpenFolderOnDiskExecute, null);
 
-            AddLocalFolderFromPCCommand = new RelayCommand(AddLocalFolderFromPCExecute, null);
-            AddLocalSongFromPCCommand = new RelayCommand(AddLocalSongFromPCExecute, null);
+            AddLocalFolderFromPcCommand = new AsyncRelayCommand(AddLocalFolderFromPcExecute, (ex) => _dialogService.ShowMessage(ex.Message));
+            AddLocalSongFromPCCommand = new AsyncRelayCommand(AddSongFromPcExecute, null);
 
-            DeleteFromAppCommand = new RelayCommand(DeleteFromAppExecute, null);
+            DeleteFromAppCommand = new AsyncRelayCommand(RemoveFromAppExecute, null);
 
             SongPosChangedStartCommand = new RelayCommand(SongPosChangedStartExecute, null);
             SongPosChangedEndedCommand = new RelayCommand(SongPosChangedEndedExecute, null);
@@ -370,6 +386,10 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             PrevSongCommand = new RelayCommand(PrevSongExecute, null);
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute, null);
             NextSongCommand = new RelayCommand(NextSongExecute, null);
+
+            //NavigationToCommand = new RelayCommand(NavigationToExecute, (o) => _navigationManager.CanNavigate(o.ToString()));
+            //NavigationBackCommand = new RelayCommand(NavigationBackExecute, (o) => _navigationManager.CanGoBack());
+            //NavigationForwardCommand = new RelayCommand(NavigationForwardExecute, (o) => _navigationManager.CanGoForward());
         }
 
         public override void CloseWindowMethod(object parameter)
@@ -379,6 +399,16 @@ namespace FierceStukCloud_PC.MVVM.ViewModels
             base.CloseWindowMethod(parameter);
         }
 
+        
+
         #endregion
     }
 }
+
+/*
+        //NavigationToExecute("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek"});
+            //var values = (object[])parameter;
+            //Messenger.Default.Send<NavigateArgs>(new NavigateArgs("MVVM/Views/TestView/Page1.xaml", new TestVM() { test = "kek" }, NavigateType.NavigateTo));
+            //if(_navigationManager.CanNavigate("test1"))
+            //_navigationManager.Navigate<Page1>(new TestVM() { test = "kek" });
+ */

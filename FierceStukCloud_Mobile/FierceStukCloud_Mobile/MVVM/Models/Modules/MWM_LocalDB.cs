@@ -44,7 +44,7 @@ namespace FierceStukCloud_Mobile.MVVM.Models.Modules
                     {
                         temp.Add(new Song()
                         {
-                            ID = Convert.ToInt32(SQL["ID"]),
+                            Id = Convert.ToInt32(SQL["ID"]),
                             LocalID = Convert.ToInt32(SQL["LocalID"]),
                             Author = SQL["Author"].ToString(),
                             Title = SQL["Title"].ToString(),

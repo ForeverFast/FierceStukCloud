@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib"
+        xmlns:con="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
         mc:Ignorable="d"
         Title="FierceStukCloud" 
         
@@ -22,9 +22,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/ButtonStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBoxStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
             
             <con:StrLenghtToVisibilityConverter x:Key="StrLenghtToVisibility"/>
@@ -68,12 +66,13 @@
             <Button x:Name="MinimizeButton" Grid.Column="2"
                     
                     Command="{Binding MinimizedWindowCommand}"
-                    Style="{StaticResource MinimazeButton}"/>
-
+                    />
+            <!--Style="{StaticResource MinimazeButton}" -->
             <Button x:Name="CloseWindowButton" Grid.Column="3"
                     
                     Command="{Binding CloseWindowCommand}"
-                    Style="{StaticResource CloseWindowButton}"/>
+                    />
+            <!--Style="{StaticResource CloseWindowButton}"-->
 
         </Grid>
 
@@ -98,14 +97,15 @@
                 <Grid>
                     <TextBlock x:Name="loginPlace"
                                Text="Логин" 
-                               Style="{StaticResource TBlock_LandP}" />
-                              
+                                />
+                    <!--Style="{StaticResource TBlock_LandP}"-->
                     <TextBox x:Name="loginTextBox"
                              GotFocus="loginTextBox_GotFocus"
                              LostFocus="loginBox_TextChanged"
                              TextChanged="loginBox_TextChanged"
                              Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource TBox_Login}"/>
+                             />
+                    <!--Style="{StaticResource TBox_Login}"-->
                     <x:Code>
                         <![CDATA[
                             private void loginBox_TextChanged(object sender, RoutedEventArgs e)
@@ -131,14 +131,16 @@
                     <TextBlock x:Name="passwordPlace"
                                Text="Пароль"
  
-                               Style="{StaticResource TBlock_LandP}">
+                               >
+                        <!--Style="{StaticResource TBlock_LandP}"-->
                     </TextBlock>
 
                     <PasswordBox x:Name="passwordBox"
                                  GotFocus="passwordBox_GotFocus"
                                  LostFocus="passwordBox_PasswordChanged"
                                  PasswordChanged="passwordBox_PasswordChanged"
-                                 Style="{StaticResource TBox_Password}"/>
+                                 />
+                    <!--Style="{StaticResource TBox_Password}"-->
                     <x:Code>
                         <![CDATA[
                             private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)

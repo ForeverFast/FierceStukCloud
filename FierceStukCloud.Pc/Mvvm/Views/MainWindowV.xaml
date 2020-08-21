@@ -1,0 +1,602 @@
+﻿<Window x:Class="FierceStukCloud.Pc.Mvvm.Views.MainWindowV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:converter="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views"
+        xmlns:vm="clr-namespace:FierceStukCloud.Pc.Mvvm.ViewModels"
+        xmlns:scroll="clr-namespace:SoftwareArchitects.Windows.Controls;assembly=SoftwareArchitects.Windows.Controls.ScrollSynchronizer"
+        mc:Ignorable="d"
+        Title="FierceStukCloud"
+        x:Name="MainWindow"
+        Height="800" Width="1500"
+        MinHeight="600" MinWidth="800" WindowStyle="SingleBorderWindow">
+
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="35"
+                                  CornerRadius="0"
+                                  
+                                  GlassFrameThickness="0"
+                                  NonClientFrameEdges="None"
+                                  ResizeBorderThickness="3"
+                                  UseAeroCaptionButtons="True">
+
+                    </WindowChrome>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border BorderThickness="0,0,0,0">
+                            <ContentPresenter x:Name="CP" Content="{TemplateBinding Content}" Grid.Row="1"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            
+                            <Trigger Property="WindowState" Value="Normal">
+                                <Setter Property="Margin" TargetName="CP" Value="0"/>
+                               
+                            </Trigger>
+                            <Trigger Property="WindowState" Value="Maximized">
+                                <Setter Property="Margin" TargetName="CP" Value="8,0,0,0"/>
+                                
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Style>
+
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
+            <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!--<Window.DataContext>
+        <vm:MainWindowVM/>
+    </Window.DataContext>-->
+
+    <Grid Background="{StaticResource DimColor}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="{StaticResource GrayLVL4}">
+
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{StaticResource GrayLVL4WithLowOpacity}">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="NavigationBack"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
+                                                    Command="{Binding NavigationBackCommand}"
+                                                    Style="{StaticResource NavigationBack}"/>
+
+                    <Button x:Name="NavigationForward"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding NavigationForwardCommand}"
+                                                    Style="{StaticResource NavigationForward}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2" Background="{StaticResource GrayLVL4WithLowOpacity}">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="Minimize"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding MinimizedWindowCommand}"
+                                                    Style="{StaticResource MinimizeButton2}"/>
+
+                    <Button x:Name="Resize"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding ResizeWindowCommand}"
+                                                    Style="{StaticResource ResizeButton2}"/>
+
+                    <Button x:Name="Close"
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
+                                                    Command="{Binding CloseWindowCommand}"
+                                                    Style="{StaticResource CloseButton2}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="MainPages" Grid.Row="0" Background="Aqua">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <RadioButton Grid.Row="0" Command="{Binding NavigationToCommand}" CommandParameter="home"
+                             Style="{StaticResource MainPagesRB}">
+                    <RadioButton.Resources>
+                        <sys:String x:Key="CustomText">Главная</sys:String>
+                        <md:PackIconKind x:Key="KindType">Home</md:PackIconKind>
+                    </RadioButton.Resources>
+                </RadioButton>
+
+                <RadioButton Grid.Row="1" Command="{Binding NavigationToCommand}" CommandParameter="review"
+                             Style="{StaticResource MainPagesRB}">
+                    <RadioButton.Resources>
+                        <sys:String x:Key="CustomText">Обзор</sys:String>
+                        <md:PackIconKind x:Key="KindType">apps</md:PackIconKind>
+                    </RadioButton.Resources>
+                </RadioButton>
+
+                <RadioButton Grid.Row="2" Command="{Binding NavigationToCommand}" CommandParameter="profile"
+                             Style="{StaticResource MainPagesRB}">
+                    <RadioButton.Resources>
+                        <sys:String x:Key="CustomText">Аккаунт</sys:String>
+                        <md:PackIconKind x:Key="KindType">Account</md:PackIconKind>
+                    </RadioButton.Resources>
+                </RadioButton>
+
+            </Grid>
+
+            <ScrollViewer Style="{StaticResource DefaultScrollViewer}" Grid.Row="1"
+                          ScrollViewer.CanContentScroll="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid x:Name="MediaLibGrid" Grid.Row="0"
+                          Margin="0,10,0,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="33"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="МОЯ МЕДИАТЕКА"
+                                   Foreground="{StaticResource StandartLightColor}"
+                                   FontSize="13"
+                                   FontFamily="Aharoni"
+                           
+                                   Margin="25,0,0,0"
+                                   VerticalAlignment="Center"/>
+
+                        <RadioButton Grid.Row="1"
+                                     Style="{StaticResource MediaLibPagesRB}">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Любимые треки</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
+
+                        <RadioButton Grid.Row="2"
+                                     Style="{StaticResource MediaLibPagesRB}">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Альбомы</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
+
+                        <RadioButton Grid.Row="3"
+                                     Style="{StaticResource MediaLibPagesRB}">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Исполнители</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
+
+                        <RadioButton Grid.Row="4"
+                                     Style="{StaticResource MediaLibPagesRB}">
+                            <RadioButton.Resources>
+                                <sys:String x:Key="CustomText">Локальные файлы</sys:String>
+                            </RadioButton.Resources>
+                        </RadioButton>
+
+                    </Grid>
+
+                    <Grid x:Name="PlayListsGrid" Grid.Row="2" VerticalAlignment="Stretch">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="ПЛЕЙЛИСТЫ"
+                                   Foreground="{StaticResource StandartLightColor}"
+                                   FontSize="13"
+                                   FontFamily="Aharoni"
+                          
+                                   Margin="25,0,0,0"
+                                   VerticalAlignment="Center"/>
+
+                        <ListBox  Grid.Row="1" x:Name="empListBox"                                                    
+                                  SelectedValue="{Binding SelectedMusicContainer, Mode=TwoWay,
+                                                          UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding Path=PlayLists}"
+                                  Style="{StaticResource PlayListListBox}"        
+                                  PreviewMouseWheel="empListBox_PreviewMouseWheel"/>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+            <Button Grid.Row="2"
+                    CommandTarget="{Binding ElementName=rootD}"
+                    Command="{x:Static md:DialogHost.OpenDialogCommand}"
+                    Height="60">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border BorderThickness="0,0.7,0,0"
+                                    BorderBrush="Gray"
+                                    Background="{StaticResource GrayLVL4}"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}">
+
+                            <StackPanel  Orientation="Horizontal">
+
+                                <md:PackIcon Kind="AddCircleOutline"
+                                                             Height="35" Width="35"
+                                                             Margin="20,0,0,0"
+                                                             VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0"
+                                               Text="Новый плейлист"
+                                               Foreground="{StaticResource StandartLightColor}"
+                                               FontSize="13"
+                                               FontFamily="Aharoni"
+                           
+                                               Margin="10,0,0,0"
+                                               VerticalAlignment="Center"/>
+
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </Grid>
+
+        <Grid x:Name="ContentGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+              Background="{StaticResource GrayLVL2}">
+            <Frame x:Name="FrameContent"
+                   NavigationUIVisibility="Hidden"/>
+        </Grid>
+
+        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL1}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="PG1" Grid.Column="0"
+                  Background="{StaticResource GrayLVL1}">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0">
+                    <Image Margin="15" Source="{Binding SelectedSong.Image}"/>
+                </Border>
+
+                <Grid Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="Title" Grid.Row="0"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,7"
+                               
+                               Text="{Binding SelectedSong.Content.Title}" 
+                               FontSize="15"
+                               Foreground="{StaticResource StandartLightColor2}"/>
+                    
+                    <TextBlock x:Name="Author" Grid.Row="1"
+                               VerticalAlignment="Top"
+                               
+                               Text="{Binding SelectedSong.Content.Author}" 
+                               FontSize="15"
+                               Foreground="{StaticResource StandartLightColor}" />
+                </Grid>
+
+            </Grid>
+
+            <Grid x:Name="PG2" Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="Buttons" Grid.Row="0"
+                      HorizontalAlignment="Center" 
+                      Margin="0,10,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="RandomPlayback" Grid.Column="0"/>
+                    <Button x:Name="PrevSong" Grid.Column="1"
+                            Width="30"
+                            Style="{StaticResource NextOrPrevSong}"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button x:Name="PlayAndPause" Grid.Column="2"
+                            Width="35" Height="35"
+                            Style="{StaticResource PlayButton}"
+                            Command="{Binding PlayStateSongCommand}"
+                            >
+                      
+                    </Button>
+                    <Button x:Name="NextSong" Grid.Column="3"
+                            Width="30" Height="20"
+                            Style="{StaticResource NextOrPrevSong}"/>
+                    <Button x:Name="LoopPlayback" Grid.Column="4"/>
+
+
+                </Grid>
+
+                
+                <Grid x:Name="SliderAndTimeInfo" Grid.Row="1"
+                      VerticalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5*" MinWidth="160" MaxWidth="865"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+
+                            <Setter Property="Foreground" Value="{StaticResource StandartLightColor}"/>
+                            <Setter Property="Margin" Value="0,3,0,0"/>
+
+                        </Style>
+                    </Grid.Resources>
+
+                    <TextBlock Grid.Column="0" Text="{Binding SongPos, UpdateSourceTrigger=PropertyChanged}"
+                               HorizontalAlignment="Right"/>
+
+                    <Slider Grid.Column="1" Margin="10,0,10,10" 
+                            Minimum="0"
+                            Maximum="{Binding SongTimeForSlider,UpdateSourceTrigger=PropertyChanged}"
+                            Value="{Binding SongTimeLineForSlider, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource Horizontal_Slider}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedStartCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="PreviewMouseUp">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedEndedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Slider>
+
+                    <TextBlock Grid.Column="2" Text="{Binding SongTime,UpdateSourceTrigger=PropertyChanged}"
+                               HorizontalAlignment="Left"/>
+                    
+                </Grid>
+
+                
+            </Grid>
+
+            <Grid x:Name="PG3" Grid.Column="2"
+                  Background="{StaticResource GrayLVL0}">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                
+                
+            </Grid>
+
+        </Grid>
+
+
+        <md:DialogHost Grid.Row="0" Grid.RowSpan="3" 
+                        Grid.Column="0" Grid.ColumnSpan="2"
+                        Background="Red" CloseOnClickAway="True"
+                        IsOpen="{Binding IsDialogOpen, UpdateSourceTrigger=PropertyChanged}"
+                        x:Name="rootD">
+            
+            <md:DialogHost.DialogContent>
+                <Grid Background="{StaticResource GrayLVL1}" 
+                      Height="370" Width="680">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Padding="0"
+                                   Margin="115,15,0,0"
+                                   HorizontalAlignment="Center"
+                               
+                                   Text="Создание плейлиста"
+                                   Foreground="{StaticResource StandartLightColor2}"
+                                   FontSize="19"
+                                   FontWeight="Bold"/>
+                        
+                        <Button Grid.Column="1"
+                                Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                                Style="{StaticResource CloseButton2}"/>
+                        
+                    </Grid>
+                        
+                 
+
+                    <Grid Grid.Row="1">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="255"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"
+                                Height="225"
+                                Margin="25,30,0,0"
+                                
+                                Command="{Binding SetPlayListImage}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid Background="{StaticResource GrayLVL0}">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2.5*"/>
+                                            <RowDefinition Height="1.5*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <Image x:Name="ImageD" Grid.Row="0" Grid.RowSpan="2"
+                                               Stretch="Fill"
+                                               Source="{Binding TempImageUri, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <md:PackIcon x:Name="IconD" Kind="Music" Grid.Row="0"
+                                                     Height="100"
+                                                     Width="100"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Bottom"
+                                                     HorizontalAlignment="Center"/>
+
+                                        <TextBlock x:Name="TextD" Grid.Row="1"
+                                                   Text="Выбрать картнику"
+                                                   HorizontalAlignment="Center"/>
+
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ImageD, Path=Source,
+                                                                       Converter={StaticResource StringToBoolConverter}}" Value="False">
+                                            <Setter Property="Visibility"  TargetName="IconD" Value="Hidden"/>
+                                            <Setter Property="Visibility"  TargetName="TextD" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ImageD, Path=Source,
+                                                                       Converter={StaticResource StringToBoolConverter}}" Value="True">
+                                            <Setter Property="Visibility"  TargetName="IconD" Value="Visible"/>
+                                            <Setter Property="Visibility"  TargetName="TextD" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            
+
+                        </Button>
+
+                        <Grid Grid.Column="1" Margin="20,30,25,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Grid.Row="0"
+                                   Padding="0"
+                                   VerticalAlignment="Top"
+                                   
+                                   Content="Название"
+                                   FontSize="14"
+                                   Foreground="{StaticResource StandartLightColor}"/>
+                            <TextBox x:Name="TitleName" Grid.Row="1"
+                                     Style="{x:Null}"/>
+                            <Label Grid.Row="2"
+                                   Padding="0"
+                                   Margin="0,12,0,0"
+                                   VerticalAlignment="Top"
+                                   
+                                   Content="Описание"
+                                   FontSize="14"
+                                   Foreground="{StaticResource StandartLightColor}"/>
+                            <TextBox x:Name="Description" Grid.Row="3"
+                                     Style="{x:Null}"/>
+
+
+                        </Grid>
+                        
+                        
+                    </Grid>
+
+                    <Button Grid.Row="2"
+                            Command="{Binding AddPlayListCommand}">
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ManyValueConverter}">
+                                <Binding Path="Text" ElementName="TitleName"/>
+                                <Binding Path="Text" ElementName="Description"/>
+                            </MultiBinding>
+                        </Button.CommandParameter>
+                    </Button>
+                </Grid>
+            </md:DialogHost.DialogContent>
+
+          
+
+        </md:DialogHost>
+
+
+
+    </Grid>
+</Window>

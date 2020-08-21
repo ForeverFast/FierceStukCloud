@@ -31,6 +31,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
         [Route("getrole")]
         public IActionResult GetRole()
         {
+            
             return Ok("Ваша роль: администратор");
         }
 

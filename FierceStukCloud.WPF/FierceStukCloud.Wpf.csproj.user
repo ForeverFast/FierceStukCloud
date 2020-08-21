@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Page Update="Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\AuthenticationButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\NavigationButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\PlayerButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\StandardButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Button\SystemButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ListBox\ListBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ListBox\PlayListLB.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Menu\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\RadioButton\MenuRadioButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ScrollBar\DefaultScrollBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ScrollViewer\DefaultScrollViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Slider\SliderStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Tab\TabControlStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBlock\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextBox\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

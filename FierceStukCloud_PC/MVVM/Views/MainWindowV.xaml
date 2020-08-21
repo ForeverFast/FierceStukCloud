@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:vm="clr-namespace:FierceStukCloud_PC.MVVM.ViewModels"
-        xmlns:con="clr-namespace:FierceStukCloud_NetCoreLib.Converters;assembly=FierceStukCloud_NetCoreLib" 
+        xmlns:con="clr-namespace:FierceStukCloud.Wpf.Converters;assembly=FierceStukCloud.Wpf"
         mc:Ignorable="d"
         Title="FierceStukCloud" Height="650" Width="1180" MinWidth="1024" MinHeight="650" WindowStyle="None" ResizeMode="NoResize">
-    <Window.Resources>
+    <!--<Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
@@ -34,9 +34,9 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <!--<Window.DataContext>
+    --><!--<Window.DataContext>
         <vm:MainWindowVM/>
-    </Window.DataContext>-->
+    </Window.DataContext>--><!--
 
 
     <Grid>
@@ -233,7 +233,7 @@
                                     <ScrollViewer Style="{DynamicResource styleScrollViewer}"/>
 
 
-                                    <ListBox ItemsSource="{Binding LocalFiles}"
+                                    <ListBox ItemsSource="{Binding LocalFolders}"
                                              SelectedValue="{Binding SelectedBMO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{StaticResource MainListBoxStyle}">
                                     </ListBox>
@@ -263,7 +263,9 @@
 
                 <ListBox ItemsSource="{Binding Songs}"
                          SelectedValue="{Binding SelectedSong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        
                          Style="{StaticResource SongsListBoxStyle}">
+                  
                 </ListBox>
 
 
@@ -355,14 +357,14 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                        <!--<i:Interaction.Behaviors>
+                        --><!--<i:Interaction.Behaviors>
                             <b:SliderValueChangedBehavior Command="{Binding SongPosChangedCommand}"
                                                           Value="{Binding SongTimeLineForSlider}" />
-                        </i:Interaction.Behaviors>-->
+                        </i:Interaction.Behaviors>--><!--
 
                     </Slider>
-                    <!--Thumb.DragCompleted="{Binding SongPosChangedCommand}"-->
-                    <!--Thumb.DragCompleted="{Binding }"-->
+                    --><!--Thumb.DragCompleted="{Binding SongPosChangedCommand}"-->
+                    <!--Thumb.DragCompleted="{Binding }"--><!--
 
                     <Label Grid.Column="2"
                            
@@ -423,7 +425,7 @@
             </Grid>
 
         </Grid>
-    </Grid>
+    </Grid>-->
 
 
 </Window>

@@ -1,0 +1,9 @@
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\bin\Debug\netstandard2.0\TestNetStandardLib.deps.json
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\bin\Debug\netstandard2.0\TestNetStandardLib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\bin\Debug\netstandard2.0\TestNetStandardLib.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.AssemblyInfoInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.AssemblyInfo.cs
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\TestNetStandardLib\obj\Debug\netstandard2.0\TestNetStandardLib.pdb

@@ -1,36 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
-  <ItemGroup>
-    <Page Update="Resources\ResourceDictionaries\Brushes.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\ButtonStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\LabelStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\ListBoxStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\MenuStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\ScrollBarStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\SliderStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\TabControlStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\TextBlockStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\ResourceDictionaries\TextBoxStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
 </Project>

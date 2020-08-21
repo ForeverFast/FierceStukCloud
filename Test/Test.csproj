@@ -6,15 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.5" />
     <PackageReference Include="NLog" Version="4.7.2" />
     <PackageReference Include="NLog.Config" Version="4.7.2" />
     <PackageReference Include="NLog.Zidium" Version="1.0.8" />
     <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FierceStukCloud_NetCoreLib\FierceStukCloud_NetCoreLib.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\TestNetStandardLib\TestNetStandardLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Core" Version="1.1.0.2" />
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.1" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MvvmNavigation\code\src\MvvmNavigation.Wpf\MvvmNavigation.Wpf.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
+    <ProjectReference Include="..\FierceStukCloud.WPF\FierceStukCloud.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Itenso.Windows.Controls.ListViewLayout">
+      <HintPath>bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="SoftwareArchitects.Windows.Controls.ScrollSynchronizer">
+      <HintPath>..\..\..\..\Desktop\SyncScroll\WPF\SoftwareArchitects.Windows.Controls\bin\Debug\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

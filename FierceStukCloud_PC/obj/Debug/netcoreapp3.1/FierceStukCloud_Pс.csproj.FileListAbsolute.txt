@@ -1,0 +1,11 @@
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_Pс.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\AuthenticationV.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\MainWindowV.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\Pages\HomePage.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\Pages\ProfilePage.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\Pages\ReviewPage.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\TestView\Page1.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\MVVM\Views\TestView\Test1.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_Pс_MarkupCompile.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_PC\obj\Debug\netcoreapp3.1\FierceStukCloud_Pс_MarkupCompile.lref
