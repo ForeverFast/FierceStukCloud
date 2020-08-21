@@ -56,7 +56,10 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-
+        public TimeSpan Duration
+        {
+            get => MP.NaturalDuration.TimeSpan;
+        }
 
 
         #endregion

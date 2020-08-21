@@ -31,8 +31,6 @@
                    Source="{Binding PlayList.ImageUri}"
                    Stretch="Fill"/>
 
-
-
             <Grid Grid.Column="1">
 
                 <Grid.RowDefinitions>
@@ -74,7 +72,7 @@
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}Автор: {0}  •  Треков:{1}  •  ">
                             <Binding Path="UserLogin"/>
-                            <Binding Path="Count" Source="Songs"/>
+                            <Binding Path="Songs.Count"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>

@@ -42,7 +42,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             }
         }
 
-        public bool IsPlaying { get => _musicPlayerService.IsPlaying; set => _musicPlayerService.IsPlaying = value; }
+        public bool IsPlaying
+        {
+            get => _musicPlayerService.IsPlaying;
+            set => _musicPlayerService.IsPlaying = value;
+        }
 
         #endregion
 
@@ -62,6 +66,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         private void ListenPlaylistsExecute(object parameter)
         {
+           
             SelectedSong = PlayList.Songs?.First?.Value;
         }
 
@@ -130,9 +135,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         private async Task AddSongFromDeviceExecute(object parameter)
              => await _musicPlayerService.AddSongFromDevice(_dialogService.FileBrowserDialog(), PlayList.Id);
 
-
-
-
         #endregion
 
 
@@ -158,9 +160,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                         var temp = _musicPlayerService.CurrentSong;
                         if (temp != SelectedSong)
                         {
-                            _selectedSong.IsSelected = false;
+                            if(SelectedSong != null)
+                                SelectedSong.IsSelected = false;
                             temp.IsSelected = true;
-                            SetProperty(ref _selectedSong, temp);
+                            _selectedSong = temp;
+                            OnPropertyChanged("SelectedSong");
                         }
 
                         break;
@@ -188,8 +192,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             InitiailizeCommands();
         }
 
-       
-
         public override void InitiailizeCommands()
         {
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute);
@@ -204,7 +206,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             RemoveFromPlaylistCommand = new AsyncRelayCommand(RemoveFromPlaylistExecute);
 
             AddSongFromDeviceCommand = new AsyncRelayCommand(AddSongFromDeviceExecute);
-
         }
 
         public void OnNavigatedTo(params object[] args)

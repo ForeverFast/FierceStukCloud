@@ -11,60 +11,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels
 {
     public class MainWindowVM : BaseWindowViewModel
     {
-        #region Управление плеером
-
-
-        #region Свойства - Отображение информации о текущем треке
-
-        #region Поля
-        private BitmapImage _songBitmapImage;
-        private string _songName;
-        private string _SongAuthor;
-
-        private string _songTime = "99:99";
-        private string _songPos = "00:00";
-        private double _songTimeForSlider;
-        private double _songTimeLineForSlider;
-
-        private double _songVolumeForSlider;
-
-        private string _selectedStyle;
-        #endregion
-
-        public BitmapImage SongBitmapImage { get => _songBitmapImage; set => SetProperty(ref _songBitmapImage, value); }
-
-        public string SongName { get => _songName; set => SetProperty(ref _songName, value); }
-
-        public string SongAuthor { get => _SongAuthor; set => SetProperty(ref _SongAuthor, value); }
-
-        /// <summary>Текущее время трека</summary>
-        public string SongPos { get => _songPos; set => SetProperty(ref _songPos, value); }
-
-        /// <summary>Общее время песни </summary>
-        public string SongTime { get => _songTime; set => SetProperty(ref _songTime, value); }
-
-        /// <summary>Общее время песни на слайдере </summary>
-        public double SongTimeForSlider { get => _songTimeForSlider; set => SetProperty(ref _songTimeForSlider, value); }
-
-        /// <summary>Позиция указателя на слайдере </summary>
-        public double SongTimeLineForSlider { get => _songTimeLineForSlider; set => SetProperty(ref _songTimeLineForSlider, value); }
-
-        public double SongVolumeForSlider { get => _songVolumeForSlider; set { _musicPlayerService.Volume = value; SetProperty(ref _songVolumeForSlider, value); } }
-
-
-        public string SelectedStyle { get => _selectedStyle; set => SetProperty(ref _selectedStyle, value); }
-
-        #endregion
-
-
+      
         #region Свойства - Коллекции/выбранные элементы списков
 
         #region Поля
@@ -76,26 +29,43 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
-        public ImageAsync<Song> SelectedSong
-        {
-            get => _selectedSong;
-            set
-            {
-                if (value != null)
-                {
-                    
-                    //value.Content.CurrentMusicContainer = SelectedMusicContainer;
-                    //_musicPlayerService.CurrentSong = value.Content;
-                    SetProperty(ref _selectedSong, value);
-                }
-            }
-        }
+        public ImageAsync<Song> SelectedSong { get => _selectedSong; set => SetProperty(ref _selectedSong, value); }
 
         #endregion
 
+        #region Свойства - Отображение информации о текущем треке
 
+        #region Поля
+        private string _songTime = "99:99";
+        private string _songPos = "00:00";
+        private double _songTimeForSlider;
+        private double _songTimeLineForSlider;
 
-     
+        private double _songVolumeForSlider;
+        #endregion
+
+        /// <summary>Текущее время трека</summary>
+        public string SongPos { get => _songPos; set => SetProperty(ref _songPos, value); }
+
+        /// <summary>Общее время песни </summary>
+        public string SongTime { get => _songTime; set => SetProperty(ref _songTime, value); }
+
+        /// <summary>Общее время песни на слайдере </summary>
+        public double SongTimeForSlider { get => _songTimeForSlider; set => SetProperty(ref _songTimeForSlider, value); }
+
+        /// <summary>Позиция указателя на слайдере </summary>
+        public double SongTimeLineForSlider
+        {
+            get => _songTimeLineForSlider;
+            set
+            {
+                if (PosChanges == true)
+                    SongPos = value.ToString(@"mm\:ss");
+                SetProperty(ref _songTimeLineForSlider, value);
+            }
+        }
+        public double SongVolumeForSlider { get => _songVolumeForSlider; set { _musicPlayerService.Volume = value; SetProperty(ref _songVolumeForSlider, value); } }
+
 
         #region Логика - Перетаскивание ползунка таймлайна.
 
@@ -115,7 +85,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         }
 
         #endregion
-
 
         #endregion
 
@@ -137,7 +106,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             => _navigationManager.GoForward();
 
         private void NavigationToPlayListExecute(object parameter)
-            => _navigationManager.Navigate<PlaylistPage>(new PlaylistVM(parameter as PlayList),
+            => _navigationManager.Navigate<PlaylistPage>((parameter as PlayList).Id, new PlaylistVM(parameter as PlayList),
                                                          _musicStorage.PlayLists,
                                                          _dialogService,
                                                          _musicPlayerService);
@@ -214,8 +183,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #region Обработка событий
 
-
-
         private void MusicPlayer_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.PropertyName))
@@ -232,7 +199,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                             SongTimeLineForSlider = 0;
 
                             SongTime = temp.Duration;
-                            SelectedStyle = "PauseButton";
+                            SongTimeForSlider = _musicPlayerService.Duration.TotalSeconds;
                         }
                         break;
 
@@ -248,14 +215,10 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
                     case nameof(_musicPlayerService.Play):
 
-                        SelectedStyle = "PauseButton";
-
                         break;
 
                     case nameof(_musicPlayerService.Pause):
                     case nameof(_musicPlayerService.Stop):
-
-                        SelectedStyle = "PlayButton";
 
                         break;
                 }
@@ -267,64 +230,27 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #region Конструкторы
 
-        //public MainWindowVM()
-        //{
-
-        //}
-
         public MainWindowVM(IMusicStorage musicStorage,
                             IDialogService dialogService,
                             INavigationManager navigationManager,
                             IMusicPlayerService musicPlayerService)
         {
-            try
-            {
-                InitiailizeCommands();
+            InitiailizeCommands();
 
-                _musicStorage = musicStorage;
-                _dialogService = dialogService;
-                _navigationManager = navigationManager;
-                _musicPlayerService = musicPlayerService;
-               
+            _musicStorage = musicStorage;
+            _dialogService = dialogService;
+            _navigationManager = navigationManager;
+            _musicPlayerService = musicPlayerService;
+            _musicPlayerService.PropertyChanged += MusicPlayer_PropertyChanged;
 
-                _musicPlayerService.PropertyChanged += MusicPlayer_PropertyChanged;
-            
-                //SongBitmapImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/Images/fsc_icon.png"));
 
-                SongVolumeForSlider = 0.15;
-                //SelectedStyle = "PlayButton";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            SongVolumeForSlider = 0.15;
         }
 
-        //public MainWindowVM() : this()
-        //{
-           
-
-        //    //Songs = new ImageAsyncCollection<ImageAsync<Song>>
-        //    //(
-        //    //    _dispatcher,
-        //    //    new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Core;component/Images/fsc_icon.png"))
-        //    //);
-
-        //}
-
-        /// <summary>
-        /// Инициализация команд
-        /// </summary>
+        /// <summary> Инициализация команд </summary>
         public override void InitiailizeCommands()
         {
             base.InitiailizeCommands();
-
-            //OpenOnDiskCommand = new RelayCommand(OpenFolderOnDiskExecute, null);
-
-            //AddLocalFolderFromPcCommand = new AsyncRelayCommand(AddLocalFolderFromPcExecute, (ex) => _dialogService.ShowMessage(ex.Message));
-            ////AddLocalSongFromPCCommand = new AsyncRelayCommand(AddSongFromPcExecute, (ex) => _dialogService.ShowMessage(ex.Message));
-
-            //DeleteFromAppCommand = new AsyncRelayCommand(RemoveFromAppExecute, null);
 
             SongPosChangedStartCommand = new RelayCommand(SongPosChangedStartExecute, null);
             SongPosChangedEndedCommand = new RelayCommand(SongPosChangedEndedExecute, null);
@@ -341,7 +267,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             NavigationToCommand = new RelayCommand(NavigationToExecute, (o) => _navigationManager.CanNavigate(o.ToString()));
             NavigationBackCommand = new RelayCommand(NavigationBackExecute, (o) => _navigationManager.CanGoBack());
             NavigationForwardCommand = new RelayCommand(NavigationForwardExecute, (o) => _navigationManager.CanGoForward());
-            NavigationToPlayListCommand = new RelayCommand(NavigationToPlayListExecute, null); //, 
+            NavigationToPlayListCommand = new RelayCommand(NavigationToPlayListExecute, null); 
         }
 
         public override void CloseWindowMethod(object parameter)
@@ -349,8 +275,6 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             _musicPlayerService.Dispose();
             base.CloseWindowMethod(parameter);
         }
-
-
 
         #endregion
     }
@@ -394,5 +318,13 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
 //    //}
 //}
+
+
+//OpenOnDiskCommand = new RelayCommand(OpenFolderOnDiskExecute, null);
+
+//AddLocalFolderFromPcCommand = new AsyncRelayCommand(AddLocalFolderFromPcExecute, (ex) => _dialogService.ShowMessage(ex.Message));
+////AddLocalSongFromPCCommand = new AsyncRelayCommand(AddSongFromPcExecute, (ex) => _dialogService.ShowMessage(ex.Message));
+
+//DeleteFromAppCommand = new AsyncRelayCommand(RemoveFromAppExecute, null);
 
 #endregion

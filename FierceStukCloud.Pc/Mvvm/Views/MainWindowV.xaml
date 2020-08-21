@@ -303,7 +303,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid x:Name="PG1" Grid.Column="0"
-                  Background="{StaticResource GrayLVL0}">
+                  Background="{StaticResource GrayLVL1}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
@@ -327,15 +327,14 @@
                                
                                Text="{Binding SelectedSong.Content.Title}" 
                                FontSize="15"
-                               Foreground="{StaticResource StandartLightColor2}"
-                               />
+                               Foreground="{StaticResource StandartLightColor2}"/>
+                    
                     <TextBlock x:Name="Author" Grid.Row="1"
                                VerticalAlignment="Top"
                                
                                Text="{Binding SelectedSong.Content.Author}" 
                                FontSize="15"
-                               Foreground="{StaticResource StandartLightColor}"
-                               />
+                               Foreground="{StaticResource StandartLightColor}" />
                 </Grid>
 
             </Grid>
@@ -376,6 +375,7 @@
                     <Button x:Name="PlayAndPause" Grid.Column="2"
                             Width="35" Height="35"
                             Style="{StaticResource PlayButton}"
+                            Command="{Binding PlayStateSongCommand}"
                             >
                       
                     </Button>
@@ -405,14 +405,26 @@
 
                         </Style>
                     </Grid.Resources>
-                    
-                    <TextBlock Grid.Column="0" Text="00:00"
+
+                    <TextBlock Grid.Column="0" Text="{Binding SongPos, UpdateSourceTrigger=PropertyChanged}"
                                HorizontalAlignment="Right"/>
 
                     <Slider Grid.Column="1" Margin="10,0,10,10" 
-                            Style="{StaticResource Horizontal_Slider}"/>
+                            Minimum="0"
+                            Maximum="{Binding SongTimeForSlider,UpdateSourceTrigger=PropertyChanged}"
+                            Value="{Binding SongTimeLineForSlider, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource Horizontal_Slider}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedStartCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="PreviewMouseUp">
+                                <i:InvokeCommandAction Command="{Binding SongPosChangedEndedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Slider>
 
-                    <TextBlock Grid.Column="2" Text="99:99"
+                    <TextBlock Grid.Column="2" Text="{Binding SongTime,UpdateSourceTrigger=PropertyChanged}"
                                HorizontalAlignment="Left"/>
                     
                 </Grid>
@@ -423,8 +435,15 @@
             <Grid x:Name="PG3" Grid.Column="2"
                   Background="{StaticResource GrayLVL0}">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-
+                
+                
             </Grid>
 
         </Grid>

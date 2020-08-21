@@ -26,6 +26,8 @@ namespace FierceStukCloud.Core.Services
         double Volume { get; set; }
         TimeSpan Position { get; set; }
 
+        TimeSpan Duration { get; }
+
         /// <summary>
         /// Продолжить воспроизведение
         /// </summary>
