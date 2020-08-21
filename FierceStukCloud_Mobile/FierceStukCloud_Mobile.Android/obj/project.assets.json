@@ -3222,5 +3222,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Ошибка чтения файла кэша C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud_Mobile\\FierceStukCloud_Mobile.Android\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -1,9 +1,0 @@
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.deps.json
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\bin\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.csprojAssemblyReference.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.AssemblyInfoInputs.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.AssemblyInfo.cs
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_NetStandartLib\obj\Debug\netstandard2.0\FierceStukCloud_NetStandartLib.csproj.CoreCompileInputs.cache

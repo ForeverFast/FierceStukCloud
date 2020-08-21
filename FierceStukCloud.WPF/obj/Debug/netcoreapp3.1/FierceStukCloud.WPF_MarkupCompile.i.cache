@@ -16,5 +16,5 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 2161883322305
 Styles\Brushes.xaml;Styles\Button\AuthenticationButtons.xaml;Styles\Button\NavigationButtons.xaml;Styles\Button\PlayerButtons.xaml;Styles\Button\StandardButtons.xaml;Styles\Button\SystemButtons.xaml;Styles\ListBox\ListBoxStyles.xaml;Styles\ListBox\PlayListLB.xaml;Styles\ListView\SongsListView.xaml;Styles\Menu\MenuStyles.xaml;Styles\RadioButton\MenuRadioButtons.xaml;Styles\ScrollBar\DefaultScrollBar.xaml;Styles\ScrollViewer\DefaultScrollViewer.xaml;Styles\Slider\SliderStyles.xaml;Styles\Tab\TabControlStyles.xaml;Styles\TextBlock\TextBlockStyles.xaml;Styles\TextBox\TextBoxStyles.xaml;
 
-True
+False
 
