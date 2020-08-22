@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FierceStukCloud.Core.Extension;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -15,6 +16,6 @@ namespace FierceStukCloud.Core.MusicPlayerModels.MusicContainers
         [Column("UserLogin")]
         [JsonPropertyName("userLogin")]
         public string UserLogin { get; set; }
-        public LinkedList<Song> Songs { get; set; }
+        public ObservableLinkedList<Song> Songs { get; set; }
     }
 }
