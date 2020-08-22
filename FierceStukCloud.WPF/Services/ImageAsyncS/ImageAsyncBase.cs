@@ -60,9 +60,14 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 				return;
 			object ImageUriLoad = DownloadUri = ImageUri;
 			ImageSource image = await Task.Factory.StartNew(ImageFreezeLoad, ImageUriLoad);
+			if (image == null)
+            {
+
+            }
 
 			if (ImageUriLoad.Equals(ImageUri))
 			{
+				
 				UploadedImage = image;
 				IsImageLoaded = true;
 			}
@@ -74,7 +79,7 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 		protected ImageSource ImageFreezeLoad(object uri)
 		{
 			ImageSource image = ImageLoad(uri);
-			image.Freeze();
+			image?.Freeze();
 			return image;
 		}
 

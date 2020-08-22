@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using FierceStukCloud.Core;
+using FierceStukCloud.Core.Extension;
 using FierceStukCloud.Core.MusicPlayerModels;
 using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Other;
@@ -74,7 +75,7 @@ namespace FierceStukCloud.Pc.Services
                 if (Album != null)
                 {
                     if (Album.Songs == null)
-                        Album.Songs = new LinkedList<Song>();
+                        Album.Songs = new ObservableLinkedList<Song>();
                     Album.Songs.AddLast(song);
                 }
                 else
@@ -87,7 +88,7 @@ namespace FierceStukCloud.Pc.Services
                             //Title
                             Author = song.Author,
                             UserLogin = song.UserLogin,
-                            Songs = new LinkedList<Song>()
+                            Songs = new ObservableLinkedList<Song>()
                         };
                         NewAlbum.Title = song.Album;
 
@@ -107,7 +108,7 @@ namespace FierceStukCloud.Pc.Services
                         if (NAlbum != null)
                         {
                             if (NAlbum.Songs == null)
-                                NAlbum.Songs = new LinkedList<Song>();
+                                NAlbum.Songs = new ObservableLinkedList<Song>();
                             NAlbum.Songs.AddLast(song);
                         } 
                         else
@@ -118,7 +119,7 @@ namespace FierceStukCloud.Pc.Services
                                 Title = "Неизвестный",
                                 Author = song.Author,
                                 UserLogin = song.UserLogin,
-                                Songs = new LinkedList<Song>()
+                                Songs = new ObservableLinkedList<Song>()
                             };
 
                             string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
@@ -151,7 +152,7 @@ namespace FierceStukCloud.Pc.Services
                 if (LF != null)
                 {
                     if (LF.Songs == null)
-                        LF.Songs = new LinkedList<Song>();
+                        LF.Songs = new ObservableLinkedList<Song>();
                     LF.Songs.AddLast(song);
                 }
                 else
@@ -164,7 +165,7 @@ namespace FierceStukCloud.Pc.Services
                         UserLogin = song.UserLogin,
                         OnDevice = true,
                         OnServer = false,
-                        Songs = new LinkedList<Song>()
+                        Songs = new ObservableLinkedList<Song>()
                     };
 
                     string sql = $"INSERT INTO LocalFolders (Id,  Title,  LocalUrl,  UserLogin,  OnServer,   OnDevice)" +
@@ -194,7 +195,7 @@ namespace FierceStukCloud.Pc.Services
                         if (PL != null)
                         {
                             if (PL.Songs == null)
-                                PL.Songs = new LinkedList<Song>();
+                                PL.Songs = new ObservableLinkedList<Song>();
                             PL.Songs.AddLast(song);
                         }
                     }
@@ -321,7 +322,7 @@ namespace FierceStukCloud.Pc.Services
                 {
                     Title = path.Substring(path.IndexOf('\\') + 1),
                     LocalUrl = path,
-                    Songs = new LinkedList<Song>()
+                    Songs = new ObservableLinkedList<Song>()
                 };
                 _musicStorage.LocalFolders.Add(temp);
 
@@ -376,7 +377,7 @@ namespace FierceStukCloud.Pc.Services
                         UserLogin = _user.Login,
                         OnDevice = true,
                         OnServer = false,
-                        Songs = new LinkedList<Song>()
+                        Songs = new ObservableLinkedList<Song>()
                     };
 
 
