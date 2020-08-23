@@ -1,5 +1,6 @@
 ﻿using FierceStukCloud.Core.Services;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -13,19 +14,28 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
     public partial class ImageAsync<T> : ImageAsyncBase<T>
     {
         public ImageAsync()
-        { }
+        {
+            
+        }
         public ImageAsync(object uri)
             : this()
         {
+            //ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Wpf;component/Images/fsc_icon.png"));
+            Debug.WriteLine($"Создал ImageDefault. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
             ImageUri = uri;
+            Debug.WriteLine($"Отработал Ctor с uri и дефалтом. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}" );
         }
         public ImageAsync(object uri, T content)
             : this(uri)
         {
             Content = content;
         }
+        //public ImageAsync(object uri, T content, ImageSource imageDefault)
+        //    : this(uri, content)
+        //{
+        //    ImageDefault = imageDefault;
+        //}
 
-        
 
         /// <summary>Конструктор BitmapImage.</summary>
         /// <param name="stream">Поток с источником изображения.</param>
@@ -48,6 +58,7 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 
         public override ImageSource ImageLoad(object uri)
         {
+            Debug.WriteLine($"Начало ImageLoad. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
             if (uri == null)
                 return ImageDefault;
 
@@ -74,6 +85,7 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
                 try
                 {
                     TagLib.File file_TAG = TagLib.File.Create((string)uri);
+                    //Debug.WriteLine($"Exception в ImageLoad. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
                     if (file_TAG.Tag.Pictures.Length < 1)
                         return ImageDefault;
 

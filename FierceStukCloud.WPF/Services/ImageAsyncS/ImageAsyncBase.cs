@@ -1,13 +1,12 @@
 ﻿using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
 
 namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 {
-	/// <summary>Базовый класс с ImageSource загружаемым
-	/// ассинхронно после первого требования</summary>
 	/// <summary>Базовый класс с ImageSource загружаемым
 	/// ассинхронно после первого требования</summary>
 	public abstract class ImageAsyncBase : OnPropertyChangedClass
@@ -59,11 +58,17 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 			if (ImageUri == default)
 				return;
 			object ImageUriLoad = DownloadUri = ImageUri;
+			Debug.WriteLine($"ImageLoadAsync. Перед запуском в ImageFreezeLoad. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
 			ImageSource image = await Task.Factory.StartNew(ImageFreezeLoad, ImageUriLoad);
+			//ImageSource image = await Task.Run(()=>ImageFreezeLoad(ImageUriLoad));
+			//ImageSource image = await ImageFreezeLoadAsync(ImageUriLoad);
+
 			if (image == null)
             {
-
-            }
+				UploadedImage = ImageDefault;
+				IsImageLoaded = true;
+				return;
+			}
 
 			if (ImageUriLoad.Equals(ImageUri))
 			{
@@ -78,11 +83,13 @@ namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 		/// <returns>Замороженный ImageSource с загруженным изображением</returns>
 		protected ImageSource ImageFreezeLoad(object uri)
 		{
+			Debug.WriteLine($"ImageFreezeLoad. Поток: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
 			ImageSource image = ImageLoad(uri);
-			image?.Freeze();
+			image.Freeze();
 			return image;
 		}
 
+        
 
 		/// <summary>Синхронная загрузка изображения заданого Uri</summary>
 		/// <param name="uri">Uri изображения</param>

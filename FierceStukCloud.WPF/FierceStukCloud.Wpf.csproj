@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\fsc_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Behavior\" />
     <Folder Include="Styles\Label\" />
   </ItemGroup>
@@ -25,6 +29,12 @@
     <Reference Include="SoftwareArchitects.Windows.Controls.ScrollSynchronizer">
       <HintPath>..\..\..\..\Desktop\SyncScroll\WPF\SoftwareArchitects.Windows.Controls\bin\Debug\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\fsc_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

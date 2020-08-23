@@ -27,3 +27,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netst
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Printing.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\ReachFramework.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.CoreResources.resources
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.csproj.GenerateResource.cache

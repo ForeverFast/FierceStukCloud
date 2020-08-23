@@ -60,7 +60,8 @@
 
             <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
             <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
-
+            <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter"/>
+            
         </ResourceDictionary>
     </Window.Resources>
 
@@ -95,36 +96,36 @@
             <Grid Grid.Column="1" Background="{StaticResource GrayLVL4WithLowOpacity}">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="NavigationBack"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
-                                                    Command="{Binding NavigationBackCommand}"
-                                                    Style="{StaticResource NavigationBack}"/>
+                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
+                                    Command="{Binding NavigationBackCommand}"
+                                    Style="{StaticResource NavigationBack}"/>
 
                     <Button x:Name="NavigationForward"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding NavigationForwardCommand}"
-                                                    Style="{StaticResource NavigationForward}"/>
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding NavigationForwardCommand}"
+                            Style="{StaticResource NavigationForward}"/>
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Column="2" Background="{StaticResource GrayLVL4WithLowOpacity}">
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="Minimize"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding MinimizedWindowCommand}"
-                                                    Style="{StaticResource MinimizeButton2}"/>
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding MinimizedWindowCommand}"
+                            Style="{StaticResource MinimizeButton2}"/>
 
                     <Button x:Name="Resize"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding ResizeWindowCommand}"
-                                                    Style="{StaticResource ResizeButton2}"/>
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding ResizeWindowCommand}"
+                            Style="{StaticResource ResizeButton2}"/>
 
                     <Button x:Name="Close"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True"      
-                                                    Command="{Binding CloseWindowCommand}"
-                                                    Style="{StaticResource CloseButton2}"/>
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding CloseWindowCommand}"
+                            Style="{StaticResource CloseButton2}"/>
                 </StackPanel>
             </Grid>
+            
         </Grid>
 
         <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
@@ -311,7 +312,29 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0">
-                    <Image Margin="15" Source="{Binding SelectedSong.Image}"/>
+                    <Image x:Name="SongImage" Source="{Binding SongImage, UpdateSourceTrigger=PropertyChanged}"
+                           Margin="15" Stretch="Fill">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <!--<DataTrigger Binding="{Binding ElementName=SongImage,
+                                                                   Path=Source,
+                                                                   Converter={StaticResource ObjectToBoolConverter}}" 
+                                                 Value="True">
+                                        <Setter Property="Source"
+                                                Value="/Images/fsc_icon.png"/>
+                                    </DataTrigger>-->
+                                    <!--<DataTrigger Binding="{Binding ElementName=SongImage,
+                                                                   Path=Source,
+                                                                   Converter={StaticResource StringToBoolConverter}}" 
+                                                 Value="False">
+                                        <Setter Property="Source"
+                                                Value="{Binding SelectedSong.Image}"/>
+                                    </DataTrigger>-->
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
                 </Border>
 
                 <Grid Grid.Column="1">
@@ -325,16 +348,18 @@
                                VerticalAlignment="Bottom"
                                Margin="0,0,0,7"
                                
-                               Text="{Binding SelectedSong.Content.Title}" 
+                               Text="{Binding SelectedSong.Title}" 
                                FontSize="15"
-                               Foreground="{StaticResource StandartLightColor2}"/>
+                               Foreground="{StaticResource StandartLightColor2}"
+                               ClipToBounds="True"/>
                     
                     <TextBlock x:Name="Author" Grid.Row="1"
                                VerticalAlignment="Top"
                                
-                               Text="{Binding SelectedSong.Content.Author}" 
+                               Text="{Binding SelectedSong.Author}" 
                                FontSize="15"
-                               Foreground="{StaticResource StandartLightColor}" />
+                               Foreground="{StaticResource StandartLightColor}"
+                               ClipToBounds="True"/>
                 </Grid>
 
             </Grid>

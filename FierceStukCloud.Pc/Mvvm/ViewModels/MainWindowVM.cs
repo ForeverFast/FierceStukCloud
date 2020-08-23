@@ -10,8 +10,11 @@ using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels
 {
@@ -22,14 +25,15 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #region Поля
         private IMusicContainer _selectedMusicContainer;
-        private ImageAsync<Song> _selectedSong;
+        private Song _selectedSong;
         #endregion
             
         public ObservableCollection<PlayList> PlayLists { get => _musicStorage.PlayLists; }
 
         public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
-        public ImageAsync<Song> SelectedSong { get => _selectedSong; set => SetProperty(ref _selectedSong, value); }
+        public Song SelectedSong { get => _selectedSong; set => SetProperty(ref _selectedSong, value); }
+      
 
         #endregion
 
@@ -42,6 +46,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         private double _songTimeLineForSlider;
 
         private double _songVolumeForSlider;
+
+        private BitmapImage _songImage;
         #endregion
 
         /// <summary>Текущее время трека</summary>
@@ -64,8 +70,20 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                 SetProperty(ref _songTimeLineForSlider, value);
             }
         }
+
         public double SongVolumeForSlider { get => _songVolumeForSlider; set { _musicPlayerService.Volume = value; SetProperty(ref _songVolumeForSlider, value); } }
 
+        public BitmapImage SongDefaultImage { get; set; }
+        public BitmapImage SongImage
+        {
+            get
+            {
+                if (_songImage == null)
+                    return SongDefaultImage;
+                return _songImage;
+            }
+            set => SetProperty(ref _songImage, value);
+        }
 
         #region Логика - Перетаскивание ползунка таймлайна.
 
@@ -181,7 +199,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         #endregion
 
 
-        #region Обработка событий
+        #region Cобытия
 
         private void MusicPlayer_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -192,14 +210,34 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                     case nameof(_musicPlayerService.CurrentSong):
 
                         var temp = _musicPlayerService.CurrentSong;
-                        if (temp != SelectedSong?.Content)
+                        if (temp != SelectedSong)
                         {
-                            SelectedSong = new ImageAsync<Song>(temp.LocalUrl, temp);
+                            SelectedSong = temp;
                             SongPos = "00:00";
                             SongTimeLineForSlider = 0;
 
                             SongTime = temp.Duration;
                             SongTimeForSlider = _musicPlayerService.Duration.TotalSeconds;
+                            //SelectedSong.ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Wpf;component/Images/fsc_icon.png"));
+                            try
+                            {
+                                TagLib.File file_TAG = TagLib.File.Create(temp.LocalUrl);
+                                if (file_TAG.Tag.Pictures.Length < 1)
+                                    return;
+
+                                using var stream = new MemoryStream(file_TAG.Tag.Pictures[0].Data.Data);
+
+                                var bitmapImage = new BitmapImage();
+                                bitmapImage.BeginInit();
+                                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmapImage.StreamSource = stream;
+                                bitmapImage.EndInit();
+                                SongImage = bitmapImage;
+                            }
+                            catch(Exception)
+                            {
+                                SongImage = null;
+                            }
                         }
                         break;
 
@@ -245,6 +283,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
 
             SongVolumeForSlider = 0.15;
+            SongDefaultImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Pc;component/Images/fsc_icon.png"));
+            
         }
 
         /// <summary> Инициализация команд </summary>

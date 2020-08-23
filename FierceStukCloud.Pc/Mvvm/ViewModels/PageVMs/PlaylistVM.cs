@@ -149,6 +149,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         #endregion
 
+        #region События
+
         private void _musicPlayer_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.PropertyName))
@@ -183,6 +185,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 }
             }
         }
+
+        #endregion
 
         #region Конструкторы
 
