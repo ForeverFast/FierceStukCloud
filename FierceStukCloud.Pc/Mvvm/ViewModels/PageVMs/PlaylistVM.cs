@@ -1,10 +1,8 @@
 ﻿using Egor92.MvvmNavigation.Abstractions;
-using FierceStukCloud.Core.MusicPlayerModels;
-using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
+using FierceStukCloud.Core;
 using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions;
 using FierceStukCloud.Pc.Services;
-using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;

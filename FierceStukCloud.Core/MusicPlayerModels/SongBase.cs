@@ -1,13 +1,10 @@
 ﻿using FierceStukCloud.Abstractions;
 using FierceStukCloud.Core.Services;
-using FierceStukCloud.Mvvm;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 using System.Text.Json.Serialization;
 
-namespace FierceStukCloud.Core.MusicPlayerModels
+namespace FierceStukCloud.Core
 {
     public abstract class SongBase : OnPropertyChangedClass, IBaseObject, IStatusExistence
     {

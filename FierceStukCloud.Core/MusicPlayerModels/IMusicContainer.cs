@@ -1,8 +1,7 @@
 ﻿using FierceStukCloud.Abstractions;
 using FierceStukCloud.Core.Extension;
-using System.Collections.Generic;
 
-namespace FierceStukCloud.Core.MusicPlayerModels
+namespace FierceStukCloud.Core
 {
     public interface IMusicContainer : IBaseObject
     {

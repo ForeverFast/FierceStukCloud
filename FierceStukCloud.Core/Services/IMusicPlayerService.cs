@@ -1,6 +1,4 @@
-﻿using FierceStukCloud.Core.MusicPlayerModels;
-using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 

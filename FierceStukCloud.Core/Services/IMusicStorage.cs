@@ -1,6 +1,4 @@
-﻿using FierceStukCloud.Core.MusicPlayerModels;
-using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace FierceStukCloud.Core.Services
 {

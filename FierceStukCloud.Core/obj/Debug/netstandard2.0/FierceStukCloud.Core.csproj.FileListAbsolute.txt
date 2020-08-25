@@ -9,7 +9,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netst
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.csproj.CopyComplete
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\obj\Debug\netstandard2.0\FierceStukCloud.Core.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\FierceStukCloud.Mvvm.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\PresentationCore.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\WindowsBase.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Xaml.dll
@@ -22,7 +21,6 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netst
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Security.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Windows.Forms.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\FierceStukCloud.Mvvm.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\PresentationFramework.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\System.Printing.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Core\bin\Debug\netstandard2.0\ReachFramework.dll

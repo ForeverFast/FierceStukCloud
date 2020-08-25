@@ -47,12 +47,10 @@ C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtime
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.1\SQLite.Interop.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Abstractions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.dll
-C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Mvvm.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\TestNetStandardLib.dll
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\TestNetStandardLib.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Abstractions.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\Test\bin\Debug\netcoreapp3.1\FierceStukCloud.Mvvm.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.csprojAssemblyReference.cache
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.AssemblyInfoInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\Test\obj\Debug\netcoreapp3.1\Test.AssemblyInfo.cs

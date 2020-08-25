@@ -1,5 +1,4 @@
-﻿using FierceStukCloud.Core.Services;
-using FierceStukCloud.Mvvm;
+﻿using FierceStukCloud.Core;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -7,9 +6,9 @@ using System.Windows.Media;
 
 namespace FierceStukCloud.Wpf.Services.ImageAsyncS
 {
-	/// <summary>Базовый класс с ImageSource загружаемым
-	/// ассинхронно после первого требования</summary>
-	public abstract class ImageAsyncBase : OnPropertyChangedClass
+    /// <summary>Базовый класс с ImageSource загружаемым
+    /// ассинхронно после первого требования</summary>
+    public abstract class ImageAsyncBase : OnPropertyChangedClass
 	{
 		#region Поля для хранения значений свойств
 		private ImageSource _imageDefault;

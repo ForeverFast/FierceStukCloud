@@ -1,10 +1,7 @@
-﻿using FierceStukCloud.Core.MusicPlayerModels;
+﻿using FierceStukCloud.Core;
 using FierceStukCloud.Core.Services;
-using FierceStukCloud.Mvvm;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using static FierceStukCloud.Core.CustomEnums;
 

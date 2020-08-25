@@ -1361,7 +1361,6 @@
       "FierceStukCloud.Core/1.0.0": {
         "dependencies": {
           "FierceStukCloud.Abstractions": "1.0.0",
-          "FierceStukCloud.Mvvm": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "System.ComponentModel.Annotations": "4.7.0",
           "System.Text.Json": "4.7.2",
@@ -1370,11 +1369,6 @@
         },
         "runtime": {
           "FierceStukCloud.Core.dll": {}
-        }
-      },
-      "FierceStukCloud.Mvvm/1.0.0": {
-        "runtime": {
-          "FierceStukCloud.Mvvm.dll": {}
         }
       },
       "TestNetStandardLib/1.0.0": {
@@ -2343,11 +2337,6 @@
       "sha512": ""
     },
     "FierceStukCloud.Core/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FierceStukCloud.Mvvm/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

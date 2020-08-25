@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FierceStukCloud.Core.MusicPlayerModels
+namespace FierceStukCloud.Core
 {
     [Table("Songs")]
     public class Song : SongBase

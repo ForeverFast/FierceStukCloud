@@ -1,8 +1,6 @@
 ﻿using Dapper;
 using FierceStukCloud.Core;
 using FierceStukCloud.Core.Extension;
-using FierceStukCloud.Core.MusicPlayerModels;
-using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
 using FierceStukCloud.Core.Other;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Wpf.Services;

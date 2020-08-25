@@ -513,8 +513,6 @@
                         
                     </Grid>
                         
-                 
-
                     <Grid Grid.Row="1">
 
                         <Grid.ColumnDefinitions>
@@ -588,6 +586,7 @@
                                    Foreground="{StaticResource StandartLightColor}"/>
                             <TextBox x:Name="TitleName" Grid.Row="1"
                                      Style="{x:Null}"/>
+                            
                             <Label Grid.Row="2"
                                    Padding="0"
                                    Margin="0,12,0,0"
@@ -596,6 +595,7 @@
                                    Content="Описание"
                                    FontSize="14"
                                    Foreground="{StaticResource StandartLightColor}"/>
+                            
                             <TextBox x:Name="Description" Grid.Row="3"
                                      Style="{x:Null}"/>
 

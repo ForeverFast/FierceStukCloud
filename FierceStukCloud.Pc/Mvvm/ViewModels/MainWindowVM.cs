@@ -1,19 +1,16 @@
 ﻿using Egor92.MvvmNavigation.Abstractions;
-using FierceStukCloud.Core.MusicPlayerModels;
-using FierceStukCloud.Core.MusicPlayerModels.MusicContainers;
+using FierceStukCloud.Core;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions;
 using FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs;
 using FierceStukCloud.Pc.Mvvm.Views.Pages;
-using FierceStukCloud.Wpf.Services.ImageAsyncS;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels
@@ -218,7 +215,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
                             SongTime = temp.Duration;
                             SongTimeForSlider = _musicPlayerService.Duration.TotalSeconds;
-                            //SelectedSong.ImageDefault = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Wpf;component/Images/fsc_icon.png"));
+
                             try
                             {
                                 TagLib.File file_TAG = TagLib.File.Create(temp.LocalUrl);

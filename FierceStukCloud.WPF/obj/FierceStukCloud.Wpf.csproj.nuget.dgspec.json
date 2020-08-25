@@ -100,9 +100,6 @@
             "projectReferences": {
               "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj": {
                 "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj"
-              },
-              "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj": {
-                "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj"
               }
             }
           }

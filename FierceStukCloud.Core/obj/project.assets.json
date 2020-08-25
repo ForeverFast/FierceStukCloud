@@ -400,16 +400,6 @@
         "runtime": {
           "bin/placeholder/FierceStukCloud.Abstractions.dll": {}
         }
-      },
-      "FierceStukCloud.Mvvm/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
-        }
       }
     }
   },
@@ -1432,17 +1422,11 @@
       "type": "project",
       "path": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj",
       "msbuildProject": "../FierceStukCloud.Abstractions/FierceStukCloud.Abstractions.csproj"
-    },
-    "FierceStukCloud.Mvvm/1.0.0": {
-      "type": "project",
-      "path": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj",
-      "msbuildProject": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "FierceStukCloud.Abstractions >= 1.0.0",
-      "FierceStukCloud.Mvvm >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.1.5",
       "NETStandard.Library >= 2.0.3",
       "System.ComponentModel.Annotations >= 4.7.0",
@@ -1484,9 +1468,6 @@
           "projectReferences": {
             "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj": {
               "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Abstractions\\FierceStukCloud.Abstractions.csproj"
-            },
-            "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj": {
-              "projectPath": "C:\\Users\\ivans\\source\\repos\\FierceStukCloud\\FierceStukCloud.Mvvm\\FierceStukCloud.Mvvm.csproj"
             }
           }
         }

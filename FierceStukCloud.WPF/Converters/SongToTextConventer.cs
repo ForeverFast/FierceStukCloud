@@ -1,4 +1,4 @@
-﻿using FierceStukCloud.Core.MusicPlayerModels;
+﻿using FierceStukCloud.Core;
 using System;
 using System.Globalization;
 using System.Windows.Data;

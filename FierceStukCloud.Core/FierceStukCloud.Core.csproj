@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FierceStukCloud.Abstractions\FierceStukCloud.Abstractions.csproj" />
-    <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
   </ItemGroup> 
 
   <ItemGroup>

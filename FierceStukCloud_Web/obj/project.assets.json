@@ -1693,7 +1693,6 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "FierceStukCloud.Abstractions": "1.0.0",
-          "FierceStukCloud.Mvvm": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "System.ComponentModel.Annotations": "4.7.0",
           "System.Text.Json": "4.7.2",
@@ -1705,16 +1704,6 @@
         },
         "runtime": {
           "bin/placeholder/FierceStukCloud.Core.dll": {}
-        }
-      },
-      "FierceStukCloud.Mvvm/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FierceStukCloud.Mvvm.dll": {}
         }
       }
     }
@@ -6229,11 +6218,6 @@
       "type": "project",
       "path": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj",
       "msbuildProject": "../FierceStukCloud.Core/FierceStukCloud.Core.csproj"
-    },
-    "FierceStukCloud.Mvvm/1.0.0": {
-      "type": "project",
-      "path": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj",
-      "msbuildProject": "../FierceStukCloud.Mvvm/FierceStukCloud.Mvvm.csproj"
     }
   },
   "projectFileDependencyGroups": {

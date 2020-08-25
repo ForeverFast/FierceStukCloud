@@ -10,7 +10,6 @@
       "FierceStukCloud.Core/1.0.0": {
         "dependencies": {
           "FierceStukCloud.Abstractions": "1.0.0",
-          "FierceStukCloud.Mvvm": "1.0.0",
           "Microsoft.AspNetCore.SignalR.Client.Core": "3.1.5",
           "NETStandard.Library": "2.0.3",
           "System.ComponentModel.Annotations": "4.7.0",
@@ -356,11 +355,6 @@
         },
         "runtime": {
           "FierceStukCloud.Abstractions.dll": {}
-        }
-      },
-      "FierceStukCloud.Mvvm/1.0.0": {
-        "runtime": {
-          "FierceStukCloud.Mvvm.dll": {}
         }
       },
       "PresentationCore/4.0.0.0": {
@@ -716,11 +710,6 @@
       "hashPath": "taglibsharp.2.2.0.nupkg.sha512"
     },
     "FierceStukCloud.Abstractions/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FierceStukCloud.Mvvm/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
