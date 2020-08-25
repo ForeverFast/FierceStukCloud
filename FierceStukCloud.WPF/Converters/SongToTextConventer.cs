@@ -10,7 +10,7 @@ namespace FierceStukCloud.Wpf.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var temp = value as Song;
-
+             
             return temp.Author + " - " + temp.Title;
         }
 
