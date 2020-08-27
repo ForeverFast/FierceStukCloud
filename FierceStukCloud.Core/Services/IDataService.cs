@@ -9,7 +9,7 @@ namespace FierceStukCloud.Wpf.Services
         /// Получение информации о песнях из БД
         /// </summary>
         /// <returns></returns>
-        Task GetData();
+        void GetData();
 
         /// <summary>
         /// Добавлние песни с устройства

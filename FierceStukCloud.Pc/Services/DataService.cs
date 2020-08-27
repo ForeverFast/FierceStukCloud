@@ -27,25 +27,25 @@ namespace FierceStukCloud.Pc.Services
 
         #region Получение информации
 
-        public async Task GetData()
+        public void GetData()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
-                    var output = await cnn.QueryAsync<Song>("SELECT * FROM Songs");
+                    var output = cnn.Query<Song>("SELECT * FROM Songs");
                     _musicStorage.AllSongs = new ObservableCollection<Song>(output.ToList());
 
-                    foreach (var item in await cnn.QueryAsync<Album>("SELECT * FROM Albums"))
+                    foreach (var item in cnn.Query<Album>("SELECT * FROM Albums"))
                         _musicStorage.Albums.Add(item);
-                    foreach (var item in await cnn.QueryAsync<LocalFolder>("SELECT * FROM LocalFolders"))
+                    foreach (var item in cnn.Query<LocalFolder>("SELECT * FROM LocalFolders"))
                         _musicStorage.LocalFolders.Add(item);
-                    foreach (var item in await cnn.QueryAsync<PlayList>("SELECT * FROM PlayLists"))
+                    foreach (var item in cnn.Query<PlayList>("SELECT * FROM PlayLists"))
                         _musicStorage.PlayLists.Add(item);
 
 
                     foreach (var item in _musicStorage.AllSongs)
-                        await SongIntegrating(item, cnn);
+                        Task.Run(() => SongIntegrating(item));
                 }
                 catch (Exception)
                 {
@@ -57,14 +57,15 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы интеграции
 
-        private async Task SongIntegrating(Song song, IDbConnection cnn)
+        private void SongIntegrating(Song song)
         {
-            await SearchSongAlbum(song, cnn);
-            await SearchSongLocalFolder(song, cnn);
-            await SearchSongPlayLists(song, cnn);
+            Parallel.Invoke(
+                () => SearchSongAlbum(song),
+                () => SearchSongLocalFolder(song),
+                () => SearchSongPlayLists(song));
         }
 
-        private async Task SearchSongAlbum(Song song, IDbConnection cnn)
+        private void SearchSongAlbum(Song song)
         {
             try
             {
@@ -76,63 +77,63 @@ namespace FierceStukCloud.Pc.Services
                         Album.Songs = new ObservableLinkedList<Song>();
                     Album.Songs.AddLast(song);
                 }
-                else
-                {
-                    if (!string.IsNullOrEmpty(song.Album) && song.Album != "Неизвестный")
-                    {
-                        var NewAlbum = new Album()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            //Title
-                            Author = song.Author,
-                            UserLogin = song.UserLogin,
-                            Songs = new ObservableLinkedList<Song>()
-                        };
-                        NewAlbum.Title = song.Album;
+                //else
+                //{
+                //    if (!string.IsNullOrEmpty(song.Album) && song.Album != "Неизвестный")
+                //    {
+                //        var NewAlbum = new Album()
+                //        {
+                //            Id = Guid.NewGuid().ToString(),
+                //            //Title
+                //            Author = song.Author,
+                //            UserLogin = song.UserLogin,
+                //            Songs = new ObservableLinkedList<Song>()
+                //        };
+                //        NewAlbum.Title = song.Album;
 
-                        string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
-                                                $" VALUES(@Id, @Title, @Author, @UserLogin);";
+                //        string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
+                //                                $" VALUES(@Id, @Title, @Author, @UserLogin);";
 
-                        await cnn.ExecuteAsync(sql, NewAlbum);
+                //        await cnn.ExecuteAsync(sql, NewAlbum);
 
                         
-                        NewAlbum.Songs.AddLast(song);
-                        _musicStorage.Albums.Add(NewAlbum);
+                //        NewAlbum.Songs.AddLast(song);
+                //        _musicStorage.Albums.Add(NewAlbum);
                        
-                    }
-                    else
-                    {
-                        var NAlbum = _musicStorage.Albums.FirstOrDefault(x => x.Title == "Неизвестный");
-                        if (NAlbum != null)
-                        {
-                            if (NAlbum.Songs == null)
-                                NAlbum.Songs = new ObservableLinkedList<Song>();
-                            NAlbum.Songs.AddLast(song);
-                        } 
-                        else
-                        {
-                            NAlbum = new Album()
-                            {
-                                Id = Guid.NewGuid().ToString(),
-                                Title = "Неизвестный",
-                                Author = song.Author,
-                                UserLogin = song.UserLogin,
-                                Songs = new ObservableLinkedList<Song>()
-                            };
+                //    }
+                //    else
+                //    {
+                //        var NAlbum = _musicStorage.Albums.FirstOrDefault(x => x.Title == "Неизвестный");
+                //        if (NAlbum != null)
+                //        {
+                //            if (NAlbum.Songs == null)
+                //                NAlbum.Songs = new ObservableLinkedList<Song>();
+                //            NAlbum.Songs.AddLast(song);
+                //        } 
+                //        else
+                //        {
+                //            NAlbum = new Album()
+                //            {
+                //                Id = Guid.NewGuid().ToString(),
+                //                Title = "Неизвестный",
+                //                Author = song.Author,
+                //                UserLogin = song.UserLogin,
+                //                Songs = new ObservableLinkedList<Song>()
+                //            };
 
-                            string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
-                                             $" VALUES(@Id, @Title, @Author, @UserLogin);";
+                //            string sql = $"INSERT INTO Albums (Id,  Title,  Author,  UserLogin)" +
+                //                             $" VALUES(@Id, @Title, @Author, @UserLogin);";
 
-                            await cnn.ExecuteAsync(sql, NAlbum);
+                //            await cnn.ExecuteAsync(sql, NAlbum);
 
-                            NAlbum.Songs.AddLast(song);
-                            _musicStorage.Albums.Add(NAlbum);
-                        }
-                    }
+                //            NAlbum.Songs.AddLast(song);
+                //            _musicStorage.Albums.Add(NAlbum);
+                //        }
+                //    }
 
                     
 
-                }
+                //}
             }
             catch (Exception)
             {
@@ -140,7 +141,7 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        private async Task SearchSongLocalFolder(Song song, IDbConnection cnn)
+        private void SearchSongLocalFolder(Song song)
         {
             try
             {
@@ -153,27 +154,27 @@ namespace FierceStukCloud.Pc.Services
                         LF.Songs = new ObservableLinkedList<Song>();
                     LF.Songs.AddLast(song);
                 }
-                else
-                {
-                    var NewLF = new LocalFolder()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        Title = FolderPath.Remove(0, FolderPath.IndexOf('\\') + 1),
-                        LocalUrl = FolderPath,
-                        UserLogin = song.UserLogin,
-                        OnDevice = true,
-                        OnServer = false,
-                        Songs = new ObservableLinkedList<Song>()
-                    };
+                //else
+                //{
+                //    var NewLF = new LocalFolder()
+                //    {
+                //        Id = Guid.NewGuid().ToString(),
+                //        Title = FolderPath.Remove(0, FolderPath.IndexOf('\\') + 1),
+                //        LocalUrl = FolderPath,
+                //        UserLogin = song.UserLogin,
+                //        OnDevice = true,
+                //        OnServer = false,
+                //        Songs = new ObservableLinkedList<Song>()
+                //    };
 
-                    string sql = $"INSERT INTO LocalFolders (Id,  Title,  LocalUrl,  UserLogin,  OnServer,   OnDevice)" +
-                                                  $" VALUES(@Id, @Title, @LocalUrl, @UserLogin, @OnServer,  @OnDevice);";
+                //    string sql = $"INSERT INTO LocalFolders (Id,  Title,  LocalUrl,  UserLogin,  OnServer,   OnDevice)" +
+                //                                  $" VALUES(@Id, @Title, @LocalUrl, @UserLogin, @OnServer,  @OnDevice);";
 
-                    await cnn.ExecuteAsync(sql, NewLF);
+                //    await cnn.ExecuteAsync(sql, NewLF);
 
-                    NewLF.Songs.AddLast(song);
-                    _musicStorage.LocalFolders.Add(NewLF);
-                }
+                //    NewLF.Songs.AddLast(song);
+                //    _musicStorage.LocalFolders.Add(NewLF);
+                //}
                
             }
             catch (Exception)
@@ -182,7 +183,7 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        private async Task SearchSongPlayLists(Song song, IDbConnection cnn)
+        private void SearchSongPlayLists(Song song)
         {
             try
             {
@@ -268,7 +269,7 @@ namespace FierceStukCloud.Pc.Services
                                                    $"@PlayLists, @LocalURL, @UserLogin, @OnServer, @OnDevice, @OptionalInfo);";
 
                     await cnn.ExecuteAsync(sql, temp);
-                    await SongIntegrating(temp, cnn);
+                    await Task.Run(()=> SongIntegrating(temp));
 
                     return temp;
                 }

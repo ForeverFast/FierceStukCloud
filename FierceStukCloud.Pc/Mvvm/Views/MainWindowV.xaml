@@ -9,7 +9,7 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views"
         xmlns:vm="clr-namespace:FierceStukCloud.Pc.Mvvm.ViewModels"
-        xmlns:scroll="clr-namespace:SoftwareArchitects.Windows.Controls;assembly=SoftwareArchitects.Windows.Controls.ScrollSynchronizer"
+        
         mc:Ignorable="d"
         Title="FierceStukCloud"
         x:Name="MainWindow"
