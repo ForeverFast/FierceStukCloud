@@ -44,8 +44,7 @@ namespace FierceStukCloud.Pc.Services
                         _musicStorage.PlayLists.Add(item);
 
 
-                    foreach (var item in _musicStorage.AllSongs)
-                        Task.Run(() => SongIntegrating(item));
+                    _musicStorage.AllSongs.AsParallel().ForAll(x => SongIntegrating(x));
                 }
                 catch (Exception)
                 {

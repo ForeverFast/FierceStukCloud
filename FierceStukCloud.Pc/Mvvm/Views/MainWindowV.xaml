@@ -82,7 +82,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL2}">
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL3}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
@@ -304,7 +304,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid x:Name="PG1" Grid.Column="0"
-                  Background="{StaticResource GrayLVL1}">
+                  Background="{StaticResource GrayLVL2}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
@@ -364,7 +364,8 @@
 
             </Grid>
 
-            <Grid x:Name="PG2" Grid.Column="1">
+            <Grid x:Name="PG2" Grid.Column="1"
+                  Background="{StaticResource GrayLVL2}">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -458,7 +459,7 @@
             </Grid>
 
             <Grid x:Name="PG3" Grid.Column="2"
-                  Background="{StaticResource GrayLVL0}">
+                  Background="{StaticResource GrayLVL2}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

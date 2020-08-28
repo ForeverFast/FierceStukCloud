@@ -346,8 +346,12 @@ namespace FierceStukCloud.Pc.Services
             _musicStorage = musicStorage;
             _signalRService = signalRService;
 
-           
+            System.Diagnostics.Stopwatch myStopwatch = new System.Diagnostics.Stopwatch();
+
+            myStopwatch.Start();
             _dataService.GetData();
+            myStopwatch.Stop();
+
             // Инициализация класса работы с БД
             //_dataService = new DataService(AllSongs, Favourites, Albums, LocalFolders, PlayLists, );
 

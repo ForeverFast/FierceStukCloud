@@ -34,3 +34,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.csproj.CopyComplete
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Button\PlayListPageButtons.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\_Dictionary\PlayListPageDictionary.baml

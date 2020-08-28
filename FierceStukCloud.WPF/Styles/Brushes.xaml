@@ -25,5 +25,6 @@
     
     <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="DimColorWithLowOpacity" Color="#FFCCC5C5" Opacity="0.5"/>
+    <SolidColorBrush x:Key="DimColorWithLowOpacity2" Color="#FFCCC5C5" Opacity="0.1"/>
     
 </ResourceDictionary>

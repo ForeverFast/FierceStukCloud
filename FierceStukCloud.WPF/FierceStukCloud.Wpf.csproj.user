@@ -14,6 +14,9 @@
     <Page Update="Styles\Button\PlayerButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\Button\PlayListPageButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\Button\StandardButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -48,6 +51,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\TextBox\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\_Dictionary\PlayListPageDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
