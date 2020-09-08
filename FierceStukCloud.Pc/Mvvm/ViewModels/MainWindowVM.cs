@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using static FierceStukCloud.Core.CustomEnums;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels
 {
@@ -63,7 +64,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             set
             {
                 if (PosChanges == true)
-                    SongPos = value.ToString(@"mm\:ss");
+                    SongPos = TimeSpan.FromSeconds(value).ToString(@"mm\:ss");
                 SetProperty(ref _songTimeLineForSlider, value);
             }
         }
@@ -103,6 +104,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #endregion
 
+     
 
         #region Команды - Навигациия
 
@@ -136,7 +138,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         public ICommand NextSongCommand { get; private set; }
         public ICommand SetLoopPlaybackCommand { get; private set; }
 
-        private void SetRandomPlaybackExecute(object parameter) => _musicPlayerService.IsRandomSong = !_musicPlayerService.IsRandomSong;
+        private void SetRandomPlaybackExecute(object parameter)
+            => _musicPlayerService.IsRandomSong  = !IsRandomSong;
 
         private void PrevSongExecute(object parameter) => _musicPlayerService.PrevSong();
 
@@ -150,7 +153,24 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         private void NextSongExecute(object parameter) => _musicPlayerService.NextSong();
 
-        private void SetLoopPlaybackExecute(object parameter) => _musicPlayerService.IsRepeatSong = !_musicPlayerService.IsRepeatSong;
+        private void SetLoopPlaybackExecute(object parameter)
+        {
+            if (++_lMCounter > 2)
+                _lMCounter = 0;
+            _musicPlayerService.IsRepeatSong = (LoopMode)_lMCounter;
+        }
+
+        #region Логика - Цикличное и рандомное воспроизведение трека
+
+        private int _lMCounter;
+        private LoopMode _loopMode;
+        private bool _isRandomSong;
+
+        public LoopMode LoopMode { get => _loopMode; set => SetProperty(ref _loopMode, value); }
+        public bool IsRandomSong { get => _isRandomSong; set => SetProperty(ref _isRandomSong, value); }
+
+        #endregion
+
 
         #endregion
 
@@ -247,11 +267,24 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                         }
 
                         break;
+                        
+                    case nameof(_musicPlayerService.IsRepeatSong):
+
+                        LoopMode = _musicPlayerService.IsRepeatSong;
+
+                        break;
+
+                    case nameof(_musicPlayerService.IsRandomSong):
+
+                        IsRandomSong = _musicPlayerService.IsRandomSong;
+
+                        break;
+
 
                     case nameof(_musicPlayerService.Play):
 
                         break;
-
+                        
                     case nameof(_musicPlayerService.Pause):
                     case nameof(_musicPlayerService.Stop):
 
@@ -281,7 +314,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
             SongVolumeForSlider = 0.15;
             SongDefaultImage = new BitmapImage(new Uri("pack://application:,,,/FierceStukCloud.Pc;component/Images/fsc_icon.png"));
-            
+
+            _lMCounter = 0;
         }
 
         /// <summary> Инициализация команд </summary>

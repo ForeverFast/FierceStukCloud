@@ -31,23 +31,12 @@ namespace FierceStukCloud.Core
             MusicPlayer
         }
 
-        public static bool TryConvert(this string value, out Commands command)
+        public enum LoopMode
         {
-            try
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    if (value == ((Commands)i).ToString())
-                    {
-                        command = (Commands)i;
-                        return true;
-                    } 
-                }
-            }
-            catch(Exception)
-            {  }
-            command = (Commands)0;
-            return false;
+           None,
+           Loop,
+           LoopOne
         }
+        
     }
 }

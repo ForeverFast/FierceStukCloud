@@ -4,6 +4,7 @@ using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions;
 using FierceStukCloud.Pc.Services;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -191,7 +192,17 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         public PlaylistVM(PlayList playList)
         {
             PlayList = playList;
+
+            if (playList.Songs == null)
+                playList.Songs = new Core.Extension.ObservableLinkedList<Song>();
+
+            playList.Songs.CollectionChanged += Songs_CollectionChanged;
             InitiailizeCommands();
+        }
+
+        private void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            var q = Thread.CurrentThread.ManagedThreadId;
         }
 
         public override void InitiailizeCommands()

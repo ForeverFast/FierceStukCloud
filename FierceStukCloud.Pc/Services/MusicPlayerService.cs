@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
+using static FierceStukCloud.Core.CustomEnums;
 
 namespace FierceStukCloud.Pc.Services
 {
@@ -13,12 +14,21 @@ namespace FierceStukCloud.Pc.Services
     {
         #region Переменные плеера
 
-        /// <summary> Переменная плеера </summary>      
-        public MediaPlayer MP { get; }
+        #region Поля
 
         private readonly IDataService _dataService;
         private readonly IMusicStorage _musicStorage;
         private readonly ISignalRService _signalRService;
+
+        private LoopMode _isRepeatSong;
+        private bool _isRandomSong;
+
+        #endregion
+
+        /// <summary> Переменная плеера </summary>      
+        public MediaPlayer MP { get; }
+
+       
 
         /// <summary> Tекущий контейнер </summary>   
         public IMusicContainer CurrentMusicContainer { get; set; }
@@ -30,8 +40,8 @@ namespace FierceStukCloud.Pc.Services
         private LinkedListNode<Song> CurrentSongNode { get; set; }
 
 
-        public bool IsRepeatSong { get; set; }
-        public bool IsRandomSong { get; set; }
+        public LoopMode IsRepeatSong { get => _isRepeatSong; set => SetProperty(ref _isRepeatSong, value); }
+        public bool IsRandomSong { get => _isRandomSong; set => SetProperty(ref _isRandomSong, value); }
         public bool IsPlaying { get => CurrentSong == null ? false : CurrentSong.IsPlaying; set => CurrentSong.IsPlaying = value; }
 
         public double Volume
@@ -243,22 +253,26 @@ namespace FierceStukCloud.Pc.Services
             IsPlaying = false;
             timer.Stop();
 
+            if (IsRepeatSong == LoopMode.LoopOne)
+            {
+                SetCurrentSong(CurrentSong);
+                return;
+            }
+
             //if (CurrentSong.CurrentIdValue() == CurrentMusicContainer.Songs.Count)
             //{
             //    MP.Stop();
             //    return;
             //}
 
+
+
             if (IsRandomSong == true)
             {
                 return;
             }
 
-            if (IsRepeatSong == true)
-            {
-                SetCurrentSong(CurrentSong);
-                return;
-            }
+           
 
 
             NextSong();

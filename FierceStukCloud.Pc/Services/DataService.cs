@@ -13,7 +13,9 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using static Dapper.SqlMapper;
 
 namespace FierceStukCloud.Pc.Services
@@ -43,8 +45,11 @@ namespace FierceStukCloud.Pc.Services
                     foreach (var item in cnn.Query<PlayList>("SELECT * FROM PlayLists"))
                         _musicStorage.PlayLists.Add(item);
 
-
                     _musicStorage.AllSongs.AsParallel().ForAll(x => SongIntegrating(x));
+                    //foreach (var item in _musicStorage.AllSongs)
+                    //{
+                    //    SongIntegrating(item);
+                    //}
                 }
                 catch (Exception)
                 {
@@ -58,10 +63,23 @@ namespace FierceStukCloud.Pc.Services
 
         private void SongIntegrating(Song song)
         {
-            Parallel.Invoke(
-                () => SearchSongAlbum(song),
-                () => SearchSongLocalFolder(song),
-                () => SearchSongPlayLists(song));
+            //var q = Thread.CurrentThread.ManagedThreadId;
+
+            //Parallel.Invoke(
+            //    () => SearchSongAlbum(song),
+            //    () => SearchSongLocalFolder(song),
+            //    () => SearchSongPlayLists(song));
+
+            //List<Action> actions = new List<Action>();
+            //actions.Add(() => SearchSongAlbum(song));
+            //actions.Add(() => SearchSongLocalFolder(song));
+            //actions.Add(() => SearchSongPlayLists(song));
+
+            //actions.AsParallel().ForAll(x => x.Invoke());
+
+            SearchSongAlbum(song);
+            SearchSongLocalFolder(song);
+            SearchSongPlayLists(song);
         }
 
         private void SearchSongAlbum(Song song)
@@ -194,7 +212,24 @@ namespace FierceStukCloud.Pc.Services
                         {
                             if (PL.Songs == null)
                                 PL.Songs = new ObservableLinkedList<Song>();
-                            PL.Songs.AddLast(song);
+                            //PL.Songs.AddLast(song);
+
+                            try
+                            {
+                                //var q = Thread.CurrentThread.ManagedThreadId;
+                                Application.Current.Dispatcher.Invoke(() => PL.Songs.AddLast(song));
+                              
+                                //Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+                                //{
+                                //    var q = Thread.CurrentThread.ManagedThreadId;
+                                //    PL.Songs.AddLast(song);
+
+                                //}));
+                            }
+                            catch(Exception ex)
+                            {
+
+                            }
                         }
                     }
             }
@@ -268,7 +303,7 @@ namespace FierceStukCloud.Pc.Services
                                                    $"@PlayLists, @LocalURL, @UserLogin, @OnServer, @OnDevice, @OptionalInfo);";
 
                     await cnn.ExecuteAsync(sql, temp);
-                    await Task.Run(()=> SongIntegrating(temp));
+                    await Task.Run(() => SongIntegrating(temp));
 
                     return temp;
                 }
@@ -325,7 +360,7 @@ namespace FierceStukCloud.Pc.Services
                 _musicStorage.LocalFolders.Add(temp);
 
                 foreach (var item in tempMas)
-                    await AddSongAsync(item, "");
+                    await AddSongAsync(item);
 
                 return temp;
             }

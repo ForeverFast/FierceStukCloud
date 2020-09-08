@@ -68,7 +68,7 @@ namespace FierceStukCloud.Pc
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IMusicStorage, MusicStrorage>();
-            services.AddSingleton<ISignalRService, SignalRService>();          
+            services.AddSingleton<ISignalRService, SignalRService>();           
             services.AddSingleton<IDataService, DataService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<INavigationManager, NavigationManager>();

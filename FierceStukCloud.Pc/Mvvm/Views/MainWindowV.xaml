@@ -58,6 +58,7 @@
     <Window.Resources>
         <ResourceDictionary>
 
+            
             <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
             <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
             <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter"/>
@@ -82,52 +83,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL3}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0" Background="{StaticResource GrayLVL4}">
-
-            </Grid>
-
-            <Grid Grid.Column="1" Background="{StaticResource GrayLVL4WithLowOpacity}">
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="NavigationBack"
-                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
-                                    Command="{Binding NavigationBackCommand}"
-                                    Style="{StaticResource NavigationBack}"/>
-
-                    <Button x:Name="NavigationForward"
-                            WindowChrome.IsHitTestVisibleInChrome="True"      
-                            Command="{Binding NavigationForwardCommand}"
-                            Style="{StaticResource NavigationForward}"/>
-                </StackPanel>
-            </Grid>
-
-            <Grid Grid.Column="2" Background="{StaticResource GrayLVL4WithLowOpacity}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="Minimize"
-                            WindowChrome.IsHitTestVisibleInChrome="True"      
-                            Command="{Binding MinimizedWindowCommand}"
-                            Style="{StaticResource MinimizeButton2}"/>
-
-                    <Button x:Name="Resize"
-                            WindowChrome.IsHitTestVisibleInChrome="True"      
-                            Command="{Binding ResizeWindowCommand}"
-                            Style="{StaticResource ResizeButton2}"/>
-
-                    <Button x:Name="Close"
-                            WindowChrome.IsHitTestVisibleInChrome="True"      
-                            Command="{Binding CloseWindowCommand}"
-                            Style="{StaticResource CloseButton2}"/>
-                </StackPanel>
-            </Grid>
-            
-        </Grid>
-
+        
         <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
 
             <Grid.RowDefinitions>
@@ -289,9 +245,9 @@
 
         </Grid>
 
-        <Grid x:Name="ContentGrid" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
-              Background="{StaticResource GrayLVL2}">
-            <Frame x:Name="FrameContent"
+        <Grid x:Name="ContentGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+              Background="{StaticResource GrayLVL3}">
+            <Frame x:Name="FrameContent" Margin="0,0,0,0"
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
@@ -384,9 +340,11 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="RandomPlayback" Grid.Column="0"/>
-                    <Button x:Name="PrevSong" Grid.Column="1"
-                            Width="30"
+                    <Button x:Name="RandomPlayback" Grid.Column="0"
+                            Command="{Binding SetRandomPlaybackCommand}"
+                            Style="{StaticResource RandomButton}"/>
+                    
+                    <Button x:Name="PrevSong" Grid.Column="1"   
                             Style="{StaticResource NextOrPrevSong}"
                             RenderTransformOrigin="0.5,0.5">
                         <Button.RenderTransform>
@@ -398,17 +356,18 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
+
                     <Button x:Name="PlayAndPause" Grid.Column="2"
                             Width="35" Height="35"
-                            Style="{StaticResource PlayButton}"
                             Command="{Binding PlayStateSongCommand}"
-                            >
-                      
-                    </Button>
-                    <Button x:Name="NextSong" Grid.Column="3"
-                            Width="30" Height="20"
+                            Style="{StaticResource PlayButton}"/>
+
+                    <Button x:Name="NextSong" Grid.Column="3"                        
                             Style="{StaticResource NextOrPrevSong}"/>
-                    <Button x:Name="LoopPlayback" Grid.Column="4"/>
+                    
+                    <Button x:Name="LoopPlayback" Grid.Column="4"  
+                            Command="{Binding SetLoopPlaybackCommand}"
+                            Style="{StaticResource RepeatButton}"/>
 
 
                 </Grid>
@@ -436,6 +395,7 @@
                                HorizontalAlignment="Right"/>
 
                     <Slider Grid.Column="1" Margin="10,0,10,10" 
+                           
                             Minimum="0"
                             Maximum="{Binding SongTimeForSlider,UpdateSourceTrigger=PropertyChanged}"
                             Value="{Binding SongTimeLineForSlider, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -462,14 +422,97 @@
                   Background="{StaticResource GrayLVL2}">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
+
+                <!--<Grid Grid.Column="0" Background="{StaticResource GrayLVL0}"/>
+                <Grid Grid.Column="1" Background="{StaticResource LightLVL0}"/>-->
+
+                <Button Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Cursor="Arrow">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="Transparent">
+                                <md:PackIcon Kind="VolumeSource" Name="Icon"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             
+                                             Foreground="{StaticResource DimColor}"
+                                             
+                                             Width="20"
+                                             Height="20"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" TargetName="Icon" Value="{StaticResource StandartLightColor2}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
                 
-                
+                <Slider Grid.Column="3" 
+                        Margin="10,0"
+                        
+                        VerticalAlignment="Center"
+                        
+                        Minimum="0"
+                        Maximum="1"
+                        Value="{Binding SongVolumeForSlider}"
+                        
+                        Style="{StaticResource Horizontal_Slider}"/>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{x:Null}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="{StaticResource GrayLVL4}">
+
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{x:Null}">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="NavigationBack"
+                                    WindowChrome.IsHitTestVisibleInChrome="True"                                            
+                                    Command="{Binding NavigationBackCommand}"
+                                    Style="{StaticResource NavigationBack}"/>
+
+                    <Button x:Name="NavigationForward"
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding NavigationForwardCommand}"
+                            Style="{StaticResource NavigationForward}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2" Background="{x:Null}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="Minimize"
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding MinimizedWindowCommand}"
+                            Style="{StaticResource MinimizeButton2}"/>
+
+                    <Button x:Name="Resize"
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding ResizeWindowCommand}"
+                            Style="{StaticResource ResizeButton2}"/>
+
+                    <Button x:Name="Close"
+                            WindowChrome.IsHitTestVisibleInChrome="True"      
+                            Command="{Binding CloseWindowCommand}"
+                            Style="{StaticResource CloseButton2}"/>
+                </StackPanel>
             </Grid>
 
         </Grid>

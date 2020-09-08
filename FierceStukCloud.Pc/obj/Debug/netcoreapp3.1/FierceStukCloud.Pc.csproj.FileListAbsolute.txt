@@ -1,5 +1,4 @@
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csprojAssemblyReference.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\MainWindowV.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\HomePage.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\PlaylistPage.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\ProfilePage.g.cs
@@ -7,6 +6,7 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc_MarkupCompile.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc_MarkupCompile.lref
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\MainWindowV.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\FierceStukCloud.Pc.exe
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\FierceStukCloud.Pc.dll.config
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\FierceStukCloud.Pc.deps.json

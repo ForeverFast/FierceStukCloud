@@ -1,7 +1,6 @@
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\bin\Debug\netstandard2.0\FierceStukCloud.Abstractions.deps.json
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\bin\Debug\netstandard2.0\FierceStukCloud.Abstractions.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\bin\Debug\netstandard2.0\FierceStukCloud.Abstractions.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\obj\Debug\netstandard2.0\FierceStukCloud.Abstractions.csprojAssemblyReference.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\obj\Debug\netstandard2.0\FierceStukCloud.Abstractions.AssemblyInfoInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\obj\Debug\netstandard2.0\FierceStukCloud.Abstractions.AssemblyInfo.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Abstractions\obj\Debug\netstandard2.0\FierceStukCloud.Abstractions.csproj.CoreCompileInputs.cache

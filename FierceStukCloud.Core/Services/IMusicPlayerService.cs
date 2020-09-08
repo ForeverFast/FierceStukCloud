@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using static FierceStukCloud.Core.CustomEnums;
 
 namespace FierceStukCloud.Core.Services
 {
@@ -15,7 +16,7 @@ namespace FierceStukCloud.Core.Services
         /// <summary> Tекущая песня </summary>   
         Song CurrentSong { get; set; }
 
-        bool IsRepeatSong { get; set; }
+        LoopMode IsRepeatSong { get; set; }
         bool IsRandomSong { get; set; }
         bool IsPlaying { get; set; }
 
