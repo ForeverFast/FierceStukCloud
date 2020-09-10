@@ -226,6 +226,8 @@ namespace FierceStukCloud.Pc.Services
                 else
                     CurrentMusicContainer = song.CurrentMusicContainer;
 
+                if (CurrentSong != null)
+                    CurrentSong.IsPlaying = false;
                 CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
                 MP.Open(new Uri(CurrentSong.LocalUrl));
             }

@@ -28,5 +28,11 @@
     <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>
     <SolidColorBrush x:Key="DimColorWithLowOpacity" Color="#FFCCC5C5" Opacity="0.5"/>
     <SolidColorBrush x:Key="DimColorWithLowOpacity2" Color="#FFCCC5C5" Opacity="0.1"/>
-    
+
+    <Color x:Key="GrayLVL0_Color">#FF4D4D51</Color>
+    <Color x:Key="GrayLVL1_Color">#FF2D2D30</Color>
+    <Color x:Key="GrayLVL2_Color">#FF252527</Color>
+    <Color x:Key="GrayLVL3_Color">#FF1A1A1B</Color>
+    <Color x:Key="GrayLVL4_Color">#FF121213</Color>
+
 </ResourceDictionary>

@@ -44,7 +44,7 @@
                                
                             </Trigger>
                             <Trigger Property="WindowState" Value="Maximized">
-                                <Setter Property="Margin" TargetName="CP" Value="8,0,0,0"/>
+                                <Setter Property="Margin" TargetName="CP" Value="8,10,10,10"/>
                                 
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -251,7 +251,8 @@
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource GrayLVL1}">
+        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+              Background="{StaticResource GrayLVL2}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="260"/>
@@ -457,7 +458,7 @@
                 </Button>
                 
                 <Slider Grid.Column="3" 
-                        Margin="10,0"
+                        Margin="10,0,10,0"
                         
                         VerticalAlignment="Center"
                         

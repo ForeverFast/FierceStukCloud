@@ -65,6 +65,7 @@ namespace FierceStukCloud.Core
         #region Поля
         private bool _isSelected;
         private bool _isPlaying;
+        private bool _isFavorite;
         #endregion
 
         [JsonIgnore]
@@ -75,11 +76,9 @@ namespace FierceStukCloud.Core
 
         public bool IsSelected { get => _isSelected; set => SetProperty(ref _isSelected, value); }
 
-        public bool IsPlaying 
-        {
-            get => _isPlaying; 
-            set => SetProperty(ref _isPlaying, value); 
-        }
+        public bool IsPlaying  { get => _isPlaying; set => SetProperty(ref _isPlaying, value); }
+
+        public bool IsFavorite { get => _isFavorite; set => SetProperty(ref _isFavorite, value); }
 
         #endregion
     }

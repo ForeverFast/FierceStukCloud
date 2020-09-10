@@ -63,6 +63,30 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="PlayNowButtonTemplate" TargetType="{x:Type Button}">
+        <Grid Background="Transparent">
+            <md:PackIcon Kind="VolumeHigh"
+                         Foreground="{StaticResource StandartLightColor2}"
+                         Width="20" Height="20"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+
+           
+            
+            <Trigger Property="IsMouseOver" Value="True">
+                <!--<Setter TargetName="Ellipse" Property="Stroke" Value="White"/>
+                <Setter TargetName="Polygon" Property="Fill" Value="White"/>-->
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <!--<Setter TargetName="Ellipse" Property="Stroke" Value="{StaticResource DimColor}"/>
+                <Setter TargetName="Polygon" Property="Fill" Value="{StaticResource DimColor}"/>-->
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
     <Style x:Key="PlayButton" TargetType="{x:Type Button}">
         <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
         <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=DataContext}"/>
@@ -220,6 +244,84 @@
         </Setter>
     </Style>
 
+    <Style x:Key="PlayListPlayButton" TargetType="{x:Type Button}">
+
+        <!--<Setter Property="Template" Value="{StaticResource PauseButtonTemplate}"/>-->
+       
+        
+        <Style.Triggers>
+
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="True">
+                <Setter Property="Template" Value="{StaticResource PlayNowButtonTemplate}"/>
+            </DataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="True"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=IsMouseOver}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Template" Value="{StaticResource PauseButtonTemplate}"/>
+                    <Setter Property="Margin" Value="4"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="False"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=IsMouseOver}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="False"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=IsMouseOver}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
+                    <Setter Property="Margin" Value="4"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <!--<MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="True"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsMouseOver}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>-->
+
+            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FavoriteSongButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border>
+                        <md:PackIcon x:Name="Icon" Kind="FavoriteBorder"
+                                     Width="20" Height="20"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Foreground="{StaticResource StandartLightColor2}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=DataContext.IsFavorite}" Value="True">
+                            <Setter Property="Kind" TargetName="Icon" Value="Favorite"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--#endregion-->
 
 </ResourceDictionary>

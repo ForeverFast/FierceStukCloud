@@ -29,17 +29,19 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             get => _selectedSong;
             set
             {
-                if (value != null)
-                {
-                    if (_selectedSong != null)
-                        _selectedSong.IsSelected = false;
-                    value.CurrentMusicContainer = PlayList;
-                    value.IsSelected = true;
-                    SetProperty(ref _selectedSong, value);
-                    _musicPlayerService.CurrentSong = value;
-                }
+                //if (value != null)
+                //{
+                //    if (_selectedSong != null)
+                //        _selectedSong.IsSelected = false;
+                //    value.CurrentMusicContainer = PlayList;
+                //    value.IsSelected = true;
+                //    SetProperty(ref _selectedSong, value);
+                //    _musicPlayerService.CurrentSong = value;
+                //}
             }
         }
+
+    
 
         public bool IsPlaying
         {
@@ -55,6 +57,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         public ICommand ListenPlaylistsCommand { get; private set; }
 
+        /// <summary>
+        /// Запуск песни по дабл клику
+        /// </summary>
+        public ICommand SetSongCommand { get; private set; }
+
         private void PlayStateSongExecute(object parameter)
         {
             if (_musicPlayerService.IsPlaying == true)
@@ -64,9 +71,19 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         }
 
         private void ListenPlaylistsExecute(object parameter)
-        {
-           
+        {       
             SelectedSong = PlayList.Songs?.First?.Value;
+        }
+
+        private void SetSongExecute(object parameter)
+        {
+            var value = parameter as Song;
+            if (_selectedSong != null)
+                _selectedSong.IsSelected = false;
+            value.CurrentMusicContainer = PlayList;
+            value.IsSelected = true;
+            SetProperty(ref _selectedSong, value);
+            _musicPlayerService.CurrentSong = value;
         }
 
         #endregion
@@ -209,6 +226,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         {
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute);
             ListenPlaylistsCommand = new RelayCommand(ListenPlaylistsExecute);
+            SetSongCommand = new RelayCommand(SetSongExecute);
 
             GoToAuthorPageCommand = new RelayCommand(GoToAuthorPageExecute);
             GoToAlbumPageCommand = new RelayCommand(GoToAlbumPageExecute);

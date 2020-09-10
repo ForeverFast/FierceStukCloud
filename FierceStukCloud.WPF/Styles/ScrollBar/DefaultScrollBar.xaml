@@ -66,6 +66,7 @@
                 <RowDefinition MaxHeight="16"/>
             </Grid.RowDefinitions>
 
+          
             <RepeatButton Grid.Row="0" Height="18" x:Name="RBup"
                           Style="{StaticResource ScrollBarLineButtonStyle}"
                           Command="ScrollBar.LineUpCommand" >

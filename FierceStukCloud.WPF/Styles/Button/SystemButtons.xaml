@@ -85,27 +85,17 @@
     <!--#region SystemButtons2-->
 
     <Style x:Key="MinimizeButton2" TargetType="{x:Type Button}">
-
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL4WithLowOpacity}">
+                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL3}" Height="28" Width="42">
                         <materialDesign:PackIcon x:Name="Icon" Kind="HorizontalLine"
                                                  Background="{x:Null}"
-                                                 Width="25" Height="30"
-                                                 Margin="0,10,0,0"/>
+                                                 Width="32" Height="25"
+                                                 Margin="3,5,0,0"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
-
-                            <Setter TargetName="Icon" Property="Margin" Value="0,11,0,0"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
-
-                            <Setter TargetName="Icon" Property="Margin" Value="0,16,0,0"/>
-                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource StandartLightColor2}"/>
                         </Trigger>
@@ -120,12 +110,13 @@
     </Style>
 
     <Style x:Key="ResizeButton2" TargetType="{x:Type Button}">
-
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL4WithLowOpacity}">
-                        <materialDesign:PackIcon x:Name="Icon" RenderTransformOrigin="0.5,0.5">
+                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL3}" Height="28" Width="42">
+                        <materialDesign:PackIcon x:Name="Icon" RenderTransformOrigin="0.5,0.5" Width="32" Height="25"
+                                                 >
                             <materialDesign:PackIcon.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -140,14 +131,14 @@
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                                        AncestorType=Window}, Path=WindowState}"  Value="Normal">
                             <Setter TargetName="Icon" Property="Kind" Value="CropSquare"/>
-                            <Setter TargetName="Icon" Property="Margin" Value="0,8,0,0"/>
+                            <Setter TargetName="Icon" Property="Margin" Value="5,1,0,0"/>
                             <Setter TargetName="Icon" Property="Width" Value="25"/>
                             <Setter TargetName="Icon" Property="Height" Value="25"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                                        AncestorType=Window}, Path=WindowState}"  Value="Maximized">
                             <Setter TargetName="Icon" Property="Kind" Value="ImageFilterNone"/>
-                            <Setter TargetName="Icon" Property="Margin" Value="0,17,0,0"/>
+                            <Setter TargetName="Icon" Property="Margin" Value="5,5,0,0"/>
                             <Setter TargetName="Icon" Property="Width" Value="17"/>
                             <Setter TargetName="Icon" Property="Height" Value="17"/>
                         </DataTrigger>
@@ -165,26 +156,18 @@
     </Style>
 
     <Style x:Key="CloseButton2" TargetType="{x:Type Button}">
-
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL4WithLowOpacity}">
+                    <Border x:Name="ButtonBorder" Background="{StaticResource GrayLVL3}" Height="28" Width="42">
                         <materialDesign:PackIcon x:Name="Icon" Kind="Close"
                                                  Background="{x:Null}"
-                                                 Width="28" Height="30"/>
+                                                
+                                                 Width="32" Height="25"
+                                                 Margin="0,0,0,0"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
-                           
-                            <Setter TargetName="Icon" Property="Margin" Value="0,5,5,0"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
-                           
-                            <Setter TargetName="Icon" Property="Margin" Value="0,10,10,0"/>
-                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="Red"/>
                         </Trigger>
@@ -202,3 +185,14 @@
     <!--#endregion-->
     
 </ResourceDictionary>
+
+<!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
+                           
+                            <Setter TargetName="Icon" Property="Margin" Value="0,5,5,0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
+                           
+                            <Setter TargetName="Icon" Property="Margin" Value="0,10,10,0"/>
+                        </DataTrigger>-->
