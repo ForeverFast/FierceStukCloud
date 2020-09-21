@@ -25,10 +25,12 @@
                 <Setter Property="Foreground" Value="White" TargetName="ButtonText"/>
             </Trigger>
 
-            <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}},
+                                           Path=DataContext.IsPlaying}" Value="True">
                 <Setter Property="Text" Value="Пауза" TargetName="ButtonText"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding IsPlaying}" Value="False">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}},
+                                           Path=DataContext.IsPlaying}" Value="False">
                 <Setter Property="Text" Value="Слушать" TargetName="ButtonText"/>
             </DataTrigger>
 

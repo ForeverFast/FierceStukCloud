@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.35" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="MicroOrm.Dapper.Repositories" Version="1.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
@@ -34,7 +36,7 @@
 
   <ItemGroup>
     <Reference Include="Itenso.Windows.Controls.ListViewLayout">
-      <HintPath>bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
+      <HintPath>D:\Программирование\Сборник примеров\LWL\ListViewLayout\bin\Debug\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
     </Reference>
     <Reference Include="SoftwareArchitects.Windows.Controls.ScrollSynchronizer">
       <HintPath>..\..\..\..\Desktop\SyncScroll\WPF\SoftwareArchitects.Windows.Controls\bin\Debug\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll</HintPath>

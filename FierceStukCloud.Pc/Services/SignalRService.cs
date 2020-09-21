@@ -139,26 +139,26 @@ namespace FierceStukCloud.Pc.Services
 
         public SignalRService()
         {
-            HubConnection = new HubConnectionBuilder()
-                .WithUrl(App.CurSiteLink + "hub", options =>
-                {
-                    options.AccessTokenProvider = () => Task.FromResult(App.CurrentUser.AccessTokenPC);
-                })
-                .Build();
+            //HubConnection = new HubConnectionBuilder()
+            //    .WithUrl(App.CurSiteLink + "hub", options =>
+            //    {
+            //        options.AccessTokenProvider = () => Task.FromResult(App.CurrentUser.AccessTokenPC);
+            //    })
+            //    .Build();
 
-            HubConnection.On<DeviceType, Commands>("Commands", IncomingCommands);
-            HubConnection.On<DeviceType, Song>("SetCurrentSong", SetCurrentSong);
+            //HubConnection.On<DeviceType, Commands>("Commands", IncomingCommands);
+            //HubConnection.On<DeviceType, Song>("SetCurrentSong", SetCurrentSong);
 
-            HubConnection.Closed += async (Exception) =>
-            {
-                IsConnected = false;
-                //DialogService.ShowMessage(Exception);
-                await Connect();
-            };
+            //HubConnection.Closed += async (Exception) =>
+            //{
+            //    IsConnected = false;
+            //    //DialogService.ShowMessage(Exception);
+            //    await Connect();
+            //};
 
-            HubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
+            //HubConnection.ServerTimeout = new TimeSpan(0, 10, 0);
 
-            Task.Run(() => Connect());
+            //Task.Run(() => Connect());
         }
 
         #endregion

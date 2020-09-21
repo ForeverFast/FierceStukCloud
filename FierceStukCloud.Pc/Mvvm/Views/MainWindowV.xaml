@@ -58,7 +58,7 @@
     <Window.Resources>
         <ResourceDictionary>
 
-            
+            <converter:WidthWindowToWidthGridConverter x:Key="WidthWindowToWidthGridConverter"/>
             <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
             <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
             <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter"/>
@@ -81,10 +81,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         
-        <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"  Background="{StaticResource GrayLVL4}">
+        <Grid x:Name="MenuGrid" Grid.Row="1" Grid.Column="0"
+              Background="{StaticResource GrayLVL4}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
@@ -251,7 +253,27 @@
                    NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+        <Grid x:Name="FriendsGrid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
+              Background="{StaticResource GrayLVL4}" >
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=MainWindow, Path=Width,
+                                                       Converter={StaticResource WidthWindowToWidthGridConverter}}" Value="True">
+                            <Setter Property="Width" Value="240"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=MainWindow, Path=Width,
+                                                       Converter={StaticResource WidthWindowToWidthGridConverter}}" Value="False">
+                            <Setter Property="Width" Value="0"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            
+            
+        </Grid>
+
+        <Grid x:Name="PlayerGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
               Background="{StaticResource GrayLVL2}">
 
             <Grid.ColumnDefinitions>
@@ -286,7 +308,7 @@
                                                                    Converter={StaticResource StringToBoolConverter}}" 
                                                  Value="False">
                                         <Setter Property="Source"
-                                                Value="{Binding SelectedSong.Image}"/>
+                                                Value="{Binding CurrentSong.Image}"/>
                                     </DataTrigger>-->
                                 </Style.Triggers>
                             </Style>
@@ -305,15 +327,15 @@
                                VerticalAlignment="Bottom"
                                Margin="0,0,0,7"
                                
-                               Text="{Binding SelectedSong.Title}" 
+                               Text="{Binding CurrentSong.Title}" 
                                FontSize="15"
                                Foreground="{StaticResource StandartLightColor2}"
                                ClipToBounds="True"/>
-                    
+
                     <TextBlock x:Name="Author" Grid.Row="1"
                                VerticalAlignment="Top"
                                
-                               Text="{Binding SelectedSong.Author}" 
+                               Text="{Binding CurrentSong.Author}" 
                                FontSize="15"
                                Foreground="{StaticResource StandartLightColor}"
                                ClipToBounds="True"/>
@@ -344,8 +366,9 @@
                     <Button x:Name="RandomPlayback" Grid.Column="0"
                             Command="{Binding SetRandomPlaybackCommand}"
                             Style="{StaticResource RandomButton}"/>
-                    
+
                     <Button x:Name="PrevSong" Grid.Column="1"   
+                            Command="{Binding PrevSongCommand}"
                             Style="{StaticResource NextOrPrevSong}"
                             RenderTransformOrigin="0.5,0.5">
                         <Button.RenderTransform>
@@ -363,9 +386,10 @@
                             Command="{Binding PlayStateSongCommand}"
                             Style="{StaticResource PlayButton}"/>
 
-                    <Button x:Name="NextSong" Grid.Column="3"                        
+                    <Button x:Name="NextSong" Grid.Column="3"   
+                            Command="{Binding NextSongCommand}"
                             Style="{StaticResource NextOrPrevSong}"/>
-                    
+
                     <Button x:Name="LoopPlayback" Grid.Column="4"  
                             Command="{Binding SetLoopPlaybackCommand}"
                             Style="{StaticResource RepeatButton}"/>
@@ -373,7 +397,7 @@
 
                 </Grid>
 
-                
+
                 <Grid x:Name="SliderAndTimeInfo" Grid.Row="1"
                       VerticalAlignment="Center">
 
@@ -413,10 +437,10 @@
 
                     <TextBlock Grid.Column="2" Text="{Binding SongTime,UpdateSourceTrigger=PropertyChanged}"
                                HorizontalAlignment="Left"/>
-                    
+
                 </Grid>
 
-                
+
             </Grid>
 
             <Grid x:Name="PG3" Grid.Column="2"
@@ -456,7 +480,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <Slider Grid.Column="3" 
                         Margin="10,0,10,0"
                         
@@ -472,7 +496,7 @@
 
         </Grid>
 
-        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{x:Null}">
+        <Grid x:Name="HeaderGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="{x:Null}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
@@ -502,22 +526,27 @@
                     <Button x:Name="Minimize"
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding MinimizedWindowCommand}"
+                            Background="{StaticResource GrayLVL4}"
                             Style="{StaticResource MinimizeButton2}"/>
 
                     <Button x:Name="Resize"
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding ResizeWindowCommand}"
+                            Background="{StaticResource GrayLVL4}"
                             Style="{StaticResource ResizeButton2}"/>
 
                     <Button x:Name="Close"
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding CloseWindowCommand}"
+                            Background="{StaticResource GrayLVL4}"
                             Style="{StaticResource CloseButton2}"/>
                 </StackPanel>
             </Grid>
 
         </Grid>
 
+         
+       
 
         <md:DialogHost Grid.Row="0" Grid.RowSpan="3" 
                         Grid.Column="0" Grid.ColumnSpan="2"

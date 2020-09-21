@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using FierceStukCloud.Core;
 using FierceStukCloud.Core.Extension;
 using FierceStukCloud.Core.Other;
@@ -46,10 +47,6 @@ namespace FierceStukCloud.Pc.Services
                         _musicStorage.PlayLists.Add(item);
 
                     _musicStorage.AllSongs.AsParallel().ForAll(x => SongIntegrating(x));
-                    //foreach (var item in _musicStorage.AllSongs)
-                    //{
-                    //    SongIntegrating(item);
-                    //}
                 }
                 catch (Exception)
                 {
@@ -209,7 +206,7 @@ namespace FierceStukCloud.Pc.Services
                     {
                         var PL = _musicStorage.PlayLists.FirstOrDefault(x => x.Id == playList);
                         if (PL != null)
-                        {
+                       {
                             if (PL.Songs == null)
                                 PL.Songs = new ObservableLinkedList<Song>();
                             //PL.Songs.AddLast(song);
@@ -217,14 +214,14 @@ namespace FierceStukCloud.Pc.Services
                             try
                             {
                                 //var q = Thread.CurrentThread.ManagedThreadId;
-                                Application.Current.Dispatcher.Invoke(() => PL.Songs.AddLast(song));
-                              
-                                //Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-                                //{
-                                //    var q = Thread.CurrentThread.ManagedThreadId;
-                                //    PL.Songs.AddLast(song);
+                                //Application.Current.Dispatcher.Invoke(() => PL.Songs.AddLast(song));
 
-                                //}));
+                                Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+                                {
+                                    var q = Thread.CurrentThread.ManagedThreadId;
+                                    PL.Songs.AddLast(song);
+
+                                }));
                             }
                             catch(Exception ex)
                             {
@@ -247,12 +244,29 @@ namespace FierceStukCloud.Pc.Services
 
         #region Добавление/удаление треков
 
-        public async Task<Song> AddSongAsync(string path, string optionalInfo = "")
+        public Song AddSong(string path, string optionalInfo = "")
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
+                    var CheckSong = _musicStorage.AllSongs.FirstOrDefault(x => x.LocalUrl == path);
+                    if (CheckSong != null)
+                    {
+                        if (optionalInfo != "")
+                        {
+                            if (CheckSong.PlayLists == null)
+                                CheckSong.PlayLists = new List<string>();
+
+                            CheckSong.PlayLists.Add(optionalInfo);
+                            this.UpdateSong(CheckSong);
+
+                            Application.Current.Dispatcher.Invoke(() =>
+                                _musicStorage.PlayLists.FirstOrDefault(x => x.Id == optionalInfo).Songs.AddLast(CheckSong));
+                        }
+                        return CheckSong;
+                    }
+
                     TagLib.File file_TAG = TagLib.File.Create(path);
                     Music_AuthorAndTitleCheck MAaTC = new Music_AuthorAndTitleCheck(Path.GetFileName(path), file_TAG);
 
@@ -272,7 +286,8 @@ namespace FierceStukCloud.Pc.Services
                         OnServer = false,
                         OnDevice = true,
 
-                        OptionalInfo = optionalInfo
+                        IsFavorite = false,
+                        OptionalInfo = ""
                     };
 
                     if (!string.IsNullOrEmpty(file_TAG.Tag.Album))
@@ -295,15 +310,17 @@ namespace FierceStukCloud.Pc.Services
 
                                 break;
                         }
-                    }   
+                    }
 
-                    string sql = $"INSERT INTO Songs (Author,     Title,     Album,      Duration,  Year," +
-                                                    $"PlayLists,  LocalURL,  UserLogin,  OnServer,  OnDevice,  OptionalInfo)" +
-                                           $" VALUES(@Author,    @Title,    @Album,     @Duration, @Year," +
-                                                   $"@PlayLists, @LocalURL, @UserLogin, @OnServer, @OnDevice, @OptionalInfo);";
+                    string sql = $"INSERT INTO Songs (Id, Author,     Title,     Album,      Duration,  Year," +
+                                                    $"PlayLists,  LocalURL,  UserLogin,  OnServer,  OnDevice,   IsFavorite,  OptionalInfo)" +
+                                            $" VALUES(@Id, @Author,    @Title,    @Album,    @Duration, @Year," +
+                                                    $"@PlayLists, @LocalURL, @UserLogin, @OnServer, @OnDevice, @IsFavorite, @OptionalInfo);";
 
-                    await cnn.ExecuteAsync(sql, temp);
-                    await Task.Run(() => SongIntegrating(temp));
+                    //cnn.Insert(temp as SongBase); id сбивается, по причине иди *****
+
+                    cnn.Execute(sql, temp);
+                    SongIntegrating(temp);
 
                     return temp;
                 }
@@ -317,15 +334,33 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        public async Task<bool> RemoveSongAsync(Song song)
+        public bool RemoveSong(Song song)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
                     string sql = $"DELETE FROM Songs WHERE Id = @Id";
-                    await cnn.ExecuteAsync(sql, song);
+                    cnn.Execute(sql, song);
 
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool UpdateSong(Song song)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    var q = song as SongBase;
+                    cnn.Update(q);
+                    
                     return true;
                 }
                 catch (Exception)
@@ -340,7 +375,7 @@ namespace FierceStukCloud.Pc.Services
 
         #region Добавление/удаление папок
 
-        public async Task<LocalFolder> AddLocalFolderAsync(string path)
+        public LocalFolder AddLocalFolder(string path)
         {
             try
             {
@@ -360,7 +395,7 @@ namespace FierceStukCloud.Pc.Services
                 _musicStorage.LocalFolders.Add(temp);
 
                 foreach (var item in tempMas)
-                    await AddSongAsync(item);
+                    AddSong(item);
 
                 return temp;
             }
@@ -371,12 +406,12 @@ namespace FierceStukCloud.Pc.Services
 
         }
 
-        public async Task<bool> RemoveLocalFolderAsync(LocalFolder localFolder)
+        public bool RemoveLocalFolder(LocalFolder localFolder)
         {
             try
             {
                 foreach (Song song in localFolder.Songs)
-                    await RemoveSongAsync(song);
+                    RemoveSong(song);
 
                 return true;
             }
@@ -391,7 +426,7 @@ namespace FierceStukCloud.Pc.Services
 
         #region Добавление/удаление плейлистов
 
-        public async Task<PlayList> AddPlayListAsync(string title, string description, string imageUri)
+        public PlayList AddPlayList(string title, string description, string imageUri)
         {
             try
             {
@@ -413,11 +448,12 @@ namespace FierceStukCloud.Pc.Services
                         Songs = new ObservableLinkedList<Song>()
                     };
 
+                    
 
                     string sql = $"INSERT INTO PlayLists (Id,  Title,  Description,  ImageUri,  CreationDate,  UserLogin,  OnServer,   OnDevice)" +
                                                $" VALUES(@Id, @Title, @Description, @ImageUri, @CreationDate, @UserLogin, @OnServer,  @OnDevice);";
 
-                    await cnn.ExecuteAsync(sql, NewPlayList);
+                    cnn.Execute(sql, NewPlayList);
                     _musicStorage.PlayLists.Add(NewPlayList);
                     return NewPlayList;
                 }
@@ -428,7 +464,7 @@ namespace FierceStukCloud.Pc.Services
             }
         }
 
-        public async Task<bool> RemovePlayListAsync(PlayList playList)
+        public bool RemovePlayList(PlayList playList)
         {
             try
             {

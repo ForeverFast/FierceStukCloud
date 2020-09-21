@@ -17,6 +17,19 @@
           }
         }
       },
+      "Dapper.Contrib/2.0.35": {
+        "dependencies": {
+          "Dapper": "2.0.35",
+          "Microsoft.CSharp": "4.7.0",
+          "System.Reflection.Emit": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Dapper.Contrib.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.35.21366"
+          }
+        }
+      },
       "JetBrains.Annotations/2019.1.3": {
         "runtime": {
           "lib/netstandard2.0/JetBrains.Annotations.dll": {
@@ -41,6 +54,18 @@
           "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {
             "assemblyVersion": "3.1.3.1513",
             "fileVersion": "3.1.3.1513"
+          }
+        }
+      },
+      "MicroOrm.Dapper.Repositories/1.15.0": {
+        "dependencies": {
+          "Dapper": "2.0.35",
+          "System.ComponentModel.Annotations": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MicroOrm.Dapper.Repositories.dll": {
+            "assemblyVersion": "1.15.0.0",
+            "fileVersion": "1.15.0.0"
           }
         }
       },
@@ -142,6 +167,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Extensions.Configuration/3.1.7": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "3.1.7"
@@ -401,6 +427,7 @@
           }
         }
       },
+      "System.Reflection.Emit/4.7.0": {},
       "System.Reflection.Emit.Lightweight/4.7.0": {},
       "System.Runtime/4.3.0": {
         "dependencies": {
@@ -473,6 +500,13 @@
       "path": "dapper/2.0.35",
       "hashPath": "dapper.2.0.35.nupkg.sha512"
     },
+    "Dapper.Contrib/2.0.35": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yVrsIV1OkdUZ8BGQbrO0EkthnPWtgs6TV2pfOtTC93G8y2BwZ0nnBJifJj+ICzN7c7COsBlVg6P6eYUwdwJj1Q==",
+      "path": "dapper.contrib/2.0.35",
+      "hashPath": "dapper.contrib.2.0.35.nupkg.sha512"
+    },
     "JetBrains.Annotations/2019.1.3": {
       "type": "package",
       "serviceable": true,
@@ -493,6 +527,13 @@
       "sha512": "sha512-pyB9HqalbdGmX9iGUIjb82zgtQ5zUCfRqZG/w6AV3+oAI3WMEgzAwzA+NfIlzSPQx4iUz+Xl/O6HcsXoxuuM0g==",
       "path": "materialdesignthemes/3.1.3",
       "hashPath": "materialdesignthemes.3.1.3.nupkg.sha512"
+    },
+    "MicroOrm.Dapper.Repositories/1.15.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-j3aBAn6kKz3TZtDPU7M+r6cgSBatbmOaOVLm3Ib25MGTcb/b6fyJbacPBqZmXREj4HLsK+xTP1ZTrwB9M9WwKQ==",
+      "path": "microorm.dapper.repositories/1.15.0",
+      "hashPath": "microorm.dapper.repositories.1.15.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Connections.Abstractions/3.1.6": {
       "type": "package",
@@ -549,6 +590,13 @@
       "sha512": "sha512-nF9IiFOtkUXJh5vNQKRzkJ90HoFYSxxen9E46BWWKkl56QepC8ICwGvx86R3CQaHN8Ii5T8zd8Cni2JvUNXsog==",
       "path": "microsoft.aspnetcore.signalr.protocols.json/3.1.6",
       "hashPath": "microsoft.aspnetcore.signalr.protocols.json.3.1.6.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/3.1.7": {
       "type": "package",
@@ -710,6 +758,13 @@
       "sha512": "sha512-TyMTasnXQt7U4k13RQ7tA3CrfWEkvWjR635SFfnKVwwMOgClLE5mdHSkG2D13BLIdNwbPTGVQnhQB8Rk7f53Rg==",
       "path": "system.io.pipelines/4.7.1",
       "hashPath": "system.io.pipelines.4.7.1.nupkg.sha512"
+    },
+    "System.Reflection.Emit/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VR4kk8XLKebQ4MZuKuIni/7oh+QGFmZW3qORd1GvBq/8026OpW501SzT/oypwiQl4TvT8ErnReh/NzY9u+C6wQ==",
+      "path": "system.reflection.emit/4.7.0",
+      "hashPath": "system.reflection.emit.4.7.0.nupkg.sha512"
     },
     "System.Reflection.Emit.Lightweight/4.7.0": {
       "type": "package",

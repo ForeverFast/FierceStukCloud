@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 
 namespace FierceStukCloud.Core.Extension
 {
-    public class ObservableLinkedList<T> : INotifyCollectionChanged, IEnumerable
+    public class ObservableLinkedList<T> : OnPropertyChangedClass, INotifyCollectionChanged, IEnumerable
     {
         private LinkedList<T> m_UnderLyingLinkedList;
 
@@ -30,6 +30,12 @@ namespace FierceStukCloud.Core.Extension
         public ObservableLinkedList()
         {
             m_UnderLyingLinkedList = new LinkedList<T>();
+            CollectionChanged += ObservableLinkedList_CollectionChanged;
+        }
+
+        private void ObservableLinkedList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("Count");
         }
 
         public ObservableLinkedList(IEnumerable<T> collection)

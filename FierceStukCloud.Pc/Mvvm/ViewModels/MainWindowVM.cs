@@ -23,14 +23,14 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 
         #region Поля
         private IMusicContainer _selectedMusicContainer;
-        private Song _selectedSong;
+        private Song _CurrentSong;
         #endregion
             
         public ObservableCollection<PlayList> PlayLists { get => _musicStorage.PlayLists; }
 
         public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
-        public Song SelectedSong { get => _selectedSong; set => SetProperty(ref _selectedSong, value); }
+        public Song CurrentSong { get => _CurrentSong; set => SetProperty(ref _CurrentSong, value); }
       
 
         #endregion
@@ -188,6 +188,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                                                   parameters[1].ToString(),
                                                   TempImageUri);
         }
+
         private async Task RemovePlayListExecute(object parameter)
         {
             if (await _musicPlayerService.RemovePlayList(parameter as PlayList) == false)
@@ -226,10 +227,12 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                 {
                     case nameof(_musicPlayerService.CurrentSong):
 
+                        SongImage = null;
+
                         var temp = _musicPlayerService.CurrentSong;
-                        if (temp != SelectedSong)
+                        if (temp != CurrentSong)
                         {
-                            SelectedSong = temp;
+                            CurrentSong = temp;
                             SongPos = "00:00";
                             SongTimeLineForSlider = 0;
 
@@ -323,6 +326,8 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         {
             base.InitiailizeCommands();
 
+         
+
             SongPosChangedStartCommand = new RelayCommand(SongPosChangedStartExecute, null);
             SongPosChangedEndedCommand = new RelayCommand(SongPosChangedEndedExecute, null);
 
@@ -385,7 +390,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
 //    //}
 //    //else
 //    //{
-//    //    //LocalFiles.Remove(await Task.Run(() => model.DeleteLocalSongFromPC(SelectedSong.Content)));
+//    //    //LocalFiles.Remove(await Task.Run(() => model.DeleteLocalSongFromPC(CurrentSong.Content)));
 
 //    //}
 //}

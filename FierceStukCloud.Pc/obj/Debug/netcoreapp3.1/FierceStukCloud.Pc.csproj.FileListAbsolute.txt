@@ -85,8 +85,14 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.g.resources
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.AssemblyInfoInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.AssemblyInfo.cs
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CoreCompileInputs.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CopyComplete
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.genruntimeconfig.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Dapper.Contrib.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\FierceStukCloud.Pc.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\MicroOrm.Dapper.Repositories.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\LocalFilesPage.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcoreapp3.1\Mvvm\Views\Pages\LocalFilesPage.baml
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.dll
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\bin\Debug\netcoreapp3.1\Itenso.Windows.Controls.ListViewLayout.pdb

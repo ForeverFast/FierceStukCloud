@@ -32,11 +32,12 @@
                                     Maximum="{TemplateBinding ScrollableHeight}"
                                     ViewportSize="{TemplateBinding ViewportHeight}"
                                     Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                                    
+
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                                      Orientation="Horizontal"
                                      Grid.Row="1"
                                      Grid.Column="1"
+                                   Style="{StaticResource DefaultScrollBar}"
                                      Value="{TemplateBinding HorizontalOffset}"
                                      Maximum="{TemplateBinding ScrollableWidth}"
                                      ViewportSize="{TemplateBinding ViewportWidth}"
@@ -51,6 +52,7 @@
     <Style x:Key="ContentSV" TargetType="{x:Type ScrollViewer}">
         <Setter Property="OverridesDefaultStyle"
                 Value="True" />
+        <!--<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -69,7 +71,7 @@
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
                             </Border.BorderBrush>
-                            <ScrollContentPresenter />
+                            <ScrollContentPresenter/>
                         </Border>
                         <!--Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}, Path=Height}"-->
                         <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1"
@@ -81,9 +83,10 @@
                                     Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
 
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                    Style="{StaticResource DefaultScrollBar}"
                                      Orientation="Horizontal"
                                      Grid.Row="1"
-                                     Grid.Column="1"
+                                     Grid.Column="0"
                                      Value="{TemplateBinding HorizontalOffset}"
                                      Maximum="{TemplateBinding ScrollableWidth}"
                                      ViewportSize="{TemplateBinding ViewportWidth}"

@@ -103,8 +103,69 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="18"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="16"/>
+            </Grid.ColumnDefinitions>
+
+
+            <RepeatButton Grid.Column="0" Width="18" x:Name="RBup"
+                          Style="{StaticResource ScrollBarLineButtonStyle}"
+                          Command="ScrollBar.LineLeftCommand" >
+            </RepeatButton>
+            <Track Name="PART_Track" Grid.Column="1" 
+                   IsDirectionReversed="True">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageLeftCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                    </RepeatButton>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ScrollBarThumbStyle}">
+                    </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageRightCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                    </RepeatButton>
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton Grid.Column="3" Width="16" x:Name="RBdown"
+                          Style="{StaticResource ScrollBarLineButtonBottomStyle}"
+                          Command="ScrollBar.LineRightCommand">
+            </RepeatButton>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Visibility" SourceName="PART_Track" Value="Hidden" >
+                <Setter Property="Visibility" TargetName="RBup" Value="Hidden"/>
+                <Setter Property="Visibility" TargetName="RBdown" Value="Hidden"/>
+            </Trigger>
+            <Trigger Property="Visibility" SourceName="PART_Track" Value="Visible">
+                <Setter Property="Visibility" TargetName="RBup" Value="Visible"/>
+                <Setter Property="Visibility" TargetName="RBdown" Value="Visible"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <Style x:Key="DefaultScrollBar" TargetType="{x:Type ScrollBar}">
-        <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+
+        <!--<Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>-->
+        <Style.Triggers>
+            
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="18" />
+                <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
+            </Trigger>
+
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="18" />
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+            </Trigger>
+            
+        </Style.Triggers>
     </Style>
 
     <!--#endregion-->

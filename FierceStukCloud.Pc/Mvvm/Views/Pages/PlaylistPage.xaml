@@ -5,12 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:local="clr-namespace:FierceStukCloud.Pc.Mvvm.Views.Pages"
-      mc:Ignorable="d" 
+       
       xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:vm="clr-namespace:FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs"
+      mc:Ignorable="d"
+     
       Title="PlaylistPage">
-
+    <!--mc:Ignorable="d"-->
+    <!-- d:DataContext="{d:DesignInstance local:,IsDesignTimeCreatable=True}"-->
     <Page.Resources>
 
         <ResourceDictionary Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/_Dictionary/PlayListPageDictionary.xaml"/>
@@ -18,11 +21,12 @@
     </Page.Resources>
 
     <ScrollViewer Style="{StaticResource ContentSV}"
-                  Background="{StaticResource GrayLVL3}">
-        
-        <Grid   >
+                  Background="{StaticResource GrayLVL3}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="250"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="180"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -33,7 +37,12 @@
                 </LinearGradientBrush>
             </Grid.Background>
 
-            <Grid Grid.Row="0"              
+            <Grid Grid.Row="0">
+                
+            </Grid>
+            
+            
+            <Grid Grid.Row="0" Grid.RowSpan="2"             
                   Margin="15,40,15,0">
 
               
@@ -74,18 +83,18 @@
                     </Grid.Resources>
 
                     <TextBlock Grid.Row="0" Text="Плейлист"
-                           FontSize="20"
-                           VerticalAlignment="Bottom"/>
+                               FontSize="20"
+                               VerticalAlignment="Bottom"/>
 
                     <TextBlock Grid.Row="1" Text="{Binding PlayList.Title}"
-                           FontSize="45"
-                           FontWeight="SemiBold"/>
+                               FontSize="45"
+                               FontWeight="SemiBold"/>
 
-                    <TextBlock Grid.Row="2" Text="Авторы"
-                           FontSize="14"/>
+                    <!--<TextBlock Grid.Row="2" Text="Авторы"
+                           FontSize="14"/>-->
 
                     <TextBlock Grid.Row="3" DataContext="{Binding PlayList}"
-                           FontSize="14">
+                               FontSize="14">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}Автор: {0}  •  Треков: {1}  •  ">
                                 <Binding Path="UserLogin"/>
@@ -102,9 +111,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" Style="{StaticResource StandardButton}">
+                        <Button Grid.Column="0"
+                              
+                                Style="{StaticResource LVI_PlayButton}"/>
 
-                        </Button>
+
 
                     </Grid>
 
@@ -113,22 +124,40 @@
             </Grid>
 
 
-            <ListView Grid.Row="1"
-                     
-                      Margin="15,0"
-                      ctrl:ListViewLayoutManager.Enabled="true"
+            <ListView Grid.Row="2"
+               
+                      MaxWidth="1420"
+                      
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Margin="15,0,15,0"
+                      ctrl:ListViewLayoutManager.Enabled="True"
                       ItemsSource="{Binding PlayList.Songs, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedSong}"
                       PreviewMouseWheel="ListView_PreviewMouseWheel">
-              
+
+                <!--<ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid IsItemsHost="True" Columns="1"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>-->  
+                
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Height" Value="42"/>
 
                         <Setter Property="Foreground" Value="{StaticResource StandartLightColor2}"/>
 
-                       
-                       
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu Background="{StaticResource GrayLVL1}"
+                                             Foreground="{StaticResource StandartLightColor}">
+                                    <MenuItem Header="Перейти к исполнителю"/>
+                                    <MenuItem Header="Перейти к Альбому"/>
+                                    <MenuItem Header="Показать сведения"/>
+                                </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                        
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -184,9 +213,13 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Button Grid.Column="0" Style="{StaticResource PlayListPlayButton}"/>
+                                            <Button Grid.Column="0"
+                                                    Style="{StaticResource PlayListPlayButton}"/>
 
-                                            <Button Grid.Column="1" Style="{StaticResource FavoriteSongButton}"/>
+                                            <Button Grid.Column="1"
+                                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListView}},
+                                                                      Path=DataContext.AddOrRemoveInFavouritesCommand}"
+                                                    Style="{StaticResource FavoriteSongButton}"/>
 
                                             <GridViewRowPresenter Grid.Column="2" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
@@ -197,68 +230,121 @@
                         </Setter>
 
                         <Style.Triggers>
-                            <!--<DataTrigger Binding="{Binding IsPlaying}" Value="True" >
+                            <DataTrigger Binding="{Binding IsCurrentSong}" Value="True" >
                                 <Setter Property="Foreground" Value="{StaticResource Gor}"/>
-                            </DataTrigger>-->
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
 
-                <ListView.View>
-                    <GridView AllowsColumnReorder="False">
-
-
+                <ListView.View >
+                    <GridView  >
 
                         <!--<GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
 
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                                        <Border>
-                                            <TextBlock Text="{TemplateBinding ContentStringFormat}" Foreground="Aqua" FontSize="20"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            
-                            <Setter Property="Background" Value="{x:Null}"/>
+                                <Setter Property="Margin" Value="0,0,0,0"/>
 
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>-->
-
-                        <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Title}"
-                        ctrl:RangeColumn.IsFillColumn="False"
-                        Width="auto"
-                        ctrl:RangeColumn.MinWidth="350"
-                        ctrl:RangeColumn.MaxWidth="530"
-                        />
-                        <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Author}"
-                        ctrl:RangeColumn.MinWidth="150"
-                        ctrl:RangeColumn.MaxWidth="300"
-                        Header="Исполнитель" />
-                        <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Album}"
-                        ctrl:RangeColumn.MinWidth="0"
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                                            <Border>
+                                                <ContentPresenter Margin="0,0,0,0" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>-->
                         
-                        ctrl:RangeColumn.MaxWidth="300"
-                        Header="Альбом" />
+                        
+                        
+                        <GridView.ColumnHeaderTemplate>
+                            <ItemContainerTemplate>
+                                <Grid Background="Red" Margin="0,0,0,0">
+                                    <TextBlock Text="{Binding}" Margin="0,0,0,0"
+                                               Foreground="{StaticResource StandartLightColor}"/>
+                                </Grid>
+                            </ItemContainerTemplate>
+                        </GridView.ColumnHeaderTemplate>
+
+                        <!--<GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                                            <Border>
+                                                <GridViewHeaderRowPresenter />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Setter Property="Background" Value="{x:Null}"/>
+
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>-->
+
 
                         <GridViewColumn
-                        DisplayMemberBinding="{Binding Path=Duration}"
-                        Width="auto"
-                        ctrl:RangeColumn.MinWidth="0"
-                        ctrl:RangeColumn.MaxWidth="160"
-                        Header="Время" />
+                            DisplayMemberBinding="{Binding Path=Title}"
+                            ctrl:RangeColumn.MinWidth="350"
+                            ctrl:RangeColumn.MaxWidth="430"
+                            ctrl:RangeColumn.IsFillColumn="False"
+                            Header="Название" 
+                            />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Author}"
+                            ctrl:RangeColumn.MinWidth="300"
+                            ctrl:RangeColumn.MaxWidth="430"
+                            ctrl:RangeColumn.IsFillColumn="true"
+                            Header="Исполнитель" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Album}"
+                            ctrl:RangeColumn.MinWidth="0"
+                            ctrl:RangeColumn.IsFillColumn="true"
+                            Header="Альбом" />
+
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Duration}"
+                        
+                           
+                            Header="Время" />
+
+                        <!--<GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Title}"
+                            ctrl:RangeColumn.IsFillColumn="False"
+                           
+                            ctrl:RangeColumn.MinWidth="350"
+                            ctrl:RangeColumn.MaxWidth="530"
+                            Header="Название" 
+                            />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Author}"
+                            ctrl:RangeColumn.MinWidth="300"
+                            ctrl:RangeColumn.MaxWidth="300"
+                            Header="Исполнитель" />
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Album}"
+                             Width="200"
+                            ctrl:RangeColumn.MinWidth="0"
+                            ctrl:RangeColumn.MaxWidth="300"
+                            Header="Альбом" />
+
+                        <GridViewColumn
+                            DisplayMemberBinding="{Binding Path=Duration}"
+                          
+                            ctrl:RangeColumn.MinWidth="100"
+                            ctrl:RangeColumn.MaxWidth="160"
+                            Header="Время" />-->
 
 
                     </GridView>
                 </ListView.View>
 
                 <ListView.ContextMenu>
-                    <ContextMenu Background="{StaticResource GrayLVL0}"
+                    <ContextMenu Background="{StaticResource GrayLVL1}"
                              Foreground="{StaticResource StandartLightColor}">
                         <MenuItem Header="Добавить песню с устройства" Command="{Binding AddSongFromDeviceCommand}"/>
                     </ContextMenu>

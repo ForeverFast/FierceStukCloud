@@ -1,8 +1,12 @@
 ﻿using Dapper;
-using FierceStukCloud.Core.MusicPlayerModels;
+
 using FierceStukCloud.Core.Services;
+using FierceStukCloud.Pc.Mvvm;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NLog;
+using RestSharp;
+using RestSharp.Serialization.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,37 +23,229 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 using TestNetStandardLib;
 using static Dapper.SqlMapper;
 
 namespace Test
 {
-    public class t1
+    //class class1
+    //{
+    //    public void Go()
+    //    {
+
+    //    }
+    //}
+
+    //static class dopclass1
+    //{
+    //    public static void GoFast(this class1 objectClass)
+    //    {
+
+    //    }
+    //}
+
+
+
+    //public class t1 : IDisposable
+    //{
+    //    public int q;
+
+
+    //    ~t1()
+    //    {
+    //        q = 0;
+    //    }
+
+    //    public void Dispose()
+    //    {
+
+    //    }
+    //    //public ObservableCollection<Song> Songs { get; set; }
+    //}
+
+    //public class t2
+    //{
+
+    //   // public ObservableCollection<Song> Songs { get; set; }
+    //}
+
+    public abstract class TRObject
     {
-        public ObservableCollection<Song> Songs { get; set; }
+        public string Node { get; set; }
+        public string Text { get; set; }
+        public bool IsOptional { get; set; }
     }
 
-    public class t2
+
+    public class TranslationResponse
     {
-        public ObservableCollection<Song> Songs { get; set; }
+        public string Title { get; set; }
+        public List<TitleMarkup> TitleMarkup { get; set; }
+        public string Dictionary { get; set; }
+        public string ArticleId { get; set; }
+
+        public List<BodyItem> Body { get; set; }
+
+        public List<TRObject> SearchObject(Func<TRObject, bool> predicate)
+        {
+            var result = new List<TRObject>();
+
+            if (Body != null)
+            {
+                result.AddRange(Body);
+                foreach (var item in Body)
+                    result.AddRange(item.SearchObject(predicate));
+            }
+
+            return result.Where(predicate).ToList();
+        }
     }
 
+    public class TitleMarkup : TRObject
+    {
+        public bool IsItalics { get; set; }
+        public bool IsAccent { get; set; }
+    }
+
+    public class BodyItem : TRObject
+    {
+        public object Type { get; set; }
+
+        public List<MarkupItem> Markup { get; set; }
+
+        public List<BodyItem> Items { get; set; }
+
+
+
+        public List<TRObject> SearchObject(Func<TRObject, bool> predicate)
+        {
+            var result = new List<TRObject>();
+
+            if (Markup != null)
+            {
+                result.AddRange(Markup);
+                foreach (var item in Markup)
+                    result.AddRange(item.SearchObject(predicate));
+            }
+
+            if (Items != null)
+            {
+                result.AddRange(Items);
+                foreach (var item in Items)
+                    result.AddRange(item.SearchObject(predicate));
+            }
+
+            return result.Where(predicate).ToList();
+        }
+    }
+
+    public class MarkupItem : TRObject
+    {
+        public string Dictionary { get; set; }
+        public string ArticleId { get; set; }
+
+        public List<MarkupItem> Markup { get; set; }
+        public List<BodyItem> Items { get; set; }
+
+        public bool IsItalics { get; set; }
+        public bool IsAccent { get; set; }
+
+        public string FullText { get; set; }
+        public string FileName { get; set; }
+
+        public List<TRObject> SearchObject(Func<TRObject, bool> predicate)
+        {
+            var result = new List<TRObject>();
+
+            if (Markup != null)
+            {
+                result.AddRange(Markup);
+                foreach (var item in Markup)
+                    result.AddRange(item.SearchObject(predicate));
+            }
+
+            if (Items != null)
+            {
+                result.AddRange(Items);
+                foreach (var item in Items)
+                    result.AddRange(item.SearchObject(predicate));
+            }
+
+            return result.Where(predicate).ToList();
+        }
+    }
 
     class Program
     {
+
+        //private static void CommandManager_RequerySuggested(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public static t1 temp { get => new t1() { q = new Random().Next(0, 10) }; }
+
+        //public static ICommand Command { get => new RelayCommand((o) => {
+        //    Console.WriteLine(new Random().Next(0, 10));
+        //}); }
+
         static void Main(string[] args)
         {
+            var client = new RestClient("https://developers.lingvolive.com/api/v1/Translation?text=floor&srcLang=1033&dstLang=1049");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Authorization", "Bearer ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk1EQTJOelUzTWpNc0lrMXZaR1ZzSWpwN0lrTm9ZWEpoWTNSbGNuTlFaWEpFWVhraU9qVXdNREF3TENKVmMyVnlTV1FpT2pNNU5qSXNJbFZ1YVhGMVpVbGtJam9pTURZME5EUTFOVEV0T0RjeFpTMDBNamd4TFdJeFpEY3RPVGM0TjJZNFl6TTRPVEk0SW4xOS5YZXdFVUF6a19OV1ZMMDc1MUhDcUZ2Y0lpcXl6b01qUlV2dHpmU2VVS1U4");
+            IRestResponse response = client.Execute(request);
+
+            var json = response.Content;
+
+            //var temp = JContainer.Parse(json);
+
+            var t = System.Text.Json.JsonSerializer.Deserialize<List<TranslationResponse>>(json);
+
+            foreach (var item in t)
+            {
+                var q = item.SearchObject(x => x.Node == "Text");
+            }
 
 
 
+                
 
 
+            //var q = new System.Text.Json.JsonSerializer();
+            //var updates = JObject.Parse(response.Content).SelectToken("Mackup");
+            //var temp = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+
+            // Console.WriteLine(response.Content);
 
 
             
 
+
             Console.WriteLine("End");
+
+            //t1 t1 = new t1();
+            //t1.q = 2;
+
+            //t1 = new t1();
+
+
+
+
+
+            // TR[0].body[1].items[2].Markup[1].items[0].Markup[0].Markup[0]
+
+            //Command.Execute(new object());
+            //Command.Execute(new object());
+
+            //CommandManager.RequerySuggested += CommandManager_RequerySuggested;
+
+            //var temp1 = temp;
+            //var temp2 = temp;
 
             //var songs = new ReadOnlyCollection<Song>(new List<Song> { new Song { Title = "kek" } });
             //var q = songs.FirstOrDefault(x => x.Title == "kek");

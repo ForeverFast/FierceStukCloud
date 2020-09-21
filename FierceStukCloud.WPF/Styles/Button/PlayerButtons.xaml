@@ -86,21 +86,20 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-
+    
     <Style x:Key="PlayButton" TargetType="{x:Type Button}">
         <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
         <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=DataContext}"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=SelectedSong.IsPlaying}" Value="True">
+            <DataTrigger Binding="{Binding Path=CurrentSong.IsPlaying}" Value="True">
                 <Setter Property="Template" Value="{StaticResource PauseButtonTemplate}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=SelectedSong.IsPlaying}" Value="False">
+            <DataTrigger Binding="{Binding Path=CurrentSong.IsPlaying}" Value="False">
                 <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
- 
     <Style x:Key="NextOrPrevSong" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="10,0"/>
         <Setter Property="Template">
@@ -137,7 +136,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style x:Key="RepeatButton" TargetType="{x:Type Button}">
        
@@ -246,9 +244,10 @@
 
     <Style x:Key="PlayListPlayButton" TargetType="{x:Type Button}">
 
-        <!--<Setter Property="Template" Value="{StaticResource PauseButtonTemplate}"/>-->
-       
-        
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Page}},
+                                                               Path=DataContext.SetSongCommand}"/>
+        <Setter Property="CommandParameter" Value="{Binding}"/>
+
         <Style.Triggers>
 
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="True">
@@ -263,6 +262,8 @@
                 <MultiDataTrigger.Setters>
                     <Setter Property="Template" Value="{StaticResource PauseButtonTemplate}"/>
                     <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Page}},
+                                                               Path=DataContext.PlayStateSongCommand}"/>
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
 
@@ -279,25 +280,32 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="False"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsCurrentSong}" Value="True"/>
                     <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=IsMouseOver}" Value="True"/>
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
                     <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Page}},
+                                                               Path=DataContext.PlayStateSongCommand}"/>
+                    <Setter Property="CommandParameter" Value="{Binding}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger> 
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsCurrentSong}" Value="False"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=IsMouseOver}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
+                    <Setter Property="Margin" Value="4"/>
+                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Page}},
+                                                               Path=DataContext.SetSongCommand}"/>
+                    <Setter Property="CommandParameter" Value="{Binding}"/>
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
 
-            <!--<MultiDataTrigger>
-                <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext.IsPlaying}" Value="True"/>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsMouseOver}" Value="True"/>
-                </MultiDataTrigger.Conditions>
-                <MultiDataTrigger.Setters>
-                    <Setter Property="Visibility" Value="Visible"/>
-                </MultiDataTrigger.Setters>
-            </MultiDataTrigger>-->
-
-            
         </Style.Triggers>
     </Style>
 
@@ -313,7 +321,7 @@
                                      Foreground="{StaticResource StandartLightColor2}"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=DataContext.IsFavorite}" Value="True">
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsFavorite}" Value="True">
                             <Setter Property="Kind" TargetName="Icon" Value="Favorite"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>

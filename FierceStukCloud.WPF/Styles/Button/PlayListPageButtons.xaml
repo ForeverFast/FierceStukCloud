@@ -4,8 +4,67 @@
 
     <!-- LVI - ListViewItem -->
 
-    <Style x:Key="LVI_PlayButton" TargetType="Button">
-        
+    <ControlTemplate x:Key="LVI_PlayButtonTemplate" TargetType="{x:Type Button}">
+        <Border x:Name="Border"
+                Background="{StaticResource GorWithLowOpacity}"
+                CornerRadius="25"
+                Height="34"
+                Width="130">
+
+            <TextBlock Text="{TemplateBinding Tag}" x:Name="ButtonText"
+                       FontSize="14.5"
+                       Foreground="{StaticResource StandartLightColor2}"
+                       
+                       Padding="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Width" Value="136" TargetName="Border"/>
+                <Setter Property="Height" Value="36" TargetName="Border"/>
+                <Setter Property="FontSize" Value="16" TargetName="ButtonText"/>
+                <Setter Property="Foreground" Value="White" TargetName="ButtonText"/>
+            </Trigger>
+
+            <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                <Setter Property="Text" Value="Пауза" TargetName="ButtonText"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsPlaying}" Value="False">
+                <Setter Property="Text" Value="Слушать" TargetName="ButtonText"/>
+            </DataTrigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="LVI_PlayButton" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{StaticResource LVI_PlayButtonTemplate}"/>
+        <Style.Triggers>
+            
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsPlaying}" Value="False"/>
+                    <Condition Binding="{Binding IsCurrentMusicContainer}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Command" Value="{Binding PlayStateSongCommand}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsPlaying}" Value="True"/>
+                    <Condition Binding="{Binding IsCurrentMusicContainer}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Command" Value="{Binding PlayStateSongCommand}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <DataTrigger Binding="{Binding IsCurrentMusicContainer}" Value="False">
+                <Setter Property="Command" Value="{Binding ListenPlaylistsCommand}"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

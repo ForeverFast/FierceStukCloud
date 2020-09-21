@@ -13,6 +13,9 @@
     <Compile Update="Mvvm\Views\Pages\HomePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Mvvm\Views\Pages\LocalFilesPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Mvvm\Views\Pages\PlaylistPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +31,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Mvvm\Views\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Mvvm\Views\Pages\LocalFilesPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Mvvm\Views\Pages\PlaylistPage.xaml">

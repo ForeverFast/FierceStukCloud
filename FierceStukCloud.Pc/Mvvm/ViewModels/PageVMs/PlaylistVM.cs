@@ -8,60 +8,65 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+//FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
+
 namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 {
-    public class PlaylistVM : BasePageViewModel, INavigatedToAware
+    public class PlaylistVM : BasePageViewModel, INavigatedToAware, INavigatingFromAware
     {
         #region Свойства
 
         #region Поля
-        private Song _selectedSong;
-
+        private Song _SelectedSong;
         #endregion
 
         public PlayList PlayList { get; set; }
 
         public ObservableCollection<PlayList> PlayLists { get; set; }
 
-
-        public Song SelectedSong
-        {
-            get => _selectedSong;
-            set
-            {
-                //if (value != null)
-                //{
-                //    if (_selectedSong != null)
-                //        _selectedSong.IsSelected = false;
-                //    value.CurrentMusicContainer = PlayList;
-                //    value.IsSelected = true;
-                //    SetProperty(ref _selectedSong, value);
-                //    _musicPlayerService.CurrentSong = value;
-                //}
-            }
-        }
-
-    
+        public Song SelectedSong { get => _SelectedSong; set => SetProperty(ref _SelectedSong, value); }
 
         public bool IsPlaying
         {
-            get => _musicPlayerService.IsPlaying;
-            set => _musicPlayerService.IsPlaying = value;
+            get => _musicPlayerService.IsPlaying &&
+                  _musicPlayerService.CurrentSong.CurrentMusicContainer.Id == this.PlayList.Id;
         }
+               
+        public bool IsCurrentMusicContainer { get => _musicPlayerService.CurrentMusicContainer == PlayList; }
+             
 
         #endregion
 
         #region Команды - Управление плеером
 
-        public ICommand PlayStateSongCommand { get; private set; }
-
         public ICommand ListenPlaylistsCommand { get; private set; }
+
+        private void ListenPlaylistsExecute(object parameter)
+            => SetSongExecute(PlayList.Songs?.First?.Value);
+        private bool ListenPlaylistsCabExecute(object parameter)
+            => PlayList.Songs.Count > 0;
+
+        #endregion
+
+
+        #region Команды - ListViewItem
 
         /// <summary>
         /// Запуск песни по дабл клику
         /// </summary>
         public ICommand SetSongCommand { get; private set; }
+        private void SetSongExecute(object parameter)
+        {
+            var value = parameter as Song;
+            value.CurrentMusicContainer = PlayList;
+            SetProperty(ref _SelectedSong, value);
+            _musicPlayerService.CurrentSong = value;
+        }
 
+        private bool SetSongCanExecute(object parameter)
+            => PlayList.Songs.Find(parameter as Song) != null;
+
+        public ICommand PlayStateSongCommand { get; private set; }
         private void PlayStateSongExecute(object parameter)
         {
             if (_musicPlayerService.IsPlaying == true)
@@ -70,23 +75,17 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 _musicPlayerService.Play();
         }
 
-        private void ListenPlaylistsExecute(object parameter)
-        {       
-            SelectedSong = PlayList.Songs?.First?.Value;
-        }
 
-        private void SetSongExecute(object parameter)
+        public ICommand AddOrRemoveInFavouritesCommand { get; private set; }
+
+        public async Task AddOrRemoveInFavouritesExecute(object parameter)
         {
-            var value = parameter as Song;
-            if (_selectedSong != null)
-                _selectedSong.IsSelected = false;
-            value.CurrentMusicContainer = PlayList;
-            value.IsSelected = true;
-            SetProperty(ref _selectedSong, value);
-            _musicPlayerService.CurrentSong = value;
+            SelectedSong.IsFavorite = !SelectedSong.IsFavorite;
+            await _musicPlayerService.UpdateSongInfo(SelectedSong);
         }
 
         #endregion
+
 
         #region Команды - Контекстное меню песни
 
@@ -109,61 +108,50 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         }
 
+        #endregion
 
-        #region Команды - добавление/удаление
 
-        public ICommand AddToFavouritesCommand { get; set; }
+        #region Команды - работа с песнями
 
+        #region Методы добавления
+
+        public ICommand AddSongFromDeviceCommand { get; private set; }
+        public ICommand AddSongToServerCommand { get; private set; }
         public ICommand AddToAnotherPlaylistCommand { get; set; }
+   
 
-        public ICommand RemoveFromPlaylistCommand { get; set; }
-
-
-        public async Task AddToFavouritesExecute(object parameter)
+      
+        private async Task AddSongFromDeviceExecute(object parameter)
         {
-           
+            await _musicPlayerService.AddSongFromDevice(_dialogService.FileBrowserDialog(), PlayList.Id);
+            OnPropertyChanged(nameof(PlayList.Songs.Count));
         }
 
         public async Task AddToAnotherPlaylistExecute(object parameter)
         {
-
+            
         }
+
+        #endregion
+
+        #region Методы удаления
+
+        public ICommand RemoveFromPlaylistCommand { get; set; }
+        public ICommand RemoveSongFromDeviceCommand { get; private set; }
+        public ICommand RemoveSongFromAppCommand { get; private set; }
+        public ICommand RemoveSongFromServerCommand { get; private set; }
 
         public async Task RemoveFromPlaylistExecute(object parameter)
         {
 
         }
 
-
-        #endregion
-
-        #endregion
-
-        #region Команды - работа с файлами
-
-
-        #region Методы добавления/удаления песен на устройстве
-
-        public ICommand AddSongFromDeviceCommand { get; private set; }
-        public ICommand RemoveSongFromDeviceCommand { get; private set; }
-        public ICommand RemoveSongFromAppCommand { get; private set; }
-
-        private async Task AddSongFromDeviceExecute(object parameter)
-             => await _musicPlayerService.AddSongFromDevice(_dialogService.FileBrowserDialog(), PlayList.Id);
-
-        #endregion
-
-
-        #region Методы добавления/удаления песен на сервере 
-
-        public ICommand AddSongToServerCommand { get; private set; }
-        public ICommand RemoveSongFromServerCommand { get; private set; }
-
         #endregion
 
         public ICommand UpdateSongInfo { get; private set; }
 
         #endregion
+
 
         #region События
 
@@ -175,34 +163,22 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 {
                     case nameof(_musicPlayerService.CurrentSong):
 
-                        var temp = _musicPlayerService.CurrentSong;
-                        if (temp != SelectedSong)
-                        {
-                            if(SelectedSong != null)
-                                SelectedSong.IsSelected = false;
-                            temp.IsSelected = true;
-                            _selectedSong = temp;
-                            OnPropertyChanged("SelectedSong");
-                        }
-
+                        OnPropertyChanged(nameof(IsPlaying));
+                        OnPropertyChanged(nameof(IsCurrentMusicContainer));
                         break;
 
                     case nameof(_musicPlayerService.Play):
-
-
-                        break;
-
                     case nameof(_musicPlayerService.Pause):
                     case nameof(_musicPlayerService.Stop):
-
-                       
-
+                        OnPropertyChanged(nameof(IsPlaying));
+                        OnPropertyChanged(nameof(IsCurrentMusicContainer));
                         break;
                 }
             }
         }
 
         #endregion
+
 
         #region Конструкторы
 
@@ -213,26 +189,25 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             if (playList.Songs == null)
                 playList.Songs = new Core.Extension.ObservableLinkedList<Song>();
 
-            playList.Songs.CollectionChanged += Songs_CollectionChanged;
-            InitiailizeCommands();
-        }
+            //PlayList.Songs.CollectionChanged += (o, e) => { OnPropertyChanged() }
 
-        private void Songs_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            var q = Thread.CurrentThread.ManagedThreadId;
+            InitiailizeCommands();
         }
 
         public override void InitiailizeCommands()
         {
+            ListenPlaylistsCommand = new RelayCommand(ListenPlaylistsExecute, ListenPlaylistsCabExecute);
+
+            SetSongCommand = new RelayCommand(SetSongExecute, SetSongCanExecute);
             PlayStateSongCommand = new RelayCommand(PlayStateSongExecute);
-            ListenPlaylistsCommand = new RelayCommand(ListenPlaylistsExecute);
-            SetSongCommand = new RelayCommand(SetSongExecute);
+            AddOrRemoveInFavouritesCommand = new AsyncRelayCommand(AddOrRemoveInFavouritesExecute);
+
 
             GoToAuthorPageCommand = new RelayCommand(GoToAuthorPageExecute);
             GoToAlbumPageCommand = new RelayCommand(GoToAlbumPageExecute);
             ShowDetailsCommand = new RelayCommand(ShowDetailsExecute);
 
-            AddToFavouritesCommand = new AsyncRelayCommand(AddToFavouritesExecute);
+         
             AddToAnotherPlaylistCommand = new AsyncRelayCommand(AddToAnotherPlaylistExecute);
             RemoveFromPlaylistCommand = new AsyncRelayCommand(RemoveFromPlaylistExecute);
 
@@ -250,6 +225,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 _musicPlayerService = args[2] as MusicPlayerService;
                 _musicPlayerService.PropertyChanged += _musicPlayer_PropertyChanged;
             }
+        }
+
+        public void OnNavigatingFrom()
+        {
+            
         }
 
         #endregion

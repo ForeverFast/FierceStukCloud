@@ -42,8 +42,15 @@ namespace FierceStukCloud.Pc.Services
 
         public LoopMode IsRepeatSong { get => _isRepeatSong; set => SetProperty(ref _isRepeatSong, value); }
         public bool IsRandomSong { get => _isRandomSong; set => SetProperty(ref _isRandomSong, value); }
-        public bool IsPlaying { get => CurrentSong == null ? false : CurrentSong.IsPlaying; set => CurrentSong.IsPlaying = value; }
-
+        public bool IsPlaying
+        {
+            get => CurrentSong == null ? false : CurrentSong.IsPlaying;
+            set
+            {
+                CurrentSong.IsPlaying = value;
+                OnPropertyChanged();
+            }
+        }
         public double Volume
         {
             get => MP.Volume;
@@ -77,7 +84,7 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавления/удаления песен на устройстве
 
         public async Task<Song> AddSongFromDevice(string path, string ContainerId = "")
-            => await _dataService.AddSongAsync(path, ContainerId);
+            => await Task.Run(() => _dataService.AddSong(path, ContainerId));
 
         public async Task<bool> RemoveSongFromDevice(Song song)
         {
@@ -86,7 +93,7 @@ namespace FierceStukCloud.Pc.Services
         }
 
         public async Task<bool> RemoveSongFromApp(Song song)
-            => await _dataService.RemoveSongAsync(song);
+            => await Task.Run(() => _dataService.RemoveSong(song));
 
         #endregion
 
@@ -107,10 +114,8 @@ namespace FierceStukCloud.Pc.Services
 
         #endregion
 
-        public Task<bool> UpdateSongInfo(Song song)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> UpdateSongInfo(Song song)
+            => await Task.Run(() => _dataService.UpdateSong(song));
 
         #endregion
 
@@ -120,10 +125,10 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавления/удаления папок на устройстве
 
         public async Task<LocalFolder> AddLocalFolderFromDevice(string path)
-            => await Task.Run(() => _dataService.AddLocalFolderAsync(path));
+            => await Task.Run(() => _dataService.AddLocalFolder(path));
 
         public async Task<bool> RemoveLocalFolderFromDevice(LocalFolder localFolder)
-            => await Task.Run(() => _dataService.RemoveLocalFolderAsync(localFolder));
+            => await Task.Run(() => _dataService.RemoveLocalFolder(localFolder));
 
         #endregion
 
@@ -131,10 +136,10 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавление/удаления плейлистов на устройстве
 
         public async Task AddPlayList(string title, string description, string imageUri)
-            => await _dataService.AddPlayListAsync(title, description, imageUri);
+            => await Task.Run(() => _dataService.AddPlayList(title, description, imageUri));
 
         public async Task<bool> RemovePlayList(PlayList playList)
-            => await _dataService.RemovePlayListAsync(playList);
+            => await Task.Run(() => _dataService.RemovePlayList(playList));
 
         public async Task<bool> UpdatePlayList(PlayList playList)
         {
@@ -227,7 +232,11 @@ namespace FierceStukCloud.Pc.Services
                     CurrentMusicContainer = song.CurrentMusicContainer;
 
                 if (CurrentSong != null)
-                    CurrentSong.IsPlaying = false;
+                    if (CurrentSong != song)
+                    {
+                        CurrentSong.IsPlaying = false;
+                        CurrentSong.IsCurrentSong = false;
+                    }
                 CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
                 MP.Open(new Uri(CurrentSong.LocalUrl));
             }
@@ -246,13 +255,16 @@ namespace FierceStukCloud.Pc.Services
         {
             MP.Play();
             IsPlaying = true;
+            CurrentSong.IsCurrentSong = true;
             timer.Start();
-            OnPropertyChanged("CurrentSong");
+            OnPropertyChanged(nameof(CurrentSong));
         }
 
         private void SongEnded(object sender, EventArgs e)
         {
             IsPlaying = false;
+            CurrentSong.IsCurrentSong = false;
+
             timer.Stop();
 
             if (IsRepeatSong == LoopMode.LoopOne)

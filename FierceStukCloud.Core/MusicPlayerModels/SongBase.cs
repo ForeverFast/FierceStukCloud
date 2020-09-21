@@ -1,13 +1,15 @@
 ﻿using FierceStukCloud.Abstractions;
-using FierceStukCloud.Core.Services;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace FierceStukCloud.Core
 {
+    [Table("Songs")]
     public abstract class SongBase : OnPropertyChangedClass, IBaseObject, IStatusExistence
     {
+        [Key]
         [Column("Id")]
         [JsonPropertyName("Id")]
         public string Id { get; set; }
@@ -63,21 +65,10 @@ namespace FierceStukCloud.Core
         #region Локальные свойства и методы для работы приложения
 
         #region Поля
-        private bool _isSelected;
-        private bool _isPlaying;
         private bool _isFavorite;
         #endregion
 
-        [JsonIgnore]
-        public IMusicContainer CurrentMusicContainer { get; set; }
-        [JsonIgnore]
-        public IMusicPlayerService MusicPlayer { get; set; }
-
-
-        public bool IsSelected { get => _isSelected; set => SetProperty(ref _isSelected, value); }
-
-        public bool IsPlaying  { get => _isPlaying; set => SetProperty(ref _isPlaying, value); }
-
+        [Column("Favorite")]
         public bool IsFavorite { get => _isFavorite; set => SetProperty(ref _isFavorite, value); }
 
         #endregion
