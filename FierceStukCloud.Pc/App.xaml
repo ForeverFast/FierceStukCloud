@@ -17,19 +17,10 @@
                     Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
 
-                <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/NavigationButtons.xaml"/>
-                <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/SystemButtons.xaml"/>
-                <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/PlayerButtons.xaml"/>
-                <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Button/StandardButtons.xaml"/>
-
+      
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListBox/PlayListLB.xaml"/>
-                <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/RadioButton/MenuRadioButtons.xaml"/>
+
                 
                 <ResourceDictionary
                     Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ScrollBar/DefaultScrollBar.xaml"/>
@@ -41,7 +32,7 @@
 
 
                 <ResourceDictionary
-                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/Brushes.xaml"/>
+                    Source="pack://application:,,,/FierceStukCloud.Wpf;component/Brushes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

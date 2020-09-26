@@ -55,7 +55,7 @@ namespace FierceStukCloud.Pc
             var mainWindow = ServiceProvider.GetRequiredService<MainWindowV>();
             var navigationManager = ServiceProvider.GetRequiredService<INavigationManager>();
             navigationManager.FrameControl = mainWindow.FrameContent;
-
+            var q = ServiceProvider.GetRequiredService<IServiceProvider>();
             navigationManager.Register<HomePage>("home", new HomePageVM(navigationManager));
             navigationManager.Register<ReviewPage>("review", new HomePageVM(navigationManager));
             navigationManager.Register<ProfilePage>("profile", new HomePageVM(navigationManager));

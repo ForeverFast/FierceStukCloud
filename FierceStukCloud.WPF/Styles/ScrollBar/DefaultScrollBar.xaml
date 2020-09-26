@@ -1,8 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:FierceStukCloud.Wpf.Styles.ScrollBar"
+                    xmlns:local="clr-namespace:FierceStukCloud.Wpf"
                     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" >
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary 
+            Source="pack://application:,,,/FierceStukCloud.Wpf;component/Brushes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
     <!--#region style1-->
 
     <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">

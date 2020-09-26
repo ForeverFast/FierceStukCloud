@@ -454,7 +454,7 @@ namespace FierceStukCloud.Pc.Services
                                                $" VALUES(@Id, @Title, @Description, @ImageUri, @CreationDate, @UserLogin, @OnServer,  @OnDevice);";
 
                     cnn.Execute(sql, NewPlayList);
-                    _musicStorage.PlayLists.Add(NewPlayList);
+                    //_musicStorage.PlayLists.Add(NewPlayList);
                     return NewPlayList;
                 }
             }

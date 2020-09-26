@@ -26,7 +26,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         private Song _CurrentSong;
         #endregion
             
-        public ObservableCollection<PlayList> PlayLists { get => _musicStorage.PlayLists; }
+        public ObservableCollection<PlayList> PlayLists { get; }
 
         public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
@@ -309,8 +309,11 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
             InitiailizeCommands();
 
             _musicStorage = musicStorage;
+            PlayLists = _musicStorage.PlayLists;
+
             _dialogService = dialogService;
             _navigationManager = navigationManager;
+
             _musicPlayerService = musicPlayerService;
             _musicPlayerService.PropertyChanged += MusicPlayer_PropertyChanged;
 

@@ -80,8 +80,9 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         public async Task AddOrRemoveInFavouritesExecute(object parameter)
         {
-            SelectedSong.IsFavorite = !SelectedSong.IsFavorite;
-            await _musicPlayerService.UpdateSongInfo(SelectedSong);
+            var song = parameter as Song;
+            song.IsFavorite = !song.IsFavorite;
+            await _musicPlayerService.UpdateSongInfo(song);
         }
 
         #endregion
@@ -117,7 +118,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
 
         public ICommand AddSongFromDeviceCommand { get; private set; }
         public ICommand AddSongToServerCommand { get; private set; }
-        public ICommand AddToAnotherPlaylistCommand { get; set; }
+        public ICommand AddToAnotherPlayListCommand { get; set; }
    
 
       
@@ -127,7 +128,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             OnPropertyChanged(nameof(PlayList.Songs.Count));
         }
 
-        public async Task AddToAnotherPlaylistExecute(object parameter)
+        public async Task AddToAnotherPlayListExecute(object parameter)
         {
             
         }
@@ -208,7 +209,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
             ShowDetailsCommand = new RelayCommand(ShowDetailsExecute);
 
          
-            AddToAnotherPlaylistCommand = new AsyncRelayCommand(AddToAnotherPlaylistExecute);
+            AddToAnotherPlayListCommand = new AsyncRelayCommand(AddToAnotherPlayListExecute);
             RemoveFromPlaylistCommand = new AsyncRelayCommand(RemoveFromPlaylistExecute);
 
             AddSongFromDeviceCommand = new AsyncRelayCommand(AddSongFromDeviceExecute);
@@ -225,6 +226,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
                 _musicPlayerService = args[2] as MusicPlayerService;
                 _musicPlayerService.PropertyChanged += _musicPlayer_PropertyChanged;
             }
+           
         }
 
         public void OnNavigatingFrom()

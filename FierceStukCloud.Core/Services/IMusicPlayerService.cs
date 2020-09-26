@@ -94,7 +94,7 @@ namespace FierceStukCloud.Core.Services
         Task<LocalFolder> AddLocalFolderFromDevice(string path);
         Task<bool> RemoveLocalFolderFromDevice(LocalFolder localFolder);
 
-        Task AddPlayList(string title, string description, string imageUri);
+        Task<PlayList> AddPlayList(string title, string description, string imageUri);
         Task<bool> RemovePlayList(PlayList playList);
         Task<bool> UpdatePlayList(PlayList playList);
     }

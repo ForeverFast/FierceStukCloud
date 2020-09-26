@@ -7,25 +7,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Styles\Brushes.xaml">
+    <Page Update="Dictionaries\Window\WindowButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Button\AuthenticationButtons.xaml">
+    <Page Update="Dictionaries\Window\WindowDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Button\NavigationButtons.xaml">
+    <Page Update="Dictionaries\Window\WindowMusicPlayerButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Button\PlayerButtons.xaml">
+    <Page Update="Dictionaries\Window\WindowRadioButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Button\PlayListPageButtons.xaml">
+    <Page Update="Brushes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\Button\StandardButtons.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\Button\SystemButtons.xaml">
+    <Page Update="Dictionaries\PlayListPage\PlayListPageButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ListBox\ListBoxStyles.xaml">
@@ -35,9 +32,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Menu\MenuStyles.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\RadioButton\MenuRadioButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\ScrollBar\DefaultScrollBar.xaml">
@@ -58,7 +52,7 @@
     <Page Update="Styles\TextBox\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Styles\_Dictionary\PlayListPageDictionary.xaml">
+    <Page Update="Dictionaries\PlayListPage\PlayListPageDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\ScrollContentPage.xaml">

@@ -32,12 +32,10 @@
     <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
     <ProjectReference Include="..\FierceStukCloud.Mvvm\FierceStukCloud.Mvvm.csproj" />
     <ProjectReference Include="..\FierceStukCloud.WPF\FierceStukCloud.Wpf.csproj" />
+    <ProjectReference Include="D:\Программирование\Сборник примеров\LWL\ListViewLayout\ListViewLayout2010.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Itenso.Windows.Controls.ListViewLayout">
-      <HintPath>D:\Программирование\Сборник примеров\LWL\ListViewLayout\bin\Debug\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
-    </Reference>
     <Reference Include="SoftwareArchitects.Windows.Controls.ScrollSynchronizer">
       <HintPath>..\..\..\..\Desktop\SyncScroll\WPF\SoftwareArchitects.Windows.Controls\bin\Debug\SoftwareArchitects.Windows.Controls.ScrollSynchronizer.dll</HintPath>
     </Reference>

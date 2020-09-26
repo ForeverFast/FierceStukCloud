@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud.Wpf;component/Dictionaries/PlayListPage/PlayListPageButtons.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud.Wpf;component/Styles/ListView/SongsListView.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

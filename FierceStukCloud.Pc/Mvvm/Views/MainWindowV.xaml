@@ -16,6 +16,21 @@
         Height="800" Width="1500"
         MinHeight="600" MinWidth="800" WindowStyle="SingleBorderWindow">
 
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/FierceStukCloud.Wpf;component/Dictionaries/Window/WindowDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:WidthWindowToWidthGridConverter x:Key="WidthWindowToWidthGridConverter"/>
+            <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
+            <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
+            <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter"/>
+            
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
@@ -38,14 +53,11 @@
                             <ContentPresenter x:Name="CP" Content="{TemplateBinding Content}" Grid.Row="1"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            
                             <Trigger Property="WindowState" Value="Normal">
                                 <Setter Property="Margin" TargetName="CP" Value="0"/>
-                               
                             </Trigger>
                             <Trigger Property="WindowState" Value="Maximized">
                                 <Setter Property="Margin" TargetName="CP" Value="8,10,10,10"/>
-                                
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -54,17 +66,6 @@
 
         </Style>
     </Window.Style>
-
-    <Window.Resources>
-        <ResourceDictionary>
-
-            <converter:WidthWindowToWidthGridConverter x:Key="WidthWindowToWidthGridConverter"/>
-            <converter:ManyValuesConverter x:Key="ManyValueConverter"/>
-            <converter:StringToBoolConverter x:Key="StringToBoolConverter"/>
-            <converter:ObjectToBoolConverter x:Key="ObjectToBoolConverter"/>
-            
-        </ResourceDictionary>
-    </Window.Resources>
 
     <!--<Window.DataContext>
         <vm:MainWindowVM/>
@@ -258,14 +259,20 @@
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
+                       
                         <DataTrigger Binding="{Binding ElementName=MainWindow, Path=Width,
-                                                       Converter={StaticResource WidthWindowToWidthGridConverter}}" Value="True">
+                                                       Converter={StaticResource WidthWindowToWidthGridConverter}, ConverterParameter=1200}" Value="True">
                             <Setter Property="Width" Value="240"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=MainWindow, Path=Width,
-                                                       Converter={StaticResource WidthWindowToWidthGridConverter}}" Value="False">
+                                                       Converter={StaticResource WidthWindowToWidthGridConverter}, ConverterParameter=1200}" Value="False">
                             <Setter Property="Width" Value="0"/>
                         </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=MainWindow, Path=WindowState}" Value="Maximized">
+                            <Setter Property="Width" Value="240"/>
+                        </DataTrigger>
+
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
@@ -527,19 +534,19 @@
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding MinimizedWindowCommand}"
                             Background="{StaticResource GrayLVL4}"
-                            Style="{StaticResource MinimizeButton2}"/>
+                            Style="{StaticResource MinimizeButton}"/>
 
                     <Button x:Name="Resize"
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding ResizeWindowCommand}"
                             Background="{StaticResource GrayLVL4}"
-                            Style="{StaticResource ResizeButton2}"/>
+                            Style="{StaticResource ResizeButton}"/>
 
                     <Button x:Name="Close"
                             WindowChrome.IsHitTestVisibleInChrome="True"      
                             Command="{Binding CloseWindowCommand}"
                             Background="{StaticResource GrayLVL4}"
-                            Style="{StaticResource CloseButton2}"/>
+                            Style="{StaticResource CloseButton}"/>
                 </StackPanel>
             </Grid>
 
@@ -583,7 +590,7 @@
                         
                         <Button Grid.Column="1"
                                 Command="{x:Static md:DialogHost.CloseDialogCommand}"
-                                Style="{StaticResource CloseButton2}"/>
+                                Style="{StaticResource CloseButton}"/>
                         
                     </Grid>
                         

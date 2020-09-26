@@ -6,12 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Styles\Label\**" />
+    <EmbeddedResource Remove="Styles\Label\**" />
+    <None Remove="Styles\Label\**" />
+    <Page Remove="Styles\Label\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\fsc_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Behavior\" />
-    <Folder Include="Styles\Label\" />
+    <Folder Include="Styles\Button\" />
+    <Folder Include="Styles\ContextMenu\" />
+    <Folder Include="Styles\RadioButton\" />
   </ItemGroup>
 
   <ItemGroup>

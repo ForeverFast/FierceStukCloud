@@ -135,8 +135,19 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы добавление/удаления плейлистов на устройстве
 
-        public async Task AddPlayList(string title, string description, string imageUri)
-            => await Task.Run(() => _dataService.AddPlayList(title, description, imageUri));
+        public async Task<PlayList> AddPlayList(string title, string description, string imageUri)
+        {
+            PlayList t = await Task.Run(() => _dataService.AddPlayList(title, description, imageUri));
+            if (t != null)
+            {
+                
+                _musicStorage.PlayLists.Add(t);
+                // Сюда надо впихнуть метод отправки инфы на сервер
+                return t;
+            }
+            else
+                return null;
+        }
 
         public async Task<bool> RemovePlayList(PlayList playList)
             => await Task.Run(() => _dataService.RemovePlayList(playList));
@@ -236,6 +247,10 @@ namespace FierceStukCloud.Pc.Services
                     {
                         CurrentSong.IsPlaying = false;
                         CurrentSong.IsCurrentSong = false;
+                    }
+                    else
+                    {
+                        MP.Close();
                     }
                 CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
                 MP.Open(new Uri(CurrentSong.LocalUrl));

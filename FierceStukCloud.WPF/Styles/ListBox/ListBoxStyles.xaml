@@ -1,39 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    >
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary
-            Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
-        <ResourceDictionary
-            Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/TextBlockStyles.xaml"/>
-        <ResourceDictionary
-            Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/MenuStyles.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
-    
-    
-
+   
 
     <Style x:Key="BaseListBoxStyle" TargetType="{x:Type ListBox}">
 
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="{StaticResource GrayLVL1}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        
+
     </Style>
 
     <Style x:Key="BlockStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
-        
-        
+
+
     </Style>
-    
+
     <Style x:Key="MainListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseListBoxStyle}">
 
         <Setter Property="ContextMenu">
             <Setter.Value>
                 <ContextMenu Style="{StaticResource MenuItemStyle1}"
                              Background="{StaticResource GrayLVL2}">
-                   
+
                     <MenuItem Header="Добавить аудиофайл"
                               Command="{Binding AddLocalSongFromPCCommand}"/>
                     <MenuItem Header="Добавить папку"
@@ -102,14 +91,14 @@
                     <Setter Property="Background" Value="{StaticResource GrayLVL0}"/>
                     <Setter Property="Cursor" Value="Hand"/>-->
                     <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    
+
                 </Style>
             </Setter.Value>
         </Setter>
 
         <Setter Property="ItemTemplate">
             <Setter.Value>
-               
+
                 <DataTemplate>
                     <Border Width="550" BorderThickness="0" >
                         <Grid>
@@ -203,8 +192,8 @@
                                         <Setter Property="Margin" Value="0,1.5,1.5,1.5"/>
                                         <Setter Property="Fill" Value="{StaticResource StandartLightColor}"/>
 
-                                        
-                                        
+
+
                                     </Style>
 
                                 </Grid.Resources>

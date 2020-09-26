@@ -8,7 +8,7 @@ namespace FierceStukCloud.Wpf.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((double)value >= 1200)
+            if ((double)value >= System.Convert.ToDouble(parameter))
                 return true;
             else
                 return false;

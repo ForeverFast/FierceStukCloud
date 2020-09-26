@@ -2,12 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:FierceStukCloud_NetCoreLib.Resources.ResourceDictionaries">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/FierceStukCloud_NetCoreLib;component/Resources/ResourceDictionaries/Brushes.xaml"/>
+        <ResourceDictionary 
+            Source="pack://application:,,,/FierceStukCloud.Wpf;component/Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- TextBlock для окна аутефикации -->
     <Style x:Key="TBlock_LandP" TargetType="{x:Type TextBlock}">
-        <Setter Property="Foreground" Value="{StaticResource StandartTextColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource StandartLightColor}"/>
         <Setter Property="FontSize" Value="17"/>
         <Setter Property="Background" Value="{x:Null}"/>
 

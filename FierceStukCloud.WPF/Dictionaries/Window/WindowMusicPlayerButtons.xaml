@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-                    >
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <!--#region PlayerButtons-->
 
@@ -73,8 +72,8 @@
         </Grid>
         <ControlTemplate.Triggers>
 
-           
-            
+
+
             <Trigger Property="IsMouseOver" Value="True">
                 <!--<Setter TargetName="Ellipse" Property="Stroke" Value="White"/>
                 <Setter TargetName="Polygon" Property="Fill" Value="White"/>-->
@@ -86,7 +85,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    
+
     <Style x:Key="PlayButton" TargetType="{x:Type Button}">
         <Setter Property="Template" Value="{StaticResource PlayButtonTemplate}"/>
         <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=DataContext}"/>
@@ -138,7 +137,7 @@
     </Style>
 
     <Style x:Key="RepeatButton" TargetType="{x:Type Button}">
-       
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -165,7 +164,7 @@
                         <DataTrigger Binding="{Binding LoopMode}" Value="Loop">
                             <Setter Property="Foreground" TargetName="RepeatButton" Value="{StaticResource GorWithLowOpacity}"/>
                         </DataTrigger>
-                        
+
                         <DataTrigger Binding="{Binding LoopMode}" Value="LoopOne">
                             <Setter Property="Foreground" TargetName="RepeatButton" Value="{StaticResource GorWithLowOpacity}"/>
                             <Setter Property="Kind" TargetName="RepeatButton" Value="RepeatOne"/>
@@ -211,7 +210,7 @@
                                      HorizontalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsRandomSong}" Value="False"/>
@@ -242,7 +241,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PlayListPlayButton" TargetType="{x:Type Button}">
+    <Style x:Key="ListViewPlayButton" TargetType="{x:Type Button}">
 
         <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Page}},
                                                                Path=DataContext.SetSongCommand}"/>
@@ -290,7 +289,7 @@
                                                                Path=DataContext.PlayStateSongCommand}"/>
                     <Setter Property="CommandParameter" Value="{Binding}"/>
                 </MultiDataTrigger.Setters>
-            </MultiDataTrigger> 
+            </MultiDataTrigger>
 
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
@@ -313,7 +312,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border>
+                    <Border Background="Transparent">
                         <md:PackIcon x:Name="Icon" Kind="FavoriteBorder"
                                      Width="20" Height="20"
                                      VerticalAlignment="Center"
@@ -321,7 +320,7 @@
                                      Foreground="{StaticResource StandartLightColor2}"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsFavorite}" Value="True">
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=DataContext.IsFavorite}" Value="True">
                             <Setter Property="Kind" TargetName="Icon" Value="Favorite"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -329,7 +328,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!--#endregion-->
 
 </ResourceDictionary>
