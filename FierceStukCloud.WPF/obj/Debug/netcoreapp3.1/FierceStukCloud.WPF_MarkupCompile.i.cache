@@ -16,5 +16,5 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 215-552504949
 Brushes.xaml;Dictionaries\PlayListPage\PlayListPageButtons.xaml;Dictionaries\PlayListPage\PlayListPageDictionary.xaml;Dictionaries\Window\WindowButtons.xaml;Dictionaries\Window\WindowDictionary.xaml;Dictionaries\Window\WindowMusicPlayerButtons.xaml;Dictionaries\Window\WindowRadioButtons.xaml;Styles\ListBox\ListBoxStyles.xaml;Styles\ListBox\PlayListLB.xaml;Styles\ListView\SongsListView.xaml;Styles\Menu\MenuStyles.xaml;Styles\ScrollBar\DefaultScrollBar.xaml;Styles\ScrollViewer\DefaultScrollViewer.xaml;Styles\Slider\SliderStyles.xaml;Styles\Tab\TabControlStyles.xaml;Styles\TextBlock\TextBlockStyles.xaml;Styles\TextBox\TextBoxStyles.xaml;UserControls\ScrollContentPage.xaml;
 
-True
+False
 

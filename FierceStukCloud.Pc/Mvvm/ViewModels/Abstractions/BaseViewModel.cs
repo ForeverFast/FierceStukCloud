@@ -1,5 +1,5 @@
 ﻿using Egor92.MvvmNavigation.Abstractions;
-using FierceStukCloud.Core;
+using FierceStukCloud.Abstractions;
 using FierceStukCloud.Core.Services;
 
 namespace FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions

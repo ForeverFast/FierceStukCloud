@@ -1,4 +1,5 @@
-﻿using FierceStukCloud.Core;
+﻿using FierceStukCloud.Abstractions;
+using FierceStukCloud.Core;
 using FierceStukCloud.Core.Services;
 using FierceStukCloud.Wpf.Services;
 using System;
@@ -16,7 +17,7 @@ namespace FierceStukCloud.Pc.Services
 
         #region Поля
 
-        private readonly IDataService _dataService;
+        private readonly ICompositeDataService _dataService;
         private readonly IMusicStorage _musicStorage;
         private readonly ISignalRService _signalRService;
 
@@ -31,9 +32,9 @@ namespace FierceStukCloud.Pc.Services
        
 
         /// <summary> Tекущий контейнер </summary>   
-        public IMusicContainer CurrentMusicContainer { get; set; }
+        public MusicContainer CurrentMusicContainer { get; set; }
         /// <summary> Tекущий отображаемый контейнер </summary>   
-        public IMusicContainer DisplayedMusicContainer { get; set; }
+        public MusicContainer DisplayedMusicContainer { get; set; }
         /// <summary> Tекущая песня </summary>   
         public Song CurrentSong { get => CurrentSongNode?.Value;
                                   set => SetCurrentSong(value); }
@@ -83,7 +84,7 @@ namespace FierceStukCloud.Pc.Services
 
         #region Методы добавления/удаления песен на устройстве
 
-        public async Task<Song> AddSongFromDevice(string path, string ContainerId = "")
+        public async Task<Song> AddSongFromDevice(string path, Guid ContainerId)
             => await Task.Run(() => _dataService.AddSong(path, ContainerId));
 
         public async Task<bool> RemoveSongFromDevice(Song song)
@@ -381,7 +382,7 @@ namespace FierceStukCloud.Pc.Services
             timer.Tick += Timer_Tick;
         }
 
-        public MusicPlayerService(IDataService dataService,
+        public MusicPlayerService(ICompositeDataService dataService,
                                   IMusicStorage musicStorage,
                                   ISignalRService signalRService) : this()
         {

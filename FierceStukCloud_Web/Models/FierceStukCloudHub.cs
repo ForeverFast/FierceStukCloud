@@ -1,4 +1,4 @@
-﻿using FierceStukCloud.Core.MusicPlayerModels;
+﻿using FierceStukCloud.Core;
 using FierceStukCloud_Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;

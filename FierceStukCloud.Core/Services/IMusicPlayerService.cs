@@ -10,9 +10,9 @@ namespace FierceStukCloud.Core.Services
         event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary> Tекущий контейнер </summary>   
-        IMusicContainer CurrentMusicContainer { get; set; }
+        MusicContainer CurrentMusicContainer { get; set; }
         /// <summary> Tекущий отображаемый контейнер </summary>   
-        IMusicContainer DisplayedMusicContainer { get; set; }
+        MusicContainer DisplayedMusicContainer { get; set; }
         /// <summary> Tекущая песня </summary>   
         Song CurrentSong { get; set; }
 
@@ -55,7 +55,7 @@ namespace FierceStukCloud.Core.Services
         /// </summary>
         /// <param name="song"></param>
         /// <returns></returns>
-        Task<Song> AddSongFromDevice(string path, string ContainerId);
+        Task<Song> AddSongFromDevice(string path, Guid ContainerId);
         /// <summary>
         /// Удаление песни из файлов устройства
         /// </summary>

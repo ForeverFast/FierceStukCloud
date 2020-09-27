@@ -1,36 +1,54 @@
 ﻿using FierceStukCloud.Core.Extension;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace FierceStukCloud.Core
 {
-    public class PlayList : IMusicContainer
+    public class PlayList : MusicContainer
     {
-        [Column("Id")]
-        public string Id { get; set; }
+        #region Поля
+        private string _title;
+        private string _description;
+        private string _imageUrl;
+        private DateTime _creationDate;
+        private string _userLogin;
+        private bool _onServer;
+        private bool _onDevice;
+        #endregion
+
+
         [Column("Title")]
-        public string Title { get; set; }
+        [JsonPropertyName("Title")]
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         [Column("Description")]
-        public string Description { get; set; }
+        public string Description { get => _description; set => SetProperty(ref _description, value); }
         [Column("Image")]
-        public string ImageUri { get; set; }
+        public string ImageUrl { get => _imageUrl; set => SetProperty(ref _imageUrl, value); }
 
         [Column("CreationDate")]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get => _creationDate; set => SetProperty(ref _creationDate, value); }
 
         [Column("UserLogin")]
-        [JsonPropertyName("userLogin")]
-        public string UserLogin { get; set; }
+        [JsonPropertyName("UserLogin")]
+        public string UserLogin { get => _userLogin; set => SetProperty(ref _userLogin, value); }
 
-        [JsonIgnore]
         [Column("OnServer")]
-        public bool OnServer { get; set; }
+        [JsonPropertyName("OnServer")]
+        public bool OnServer { get => _onServer; set => SetProperty(ref _onServer, value); }
 
-        [JsonIgnore]
         [Column("OnDevice")]
-        public bool OnDevice { get; set; }
+        [JsonPropertyName("OnDevice")]
+        public bool OnDevice { get => _onDevice; set => SetProperty(ref _onDevice, value); }
 
-        public ObservableLinkedList<Song> Songs { get; set; }
+        public override void ExtractDbSongsToSongs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PlayList() : base()
+        { }
+
     }
 }

@@ -1,7 +1,11 @@
 ﻿using Dapper;
-
+using FierceStukCloud.Abstractions;
+using FierceStukCloud.Core;
 using FierceStukCloud.Core.Services;
+using FierceStukCloud.EntityFramework;
+using FierceStukCloud.Core.Extension;
 using FierceStukCloud.Pc.Mvvm;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
@@ -30,48 +34,12 @@ using static Dapper.SqlMapper;
 
 namespace Test
 {
-    //class class1
-    //{
-    //    public void Go()
-    //    {
+    
 
-    //    }
-    //}
+    #region WordDrop
 
-    //static class dopclass1
-    //{
-    //    public static void GoFast(this class1 objectClass)
-    //    {
-
-    //    }
-    //}
-
-
-
-    //public class t1 : IDisposable
-    //{
-    //    public int q;
-
-
-    //    ~t1()
-    //    {
-    //        q = 0;
-    //    }
-
-    //    public void Dispose()
-    //    {
-
-    //    }
-    //    //public ObservableCollection<Song> Songs { get; set; }
-    //}
-
-    //public class t2
-    //{
-
-    //   // public ObservableCollection<Song> Songs { get; set; }
-    //}
-
-    public abstract class TRObject
+    /*
+     public abstract class TRObject
     {
         public string Node { get; set; }
         public string Text { get; set; }
@@ -176,43 +144,91 @@ namespace Test
             return result.Where(predicate).ToList();
         }
     }
+     */
+
+    #endregion
+
+
+    public class DS<T> where T : BaseObject
+    {
+        public List<T> list;
+
+        public void Get<T>()
+        {
+            //list.FirstOrDefault()
+
+
+        }
+    }
 
     class Program
     {
-
-        //private static void CommandManager_RequerySuggested(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public static t1 temp { get => new t1() { q = new Random().Next(0, 10) }; }
-
-        //public static ICommand Command { get => new RelayCommand((o) => {
-        //    Console.WriteLine(new Random().Next(0, 10));
-        //}); }
-
         static void Main(string[] args)
         {
-            var client = new RestClient("https://developers.lingvolive.com/api/v1/Translation?text=floor&srcLang=1033&dstLang=1049");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("Authorization", "Bearer ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk1EQTJOelUzTWpNc0lrMXZaR1ZzSWpwN0lrTm9ZWEpoWTNSbGNuTlFaWEpFWVhraU9qVXdNREF3TENKVmMyVnlTV1FpT2pNNU5qSXNJbFZ1YVhGMVpVbGtJam9pTURZME5EUTFOVEV0T0RjeFpTMDBNamd4TFdJeFpEY3RPVGM0TjJZNFl6TTRPVEk0SW4xOS5YZXdFVUF6a19OV1ZMMDc1MUhDcUZ2Y0lpcXl6b01qUlV2dHpmU2VVS1U4");
-            IRestResponse response = client.Execute(request);
 
-            var json = response.Content;
+            var contextF = new FierceStukCloudDbContextFactory();
 
-            //var temp = JContainer.Parse(json);
+            var context = contextF.CreateDbContext(null);
 
-            var t = System.Text.Json.JsonSerializer.Deserialize<List<TranslationResponse>>(json);
+            var pl1 = new PlayList() { Id = Guid.NewGuid(), Title = "Рок" };
+            var pl2 = new PlayList() { Id = Guid.NewGuid(), Title = "Рэп" };
 
-            foreach (var item in t)
-            {
-                var q = item.SearchObject(x => x.Node == "Text");
-            }
+            context.PlayLists.Add(pl1);
+            context.PlayLists.Add(pl2);
+            context.SaveChanges();
+
+            var s1 = new Song() { Id = Guid.NewGuid(), Title = "title1", Author = "author1" };
+            var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2", Author = "author2" };
+
+            context.Songs.Add(s1);
+            context.Songs.Add(s2);
+            context.SaveChanges();
+
+            pl1.DbSongs.Add(new SongPlayList() { SongId = s1.Id, PlayListId = pl1.Id });
+            pl1.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl1.Id });
+            pl2.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl2.Id });
+
+            context.SaveChanges();
+
+            var pl = context.PlayLists.Include(c => c.DbSongs).ThenInclude(x => x.Song).ToList();
+
+            // var pl1 = context.PlayLists.Include(x => x.Songs).ToList();
+            // var pl2 = context.PlayLists.FirstOrDefault(x => x.Title == "Рэп");
+            //var ls = context.Songs.ToList();
+
+            //pl.ListS = new List<Song>();
+
+            //foreach (var item in ls)
+            //{
+            //    pl.ListS.Add(item);
+            //}
+
+            //context.Update<PlayList>(pl);
+            //context.SaveChanges();
 
 
-         
-                
+            Console.WriteLine("End");
+
+            //var client = new RestClient("https://developers.lingvolive.com/api/v1/Translation?text=floor&srcLang=1033&dstLang=1049");
+            //client.Timeout = -1;
+            //var request = new RestRequest(Method.GET);
+            //request.AddHeader("Authorization", "Bearer ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk1EQTJOelUzTWpNc0lrMXZaR1ZzSWpwN0lrTm9ZWEpoWTNSbGNuTlFaWEpFWVhraU9qVXdNREF3TENKVmMyVnlTV1FpT2pNNU5qSXNJbFZ1YVhGMVpVbGtJam9pTURZME5EUTFOVEV0T0RjeFpTMDBNamd4TFdJeFpEY3RPVGM0TjJZNFl6TTRPVEk0SW4xOS5YZXdFVUF6a19OV1ZMMDc1MUhDcUZ2Y0lpcXl6b01qUlV2dHpmU2VVS1U4");
+            //IRestResponse response = client.Execute(request);
+
+            //var json = response.Content;
+
+            ////var temp = JContainer.Parse(json);
+
+            //var t = System.Text.Json.JsonSerializer.Deserialize<List<TranslationResponse>>(json);
+
+            //foreach (var item in t)
+            //{
+            //    var q = item.SearchObject(x => x.Node == "Text");
+            //}
+
+
+
+
 
 
             //var q = new System.Text.Json.JsonSerializer();
@@ -222,11 +238,6 @@ namespace Test
 
             // Console.WriteLine(response.Content);
 
-
-            
-
-
-            Console.WriteLine("End");
 
             //t1 t1 = new t1();
             //t1.q = 2;

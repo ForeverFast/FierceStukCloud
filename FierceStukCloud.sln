@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XAML_Libraries", "XAML_Libr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListViewLayout2010", "D:\Программирование\Сборник примеров\LWL\ListViewLayout\ListViewLayout2010.csproj", "{916A9879-3F2D-471F-AAFA-28F0C8A7FFA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FierceStukCloud.EntityFramework", "FierceStukCloud.EntityFramework\FierceStukCloud.EntityFramework.csproj", "{3EFB1F72-EBD2-459C-849D-B21C62413410}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,18 @@ Global
 		{916A9879-3F2D-471F-AAFA-28F0C8A7FFA9}.Release|iPhone.Build.0 = Release|Any CPU
 		{916A9879-3F2D-471F-AAFA-28F0C8A7FFA9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{916A9879-3F2D-471F-AAFA-28F0C8A7FFA9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|iPhone.Build.0 = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3EFB1F72-EBD2-459C-849D-B21C62413410}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -293,6 +307,7 @@ Global
 		{5C4AAC81-AF0A-4D77-B0F0-7EA2FBC880C4} = {32C3554F-EFB2-48FB-B0C0-079BD373B187}
 		{12B50B8F-D5D5-43CA-BE46-5133B9ED87E9} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
 		{916A9879-3F2D-471F-AAFA-28F0C8A7FFA9} = {12B50B8F-D5D5-43CA-BE46-5133B9ED87E9}
+		{3EFB1F72-EBD2-459C-849D-B21C62413410} = {60ACE8BA-13D2-4C00-A0C6-1A0909F96F3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {652DD2FA-A3E5-4479-AA75-D49173EC88CE}

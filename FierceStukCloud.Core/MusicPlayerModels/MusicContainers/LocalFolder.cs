@@ -1,28 +1,46 @@
 ﻿using FierceStukCloud.Abstractions;
-using FierceStukCloud.Core.Extension;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace FierceStukCloud.Core
 {
-    public class LocalFolder : IMusicContainer, IStatusExistence
+    public class LocalFolder : MusicContainer, IStatusExistence
     {
-        [Column("Id")]
-        public string Id { get; set; }
+        #region Поля
+        private string _title;
+        private string _localUrl;
+
+        private string _userLogin;
+        private bool _onServer;
+        private bool _onDevice;
+        #endregion
+
+
         [Column("Title")]
-        public string Title { get; set; }
+        [JsonPropertyName("Title")]
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         [Column("LocalUrl")]
-        public string LocalUrl { get; set; }
-        public ObservableLinkedList<Song> Songs { get; set; }
+        [JsonPropertyName("LocalUrl")]
+        public string LocalUrl { get => _localUrl; set => SetProperty(ref _localUrl, value); }
 
         [Column("UserLogin")]
-        [JsonPropertyName("userLogin")]
-        public string UserLogin { get; set; }
-        [JsonIgnore]
+        [JsonPropertyName("UserLogin")]
+        public string UserLogin { get => _userLogin; set => SetProperty(ref _userLogin, value); }
+
         [Column("OnServer")]
-        public bool OnServer { get; set; }
-        [JsonIgnore]
+        [JsonPropertyName("OnServer")]
+        public bool OnServer { get => _onServer; set => SetProperty(ref _onServer, value); }
+
         [Column("OnDevice")]
-        public bool OnDevice { get; set; }
+        [JsonPropertyName("OnDevice")]
+        public bool OnDevice { get => _onDevice; set => SetProperty(ref _onDevice, value); }
+
+        public override void ExtractDbSongsToSongs()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public LocalFolder() : base()
+        { }
     }
 }

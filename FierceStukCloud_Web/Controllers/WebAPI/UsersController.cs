@@ -1,4 +1,5 @@
 ﻿
+using FierceStukCloud.Core;
 using FierceStukCloud_Web.Data;
 using FierceStukCloud_Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -94,7 +95,7 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
                 {
                     new Claim("ID", user.ID.ToString()),
                     new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                    new Claim("Password", user.Password),
+                    
                     new Claim("FirstName", user.FirstName),
                     new Claim("LastName", user.LastName),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)    

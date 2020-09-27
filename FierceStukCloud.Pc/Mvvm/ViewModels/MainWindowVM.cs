@@ -22,13 +22,13 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
         #region Свойства - Коллекции/выбранные элементы списков
 
         #region Поля
-        private IMusicContainer _selectedMusicContainer;
+        private MusicContainer _selectedMusicContainer;
         private Song _CurrentSong;
         #endregion
             
         public ObservableCollection<PlayList> PlayLists { get; }
 
-        public IMusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
+        public MusicContainer SelectedMusicContainer { get => _selectedMusicContainer; set => SetProperty(ref _selectedMusicContainer, value); }
 
         public Song CurrentSong { get => _CurrentSong; set => SetProperty(ref _CurrentSong, value); }
       
@@ -236,7 +236,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels
                             SongPos = "00:00";
                             SongTimeLineForSlider = 0;
 
-                            SongTime = temp.Duration;
+                            SongTime = temp.Duration.ToString(@"mm\:ss");
                             SongTimeForSlider = _musicPlayerService.Duration.TotalSeconds;
 
                             try
