@@ -1,10 +1,3 @@
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.csprojAssemblyReference.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.AssemblyInfoInputs.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.AssemblyInfo.cs
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.csproj.CoreCompileInputs.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.RazorAssemblyInfo.cache
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.RazorAssemblyInfo.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -74,6 +67,13 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\FierceStukCloud.Core.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\FierceStukCloud.Abstractions.pdb
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.csprojAssemblyReference.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.AssemblyInfoInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.AssemblyInfo.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.csproj.CoreCompileInputs.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.RazorAssemblyInfo.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.RazorAssemblyInfo.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.TagHelpers.input.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.TagHelpers.output.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.RazorCoreGenerate.cache

@@ -4,14 +4,16 @@ using FierceStukCloud.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FierceStukCloud.EntityFramework.Migrations
 {
     [DbContext(typeof(FierceStukCloudDbContext))]
-    partial class FierceStukCloudDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200928072756_InitFull")]
+    partial class InitFull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

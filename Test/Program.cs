@@ -2,10 +2,10 @@
 using FierceStukCloud.Abstractions;
 using FierceStukCloud.Core;
 using FierceStukCloud.Core.Services;
-using FierceStukCloud.EntityFramework;
+
 using FierceStukCloud.Core.Extension;
 using FierceStukCloud.Pc.Mvvm;
-using Microsoft.EntityFrameworkCore;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
@@ -149,48 +149,52 @@ namespace Test
     #endregion
 
 
-    public class DS<T> where T : BaseObject
+    public class DS : OnPropertyChangedClass
     {
-        public List<T> list;
-
-        public void Get<T>()
+        public ObservableCollection<int> _temp;
+        public ObservableCollection<int> Temp 
         {
-            //list.FirstOrDefault()
-
-
+            get => _temp; 
+            set => SetProperty(ref _temp, value);
         }
     }
 
-    class Program
+    class Program 
     {
+      
         static void Main(string[] args)
         {
 
-            var contextF = new FierceStukCloudDbContextFactory();
+            DS q = new DS();
 
-            var context = contextF.CreateDbContext(null);
+            q.Temp = new ObservableCollection<int>();
 
-            var pl1 = new PlayList() { Id = Guid.NewGuid(), Title = "Рок" };
-            var pl2 = new PlayList() { Id = Guid.NewGuid(), Title = "Рэп" };
 
-            context.PlayLists.Add(pl1);
-            context.PlayLists.Add(pl2);
-            context.SaveChanges();
+            //var contextF = new FierceStukCloudDbContextFactory();
 
-            var s1 = new Song() { Id = Guid.NewGuid(), Title = "title1", Author = "author1" };
-            var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2", Author = "author2" };
+            //var context = contextF.CreateDbContext(null);
 
-            context.Songs.Add(s1);
-            context.Songs.Add(s2);
-            context.SaveChanges();
+            //var pl1 = new PlayList() { Id = Guid.NewGuid(), Title = "Рок" };
+            //var pl2 = new PlayList() { Id = Guid.NewGuid(), Title = "Рэп" };
 
-            pl1.DbSongs.Add(new SongPlayList() { SongId = s1.Id, PlayListId = pl1.Id });
-            pl1.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl1.Id });
-            pl2.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl2.Id });
+            //context.PlayLists.Add(pl1);
+            //context.PlayLists.Add(pl2);
+            //context.SaveChanges();
 
-            context.SaveChanges();
+            //var s1 = new Song() { Id = Guid.NewGuid(), Title = "title1", Author = "author1" };
+            //var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2", Author = "author2" };
 
-            var pl = context.PlayLists.Include(c => c.DbSongs).ThenInclude(x => x.Song).ToList();
+            //context.Songs.Add(s1);
+            //context.Songs.Add(s2);
+            //context.SaveChanges();
+
+            //pl1.DbSongs.Add(new SongPlayList() { SongId = s1.Id, PlayListId = pl1.Id });
+            //pl1.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl1.Id });
+            //pl2.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl2.Id });
+
+            //context.SaveChanges();
+
+            //var pl = context.PlayLists.Include(c => c.DbSongs).ThenInclude(x => x.Song).ToList();
 
             // var pl1 = context.PlayLists.Include(x => x.Songs).ToList();
             // var pl2 = context.PlayLists.FirstOrDefault(x => x.Title == "Рэп");

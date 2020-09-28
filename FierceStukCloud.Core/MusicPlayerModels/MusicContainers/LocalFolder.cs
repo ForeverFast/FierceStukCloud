@@ -37,7 +37,7 @@ namespace FierceStukCloud.Core
 
         public override void ExtractDbSongsToSongs()
         {
-            throw new System.NotImplementedException();
+           
         }
 
         public LocalFolder() : base()

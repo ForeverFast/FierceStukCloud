@@ -20,8 +20,8 @@ namespace FierceStukCloud.Core
         [Column("Title")]
         [JsonPropertyName("Title")]
         public string Title { get => _title; set => SetProperty(ref _title, value); }
-        [Column("Author")]
-        [JsonPropertyName("Author")]
+        [NotMapped]
+        [JsonPropertyName("Authors")]
         public ObservableCollection<Author> Authors { get => _authors; set => SetProperty(ref _authors, value); }
         [Column("Year")]
         [JsonPropertyName("Year")]
@@ -32,6 +32,8 @@ namespace FierceStukCloud.Core
         public string UserLogin { get => _userLogin; set => SetProperty(ref _userLogin, value); }
 
         public List<AlbumAuthor> DbAuthors { get; set; }
+
+        public List<SongAlbum> DbSongs { get; set; }
 
         public override void ExtractDbSongsToSongs()
         {
@@ -44,6 +46,8 @@ namespace FierceStukCloud.Core
         }
 
         public Album() : base()
-        { }
+        {
+            DbSongs = new List<SongAlbum>();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using FierceStukCloud.Core;
+﻿using FierceStukCloud.Abstractions;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Media;

@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FierceStukCloud.Core\FierceStukCloud.Core.csproj" />
-    <ProjectReference Include="..\FierceStukCloud.EntityFramework\FierceStukCloud.EntityFramework.csproj" />
     <ProjectReference Include="..\FierceStukCloud.Pc\FierceStukCloud.Pc.csproj" />
     <ProjectReference Include="..\TestNetStandardLib\TestNetStandardLib.csproj" />
   </ItemGroup>

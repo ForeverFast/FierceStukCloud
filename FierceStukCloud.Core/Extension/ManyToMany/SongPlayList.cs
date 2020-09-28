@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FierceStukCloud.Core.Extension
+namespace FierceStukCloud.Core.Extension.ManyToMany
 {
     public class SongPlayList
     {

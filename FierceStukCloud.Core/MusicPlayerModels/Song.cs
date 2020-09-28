@@ -5,6 +5,7 @@ using FierceStukCloud.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -18,8 +19,10 @@ namespace FierceStukCloud.Core
         private ObservableCollection<Author> _authors;
         private ObservableCollection<Album> _albums;
         private uint _year;
+
         private TimeSpan _duration;
         private string _localUrl;
+        private LocalFolder _localFolder;
 
         private string _userLogin;
         private bool _onServer;
@@ -36,12 +39,13 @@ namespace FierceStukCloud.Core
         [JsonPropertyName("Title")]
         public string Title { get => _title; set => SetProperty(ref _title, value); }
 
-        [Column("Author")]
-        [JsonPropertyName("Author")]
+      
+        [NotMapped]
+        [JsonPropertyName("Authors")]
         public ObservableCollection<Author> Authors { get => _authors; set => SetProperty(ref _authors, value); }
 
-        [Column("Albums")]
-        [JsonPropertyName("Albums)]
+        [NotMapped]
+        [JsonPropertyName("Albums")]
         public ObservableCollection<Album> Albums { get => _albums; set => SetProperty(ref _albums, value); }
 
         [Column("Year")]
@@ -50,13 +54,17 @@ namespace FierceStukCloud.Core
 
 
         [Column("Duration")]
+        [DefaultValue(0)]
         [JsonPropertyName("Duration")]
-        public TimeSpan Duration { get => _duration; set => SetProperty(ref _duration, value); }
+        public TimeSpan Duration { get => _duration; set => SetProperty(ref _duration, value); } 
 
         [Column("LocalUrl")]
         [JsonPropertyName("LocalUrl")]
         public string LocalUrl { get => _localUrl; set => SetProperty(ref _localUrl, value); }
 
+        [Column("LocalFolder")]
+        [JsonPropertyName("LocalFolder")]
+        public LocalFolder LocalFolder { get => _localFolder; set => SetProperty(ref _localFolder, value); }
 
 
 
@@ -96,7 +104,6 @@ namespace FierceStukCloud.Core
         [NotMapped]
         public IMusicPlayerService MusicPlayer { get; set; }
 
-        public LocalFolder LocalFolder { get; set; }
         public List<SongAlbum> DbAlbums { get; set; }
         public List<SongAuthor> DbAuthors { get; set; }
         public List<SongPlayList> DbPlayLists { get; set; }
@@ -106,6 +113,10 @@ namespace FierceStukCloud.Core
 
         public Song()
         {
+            
+
+            Albums = new ObservableCollection<Album>();
+
 
             DbAlbums = new List<SongAlbum>();
             DbAuthors = new List<SongAuthor>();

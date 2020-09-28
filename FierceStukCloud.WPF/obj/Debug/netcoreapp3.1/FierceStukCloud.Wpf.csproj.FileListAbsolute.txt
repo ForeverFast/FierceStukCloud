@@ -19,6 +19,7 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\Tab\TabControlStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Styles\TextBox\TextBoxStyles.baml
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\UserControls\ScrollContentPage.g.cs
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf_MarkupCompile.cache
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf_MarkupCompile.lref
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\Dictionaries\PlayListPage\PlayListPageButtons.baml
@@ -36,4 +37,3 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.csproj.CopyComplete
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\FierceStukCloud.Wpf.pdb
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.WPF\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
