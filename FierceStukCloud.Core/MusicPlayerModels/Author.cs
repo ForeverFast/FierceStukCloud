@@ -1,5 +1,4 @@
-﻿using FierceStukCloud.Core.Extension.ManyToMany;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -11,20 +10,16 @@ namespace FierceStukCloud.Core
         #region Поля
         private string _title;
 
-        private ObservableCollection<Album> _albums;
+        private ICollection<Album> _albums;
         #endregion
 
         [Column("Title")]
         [JsonPropertyName("Title")]
         public string Title { get => _title; set => SetProperty(ref _title, value); }
 
-        [NotMapped]
+        [Column("Albums")]
         [JsonPropertyName("Albums")]
-        public ObservableCollection<Album> Albums { get => _albums; set => SetProperty(ref _albums, value); }
-
-
-        public List<SongAuthor> DbSongs { get; set; }
-        public List<AlbumAuthor> DbAlbums { get; set; }
+        public ICollection<Album> Albums { get => _albums; set => SetProperty(ref _albums, value); }
 
         public override void ExtractDbSongsToSongs()
         {
@@ -33,8 +28,7 @@ namespace FierceStukCloud.Core
 
         public Author() : base()
         {
-            DbSongs = new List<SongAuthor>();
-            DbAlbums = new List<AlbumAuthor>();
+            Albums = new ObservableCollection<Album>();
         }
     }
 }

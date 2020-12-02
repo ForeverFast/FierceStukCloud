@@ -212,27 +212,27 @@ namespace FierceStukCloud.Pc.Services
         {
             MP.Stop();
 
-            if (CurrentSong == CurrentMusicContainer.Songs.First.Value)
-            {
-                SetCurrentSong(CurrentSong);
-                return;
-            }
+            //if (CurrentSong == CurrentMusicContainer.Songs.First.Value)
+            //{
+            //    SetCurrentSong(CurrentSong);
+            //    return;
+            //}
 
-            var temp = CurrentMusicContainer.Songs.Find(CurrentSong).Previous.Value;
-            SetCurrentSong(temp);
+            //var temp = CurrentMusicContainer.Songs.Find(CurrentSong).Previous.Value;
+            //SetCurrentSong(temp);
         }
         public void NextSong()
         {
             MP.Stop();
 
-            if (CurrentSong == CurrentMusicContainer.Songs.Last.Value)
-            {
-                SetCurrentSong(CurrentSong);
-                return;
-            }
+            //if (CurrentSong == CurrentMusicContainer.Songs.Last.Value)
+            //{
+            //    SetCurrentSong(CurrentSong);
+            //    return;
+            //}
 
-            var temp = CurrentMusicContainer.Songs.Find(CurrentSong).Next.Value;
-            SetCurrentSong(temp);
+            //var temp = CurrentMusicContainer.Songs.Find(CurrentSong).Next.Value;
+            //SetCurrentSong(temp);
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace FierceStukCloud.Pc.Services
                     {
                         MP.Close();
                     }
-                CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
+                //CurrentSongNode = CurrentMusicContainer.Songs.Find(song);
                 MP.Open(new Uri(CurrentSong.LocalUrl));
             }
             catch (Exception)

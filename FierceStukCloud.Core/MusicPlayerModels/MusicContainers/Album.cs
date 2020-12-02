@@ -1,6 +1,4 @@
-﻿using FierceStukCloud.Core.Extension.ManyToMany;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -20,7 +18,7 @@ namespace FierceStukCloud.Core
         [Column("Title")]
         [JsonPropertyName("Title")]
         public string Title { get => _title; set => SetProperty(ref _title, value); }
-        [NotMapped]
+        [Column("Authors")]
         [JsonPropertyName("Authors")]
         public ObservableCollection<Author> Authors { get => _authors; set => SetProperty(ref _authors, value); }
         [Column("Year")]
@@ -30,10 +28,6 @@ namespace FierceStukCloud.Core
         [Column("UserLogin")]
         [JsonPropertyName("UserLogin")]
         public string UserLogin { get => _userLogin; set => SetProperty(ref _userLogin, value); }
-
-        public List<AlbumAuthor> DbAuthors { get; set; }
-
-        public List<SongAlbum> DbSongs { get; set; }
 
         public override void ExtractDbSongsToSongs()
         {
@@ -47,9 +41,6 @@ namespace FierceStukCloud.Core
 
         public Album() : base()
         {
-            DbSongs = new List<SongAlbum>();
-            DbAuthors = new List<AlbumAuthor>();
-
             Authors = new ObservableCollection<Author>();
         }
     }

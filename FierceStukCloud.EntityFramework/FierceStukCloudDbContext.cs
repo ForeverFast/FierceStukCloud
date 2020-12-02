@@ -19,66 +19,68 @@ namespace FierceStukCloud.EntityFramework
         {
             //modelBuilder.Entity<ObservableLinkedList<Song>>().Ignore("Songs");
 
-            #region SongPlayList
-            modelBuilder.Entity<SongPlayList>()
-                .HasKey(t => new { t.SongId, t.PlayListId });
+            modelBuilder.Entity<Song>().HasMany(s => s.Authors).WithMany(a => a.Songs);
 
-            modelBuilder.Entity<SongPlayList>()
-                .HasOne(spl => spl.Song)
-                .WithMany(s => s.DbPlayLists)
-                .HasForeignKey(spl => spl.SongId);
+            //#region SongPlayList
+            //modelBuilder.Entity<SongPlayList>()
+            //    .HasKey(t => new { t.SongId, t.PlayListId });
 
-            modelBuilder.Entity<SongPlayList>()
-                .HasOne(spl => spl.PlayList)
-                .WithMany(c => c.DbSongs)
-                .HasForeignKey(spl => spl.PlayListId);
-            #endregion
+            //modelBuilder.Entity<SongPlayList>()
+            //    .HasOne(spl => spl.Song)
+            //    .WithMany(s => s.DbPlayLists)
+            //    .HasForeignKey(spl => spl.SongId);
 
-            #region SongAuthor
-            modelBuilder.Entity<SongAuthor>()
-                .HasKey(t => new { t.SongId, t.AuthorId });
+            //modelBuilder.Entity<SongPlayList>()
+            //    .HasOne(spl => spl.PlayList)
+            //    .WithMany(c => c.DbSongs)
+            //    .HasForeignKey(spl => spl.PlayListId);
+            //#endregion
 
-            modelBuilder.Entity<SongAuthor>()
-                .HasOne(sa => sa.Song)
-                .WithMany(s => s.DbAuthors)
-                .HasForeignKey(sa => sa.SongId);
+            //#region SongAuthor
+            //modelBuilder.Entity<SongAuthor>()
+            //    .HasKey(t => new { t.SongId, t.AuthorId });
 
-            modelBuilder.Entity<SongAuthor>()
-                .HasOne(sa => sa.Author)
-                .WithMany(a => a.DbSongs)
-                .HasForeignKey(sa => sa.AuthorId);
-            #endregion
+            //modelBuilder.Entity<SongAuthor>()
+            //    .HasOne(sa => sa.Song)
+            //    .WithMany(s => s.DbAuthors)
+            //    .HasForeignKey(sa => sa.SongId);
 
-            #region SongAlbum
-            modelBuilder.Entity<SongAlbum>()
-               .HasKey(t => new { t.SongId, t.AlbumId });
+            //modelBuilder.Entity<SongAuthor>()
+            //    .HasOne(sa => sa.Author)
+            //    .WithMany(a => a.DbSongs)
+            //    .HasForeignKey(sa => sa.AuthorId);
+            //#endregion
 
-            modelBuilder.Entity<SongAlbum>()
-                .HasOne(sa => sa.Song)
-                .WithMany(s => s.DbAlbums)
-                .HasForeignKey(sa => sa.SongId);
+            //#region SongAlbum
+            //modelBuilder.Entity<SongAlbum>()
+            //   .HasKey(t => new { t.SongId, t.AlbumId });
 
-            modelBuilder.Entity<SongAlbum>()
-                .HasOne(sa => sa.Album)
-                .WithMany(a => a.DbSongs)
-                .HasForeignKey(sa => sa.AlbumId);
-            #endregion
+            //modelBuilder.Entity<SongAlbum>()
+            //    .HasOne(sa => sa.Song)
+            //    .WithMany(s => s.DbAlbums)
+            //    .HasForeignKey(sa => sa.SongId);
+
+            //modelBuilder.Entity<SongAlbum>()
+            //    .HasOne(sa => sa.Album)
+            //    .WithMany(a => a.DbSongs)
+            //    .HasForeignKey(sa => sa.AlbumId);
+            //#endregion
 
 
-            #region AlbumAuthor
-            modelBuilder.Entity<AlbumAuthor>()
-               .HasKey(t => new { t.AlbumId, t.AuthorId });
+            //#region AlbumAuthor
+            //modelBuilder.Entity<AlbumAuthor>()
+            //   .HasKey(t => new { t.AlbumId, t.AuthorId });
 
-            modelBuilder.Entity<AlbumAuthor>()
-                .HasOne(sa => sa.Album)
-                .WithMany(s => s.DbAuthors)
-                .HasForeignKey(sa => sa.AlbumId);
+            //modelBuilder.Entity<AlbumAuthor>()
+            //    .HasOne(sa => sa.Album)
+            //    .WithMany(s => s.DbAuthors)
+            //    .HasForeignKey(sa => sa.AlbumId);
 
-            modelBuilder.Entity<AlbumAuthor>()
-                .HasOne(sa => sa.Author)
-                .WithMany(a => a.DbAlbums)
-                .HasForeignKey(sa => sa.AuthorId);
-            #endregion
+            //modelBuilder.Entity<AlbumAuthor>()
+            //    .HasOne(sa => sa.Author)
+            //    .WithMany(a => a.DbAlbums)
+            //    .HasForeignKey(sa => sa.AuthorId);
+            //#endregion
 
             base.OnModelCreating(modelBuilder);
         }

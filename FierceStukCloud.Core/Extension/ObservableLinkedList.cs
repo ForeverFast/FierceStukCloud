@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 
 namespace FierceStukCloud.Core.Extension
 {
-    public class ObservableLinkedList<T> : OnPropertyChangedClass, INotifyCollectionChanged, IEnumerable
+    public class ObservableLinkedList<T> : OnPropertyChangedClass, INotifyCollectionChanged, ICollection<T>
     {
         private LinkedList<T> m_UnderLyingLinkedList;
 
@@ -25,6 +25,8 @@ namespace FierceStukCloud.Core.Extension
         {
             get { return m_UnderLyingLinkedList.Last; }
         }
+
+        public bool IsReadOnly => false;
         #endregion
 
         #region Constructors
@@ -179,6 +181,13 @@ namespace FierceStukCloud.Core.Extension
         {
             return (m_UnderLyingLinkedList as IEnumerable).GetEnumerator();
         }
+
+        public void Add(T item)
+        {
+            this.AddLast(item);
+        }
+
+        public IEnumerator<T> GetEnumerator() => (m_UnderLyingLinkedList as IEnumerable<T>).GetEnumerator();
 
         #endregion
     }

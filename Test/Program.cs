@@ -165,23 +165,26 @@ namespace Test
             context.SaveChanges();
 
             var s1 = new Song() { Id = Guid.NewGuid(), Title = "title0" };
-            s1.DbAuthors = new List<SongAuthor>()
-            {
-                SongAuthorFactory(s1.Id, Authors[0].Id)
-            };
-            context.SaveChanges();
+            s1.Authors.Add(Authors[0]);
+            //s1.DbAuthors = new List<SongAuthor>()
+            //{
+            //    SongAuthorFactory(s1.Id, Authors[0].Id)
+            //};
+          
 
             var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2" };
-            s2.DbAuthors = new List<SongAuthor>()
-            {
-                SongAuthorFactory(s2.Id, Authors[0].Id)
-            };
+            s2.Authors.Add(Authors[0]);
+            //s2.DbAuthors = new List<SongAuthor>()
+            //{
+            //    SongAuthorFactory(s2.Id, Authors[0].Id)
+            //};
 
             Songs = new List<Song>();     
             Songs.Add(s1);
             Songs.Add(s2);
 
-            PlayLists[0].DbSongs.Add(new SongPlayList() { Place = 0, PlayListId = PlayLists[0].Id, SongId = Songs[0].Id });
+            //PlayLists[0].DbSongs.Add(new SongPlayList() { Place = 0, PlayListId = PlayLists[0].Id, SongId = Songs[0].Id });
+            PlayLists[0].Songs.Add(Songs[0]);
 
             context.Songs.Add(s1);
             context.Songs.Add(s2);
@@ -193,21 +196,23 @@ namespace Test
             context.Songs.RemoveRange(context.Songs.AsEnumerable());
             context.Authors.RemoveRange(context.Authors.AsEnumerable());
             context.PlayLists.RemoveRange(context.PlayLists.AsEnumerable());
+            context.SaveChanges();
         }
 
         static public void LoadData(FierceStukCloudDbContext context)
         {
-            Songs = context.Songs.Include(x => x.DbAlbums).ThenInclude(x => x.Album)
-                                 .Include(x => x.DbAuthors).ThenInclude(x => x.Author)
-                                 .Include(x => x.DbPlayLists).ThenInclude(x => x.PlayList)
-                                 .ToList();
-
-            Authors = context.Authors.Include(x => x.DbSongs).ThenInclude(x => x.Song)
-                                     .Include(x => x.DbAlbums).ThenInclude(x => x.Album)
-                                     .ToList();
-
-            PlayLists = context.PlayLists.Include(x => x.DbSongs).ThenInclude(x => x.Song)
-                                         .ToList();
+            //Songs = context.Songs.Include(x => x.DbAlbums).ThenInclude(x => x.Album)
+            //                     .Include(x => x.DbAuthors).ThenInclude(x => x.Author)
+            //                     .Include(x => x.DbPlayLists).ThenInclude(x => x.PlayList)
+            //                     .ToList();
+            Songs = context.Songs.ToList();
+            //Authors = context.Authors.Include(x => x.DbSongs).ThenInclude(x => x.Song)
+            //                         .Include(x => x.DbAlbums).ThenInclude(x => x.Album)
+            //                         .ToList();
+            Authors = context.Authors.ToList();
+            //PlayLists = context.PlayLists.Include(x => x.DbSongs).ThenInclude(x => x.Song)
+            //                             .ToList();
+            PlayLists = context.PlayLists.ToList();
         }
 
         static public List<Song> Songs;
@@ -240,45 +245,16 @@ namespace Test
 
 
 
-        class st
-        {
-            public tts value { get; }
-
-            public st(tts value)
-            {
-                this.value = value;
-                value.index = 5;
-            }
-        }
-
-        class tts
-        {
-            public int index;
-        }
+      
 
         static void Main(string[] args)
         {
-            //st temp = new st(new tts());
 
-            //tts ttsValue = temp.value;
-
-            //ttsValue.index = 0;
-
-
-            List<Song> songs = new List<Song>();
-
-
-            songs.Where(x => x.Title == "Save me");
-
-
-
-
-
-            //  var context = new FierceStukCloudDbContextFactory().CreateDbContext(null);
-            //  //RemoveData(context);
-            //  //CreateData(context);
-            //  LoadData(context);
-            //  //Songs[0].Title = "title1";
+            var context = new FierceStukCloudDbContextFactory().CreateDbContext(null);
+            RemoveData(context);
+            //CreateData(context);
+            //LoadData(context);
+            //Songs[0].Title = "title1";
 
 
 

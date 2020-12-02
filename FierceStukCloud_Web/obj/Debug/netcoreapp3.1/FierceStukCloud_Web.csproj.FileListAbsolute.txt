@@ -1,6 +1,5 @@
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\NLog.config
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\FierceStukCloud_Web.exe
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\bin\Debug\netcoreapp3.1\FierceStukCloud_Web.deps.json
@@ -87,3 +86,4 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcor
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.dll
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.pdb
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\FierceStukCloud_Web.genruntimeconfig.cache
+C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud_Web\obj\Debug\netcoreapp3.1\scopedcss\bundle\FierceStukCloud_Web.styles.css

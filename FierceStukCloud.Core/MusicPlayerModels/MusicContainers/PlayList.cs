@@ -1,6 +1,4 @@
-﻿using FierceStukCloud.Core.Extension.ManyToMany;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -42,9 +40,6 @@ namespace FierceStukCloud.Core
         [JsonPropertyName("OnDevice")]
         public bool OnDevice { get => _onDevice; set => SetProperty(ref _onDevice, value); }
 
-
-        public List<SongPlayList> DbSongs { get; set; }
-
         public override void ExtractDbSongsToSongs()
         {
             
@@ -53,7 +48,7 @@ namespace FierceStukCloud.Core
 
         public PlayList() : base()
         {
-            DbSongs = new List<SongPlayList>();
+          
         }
 
     }

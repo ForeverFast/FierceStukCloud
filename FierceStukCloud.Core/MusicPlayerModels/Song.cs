@@ -1,6 +1,4 @@
 ﻿using FierceStukCloud.Abstractions;
-using FierceStukCloud.Core.Extension;
-using FierceStukCloud.Core.Extension.ManyToMany;
 using FierceStukCloud.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -11,13 +9,12 @@ using System.Text.Json.Serialization;
 
 namespace FierceStukCloud.Core
 {
-
     public class Song : BaseObject, IStatusExistence
     {
         #region Поля
         private string _title;
-        private ObservableCollection<Author> _authors;
-        private ObservableCollection<Album> _albums;
+        private ICollection<Author> _authors;
+        private ICollection<Album> _albums;
         private uint _year;
 
         private TimeSpan _duration;
@@ -40,13 +37,13 @@ namespace FierceStukCloud.Core
         public string Title { get => _title; set => SetProperty(ref _title, value); }
 
       
-        [NotMapped]
+        [Column("Authors")]
         [JsonPropertyName("Authors")]
-        public ObservableCollection<Author> Authors { get => _authors; set => SetProperty(ref _authors, value); }
+        public ICollection<Author> Authors { get => _authors; set => SetProperty(ref _authors, value); }
 
-        [NotMapped]
+        [Column("Albums")]
         [JsonPropertyName("Albums")]
-        public ObservableCollection<Album> Albums { get => _albums; set => SetProperty(ref _albums, value); }
+        public ICollection<Album> Albums { get => _albums; set => SetProperty(ref _albums, value); }
 
         [Column("Year")]
         [JsonPropertyName("Year")]
@@ -104,21 +101,12 @@ namespace FierceStukCloud.Core
         [NotMapped]
         public IMusicPlayerService MusicPlayer { get; set; }
 
-        public List<SongAlbum> DbAlbums { get; set; }
-        public List<SongAuthor> DbAuthors { get; set; }
-        public List<SongPlayList> DbPlayLists { get; set; }
-      
-
         #endregion
 
         public Song()
         {
             Albums = new ObservableCollection<Album>();
             Authors = new ObservableCollection<Author>();
-          
-            DbAlbums = new List<SongAlbum>();
-            DbAuthors = new List<SongAuthor>();
-            DbPlayLists = new List<SongPlayList>();
         }
 
     }

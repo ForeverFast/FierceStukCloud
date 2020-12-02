@@ -3,6 +3,7 @@ using FierceStukCloud.Core;
 using FierceStukCloud.Mvvm.Commands;
 using FierceStukCloud.Pc.Mvvm.ViewModels.Abstractions;
 using FierceStukCloud.Pc.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         public ICommand ListenPlaylistsCommand { get; private set; }
 
         private void ListenPlaylistsExecute(object parameter)
-            => SetSongExecute(PlayList.Songs?.First?.Value);
+            => Console.WriteLine(" ");//SetSongExecute(PlayList.Songs?.First?.Value);
         private bool ListenPlaylistsCabExecute(object parameter)
             => PlayList.Songs.Count > 0;
 
@@ -64,7 +65,7 @@ namespace FierceStukCloud.Pc.Mvvm.ViewModels.PageVMs
         }
 
         private bool SetSongCanExecute(object parameter)
-            => PlayList.Songs.Find(parameter as Song) != null;
+            => true;//PlayList.Songs.Find(parameter as Song) != null;
 
         public ICommand PlayStateSongCommand { get; private set; }
         private void PlayStateSongExecute(object parameter)

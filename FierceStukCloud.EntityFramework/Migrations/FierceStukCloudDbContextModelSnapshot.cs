@@ -15,9 +15,54 @@ namespace FierceStukCloud.EntityFramework.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("AlbumAuthor", b =>
+                {
+                    b.Property<Guid>("AlbumsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuthorsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AlbumsId", "AuthorsId");
+
+                    b.HasIndex("AuthorsId");
+
+                    b.ToTable("AlbumAuthor");
+                });
+
+            modelBuilder.Entity("AlbumSong", b =>
+                {
+                    b.Property<Guid>("AlbumsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SongsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AlbumsId", "SongsId");
+
+                    b.HasIndex("SongsId");
+
+                    b.ToTable("AlbumSong");
+                });
+
+            modelBuilder.Entity("AuthorSong", b =>
+                {
+                    b.Property<Guid>("AuthorsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SongsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AuthorsId", "SongsId");
+
+                    b.HasIndex("SongsId");
+
+                    b.ToTable("AuthorSong");
+                });
 
             modelBuilder.Entity("FierceStukCloud.Core.Album", b =>
                 {
@@ -26,16 +71,16 @@ namespace FierceStukCloud.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
 
                     b.Property<string>("UserLogin")
-                        .HasColumnName("UserLogin")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserLogin");
 
                     b.Property<long>("Year")
-                        .HasColumnName("Year")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("Year");
 
                     b.HasKey("Id");
 
@@ -49,84 +94,12 @@ namespace FierceStukCloud.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
 
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-                });
-
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.AlbumAuthor", b =>
-                {
-                    b.Property<Guid>("AlbumId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Place")
-                        .HasColumnType("int");
-
-                    b.HasKey("AlbumId", "AuthorId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("AlbumAuthor");
-                });
-
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongAlbum", b =>
-                {
-                    b.Property<Guid>("SongId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AlbumId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Place")
-                        .HasColumnType("int");
-
-                    b.HasKey("SongId", "AlbumId");
-
-                    b.HasIndex("AlbumId");
-
-                    b.ToTable("SongAlbum");
-                });
-
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongAuthor", b =>
-                {
-                    b.Property<Guid>("SongId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Place")
-                        .HasColumnType("int");
-
-                    b.HasKey("SongId", "AuthorId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("SongAuthor");
-                });
-
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongPlayList", b =>
-                {
-                    b.Property<Guid>("SongId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PlayListId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Place")
-                        .HasColumnType("int");
-
-                    b.HasKey("SongId", "PlayListId");
-
-                    b.HasIndex("PlayListId");
-
-                    b.ToTable("SongPlayList");
                 });
 
             modelBuilder.Entity("FierceStukCloud.Core.LocalFolder", b =>
@@ -136,24 +109,24 @@ namespace FierceStukCloud.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LocalUrl")
-                        .HasColumnName("LocalUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("LocalUrl");
 
                     b.Property<bool>("OnDevice")
-                        .HasColumnName("OnDevice")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnDevice");
 
                     b.Property<bool>("OnServer")
-                        .HasColumnName("OnServer")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnServer");
 
                     b.Property<string>("Title")
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
 
                     b.Property<string>("UserLogin")
-                        .HasColumnName("UserLogin")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserLogin");
 
                     b.HasKey("Id");
 
@@ -167,32 +140,32 @@ namespace FierceStukCloud.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationDate")
-                        .HasColumnName("CreationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationDate");
 
                     b.Property<string>("Description")
-                        .HasColumnName("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Description");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnName("Image")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Image");
 
                     b.Property<bool>("OnDevice")
-                        .HasColumnName("OnDevice")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnDevice");
 
                     b.Property<bool>("OnServer")
-                        .HasColumnName("OnServer")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnServer");
 
                     b.Property<string>("Title")
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
 
                     b.Property<string>("UserLogin")
-                        .HasColumnName("UserLogin")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserLogin");
 
                     b.HasKey("Id");
 
@@ -206,107 +179,97 @@ namespace FierceStukCloud.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeSpan>("Duration")
-                        .HasColumnName("Duration")
-                        .HasColumnType("time");
+                        .HasColumnType("time")
+                        .HasColumnName("Duration");
 
                     b.Property<bool>("IsFavorite")
-                        .HasColumnName("Favorite")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("Favorite");
 
                     b.Property<Guid?>("LocalFolderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LocalUrl")
-                        .HasColumnName("LocalUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("LocalUrl");
 
                     b.Property<bool>("OnDevice")
-                        .HasColumnName("OnDevice")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnDevice");
 
                     b.Property<bool>("OnServer")
-                        .HasColumnName("OnServer")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasColumnName("OnServer");
 
                     b.Property<string>("OptionalInfo")
-                        .HasColumnName("OptionalInfo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("OptionalInfo");
+
+                    b.Property<Guid?>("PlayListId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
-                        .HasColumnName("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
 
                     b.Property<string>("UserLogin")
-                        .HasColumnName("UserLogin")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserLogin");
 
                     b.Property<long>("Year")
-                        .HasColumnName("Year")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("Year");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LocalFolderId");
 
+                    b.HasIndex("PlayListId");
+
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.AlbumAuthor", b =>
+            modelBuilder.Entity("AlbumAuthor", b =>
                 {
-                    b.HasOne("FierceStukCloud.Core.Album", "Album")
-                        .WithMany("DbAuthors")
-                        .HasForeignKey("AlbumId")
+                    b.HasOne("FierceStukCloud.Core.Album", null)
+                        .WithMany()
+                        .HasForeignKey("AlbumsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FierceStukCloud.Core.Author", "Author")
-                        .WithMany("DbAlbums")
-                        .HasForeignKey("AuthorId")
+                    b.HasOne("FierceStukCloud.Core.Author", null)
+                        .WithMany()
+                        .HasForeignKey("AuthorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongAlbum", b =>
+            modelBuilder.Entity("AlbumSong", b =>
                 {
-                    b.HasOne("FierceStukCloud.Core.Album", "Album")
-                        .WithMany("DbSongs")
-                        .HasForeignKey("AlbumId")
+                    b.HasOne("FierceStukCloud.Core.Album", null)
+                        .WithMany()
+                        .HasForeignKey("AlbumsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FierceStukCloud.Core.Song", "Song")
-                        .WithMany("DbAlbums")
-                        .HasForeignKey("SongId")
+                    b.HasOne("FierceStukCloud.Core.Song", null)
+                        .WithMany()
+                        .HasForeignKey("SongsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongAuthor", b =>
+            modelBuilder.Entity("AuthorSong", b =>
                 {
-                    b.HasOne("FierceStukCloud.Core.Author", "Author")
-                        .WithMany("DbSongs")
-                        .HasForeignKey("AuthorId")
+                    b.HasOne("FierceStukCloud.Core.Author", null)
+                        .WithMany()
+                        .HasForeignKey("AuthorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FierceStukCloud.Core.Song", "Song")
-                        .WithMany("DbAuthors")
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FierceStukCloud.Core.Extension.ManyToMany.SongPlayList", b =>
-                {
-                    b.HasOne("FierceStukCloud.Core.PlayList", "PlayList")
-                        .WithMany("DbSongs")
-                        .HasForeignKey("PlayListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FierceStukCloud.Core.Song", "Song")
-                        .WithMany("DbPlayLists")
-                        .HasForeignKey("SongId")
+                    b.HasOne("FierceStukCloud.Core.Song", null)
+                        .WithMany()
+                        .HasForeignKey("SongsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -314,8 +277,24 @@ namespace FierceStukCloud.EntityFramework.Migrations
             modelBuilder.Entity("FierceStukCloud.Core.Song", b =>
                 {
                     b.HasOne("FierceStukCloud.Core.LocalFolder", "LocalFolder")
-                        .WithMany()
+                        .WithMany("Songs")
                         .HasForeignKey("LocalFolderId");
+
+                    b.HasOne("FierceStukCloud.Core.PlayList", null)
+                        .WithMany("Songs")
+                        .HasForeignKey("PlayListId");
+
+                    b.Navigation("LocalFolder");
+                });
+
+            modelBuilder.Entity("FierceStukCloud.Core.LocalFolder", b =>
+                {
+                    b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("FierceStukCloud.Core.PlayList", b =>
+                {
+                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }
