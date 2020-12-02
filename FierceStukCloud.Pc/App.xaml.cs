@@ -52,7 +52,10 @@ namespace FierceStukCloud.Pc
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
+
             var mainWindow = ServiceProvider.GetRequiredService<MainWindowV>();
+
+            #region
             var navigationManager = ServiceProvider.GetRequiredService<INavigationManager>();
             navigationManager.FrameControl = mainWindow.FrameContent;
             var q = ServiceProvider.GetRequiredService<IServiceProvider>();
@@ -61,7 +64,8 @@ namespace FierceStukCloud.Pc
             navigationManager.Register<ProfilePage>("profile", new HomePageVM(navigationManager));
 
             navigationManager.Navigate("home", NavigateType.Root, null);
-            
+            #endregion
+
             mainWindow.Show();
         }
 
@@ -77,6 +81,8 @@ namespace FierceStukCloud.Pc
             services.AddSingleton(typeof(User));
             services.AddSingleton(typeof(MainWindowVM));
             services.AddSingleton(typeof(MainWindowV));
+
+           
         }
 
 

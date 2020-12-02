@@ -35,5 +35,14 @@ namespace FierceStukCloud_Web.Controllers.WebAPI
             return Ok("Ваша роль: администратор");
         }
 
+
+
+        public IActionResult action()
+        {
+
+
+
+            return Ok();
+        }
     }
 }

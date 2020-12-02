@@ -21,6 +21,8 @@ namespace FierceStukCloud.Pc.Services
         private readonly IMusicStorage _musicStorage;
         private readonly ISignalRService _signalRService;
 
+        
+
         private LoopMode _isRepeatSong;
         private bool _isRandomSong;
 
@@ -85,7 +87,10 @@ namespace FierceStukCloud.Pc.Services
         #region Методы добавления/удаления песен на устройстве
 
         public async Task<Song> AddSongFromDevice(string path, Guid ContainerId)
-            => await Task.Run(() => _dataService.AddSong(path, ContainerId));
+        {
+            return await Task.Run(() => _dataService.AddSong(path, ContainerId));
+        }
+
 
         public async Task<bool> RemoveSongFromDevice(Song song)
         {

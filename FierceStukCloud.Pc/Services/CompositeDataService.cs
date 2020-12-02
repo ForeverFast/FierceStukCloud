@@ -27,6 +27,7 @@ namespace FierceStukCloud.Pc.Services
         private readonly User _user;
         private IMusicStorage _musicStorage;
 
+        private IDataService<Song> _dsSong;
 
         #region Получение информации
 

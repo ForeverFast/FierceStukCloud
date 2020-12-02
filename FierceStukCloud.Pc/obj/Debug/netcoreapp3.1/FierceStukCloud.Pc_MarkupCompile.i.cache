@@ -8,7 +8,7 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\obj\Debug\netcore
 FierceStukCloud.Pc
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\App.xaml
 6-735541411
 
@@ -16,5 +16,5 @@ C:\Users\ivans\source\repos\FierceStukCloud\FierceStukCloud.Pc\App.xaml
 2381200636160
 Mvvm\Views\MainWindowV.xaml;Mvvm\Views\Pages\HomePage.xaml;Mvvm\Views\Pages\LocalFilesPage.xaml;Mvvm\Views\Pages\PlaylistPage.xaml;Mvvm\Views\Pages\ProfilePage.xaml;Mvvm\Views\Pages\ReviewPage.xaml;
 
-False
+True
 

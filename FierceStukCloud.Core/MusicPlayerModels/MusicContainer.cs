@@ -1,7 +1,5 @@
 ﻿using FierceStukCloud.Abstractions;
 using FierceStukCloud.Core.Extension;
-using FierceStukCloud.Core.Extension.ManyToMany;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FierceStukCloud.Core
@@ -21,7 +19,7 @@ namespace FierceStukCloud.Core
 
         public MusicContainer()
         {
-           
+            Songs = new ObservableLinkedList<Song>();
         }
     }
 }

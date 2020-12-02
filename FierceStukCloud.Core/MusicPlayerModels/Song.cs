@@ -113,11 +113,9 @@ namespace FierceStukCloud.Core
 
         public Song()
         {
-            
-
             Albums = new ObservableCollection<Album>();
-
-
+            Authors = new ObservableCollection<Author>();
+          
             DbAlbums = new List<SongAlbum>();
             DbAuthors = new List<SongAuthor>();
             DbPlayLists = new List<SongPlayList>();

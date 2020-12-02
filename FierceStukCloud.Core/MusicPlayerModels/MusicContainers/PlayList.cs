@@ -1,5 +1,4 @@
-﻿using FierceStukCloud.Core.Extension;
-using FierceStukCloud.Core.Extension.ManyToMany;
+﻿using FierceStukCloud.Core.Extension.ManyToMany;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -50,6 +49,7 @@ namespace FierceStukCloud.Core
         {
             
         }
+
 
         public PlayList() : base()
         {

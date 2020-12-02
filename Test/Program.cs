@@ -31,6 +31,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TestNetStandardLib;
 using static Dapper.SqlMapper;
+using FierceStukCloud.EntityFramework;
+using FierceStukCloud.Core.Extension.ManyToMany;
+using Microsoft.EntityFrameworkCore;
 
 namespace Test
 {
@@ -148,69 +151,153 @@ namespace Test
 
     #endregion
 
-
-    public class DS : OnPropertyChangedClass
-    {
-        public ObservableCollection<int> _temp;
-        public ObservableCollection<int> Temp 
-        {
-            get => _temp; 
-            set => SetProperty(ref _temp, value);
-        }
-    }
+  
 
     class Program 
     {
+        static public void CreateData(FierceStukCloudDbContext context)
+        {
+            PlayLists = PlayListsFactory();
+            Authors = AuthorsFactory();
+
+            context.PlayLists.AddRange(PlayLists.AsEnumerable());
+            context.Authors.AddRange(Authors.AsEnumerable());
+            context.SaveChanges();
+
+            var s1 = new Song() { Id = Guid.NewGuid(), Title = "title0" };
+            s1.DbAuthors = new List<SongAuthor>()
+            {
+                SongAuthorFactory(s1.Id, Authors[0].Id)
+            };
+            context.SaveChanges();
+
+            var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2" };
+            s2.DbAuthors = new List<SongAuthor>()
+            {
+                SongAuthorFactory(s2.Id, Authors[0].Id)
+            };
+
+            Songs = new List<Song>();     
+            Songs.Add(s1);
+            Songs.Add(s2);
+
+            PlayLists[0].DbSongs.Add(new SongPlayList() { Place = 0, PlayListId = PlayLists[0].Id, SongId = Songs[0].Id });
+
+            context.Songs.Add(s1);
+            context.Songs.Add(s2);
+            context.SaveChanges();
+        }
+
+        static public void RemoveData(FierceStukCloudDbContext context)
+        {
+            context.Songs.RemoveRange(context.Songs.AsEnumerable());
+            context.Authors.RemoveRange(context.Authors.AsEnumerable());
+            context.PlayLists.RemoveRange(context.PlayLists.AsEnumerable());
+        }
+
+        static public void LoadData(FierceStukCloudDbContext context)
+        {
+            Songs = context.Songs.Include(x => x.DbAlbums).ThenInclude(x => x.Album)
+                                 .Include(x => x.DbAuthors).ThenInclude(x => x.Author)
+                                 .Include(x => x.DbPlayLists).ThenInclude(x => x.PlayList)
+                                 .ToList();
+
+            Authors = context.Authors.Include(x => x.DbSongs).ThenInclude(x => x.Song)
+                                     .Include(x => x.DbAlbums).ThenInclude(x => x.Album)
+                                     .ToList();
+
+            PlayLists = context.PlayLists.Include(x => x.DbSongs).ThenInclude(x => x.Song)
+                                         .ToList();
+        }
+
+        static public List<Song> Songs;
+        static public List<PlayList> PlayLists;
+        static public List<Author> Authors;
       
+
+        static public List<PlayList> PlayListsFactory()
+        {
+            var temp = new List<PlayList>();
+
+            for (int i = 0; i < 3; i++)
+                temp.Add(new PlayList() { Id = Guid.NewGuid(), Title = $"PlayList{i}" });
+
+            return temp;
+        }
+
+        static public List<Author> AuthorsFactory()
+        {
+            var temp = new List<Author>();
+
+            for (int i = 0; i < 3; i++)
+                temp.Add(new Author() { Id = Guid.NewGuid(), Title = $"Author{i}" });
+
+            return temp;
+        }
+
+        static public SongAuthor SongAuthorFactory(Guid songId, Guid authorId)
+            => new SongAuthor() { SongId = songId, AuthorId = authorId };
+
+
+
+        class st
+        {
+            public tts value { get; }
+
+            public st(tts value)
+            {
+                this.value = value;
+                value.index = 5;
+            }
+        }
+
+        class tts
+        {
+            public int index;
+        }
+
         static void Main(string[] args)
         {
+            //st temp = new st(new tts());
 
-            DS q = new DS();
+            //tts ttsValue = temp.value;
 
-            q.Temp = new ObservableCollection<int>();
-
-
-            //var contextF = new FierceStukCloudDbContextFactory();
-
-            //var context = contextF.CreateDbContext(null);
-
-            //var pl1 = new PlayList() { Id = Guid.NewGuid(), Title = "Рок" };
-            //var pl2 = new PlayList() { Id = Guid.NewGuid(), Title = "Рэп" };
-
-            //context.PlayLists.Add(pl1);
-            //context.PlayLists.Add(pl2);
-            //context.SaveChanges();
-
-            //var s1 = new Song() { Id = Guid.NewGuid(), Title = "title1", Author = "author1" };
-            //var s2 = new Song() { Id = Guid.NewGuid(), Title = "title2", Author = "author2" };
-
-            //context.Songs.Add(s1);
-            //context.Songs.Add(s2);
-            //context.SaveChanges();
-
-            //pl1.DbSongs.Add(new SongPlayList() { SongId = s1.Id, PlayListId = pl1.Id });
-            //pl1.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl1.Id });
-            //pl2.DbSongs.Add(new SongPlayList() { SongId = s2.Id, PlayListId = pl2.Id });
-
-            //context.SaveChanges();
-
-            //var pl = context.PlayLists.Include(c => c.DbSongs).ThenInclude(x => x.Song).ToList();
-
-            // var pl1 = context.PlayLists.Include(x => x.Songs).ToList();
-            // var pl2 = context.PlayLists.FirstOrDefault(x => x.Title == "Рэп");
-            //var ls = context.Songs.ToList();
-
-            //pl.ListS = new List<Song>();
-
-            //foreach (var item in ls)
-            //{
-            //    pl.ListS.Add(item);
-            //}
-
-            //context.Update<PlayList>(pl);
-            //context.SaveChanges();
+            //ttsValue.index = 0;
 
 
+            List<Song> songs = new List<Song>();
+
+
+            songs.Where(x => x.Title == "Save me");
+
+
+
+
+
+            //  var context = new FierceStukCloudDbContextFactory().CreateDbContext(null);
+            //  //RemoveData(context);
+            //  //CreateData(context);
+            //  LoadData(context);
+            //  //Songs[0].Title = "title1";
+
+
+
+            //  //context.PlayLists.Remove(PlayLists[0]);
+            //  var s3 = new Song() { Id = Guid.NewGuid(), Title = "title4" };
+            //  s3.DbAuthors = new List<SongAuthor>()
+            //  {
+            //      SongAuthorFactory(s3.Id, Authors[1].Id)
+            //  };
+
+            ////  var q = typeof(s3);
+
+            //  Songs.Add(s3);
+
+            //  context.Songs.Add(s3);
+
+            //  PlayLists[2].DbSongs.Add(new SongPlayList() { Place = 0, PlayListId = PlayLists[2].Id, SongId = Songs[2].Id });
+
+            //  context.SaveChanges();
             Console.WriteLine("End");
 
             //var client = new RestClient("https://developers.lingvolive.com/api/v1/Translation?text=floor&srcLang=1033&dstLang=1049");

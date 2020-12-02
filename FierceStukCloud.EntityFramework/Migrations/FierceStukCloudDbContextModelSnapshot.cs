@@ -65,6 +65,9 @@ namespace FierceStukCloud.EntityFramework.Migrations
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Place")
+                        .HasColumnType("int");
+
                     b.HasKey("AlbumId", "AuthorId");
 
                     b.HasIndex("AuthorId");
@@ -80,6 +83,9 @@ namespace FierceStukCloud.EntityFramework.Migrations
                     b.Property<Guid>("AlbumId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Place")
+                        .HasColumnType("int");
+
                     b.HasKey("SongId", "AlbumId");
 
                     b.HasIndex("AlbumId");
@@ -94,6 +100,9 @@ namespace FierceStukCloud.EntityFramework.Migrations
 
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Place")
+                        .HasColumnType("int");
 
                     b.HasKey("SongId", "AuthorId");
 

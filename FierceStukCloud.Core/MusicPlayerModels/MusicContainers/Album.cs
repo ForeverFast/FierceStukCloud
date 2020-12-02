@@ -48,6 +48,9 @@ namespace FierceStukCloud.Core
         public Album() : base()
         {
             DbSongs = new List<SongAlbum>();
+            DbAuthors = new List<AlbumAuthor>();
+
+            Authors = new ObservableCollection<Author>();
         }
     }
 }
